@@ -22,6 +22,12 @@ export default async function BackendLayout({ children }: { children: React.Reac
               <Link href="/backend" className="hover:text-ink">
                 Anfragen
               </Link>
+              <Link href="/backend/kunden" className="hover:text-ink">
+                Kunden
+              </Link>
+              <Link href="/backend/projekte" className="hover:text-ink">
+                Projekte
+              </Link>
               <Link href="/backend/inhalte" className="hover:text-ink">
                 Inhalte
               </Link>

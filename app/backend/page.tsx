@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { featureOptions } from "@/components/valuation-form/steps-data";
 import { updateLeadStatus } from "./actions";
+import { createCustomerAndProjectFromLead } from "./crm-actions";
 
 const featureLabels = Object.fromEntries(featureOptions.map((f) => [f.value, f.label]));
 
@@ -45,10 +46,11 @@ export default async function BackendLeadsPage({
 }) {
   const { filter } = await searchParams;
   const supabase = await createClient();
-  const { data: leads, error } = await supabase
-    .from("leads")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const [{ data: leads, error }, { data: linkedCustomers }] = await Promise.all([
+    supabase.from("leads").select("*").order("created_at", { ascending: false }),
+    supabase.from("customers").select("id, lead_id").not("lead_id", "is", null),
+  ]);
+  const customerByLeadId = new Map((linkedCustomers ?? []).map((c) => [c.lead_id as string, c.id as string]));
 
   const contactCount = leads?.filter((lead) => lead.wants_contact).length ?? 0;
   const totalCount = leads?.length ?? 0;
@@ -201,6 +203,26 @@ export default async function BackendLeadsPage({
                     }
                   />
                 </dl>
+                <div className="mt-4">
+                  {customerByLeadId.has(lead.id) ? (
+                    <Link
+                      href={`/backend/kunden/${customerByLeadId.get(lead.id)}`}
+                      className="text-sm text-accent underline"
+                    >
+                      Zum Kunden →
+                    </Link>
+                  ) : (
+                    <form action={createCustomerAndProjectFromLead}>
+                      <input type="hidden" name="lead_id" value={lead.id} />
+                      <button
+                        type="submit"
+                        className="rounded-full bg-accent px-4 py-1.5 text-xs text-paper hover:bg-accent/90"
+                      >
+                        Als Kunde & Projekt anlegen
+                      </button>
+                    </form>
+                  )}
+                </div>
               </div>
             ) : null}
           </div>
