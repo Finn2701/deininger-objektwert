@@ -1,7 +1,7 @@
 "use server";
 
 import type { ValuationFormData } from "@/components/valuation-form/types";
-import type { ValuationEstimate } from "@/lib/valuation-estimate";
+import { estimateValue, type ValuationEstimate } from "@/lib/valuation-estimate";
 import { createClient } from "@/lib/supabase/server";
 
 async function verifyTurnstile(token: string | null): Promise<boolean> {
@@ -19,22 +19,23 @@ async function verifyTurnstile(token: string | null): Promise<boolean> {
 }
 
 /**
- * Persists every completed run to Supabase (server-side, so the write can't
- * be forged by editing client JS) — regardless of whether the visitor wants
- * to be contacted, so the site owner can see all usage via /backend, not
- * just opted-in leads. `wants_contact` distinguishes the two. A failure
- * THROWS so the UI can show a real error state rather than telling the
- * visitor "danke" for a submission that was never saved.
+ * Computes the estimate (including the live region lookup) and persists
+ * every completed run to Supabase server-side — regardless of whether the
+ * visitor wants to be contacted, so the site owner can see all usage via
+ * /backend, not just opted-in leads. `wants_contact` distinguishes the two.
+ * A failure THROWS so the UI can show a real error state rather than
+ * telling the visitor "danke" for a submission that was never saved.
  */
 export async function submitValuationRequest(
   data: ValuationFormData,
-  estimate: ValuationEstimate | null,
   turnstileToken: string | null
-): Promise<{ ok: true }> {
+): Promise<{ estimate: ValuationEstimate | null }> {
   const humanVerified = await verifyTurnstile(turnstileToken);
   if (!humanVerified) {
     throw new Error("captcha-failed");
   }
+
+  const estimate = await estimateValue(data);
 
   const supabase = await createClient();
 
@@ -57,5 +58,5 @@ export async function submitValuationRequest(
 
   if (error) throw error;
 
-  return { ok: true };
+  return { estimate };
 }

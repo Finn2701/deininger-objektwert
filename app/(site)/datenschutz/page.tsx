@@ -130,7 +130,30 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="7. Datenbank / Auftragsverarbeitung">
+          <Section title="7. Regionale Preiseinordnung (OpenStreetMap)">
+            <p>
+              Damit die Ersteinschätzung nicht überall in Deutschland dieselben Preise ansetzt,
+              gleichen wir den von Ihnen eingegebenen Ort serverseitig mit dem
+              Geokodierungsdienst Nominatim der OpenStreetMap Foundation ab, um die passende
+              Region (Bundesland bzw. Stadt) zu bestimmen. Dabei wird ausschließlich Ihre
+              Ortsangabe übermittelt, keine weiteren personenbezogenen Daten.
+            </p>
+            <p>
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer
+              regional zutreffenden Berechnung). Weitere Informationen:{" "}
+              <a
+                href="https://osmfoundation.org/wiki/Privacy_Policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink hover:text-ink-soft"
+              >
+                Datenschutzerklärung der OpenStreetMap Foundation
+              </a>
+              .
+            </p>
+          </Section>
+
+          <Section title="8. Datenbank / Auftragsverarbeitung">
             <p>
               Die über das Bewertungsformular erhobenen Daten speichern wir bei unserem
               Datenbank-Dienstleister Supabase, Serverstandort Frankfurt am Main (EU). Mit
@@ -139,13 +162,13 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="8. Cookies">
+          <Section title="9. Cookies">
             <p>Wir unterscheiden zwischen zwei Bereichen unserer Website:</p>
             <p>
               Auf den öffentlichen Seiten setzen wir selbst keine Cookies ein. Beim Ausfüllen des
               Bewertungsformulars lädt Ihr Browser das unten beschriebene Sicherheitstool
               Cloudflare Turnstile, das dabei ein technisch notwendiges Cookie zur Spam-Abwehr
-              setzen kann (siehe Punkt 9).
+              setzen kann (siehe Punkt 10).
             </p>
             <p>
               Im passwortgeschützten Verwaltungsbereich, den ausschließlich der Verantwortliche
@@ -155,7 +178,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="9. Spam- und Missbrauchsschutz (Cloudflare Turnstile)">
+          <Section title="10. Spam- und Missbrauchsschutz (Cloudflare Turnstile)">
             <p>
               Zum Schutz des Bewertungsformulars vor automatisierten Zugriffen (Bots) setzen wir
               den Dienst Cloudflare Turnstile der Cloudflare, Inc., 101 Townsend St, San
@@ -182,7 +205,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="10. Analyse-Tools und Google-Dienste">
+          <Section title="11. Analyse-Tools und Google-Dienste">
             <p>
               Wir setzen derzeit keine Analyse- oder Marketing-Tools ein (z. B. Google Analytics,
               Matomo). Die auf dieser Website verwendeten Schriftarten werden beim Bau der Website
@@ -193,7 +216,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="11. Datensicherheit">
+          <Section title="12. Datensicherheit">
             <p>
               Die Übertragung zwischen Ihrem Browser und unserer Website erfolgt verschlüsselt
               (TLS/HTTPS). Der Zugriff auf gespeicherte Anfragedaten ist über
@@ -203,7 +226,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="12. Ihre Rechte">
+          <Section title="13. Ihre Rechte">
             <p>Ihnen stehen folgende Rechte zu:</p>
             <ul className="list-disc space-y-1 pl-5">
               <li>Recht auf Auskunft über die von uns zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -223,7 +246,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="13. Beschwerderecht bei einer Aufsichtsbehörde">
+          <Section title="14. Beschwerderecht bei einer Aufsichtsbehörde">
             <p>
               Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren,
               insbesondere in dem Mitgliedstaat Ihres gewöhnlichen Aufenthaltsorts, Ihres
@@ -233,7 +256,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="14. Aktualität und Änderung dieser Datenschutzerklärung">
+          <Section title="15. Aktualität und Änderung dieser Datenschutzerklärung">
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung anzupassen, wenn sich rechtliche
               oder technische Änderungen ergeben, etwa beim Einsatz neuer Dienste. Die jeweils

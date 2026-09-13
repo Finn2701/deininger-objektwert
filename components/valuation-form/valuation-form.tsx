@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitValuationRequest } from "@/lib/valuation-submit";
-import { estimateValue, formatEuro, type ValuationEstimate } from "@/lib/valuation-estimate";
+import { formatEuro, type ValuationEstimate } from "@/lib/valuation-estimate";
 import { conditionOptions, featureOptions, formStepLabels, propertyTypeOptions, yearBuiltOptions } from "./steps-data";
 import { initialValuationFormData, type ValuationFormData } from "./types";
 import { TurnstileWidget } from "./turnstile-widget";
@@ -155,12 +155,12 @@ export function ValuationForm() {
 
   async function handleSubmit() {
     setStatus("submitting");
-    const result = estimateValue(data);
-    setEstimate(result);
     try {
-      await submitValuationRequest(data, result, turnstileToken);
+      const { estimate: result } = await submitValuationRequest(data, turnstileToken);
+      setEstimate(result);
       setLeadSaveFailed(false);
     } catch {
+      setEstimate(null);
       setLeadSaveFailed(true);
     }
     setStatus("done");
@@ -183,8 +183,13 @@ export function ValuationForm() {
             </p>
             <p className="mt-5 max-w-md text-sm text-ink-soft/80">
               Grobe, unverbindliche Ersteinschätzung auf Basis öffentlich verfügbarer Marktdaten
-              für {estimate.region} (Stand {estimate.asOf}) und Ihrer Angaben. Ersetzt keine
-              Wertermittlung durch einen Sachverständigen vor Ort.
+              {estimate.regionMatched ? (
+                <> für die Region {estimate.region}</>
+              ) : (
+                <> auf Basis unseres Referenz-Preisniveaus, da Ihr Standort nicht eindeutig zugeordnet werden konnte</>
+              )}{" "}
+              (Stand {estimate.asOf}) und Ihrer Angaben. Ersetzt keine Wertermittlung durch einen
+              Sachverständigen vor Ort.
             </p>
           </>
         ) : (
@@ -407,7 +412,7 @@ export function ValuationForm() {
             }
             className="rounded-full bg-ink px-6 py-2.5 text-sm text-paper transition-opacity hover:bg-ink-soft disabled:opacity-30"
           >
-            {status === "submitting" ? "Wird berechnet …" : "Wert ermitteln"}
+            {status === "submitting" ? "Region wird abgeglichen …" : "Wert ermitteln"}
           </button>
         )}
       </div>
