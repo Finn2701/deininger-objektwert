@@ -17,10 +17,10 @@ export function SiteHeader() {
           <Image
             src="/images/brand/mark.png"
             alt=""
-            width={547}
-            height={400}
+            width={512}
+            height={512}
             priority
-            className="h-8 w-auto md:h-9"
+            className="h-9 w-auto md:h-10"
           />
           <span className="flex flex-col leading-none">
             <span className="font-display text-sm font-semibold tracking-[0.08em] text-ink uppercase md:text-base">

@@ -11,7 +11,7 @@ import { getContentOverrides, withOverrides } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Immobilienwert ermitteln – kostenloser Online-Rechner",
   description:
-    "Immobilie bewerten lassen in wenigen Minuten: kostenloser Online-Rechner für Heidenheim an der Brenz und Umgebung. Objektart, Lage, Baujahr und Zustand eingeben – Wertspanne sofort erhalten.",
+    "Immobilie bewerten lassen in wenigen Minuten: kostenloser Online-Rechner, deutschlandweit nutzbar. Objektart, Lage, Baujahr und Zustand eingeben – Wertspanne sofort erhalten. Besondere Marktkenntnis in Heidenheim an der Brenz.",
   alternates: { canonical: "/immobilienbewertung" },
 };
 
@@ -26,7 +26,7 @@ const drivers = [
 const defaults = {
   "bewertung.hero.title": "Immobilienwert ermitteln – kostenlos und unverbindlich.",
   "bewertung.hero.lede":
-    "Egal ob Haus, Wohnung, Mehrfamilienhaus oder unbebautes Grundstück in {region} und Umgebung: Beantworten Sie ein paar Fragen zu Lage, Baujahr, Fläche und Zustand – Sie erhalten sofort eine erste Wertspanne.",
+    "Egal wo in Deutschland Ihre Immobilie steht – ob Haus, Wohnung, Mehrfamilienhaus oder unbebautes Grundstück: Beantworten Sie ein paar Fragen zu Lage, Baujahr, Fläche und Zustand und erhalten sofort eine erste Wertspanne. Besonders fundiert ist unsere Einschätzung für {region} und Umgebung, wo wir den Markt aus erster Hand kennen.",
 };
 
 export default async function ImmobilienbewertungPage() {

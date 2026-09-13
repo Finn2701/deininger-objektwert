@@ -8,7 +8,7 @@ import { breadcrumbJsonLd } from "@/lib/structured-data";
 export const metadata: Metadata = {
   title: "Kontakt",
   description:
-    "Kontaktieren Sie Deininger Objektwert für eine detaillierte Immobilienbewertung oder ein unverbindliches Gespräch.",
+    "Kontaktieren Sie Deininger Objektwert für eine detaillierte Immobilienbewertung oder ein unverbindliches Gespräch – ansässig in Heidenheim an der Brenz, deutschlandweit erreichbar.",
   alternates: { canonical: "/kontakt" },
 };
 

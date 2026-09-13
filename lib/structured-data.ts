@@ -29,8 +29,8 @@ export function realEstateAgentJsonLd() {
       },
     },
     areaServed: {
-      "@type": "AdministrativeArea",
-      name: siteConfig.region,
+      "@type": "Country",
+      name: "Deutschland",
     },
     offers: {
       "@type": "Offer",

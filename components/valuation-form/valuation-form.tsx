@@ -4,14 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitValuationRequest } from "@/lib/valuation-submit";
 import { estimateValue, formatEuro, type ValuationEstimate } from "@/lib/valuation-estimate";
-import {
-  bathroomOptions,
-  conditionOptions,
-  formStepLabels,
-  propertyTypeOptions,
-  separateUnitOptions,
-  yearBuiltOptions,
-} from "./steps-data";
+import { conditionOptions, featureOptions, formStepLabels, propertyTypeOptions, yearBuiltOptions } from "./steps-data";
 import { initialValuationFormData, type ValuationFormData } from "./types";
 import { TurnstileWidget } from "./turnstile-widget";
 
@@ -57,6 +50,37 @@ function OptionGrid<T extends string>({
   );
 }
 
+function ChipGrid<T extends string>({
+  options,
+  values,
+  onToggle,
+}: {
+  options: { value: T; label: string }[];
+  values: T[];
+  onToggle: (value: T) => void;
+}) {
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {options.map((option) => {
+        const active = values.includes(option.value);
+        return (
+          <button
+            key={option.value}
+            type="button"
+            onClick={() => onToggle(option.value)}
+            aria-pressed={active}
+            className={`rounded-xl border px-4 py-3.5 text-left text-sm transition-colors ${
+              active ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink-soft"
+            }`}
+          >
+            {option.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function TextField({
   label,
   value,
@@ -89,7 +113,6 @@ function TextField({
 
 const isLand = (data: ValuationFormData) => data.propertyType === "grundstueck";
 const hasOwnPlot = (data: ValuationFormData) => data.propertyType !== "wohnung";
-const canHaveSeparateUnit = (data: ValuationFormData) => data.propertyType === "haus";
 
 function isStepValid(step: number, data: ValuationFormData) {
   switch (step) {
@@ -101,11 +124,6 @@ function isStepValid(step: number, data: ValuationFormData) {
       return isLand(data) ? data.plotArea.trim().length > 0 : data.livingArea.trim().length > 0;
     case 3:
       return isLand(data) || (data.yearBuilt !== null && data.condition !== null);
-    case 4:
-      return (
-        isLand(data) ||
-        (data.bathrooms !== null && (!canHaveSeparateUnit(data) || data.hasSeparateUnit !== null))
-      );
     case 5:
       return !data.contactConsent || (data.name.trim().length > 1 && data.email.trim().includes("@"));
     default:
@@ -124,6 +142,15 @@ export function ValuationForm() {
 
   function update<K extends keyof ValuationFormData>(key: K, value: ValuationFormData[K]) {
     setData((prev) => ({ ...prev, [key]: value }));
+  }
+
+  function toggleFeature(id: ValuationFormData["features"][number]) {
+    setData((prev) => ({
+      ...prev,
+      features: prev.features.includes(id)
+        ? prev.features.filter((f) => f !== id)
+        : [...prev.features, id],
+    }));
   }
 
   async function handleSubmit() {
@@ -288,28 +315,17 @@ export function ValuationForm() {
                 </p>
               ) : (
                 <>
-                  <p className="text-sm text-ink-soft">Anzahl Badezimmer</p>
-                  <OptionGrid
-                    options={bathroomOptions}
-                    value={data.bathrooms}
-                    onChange={(value) => update("bathrooms", value)}
-                    columns={2}
+                  <p className="text-sm text-ink-soft">
+                    Was trifft auf die Immobilie zu? Einfach das auswählen, was zutrifft —
+                    alles optional.
+                  </p>
+                  <ChipGrid
+                    options={featureOptions.filter(
+                      (option) => !option.onlyFor || (data.propertyType && option.onlyFor.includes(data.propertyType))
+                    )}
+                    values={data.features}
+                    onToggle={toggleFeature}
                   />
-                  {canHaveSeparateUnit(data) && (
-                    <>
-                      <p className="pt-2 text-sm text-ink-soft">
-                        Gibt es eine Einliegerwohnung oder separate Wohneinheit?
-                      </p>
-                      <OptionGrid
-                        options={separateUnitOptions}
-                        value={
-                          data.hasSeparateUnit === null ? null : data.hasSeparateUnit ? "ja" : "nein"
-                        }
-                        onChange={(value) => update("hasSeparateUnit", value === "ja")}
-                        columns={2}
-                      />
-                    </>
-                  )}
                 </>
               ))}
 

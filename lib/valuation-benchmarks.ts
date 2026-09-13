@@ -55,14 +55,20 @@ export const conditionMultiplier: Record<ConditionLevel, number> = {
   modernisiert: 1.1,
 };
 
-export type BathroomCount = "1" | "2" | "3+";
+export type FeatureId =
+  | "zweites-bad"
+  | "neue-kueche"
+  | "aussenbereich"
+  | "keller"
+  | "stellplatz"
+  | "einliegerwohnung";
 
-/** A second bathroom is a real value driver; a third adds less on top. */
-export const bathroomMultiplier: Record<BathroomCount, number> = {
-  "1": 1,
-  "2": 1.04,
-  "3+": 1.07,
+/** Each selected feature adds its share on top of the base value; effects are additive, not compounding. */
+export const featureBonus: Record<FeatureId, number> = {
+  "zweites-bad": 0.03,
+  "neue-kueche": 0.02,
+  aussenbereich: 0.02,
+  keller: 0.015,
+  stellplatz: 0.02,
+  einliegerwohnung: 0.06, // self-contained unit with its own kitchen adds rental potential
 };
-
-/** A self-contained unit with its own kitchen (Einliegerwohnung) adds rental potential. */
-export const separateUnitBonus = 1.06;

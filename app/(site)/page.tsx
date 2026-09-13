@@ -7,9 +7,9 @@ import { realEstateAgentJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: `Immobilienbewertung ${siteConfig.region} – kostenlose Ersteinschätzung`,
+  title: "Immobilienbewertung online – kostenlose Ersteinschätzung",
   description:
-    "Kostenlose Online-Immobilienbewertung für Heidenheim an der Brenz und Umgebung: Ermitteln Sie in wenigen Minuten eine erste, unverbindliche Einschätzung des Werts Ihrer Immobilie.",
+    "Kostenlose Online-Immobilienbewertung, deutschlandweit nutzbar: Ermitteln Sie in wenigen Minuten eine erste, unverbindliche Einschätzung Ihres Immobilienwerts. Besondere Marktkenntnis in Heidenheim an der Brenz und Umgebung.",
   alternates: { canonical: "/" },
 };
 

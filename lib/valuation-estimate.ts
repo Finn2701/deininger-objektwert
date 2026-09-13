@@ -1,11 +1,10 @@
 import type { ValuationFormData } from "@/components/valuation-form/types";
 import {
-  bathroomMultiplier,
   benchmarkMeta,
   conditionMultiplier,
+  featureBonus,
   plotPricePerSqm,
   pricePerSqmByType,
-  separateUnitBonus,
   yearBuiltMultiplier,
 } from "./valuation-benchmarks";
 
@@ -43,10 +42,9 @@ export function estimateValue(data: ValuationFormData): ValuationEstimate | null
     if (!data.propertyType || livingArea <= 0 || !data.yearBuilt || !data.condition) return null;
 
     const base = pricePerSqmByType[data.propertyType] * livingArea;
-    let adjusted = base * yearBuiltMultiplier[data.yearBuilt] * conditionMultiplier[data.condition];
-
-    if (data.bathrooms) adjusted *= bathroomMultiplier[data.bathrooms];
-    if (data.hasSeparateUnit) adjusted *= separateUnitBonus;
+    const featureMultiplier = 1 + data.features.reduce((sum, id) => sum + (featureBonus[id] ?? 0), 0);
+    const adjusted =
+      base * yearBuiltMultiplier[data.yearBuilt] * conditionMultiplier[data.condition] * featureMultiplier;
 
     const plotBonus =
       data.propertyType !== "wohnung" && plotArea > TYPICAL_HOUSE_PLOT_SQM

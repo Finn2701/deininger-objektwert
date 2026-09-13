@@ -8,7 +8,7 @@ import { getContentOverrides, withOverrides } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Über uns",
   description:
-    "Deininger Objektwert steht für eine ruhige, sachliche Herangehensweise an Immobilienbewertung – persönlich statt anonym, transparent statt vollmundig.",
+    "Deininger Objektwert steht für eine ruhige, sachliche Herangehensweise an Immobilienbewertung – persönlich statt anonym, transparent statt vollmundig. Zuhause in Heidenheim an der Brenz, im Einsatz deutschlandweit.",
   alternates: { canonical: "/ueber-uns" },
 };
 

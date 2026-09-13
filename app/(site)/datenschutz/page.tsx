@@ -111,8 +111,8 @@ export default function DatenschutzPage() {
             <p>
               Wenn Sie über unseren Online-Rechner eine Immobilienbewertung anfragen, verarbeiten
               wir die von Ihnen eingegebenen Angaben zum Objekt: Objektart, Lage, Wohn- und
-              Grundstücksfläche, Baujahr, Zustand, Anzahl Badezimmer sowie das Vorhandensein einer
-              Einliegerwohnung. Diese Angaben werden gespeichert, um Ihnen die Ersteinschätzung
+              Grundstücksfläche, Baujahr, Zustand sowie die von Ihnen ausgewählten
+              Ausstattungsmerkmale. Diese Angaben werden gespeichert, um Ihnen die Ersteinschätzung
               anzuzeigen und damit wir die Nutzung unseres kostenlosen Rechners nachvollziehen
               können.
             </p>
@@ -140,22 +140,45 @@ export default function DatenschutzPage() {
           </Section>
 
           <Section title="8. Cookies">
+            <p>Wir unterscheiden zwischen zwei Bereichen unserer Website:</p>
             <p>
-              Für Besucher der öffentlichen Website setzen wir aktuell keine Cookies ein. Im
-              passwortgeschützten Verwaltungsbereich, den ausschließlich der Verantwortliche
-              nutzt, wird ein technisch notwendiges Sitzungs-Cookie zur Anmeldung gesetzt
-              (Art. 6 Abs. 1 lit. f DSGVO). Dieses Cookie betrifft keine Website-Besucher.
+              Auf den öffentlichen Seiten setzen wir selbst keine Cookies ein. Beim Ausfüllen des
+              Bewertungsformulars lädt Ihr Browser das unten beschriebene Sicherheitstool
+              Cloudflare Turnstile, das dabei ein technisch notwendiges Cookie zur Spam-Abwehr
+              setzen kann (siehe Punkt 9).
+            </p>
+            <p>
+              Im passwortgeschützten Verwaltungsbereich, den ausschließlich der Verantwortliche
+              nutzt, wird zusätzlich ein technisch notwendiges Sitzungs-Cookie zur Anmeldung
+              gesetzt (Art. 6 Abs. 1 lit. f DSGVO). Dieses Cookie betrifft keine
+              Website-Besucher.
             </p>
           </Section>
 
-          <Section title="9. Spam- und Missbrauchsschutz">
+          <Section title="9. Spam- und Missbrauchsschutz (Cloudflare Turnstile)">
             <p>
-              Zum Schutz des Bewertungsformulars vor automatisierten Zugriffen (Bots) kann der
-              Dienst Cloudflare Turnstile eingesetzt werden. Dabei werden technische Merkmale
-              Ihres Zugriffs verarbeitet, ohne dass ein klassisches Tracking-Cookie gesetzt wird.
+              Zum Schutz des Bewertungsformulars vor automatisierten Zugriffen (Bots) setzen wir
+              den Dienst Cloudflare Turnstile der Cloudflare, Inc., 101 Townsend St, San
+              Francisco, CA 94107, USA, ein. Turnstile prüft im Hintergrund technische Merkmale
+              Ihres Zugriffs (z. B. Browser- und Geräteeigenschaften), meist ohne dass Sie
+              interagieren müssen, und kann dabei ein Cookie sowie vergleichbare Techniken zur
+              Betrugs- und Missbrauchserkennung setzen. Ein klassisches Tracking zu
+              Werbezwecken findet dabei nicht statt.
+            </p>
+            <p>
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem vor
-              Missbrauch geschützten Angebot). Ist dieser Dienst aktiv, informieren wir an dieser
-              Stelle mit dem Namen des jeweiligen Anbieters.
+              Missbrauch und Spam geschützten Formular). Die Übermittlung in die USA erfolgt auf
+              Grundlage des EU-US Data Privacy Framework bzw. der EU-Standardvertragsklauseln.
+              Weitere Informationen:{" "}
+              <a
+                href="https://www.cloudflare.com/de-de/privacypolicy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink hover:text-ink-soft"
+              >
+                Datenschutzerklärung von Cloudflare
+              </a>
+              .
             </p>
           </Section>
 

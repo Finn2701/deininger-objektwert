@@ -52,6 +52,12 @@ export function SiteFooter() {
           <Link href="/datenschutz" className="hover:text-ink">
             Datenschutz
           </Link>
+          <Link href="/agb" className="hover:text-ink">
+            AGB
+          </Link>
+          <Link href="/widerruf" className="hover:text-ink">
+            Widerrufsbelehrung
+          </Link>
         </div>
       </Container>
     </footer>

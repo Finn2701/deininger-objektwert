@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { featureOptions } from "@/components/valuation-form/steps-data";
 import { updateLeadStatus } from "./actions";
+
+const featureLabels = Object.fromEntries(featureOptions.map((f) => [f.value, f.label]));
 
 export const metadata: Metadata = {
   title: "Anfragen",
@@ -149,17 +152,25 @@ export default async function BackendLeadsPage({
               </form>
             </div>
 
-            <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-line pt-4 text-sm sm:grid-cols-3 md:grid-cols-6">
+            <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-line pt-4 text-sm sm:grid-cols-4">
               <Fact label="Wohnfläche" value={lead.living_area ? `${lead.living_area} m²` : "–"} />
               <Fact label="Grundstück" value={lead.plot_area ? `${lead.plot_area} m²` : "–"} />
               <Fact label="Baujahr" value={lead.year_built ?? "–"} />
               <Fact label="Zustand" value={lead.condition ?? "–"} />
-              <Fact label="Badezimmer" value={lead.bathrooms ?? "–"} />
-              <Fact
-                label="Einliegerwohnung"
-                value={lead.has_separate_unit === true ? "Ja" : lead.has_separate_unit === false ? "Nein" : "–"}
-              />
             </dl>
+
+            {lead.features && lead.features.length > 0 ? (
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {lead.features.map((id: string) => (
+                  <span
+                    key={id}
+                    className="rounded-full bg-line/50 px-2.5 py-0.5 text-[11px] text-ink-soft"
+                  >
+                    {featureLabels[id] ?? id}
+                  </span>
+                ))}
+              </div>
+            ) : null}
 
             {lead.wants_contact ? (
               <div className="mt-4 rounded-lg bg-accent/5 p-4">

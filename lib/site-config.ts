@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Deininger Objektwert",
-  tagline: "Kostenlose Online-Immobilienbewertung",
+  tagline: "Kostenlose Online-Immobilienbewertung – deutschlandweit",
   description:
-    "Deininger Objektwert bietet eine kostenlose, unverbindliche Ersteinschätzung des Immobilienwerts für Heidenheim und Umgebung – basierend auf Lage, Substanz, Zustand und aktuellen Marktdaten.",
+    "Deininger Objektwert bietet eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts – deutschlandweit nutzbar, mit besonderer Marktkenntnis in Heidenheim an der Brenz und Umgebung.",
   url: "https://www.deininger-objektwert.de",
   email: "kontakt@deininger-objektwert.de",
   locale: "de_DE",
