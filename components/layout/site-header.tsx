@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { primaryNav, siteConfig } from "@/lib/site-config";
@@ -12,11 +13,15 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between md:h-20">
-        <Link
-          href="/"
-          className="font-display text-sm font-medium tracking-[0.14em] text-ink uppercase md:text-base"
-        >
-          {siteConfig.name}
+        <Link href="/" className="flex items-center" aria-label={siteConfig.name}>
+          <Image
+            src="/images/brand/logo.png"
+            alt={siteConfig.name}
+            width={559}
+            height={452}
+            priority
+            className="h-10 w-auto md:h-12"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Hauptnavigation">
