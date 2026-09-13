@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { updateLeadStatus } from "./actions";
 
@@ -25,19 +26,64 @@ function formatEuro(value: number | null) {
   }).format(value);
 }
 
-export default async function BackendLeadsPage() {
+function Fact({ label, value }: { label: string; value: React.ReactNode }) {
+  return (
+    <div>
+      <dt className="text-xs text-ink-soft/60">{label}</dt>
+      <dd className="mt-0.5 text-ink">{value}</dd>
+    </div>
+  );
+}
+
+export default async function BackendLeadsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ filter?: string }>;
+}) {
+  const { filter } = await searchParams;
   const supabase = await createClient();
   const { data: leads, error } = await supabase
     .from("leads")
     .select("*")
     .order("created_at", { ascending: false });
 
+  const contactCount = leads?.filter((lead) => lead.wants_contact).length ?? 0;
+  const totalCount = leads?.length ?? 0;
+
+  const visibleLeads =
+    filter === "kontakt" ? leads?.filter((lead) => lead.wants_contact) : leads;
+
   return (
     <div>
-      <h1 className="font-display text-2xl font-medium text-ink">Anfragen</h1>
-      <p className="mt-2 text-sm text-ink-soft">
-        Eingaben aus dem Bewertungsrechner auf der Website.
-      </p>
+      <div className="flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h1 className="font-display text-2xl font-medium text-ink">Anfragen</h1>
+          <p className="mt-2 text-sm text-ink-soft">
+            {totalCount} Nutzung{totalCount === 1 ? "" : "en"} des Bewertungsrechners, davon{" "}
+            {contactCount} mit Kontaktwunsch.
+          </p>
+        </div>
+        <div className="flex gap-2 text-sm">
+          <Link
+            href="/backend"
+            className={`rounded-full border px-4 py-1.5 ${
+              !filter ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:text-ink"
+            }`}
+          >
+            Alle ({totalCount})
+          </Link>
+          <Link
+            href="/backend?filter=kontakt"
+            className={`rounded-full border px-4 py-1.5 ${
+              filter === "kontakt"
+                ? "border-ink bg-ink text-paper"
+                : "border-line text-ink-soft hover:text-ink"
+            }`}
+          >
+            Kontakt gewünscht ({contactCount})
+          </Link>
+        </div>
+      </div>
 
       {error ? (
         <p className="mt-6 rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700">
@@ -45,14 +91,21 @@ export default async function BackendLeadsPage() {
         </p>
       ) : null}
 
-      {leads && leads.length === 0 ? (
-        <p className="mt-8 text-sm text-ink-soft">Noch keine Anfragen eingegangen.</p>
+      {visibleLeads && visibleLeads.length === 0 ? (
+        <p className="mt-8 text-sm text-ink-soft">
+          {filter === "kontakt" ? "Noch keine Kontaktanfragen." : "Noch keine Anfragen eingegangen."}
+        </p>
       ) : null}
 
       <div className="mt-8 space-y-4">
-        {leads?.map((lead) => (
-          <div key={lead.id} className="rounded-xl border border-line p-5">
-            <div className="flex flex-wrap items-start justify-between gap-3">
+        {visibleLeads?.map((lead) => (
+          <div
+            key={lead.id}
+            className={`rounded-xl border p-5 ${
+              lead.wants_contact ? "border-accent/40" : "border-line"
+            }`}
+          >
+            <div className="flex flex-wrap items-start justify-between gap-4">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
                   <p className="text-xs text-ink-soft/70">{formatDate(lead.created_at)}</p>
@@ -66,10 +119,14 @@ export default async function BackendLeadsPage() {
                     </span>
                   )}
                 </div>
-                <p className="mt-1 font-medium text-ink">
+                <p className="mt-1.5 font-display text-lg font-medium text-ink">
                   {lead.property_type ?? "–"} · {lead.location || "keine Lage angegeben"}
                 </p>
+                <p className="mt-0.5 text-sm text-ink-soft">
+                  {formatEuro(lead.estimate_low)} – {formatEuro(lead.estimate_high)}
+                </p>
               </div>
+
               <form action={updateLeadStatus} className="flex items-center gap-2">
                 <input type="hidden" name="id" value={lead.id} />
                 <select
@@ -92,60 +149,49 @@ export default async function BackendLeadsPage() {
               </form>
             </div>
 
-            <dl className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-sm sm:grid-cols-4">
-              <div>
-                <dt className="text-ink-soft/70">Wohnfläche</dt>
-                <dd className="text-ink">{lead.living_area || "–"} m²</dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">Grundstück</dt>
-                <dd className="text-ink">{lead.plot_area || "–"} m²</dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">Baujahr</dt>
-                <dd className="text-ink">{lead.year_built ?? "–"}</dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">Zustand</dt>
-                <dd className="text-ink">{lead.condition ?? "–"}</dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">Badezimmer</dt>
-                <dd className="text-ink">{lead.bathrooms ?? "–"}</dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">Einliegerwohnung</dt>
-                <dd className="text-ink">
-                  {lead.has_separate_unit === true ? "Ja" : lead.has_separate_unit === false ? "Nein" : "–"}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">Wertspanne</dt>
-                <dd className="text-ink">
-                  {formatEuro(lead.estimate_low)} – {formatEuro(lead.estimate_high)}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">Name</dt>
-                <dd className="text-ink">{lead.name || "–"}</dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">E-Mail</dt>
-                <dd className="text-ink">
-                  {lead.email ? (
-                    <a href={`mailto:${lead.email}`} className="underline">
-                      {lead.email}
-                    </a>
-                  ) : (
-                    "–"
-                  )}
-                </dd>
-              </div>
-              <div>
-                <dt className="text-ink-soft/70">Telefon</dt>
-                <dd className="text-ink">{lead.phone || "–"}</dd>
-              </div>
+            <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-line pt-4 text-sm sm:grid-cols-3 md:grid-cols-6">
+              <Fact label="Wohnfläche" value={lead.living_area ? `${lead.living_area} m²` : "–"} />
+              <Fact label="Grundstück" value={lead.plot_area ? `${lead.plot_area} m²` : "–"} />
+              <Fact label="Baujahr" value={lead.year_built ?? "–"} />
+              <Fact label="Zustand" value={lead.condition ?? "–"} />
+              <Fact label="Badezimmer" value={lead.bathrooms ?? "–"} />
+              <Fact
+                label="Einliegerwohnung"
+                value={lead.has_separate_unit === true ? "Ja" : lead.has_separate_unit === false ? "Nein" : "–"}
+              />
             </dl>
+
+            {lead.wants_contact ? (
+              <div className="mt-4 rounded-lg bg-accent/5 p-4">
+                <dl className="grid grid-cols-1 gap-3 text-sm sm:grid-cols-3">
+                  <Fact label="Name" value={lead.name || "–"} />
+                  <Fact
+                    label="E-Mail"
+                    value={
+                      lead.email ? (
+                        <a href={`mailto:${lead.email}`} className="underline">
+                          {lead.email}
+                        </a>
+                      ) : (
+                        "–"
+                      )
+                    }
+                  />
+                  <Fact
+                    label="Telefon"
+                    value={
+                      lead.phone ? (
+                        <a href={`tel:${lead.phone}`} className="underline">
+                          {lead.phone}
+                        </a>
+                      ) : (
+                        "–"
+                      )
+                    }
+                  />
+                </dl>
+              </div>
+            ) : null}
           </div>
         ))}
       </div>

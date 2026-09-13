@@ -22,13 +22,12 @@ export default function DatenschutzPage() {
       <main className="pt-32 pb-24">
         <Container className="max-w-2xl">
           <h1 className="font-display text-3xl font-medium text-ink">Datenschutzerklärung</h1>
-          <p className="mt-6 text-ink-soft/90">
-            Diese Erklärung informiert Sie darüber, welche personenbezogenen Daten wir bei der
-            Nutzung dieser Website verarbeiten, zu welchem Zweck und auf welcher Rechtsgrundlage.
-          </p>
 
           <Section title="1. Verantwortlicher">
+            <p>Verantwortlicher für die Datenverarbeitung auf dieser Website ist:</p>
             <p>
+              {siteConfig.name}
+              <br />
               {siteConfig.operator.name}
               <br />
               {siteConfig.operator.street}
@@ -45,91 +44,177 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="2. Hosting">
+          <Section title="2. Allgemeine Hinweise zur Datenverarbeitung">
             <p>
-              Diese Website wird bei Vercel Inc. (USA) gehostet. Beim Aufruf der Seite verarbeitet
-              Vercel automatisch technische Daten wie IP-Adresse, Datum und Uhrzeit des Zugriffs,
-              aufgerufene Seite, verwendeter Browser und Betriebssystem (Server-Logfiles). Diese
-              Verarbeitung ist zur technischen Bereitstellung der Website erforderlich
-              (Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an einem
-              sicheren und funktionsfähigen Betrieb der Website). Die Übermittlung in die USA
-              erfolgt auf Grundlage des EU-US Data Privacy Framework bzw. der EU-Standardvertragsklauseln.
+              Der Schutz Ihrer persönlichen Daten ist uns wichtig. Wir behandeln Ihre
+              personenbezogenen Daten vertraulich und entsprechend den gesetzlichen
+              Datenschutzvorschriften, insbesondere der Datenschutz-Grundverordnung (DSGVO).
+            </p>
+            <p>
+              Diese Datenschutzerklärung informiert Sie darüber, welche personenbezogenen Daten
+              wir bei der Nutzung dieser Website verarbeiten, zu welchen Zwecken dies geschieht
+              und welche Rechte Ihnen zustehen.
             </p>
           </Section>
 
-          <Section title="3. Bewertungsformular">
+          <Section title="3. Hosting der Website">
+            <p>Unsere Website wird gehostet bei Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.</p>
             <p>
-              Wenn Sie unseren Immobilienbewertungsrechner nutzen, verarbeiten wir die von Ihnen
-              eingegebenen Objektdaten (z. B. Objektart, Lage, Fläche, Baujahr, Zustand,
-              Ausstattung), um Ihnen eine unverbindliche Ersteinschätzung des Immobilienwerts
-              anzuzeigen. Diese Angaben werden dauerhaft gespeichert, damit wir die Nutzung unseres
-              Rechners nachvollziehen und unser Angebot verbessern können.
+              Der Hosting-Anbieter verarbeitet dabei automatisch technische Daten, die für die
+              Bereitstellung der Website erforderlich sind, insbesondere IP-Adresse, Datum und
+              Uhrzeit des Zugriffs, Browsertyp, Betriebssystem, aufgerufene Seiten und übertragene
+              Datenmenge (Server-Logfiles).
             </p>
             <p>
-              Wenn Sie zusätzlich angeben, dass Sie persönlich kontaktiert werden möchten,
-              verarbeiten wir außerdem Ihren Namen sowie die von Ihnen angegebenen Kontaktdaten
-              (E-Mail-Adresse, optional Telefonnummer), um mit Ihnen zu dieser Einschätzung in
-              Kontakt zu treten. Ohne diese Angabe werden keine Kontaktdaten von Ihnen erhoben.
-            </p>
-            <p>
-              Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Anfrage vorvertraglicher Maßnahmen),
-              soweit Sie um Kontaktaufnahme gebeten haben, andernfalls Art. 6 Abs. 1 lit. f DSGVO
-              (berechtigtes Interesse an der Auswertung der Nutzung unseres kostenlosen Angebots).
+              Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Unser
+              berechtigtes Interesse liegt in der sicheren und stabilen Bereitstellung unserer
+              Website. Die Übermittlung in die USA erfolgt auf Grundlage des EU-US Data Privacy
+              Framework bzw. der EU-Standardvertragsklauseln.
             </p>
           </Section>
 
-          <Section title="4. Datenbank / Auftragsverarbeitung">
+          <Section title="4. Server-Log-Dateien">
+            <p>Beim Besuch unserer Website werden automatisch Informationen gespeichert. Diese umfassen:</p>
+            <ul className="list-disc space-y-1 pl-5">
+              <li>IP-Adresse des anfragenden Geräts</li>
+              <li>Zeitpunkt des Zugriffs</li>
+              <li>verwendeter Browser</li>
+              <li>Betriebssystem</li>
+              <li>Referrer-URL</li>
+              <li>Internet-Service-Provider</li>
+            </ul>
+            <p>
+              Die Verarbeitung erfolgt zur Gewährleistung der Sicherheit, zur Fehleranalyse und
+              zur technischen Optimierung der Website (Art. 6 Abs. 1 lit. f DSGVO). Eine
+              Zusammenführung dieser Daten mit anderen Datenquellen findet nicht statt.
+            </p>
+          </Section>
+
+          <Section title="5. Kontaktaufnahme per E-Mail">
+            <p>
+              Wenn Sie uns per E-Mail kontaktieren, verarbeiten wir die dabei von Ihnen
+              mitgeteilten Angaben (insbesondere Ihre E-Mail-Adresse, Ihren Namen, sofern
+              angegeben, und den Inhalt Ihrer Nachricht) zur Bearbeitung Ihrer Anfrage.
+            </p>
+            <p>
+              Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit
+              einer möglichen Beauftragung zusammenhängt, andernfalls auf Grundlage von Art. 6
+              Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Bearbeitung von Anfragen).
+            </p>
+            <p>
+              Die Daten werden gelöscht, sobald die Anfrage abschließend bearbeitet wurde und
+              keine gesetzlichen Aufbewahrungspflichten entgegenstehen.
+            </p>
+          </Section>
+
+          <Section title="6. Immobilienbewertung">
+            <p>
+              Wenn Sie über unseren Online-Rechner eine Immobilienbewertung anfragen, verarbeiten
+              wir die von Ihnen eingegebenen Angaben zum Objekt: Objektart, Lage, Wohn- und
+              Grundstücksfläche, Baujahr, Zustand, Anzahl Badezimmer sowie das Vorhandensein einer
+              Einliegerwohnung. Diese Angaben werden gespeichert, um Ihnen die Ersteinschätzung
+              anzuzeigen und damit wir die Nutzung unseres kostenlosen Rechners nachvollziehen
+              können.
+            </p>
+            <p>
+              Nur wenn Sie im Formular zusätzlich angeben, dass Sie persönlich kontaktiert werden
+              möchten, verarbeiten wir auch Ihren Namen sowie die von Ihnen angegebene
+              E-Mail-Adresse und optional Ihre Telefonnummer, um mit Ihnen zu dieser Einschätzung
+              in Kontakt zu treten. Ohne diese Angabe erheben wir keinerlei Namens- oder
+              Kontaktdaten von Ihnen.
+            </p>
+            <p>
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, soweit Sie um Kontaktaufnahme
+              gebeten haben, andernfalls Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
+              Auswertung der Nutzung unseres kostenlosen Angebots).
+            </p>
+          </Section>
+
+          <Section title="7. Datenbank / Auftragsverarbeitung">
             <p>
               Die über das Bewertungsformular erhobenen Daten speichern wir bei unserem
-              Datenbank-Dienstleister Supabase, Serverstandort Frankfurt am Main (EU). Mit Supabase
-              besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Der Zugriff auf diese
-              Daten ist technisch auf den Verantwortlichen beschränkt.
+              Datenbank-Dienstleister Supabase, Serverstandort Frankfurt am Main (EU). Mit
+              Supabase besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Der Zugriff
+              auf diese Daten ist technisch auf den Verantwortlichen beschränkt.
             </p>
           </Section>
 
-          <Section title="5. Spam- und Missbrauchsschutz">
+          <Section title="8. Cookies">
             <p>
-              Zum Schutz des Formulars vor automatisierten Zugriffen (Bots) kann der Dienst
-              Cloudflare Turnstile eingesetzt werden. Dabei werden technische Merkmale Ihres
-              Zugriffs verarbeitet, ohne dass ein klassisches Tracking-Cookie gesetzt wird.
+              Für Besucher der öffentlichen Website setzen wir aktuell keine Cookies ein. Im
+              passwortgeschützten Verwaltungsbereich, den ausschließlich der Verantwortliche
+              nutzt, wird ein technisch notwendiges Sitzungs-Cookie zur Anmeldung gesetzt
+              (Art. 6 Abs. 1 lit. f DSGVO). Dieses Cookie betrifft keine Website-Besucher.
+            </p>
+          </Section>
+
+          <Section title="9. Spam- und Missbrauchsschutz">
+            <p>
+              Zum Schutz des Bewertungsformulars vor automatisierten Zugriffen (Bots) kann der
+              Dienst Cloudflare Turnstile eingesetzt werden. Dabei werden technische Merkmale
+              Ihres Zugriffs verarbeitet, ohne dass ein klassisches Tracking-Cookie gesetzt wird.
               Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem vor
-              Missbrauch geschützten Angebot).
+              Missbrauch geschützten Angebot). Ist dieser Dienst aktiv, informieren wir an dieser
+              Stelle mit dem Namen des jeweiligen Anbieters.
             </p>
           </Section>
 
-          <Section title="6. Cookies und Analyse-Tools">
+          <Section title="10. Analyse-Tools und Google-Dienste">
             <p>
-              Diese Website setzt aktuell keine Analyse- oder Marketing-Cookies ein. Es werden nur
-              technisch notwendige Daten verarbeitet, die für den Betrieb der Website und die
-              Nutzung des Bewertungsformulars erforderlich sind.
+              Wir setzen derzeit keine Analyse- oder Marketing-Tools ein (z. B. Google Analytics,
+              Matomo). Die auf dieser Website verwendeten Schriftarten werden beim Bau der Website
+              lokal eingebunden; beim Aufruf der Seite findet dadurch keine Verbindung zu
+              Google-Servern statt. Sollten wir künftig Analyse-Tools oder weitere Google-Dienste
+              einsetzen, erfolgt dies nur nach Ihrer vorherigen Einwilligung gemäß Art. 6 Abs. 1
+              lit. a DSGVO und diese Erklärung wird entsprechend aktualisiert.
             </p>
           </Section>
 
-          <Section title="7. Speicherdauer">
+          <Section title="11. Datensicherheit">
             <p>
-              Über das Bewertungsformular übermittelte Daten speichern wir, bis der jeweilige
-              Zweck erreicht ist bzw. bis Sie der Verarbeitung widersprechen oder eine Löschung
-              verlangen. Kontaktanfragen werden nach Abschluss der Anfrage sowie unter
-              Berücksichtigung gesetzlicher Aufbewahrungspflichten gelöscht.
+              Die Übertragung zwischen Ihrem Browser und unserer Website erfolgt verschlüsselt
+              (TLS/HTTPS). Der Zugriff auf gespeicherte Anfragedaten ist über
+              Zugriffsberechtigungen auf der Datenbank technisch auf den Verantwortlichen
+              beschränkt. Wir passen unsere Sicherheitsmaßnahmen fortlaufend an den Stand der
+              Technik an.
             </p>
           </Section>
 
-          <Section title="8. Ihre Rechte">
+          <Section title="12. Ihre Rechte">
+            <p>Ihnen stehen folgende Rechte zu:</p>
+            <ul className="list-disc space-y-1 pl-5">
+              <li>Recht auf Auskunft über die von uns zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)</li>
+              <li>Recht auf Berichtigung unrichtiger Daten (Art. 16 DSGVO)</li>
+              <li>Recht auf Löschung, sofern keine gesetzlichen Gründe dagegen sprechen (Art. 17 DSGVO)</li>
+              <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+              <li>Recht auf Datenübertragbarkeit in einem strukturierten Format (Art. 20 DSGVO)</li>
+              <li>Widerspruchsrecht gegen bestimmte Verarbeitungen (Art. 21 DSGVO)</li>
+              <li>Recht, eine erteilte Einwilligung jederzeit mit Wirkung für die Zukunft zu widerrufen</li>
+            </ul>
             <p>
-              Sie haben das Recht auf Auskunft über die von uns zu Ihrer Person gespeicherten
-              Daten (Art. 15 DSGVO) sowie auf Berichtigung (Art. 16 DSGVO), Löschung (Art. 17
-              DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20
-              DSGVO) und Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Wenden Sie sich hierzu
-              an{" "}
+              Wenden Sie sich hierzu an{" "}
               <a href={`mailto:${siteConfig.email}`} className="text-ink hover:text-ink-soft">
                 {siteConfig.email}
               </a>
               .
             </p>
+          </Section>
+
+          <Section title="13. Beschwerderecht bei einer Aufsichtsbehörde">
             <p>
-              Außerdem steht Ihnen ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu,
+              Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren,
               insbesondere in dem Mitgliedstaat Ihres gewöhnlichen Aufenthaltsorts, Ihres
-              Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes.
+              Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes. Für {siteConfig.operator.name} ist
+              dies der Landesbeauftragte für den Datenschutz und die Informationsfreiheit
+              Baden-Württemberg.
+            </p>
+          </Section>
+
+          <Section title="14. Aktualität und Änderung dieser Datenschutzerklärung">
+            <p>
+              Wir behalten uns vor, diese Datenschutzerklärung anzupassen, wenn sich rechtliche
+              oder technische Änderungen ergeben, etwa beim Einsatz neuer Dienste. Die jeweils
+              aktuelle Version finden Sie jederzeit auf dieser Seite.
             </p>
           </Section>
 
