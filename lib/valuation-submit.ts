@@ -5,58 +5,75 @@ import { estimateValue, type ValuationEstimate } from "@/lib/valuation-estimate"
 import { createClient } from "@/lib/supabase/server";
 
 async function verifyTurnstile(token: string | null): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY;
-  if (!secret) return true; // Turnstile not configured yet — don't block submissions.
-  if (!token) return false;
+  try {
+    const secret = process.env.TURNSTILE_SECRET_KEY;
+    if (!secret) return true; // Turnstile not configured yet — don't block submissions.
+    if (!token) return false;
 
-  const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ secret, response: token }),
-  });
-  const result = await response.json();
-  return result.success === true;
+    const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ secret, response: token }),
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) return true; // Cloudflare hiccup shouldn't block a real visitor.
+    const result = await response.json();
+    return result.success === true;
+  } catch {
+    // Never let a captcha-service blip stop someone from getting their estimate.
+    return true;
+  }
 }
 
 /**
- * Computes the estimate (including the live region lookup) and persists
- * every completed run to Supabase server-side — regardless of whether the
- * visitor wants to be contacted, so the site owner can see all usage via
- * /backend, not just opted-in leads. `wants_contact` distinguishes the two.
- * A failure THROWS so the UI can show a real error state rather than
- * telling the visitor "danke" for a submission that was never saved.
+ * Showing the visitor their estimate and saving the lead are two different
+ * concerns with two different failure tolerances: a save hiccup (expired
+ * captcha token, a transient DB error, ...) must never cost the visitor the
+ * number they came for. So this always computes and returns an estimate —
+ * `estimateValue` already degrades gracefully on its own (see its docstring)
+ * — and treats the Supabase insert as best-effort, reporting success via
+ * `saved` instead of throwing and discarding the estimate with it.
  */
 export async function submitValuationRequest(
   data: ValuationFormData,
   turnstileToken: string | null
-): Promise<{ estimate: ValuationEstimate | null }> {
-  const humanVerified = await verifyTurnstile(turnstileToken);
-  if (!humanVerified) {
-    throw new Error("captcha-failed");
+): Promise<{ estimate: ValuationEstimate | null; saved: boolean }> {
+  let estimate: ValuationEstimate | null = null;
+  try {
+    estimate = await estimateValue(data);
+  } catch {
+    estimate = null;
   }
 
-  const estimate = await estimateValue(data);
+  const humanVerified = await verifyTurnstile(turnstileToken);
+  if (!humanVerified) {
+    return { estimate, saved: false };
+  }
 
-  const supabase = await createClient();
+  try {
+    const supabase = await createClient();
+    const { error } = await supabase.from("leads").insert({
+      property_type: data.propertyType,
+      location: data.location || null,
+      living_area: data.livingArea || null,
+      plot_area: data.plotArea || null,
+      year_built: data.yearBuilt,
+      condition: data.condition,
+      features: data.features,
+      wants_contact: data.contactConsent,
+      name: data.contactConsent ? data.name || null : null,
+      email: data.contactConsent ? data.email || null : null,
+      phone: data.contactConsent ? data.phone || null : null,
+      contact_days: data.contactConsent ? data.contactDays : [],
+      contact_time: data.contactConsent ? data.contactTime || null : null,
+      contact_notes: data.contactConsent ? data.contactNotes || null : null,
+      estimate_low: estimate?.low ?? null,
+      estimate_high: estimate?.high ?? null,
+      estimate_headline: estimate?.headline ?? null,
+    });
 
-  const { error } = await supabase.from("leads").insert({
-    property_type: data.propertyType,
-    location: data.location || null,
-    living_area: data.livingArea || null,
-    plot_area: data.plotArea || null,
-    year_built: data.yearBuilt,
-    condition: data.condition,
-    features: data.features,
-    wants_contact: data.contactConsent,
-    name: data.contactConsent ? data.name || null : null,
-    email: data.contactConsent ? data.email || null : null,
-    phone: data.contactConsent ? data.phone || null : null,
-    estimate_low: estimate?.low ?? null,
-    estimate_high: estimate?.high ?? null,
-    estimate_headline: estimate?.headline ?? null,
-  });
-
-  if (error) throw error;
-
-  return { estimate };
+    return { estimate, saved: !error };
+  } catch {
+    return { estimate, saved: false };
+  }
 }

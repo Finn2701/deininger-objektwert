@@ -2,6 +2,9 @@ import type { ConditionLevel, FeatureId, YearBuiltBucket } from "@/lib/valuation
 
 export type PropertyType = "haus" | "wohnung" | "grundstueck" | "mehrfamilienhaus";
 
+export type ContactDay = "mo" | "di" | "mi" | "do" | "fr" | "sa" | "so";
+export type ContactTime = "vormittags" | "nachmittags" | "abends";
+
 export interface ValuationFormData {
   propertyType: PropertyType | null;
   location: string;
@@ -14,6 +17,9 @@ export interface ValuationFormData {
   email: string;
   phone: string;
   contactConsent: boolean;
+  contactDays: ContactDay[];
+  contactTime: ContactTime | null;
+  contactNotes: string;
 }
 
 export const initialValuationFormData: ValuationFormData = {
@@ -28,4 +34,7 @@ export const initialValuationFormData: ValuationFormData = {
   email: "",
   phone: "",
   contactConsent: false,
+  contactDays: [],
+  contactTime: null,
+  contactNotes: "",
 };

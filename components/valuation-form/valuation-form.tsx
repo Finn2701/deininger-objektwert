@@ -4,7 +4,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitValuationRequest } from "@/lib/valuation-submit";
 import { formatEuro, type ValuationEstimate } from "@/lib/valuation-estimate";
-import { conditionOptions, featureOptions, formStepLabels, propertyTypeOptions, yearBuiltOptions } from "./steps-data";
+import {
+  conditionOptions,
+  contactDayOptions,
+  contactTimeOptions,
+  featureOptions,
+  formStepLabels,
+  propertyTypeOptions,
+  yearBuiltOptions,
+} from "./steps-data";
 import { initialValuationFormData, type ValuationFormData } from "./types";
 import { TurnstileWidget } from "./turnstile-widget";
 
@@ -54,13 +62,15 @@ function ChipGrid<T extends string>({
   options,
   values,
   onToggle,
+  wrap = false,
 }: {
   options: { value: T; label: string }[];
   values: T[];
   onToggle: (value: T) => void;
+  wrap?: boolean;
 }) {
   return (
-    <div className="grid grid-cols-2 gap-3">
+    <div className={wrap ? "flex flex-wrap gap-2" : "grid grid-cols-2 gap-3"}>
       {options.map((option) => {
         const active = values.includes(option.value);
         return (
@@ -69,9 +79,9 @@ function ChipGrid<T extends string>({
             type="button"
             onClick={() => onToggle(option.value)}
             aria-pressed={active}
-            className={`rounded-xl border px-4 py-3.5 text-left text-sm transition-colors ${
-              active ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink-soft"
-            }`}
+            className={`rounded-xl border text-sm transition-colors ${
+              wrap ? "px-4 py-2" : "px-4 py-3.5 text-left"
+            } ${active ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink-soft"}`}
           >
             {option.label}
           </button>
@@ -114,6 +124,16 @@ function TextField({
 const isLand = (data: ValuationFormData) => data.propertyType === "grundstueck";
 const hasOwnPlot = (data: ValuationFormData) => data.propertyType !== "wohnung";
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_PATTERN = /^[0-9+()/\s-]{6,}$/;
+
+function hasValidEmail(data: ValuationFormData) {
+  return EMAIL_PATTERN.test(data.email.trim());
+}
+function hasValidPhone(data: ValuationFormData) {
+  return PHONE_PATTERN.test(data.phone.trim());
+}
+
 function isStepValid(step: number, data: ValuationFormData) {
   switch (step) {
     case 0:
@@ -125,7 +145,9 @@ function isStepValid(step: number, data: ValuationFormData) {
     case 3:
       return isLand(data) || (data.yearBuilt !== null && data.condition !== null);
     case 5:
-      return !data.contactConsent || (data.name.trim().length > 1 && data.email.trim().includes("@"));
+      // Wants to be contacted -> at least one *valid* way to actually reach
+      // them, not just any non-empty string typed into the email field.
+      return !data.contactConsent || (data.name.trim().length > 1 && (hasValidEmail(data) || hasValidPhone(data)));
     default:
       return true;
   }
@@ -136,7 +158,7 @@ export function ValuationForm() {
   const [data, setData] = useState<ValuationFormData>(initialValuationFormData);
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
   const [estimate, setEstimate] = useState<ValuationEstimate | null>(null);
-  const [leadSaveFailed, setLeadSaveFailed] = useState(false);
+  const [saveFailed, setSaveFailed] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const captchaRequired = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
 
@@ -153,15 +175,28 @@ export function ValuationForm() {
     }));
   }
 
+  function toggleContactDay(day: ValuationFormData["contactDays"][number]) {
+    setData((prev) => ({
+      ...prev,
+      contactDays: prev.contactDays.includes(day)
+        ? prev.contactDays.filter((d) => d !== day)
+        : [...prev.contactDays, day],
+    }));
+  }
+
   async function handleSubmit() {
     setStatus("submitting");
+    // estimateValue/submitValuationRequest already degrade gracefully and
+    // never throw for a normal visitor, but a network blip on the way to
+    // the server action itself still could — this must never leave the
+    // visitor without a number.
     try {
-      const { estimate: result } = await submitValuationRequest(data, turnstileToken);
+      const { estimate: result, saved } = await submitValuationRequest(data, turnstileToken);
       setEstimate(result);
-      setLeadSaveFailed(false);
+      setSaveFailed(!saved);
     } catch {
       setEstimate(null);
-      setLeadSaveFailed(true);
+      setSaveFailed(true);
     }
     setStatus("done");
   }
@@ -199,18 +234,18 @@ export function ValuationForm() {
           </p>
         )}
 
-        {leadSaveFailed ? (
+        {saveFailed && data.contactConsent ? (
           <p className="mt-6 rounded-lg border border-accent/30 bg-accent/10 p-3 text-sm text-ink-soft">
-            Ihre Angaben konnten technisch nicht übermittelt werden. Bitte schreiben Sie uns
+            Ihr Kontaktwunsch konnte technisch nicht übermittelt werden. Bitte schreiben Sie uns
             zusätzlich kurz an{" "}
             <a href="mailto:kontakt@deininger-objektwert.de" className="underline">
               kontakt@deininger-objektwert.de
             </a>
-            {data.contactConsent ? ", damit wir uns melden können." : "."}
+            , damit wir uns melden können.
           </p>
         ) : data.contactConsent ? (
           <p className="mt-6 text-sm text-ink-soft/70">
-            Danke! Wir melden uns bei Rückfragen unter der angegebenen Kontaktmöglichkeit.
+            Danke! Wir melden uns zu Ihrer Wunschzeit unter der angegebenen Kontaktmöglichkeit.
           </p>
         ) : (
           <p className="mt-6 text-sm text-ink-soft/70">
@@ -364,12 +399,47 @@ export function ValuationForm() {
                       autoComplete="email"
                     />
                     <TextField
-                      label="Telefon (optional)"
+                      label="Telefon"
                       value={data.phone}
                       onChange={(value) => update("phone", value)}
                       type="tel"
                       autoComplete="tel"
                     />
+                    <p className="text-xs text-ink-soft/60">
+                      E-Mail oder Telefon reicht — mindestens eines davon brauchen wir, um Sie
+                      wirklich zu erreichen.
+                    </p>
+
+                    <div className="pt-2">
+                      <p className="text-sm text-ink-soft">
+                        An welchen Tagen erreichen wir Sie am besten? (optional)
+                      </p>
+                      <div className="mt-2">
+                        <ChipGrid options={contactDayOptions} values={data.contactDays} onToggle={toggleContactDay} wrap />
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-sm text-ink-soft">Und zu welcher Tageszeit? (optional)</p>
+                      <div className="mt-2">
+                        <OptionGrid
+                          options={contactTimeOptions}
+                          value={data.contactTime}
+                          onChange={(value) => update("contactTime", value)}
+                        />
+                      </div>
+                    </div>
+
+                    <label className="block">
+                      <span className="text-sm text-ink-soft">Notiz an uns (optional)</span>
+                      <textarea
+                        value={data.contactNotes}
+                        onChange={(event) => update("contactNotes", event.target.value)}
+                        rows={3}
+                        placeholder="z. B. Besonderheiten der Immobilie, konkrete Fragen…"
+                        className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink"
+                      />
+                    </label>
                   </>
                 ) : (
                   <p className="text-sm text-ink-soft/70">

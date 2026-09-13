@@ -1,5 +1,5 @@
 import type { ConditionLevel, FeatureId, YearBuiltBucket } from "@/lib/valuation-benchmarks";
-import type { PropertyType } from "./types";
+import type { ContactDay, ContactTime, PropertyType } from "./types";
 
 export const propertyTypeOptions: { value: PropertyType; label: string }[] = [
   { value: "haus", label: "Haus" },
@@ -50,6 +50,22 @@ export const featureOptions: {
     label: "Einliegerwohnung",
     onlyFor: ["haus"],
   },
+];
+
+export const contactDayOptions: { value: ContactDay; label: string }[] = [
+  { value: "mo", label: "Mo" },
+  { value: "di", label: "Di" },
+  { value: "mi", label: "Mi" },
+  { value: "do", label: "Do" },
+  { value: "fr", label: "Fr" },
+  { value: "sa", label: "Sa" },
+  { value: "so", label: "So" },
+];
+
+export const contactTimeOptions: { value: ContactTime; label: string }[] = [
+  { value: "vormittags", label: "Vormittags" },
+  { value: "nachmittags", label: "Nachmittags" },
+  { value: "abends", label: "Abends" },
 ];
 
 export const formStepLabels = [
