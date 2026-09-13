@@ -2,8 +2,12 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { featureOptions } from "@/components/valuation-form/steps-data";
-import { deleteLead, updateLeadStatus } from "./actions";
+import { SelectAllCheckbox } from "@/components/backend/select-all-checkbox";
+import { ConfirmSubmitButton } from "@/components/backend/confirm-submit-button";
+import { bulkUpdateLeads, deleteLead, updateLeadStatus } from "./actions";
 import { createCustomerAndProjectFromLead } from "./crm-actions";
+
+const BULK_FORM_ID = "bulk-leads-form";
 
 const featureLabels = Object.fromEntries(featureOptions.map((f) => [f.value, f.label]));
 const dayLabels: Record<string, string> = {
@@ -213,6 +217,48 @@ export default async function BackendLeadsPage({
         </p>
       ) : null}
 
+      {visibleLeads.length > 0 ? (
+        <>
+          {/* Checkboxes further down reference this form via form="bulk-leads-form"
+              rather than nesting inside it, since each lead card already has its
+              own per-row forms (status/delete) and forms can't nest in HTML. */}
+          <form id={BULK_FORM_ID} action={bulkUpdateLeads} className="mt-6 flex flex-wrap items-center gap-3 rounded-xl border border-line bg-paper-dim p-3 text-sm">
+            <label className="flex items-center gap-2 text-ink-soft">
+              <SelectAllCheckbox />
+              Alle auswählen
+            </label>
+            <select
+              name="bulkStatus"
+              defaultValue="kontaktiert"
+              className="rounded-full border border-line bg-paper px-3 py-1.5 text-xs text-ink"
+            >
+              {statusOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <button
+              type="submit"
+              name="intent"
+              value="status"
+              className="rounded-full border border-line px-3 py-1.5 text-xs text-ink-soft hover:text-ink"
+            >
+              Status setzen
+            </button>
+            <ConfirmSubmitButton
+              type="submit"
+              name="intent"
+              value="delete"
+              confirmMessage="Ausgewählte Anfragen wirklich unwiderruflich löschen?"
+              className="rounded-full border border-red-200 px-3 py-1.5 text-xs text-red-600 hover:bg-red-50"
+            >
+              Ausgewählte löschen
+            </ConfirmSubmitButton>
+          </form>
+        </>
+      ) : null}
+
       <div className="mt-8 space-y-4">
         {visibleLeads.map((lead) => {
           const isUpload = lead.source === "unterlagen";
@@ -231,7 +277,16 @@ export default async function BackendLeadsPage({
               }`}
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
-                <div>
+                <div className="flex gap-3">
+                  <input
+                    type="checkbox"
+                    name="ids"
+                    value={lead.id}
+                    form={BULK_FORM_ID}
+                    aria-label="Anfrage auswählen"
+                    className="mt-1.5 h-4 w-4 shrink-0 accent-ink"
+                  />
+                  <div>
                   <div className="flex flex-wrap items-center gap-2">
                     <p className="text-xs text-ink-soft/70">{formatDate(lead.created_at)}</p>
                     {lead.wants_contact ? (
@@ -255,6 +310,7 @@ export default async function BackendLeadsPage({
                   <p className="mt-0.5 text-sm text-ink-soft">
                     {formatEuro(lead.estimate_low)} – {formatEuro(lead.estimate_high)}
                   </p>
+                  </div>
                 </div>
 
                 <div className="flex flex-col items-end gap-2">

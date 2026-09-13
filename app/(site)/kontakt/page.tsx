@@ -71,6 +71,18 @@ export default function KontaktPage() {
                   Mehr über mich
                 </Link>
               </div>
+
+              <div className="mt-10 rounded-xl border border-line p-5">
+                <p className="text-sm text-ink">
+                  Haben Sie Grundriss, Energieausweis oder Fotos schon parat?
+                </p>
+                <Link
+                  href="/unterlagen-einreichen"
+                  className="mt-2 inline-flex text-sm text-accent underline decoration-accent/40 underline-offset-4 hover:text-ink"
+                >
+                  Unterlagen direkt einreichen →
+                </Link>
+              </div>
             </Reveal>
           </Container>
         </section>

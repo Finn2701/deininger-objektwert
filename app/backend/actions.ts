@@ -96,3 +96,24 @@ export async function deleteLead(formData: FormData) {
   revalidatePath("/backend");
   redirect("/backend?deleted=1");
 }
+
+export async function bulkUpdateLeads(formData: FormData) {
+  const ids = formData.getAll("ids").map(String).filter(Boolean);
+  const intent = String(formData.get("intent") ?? "");
+
+  if (ids.length === 0) {
+    redirect(`/backend?error=${encodeURIComponent("Bitte zuerst Anfragen auswählen.")}`);
+  }
+
+  const supabase = await createClient();
+
+  if (intent === "delete") {
+    await supabase.from("leads").delete().in("id", ids);
+  } else if (intent === "status") {
+    const status = String(formData.get("bulkStatus") ?? "neu");
+    await supabase.from("leads").update({ status }).in("id", ids);
+  }
+
+  revalidatePath("/backend");
+  redirect(`/backend?saved=1`);
+}
