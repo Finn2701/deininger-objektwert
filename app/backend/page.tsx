@@ -54,7 +54,18 @@ export default async function BackendLeadsPage() {
           <div key={lead.id} className="rounded-xl border border-line p-5">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
-                <p className="text-xs text-ink-soft/70">{formatDate(lead.created_at)}</p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <p className="text-xs text-ink-soft/70">{formatDate(lead.created_at)}</p>
+                  {lead.wants_contact ? (
+                    <span className="rounded-full bg-accent/15 px-2.5 py-0.5 text-[11px] font-medium text-accent">
+                      Kontakt gewünscht
+                    </span>
+                  ) : (
+                    <span className="rounded-full bg-line/60 px-2.5 py-0.5 text-[11px] font-medium text-ink-soft/70">
+                      Nur Ansicht
+                    </span>
+                  )}
+                </div>
                 <p className="mt-1 font-medium text-ink">
                   {lead.property_type ?? "–"} · {lead.location || "keine Lage angegeben"}
                 </p>
@@ -97,6 +108,16 @@ export default async function BackendLeadsPage() {
               <div>
                 <dt className="text-ink-soft/70">Zustand</dt>
                 <dd className="text-ink">{lead.condition ?? "–"}</dd>
+              </div>
+              <div>
+                <dt className="text-ink-soft/70">Badezimmer</dt>
+                <dd className="text-ink">{lead.bathrooms ?? "–"}</dd>
+              </div>
+              <div>
+                <dt className="text-ink-soft/70">Einliegerwohnung</dt>
+                <dd className="text-ink">
+                  {lead.has_separate_unit === true ? "Ja" : lead.has_separate_unit === false ? "Nein" : "–"}
+                </dd>
               </div>
               <div>
                 <dt className="text-ink-soft/70">Wertspanne</dt>

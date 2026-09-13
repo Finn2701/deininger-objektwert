@@ -54,3 +54,15 @@ export const conditionMultiplier: Record<ConditionLevel, number> = {
   teilsaniert: 0.96,
   modernisiert: 1.1,
 };
+
+export type BathroomCount = "1" | "2" | "3+";
+
+/** A second bathroom is a real value driver; a third adds less on top. */
+export const bathroomMultiplier: Record<BathroomCount, number> = {
+  "1": 1,
+  "2": 1.04,
+  "3+": 1.07,
+};
+
+/** A self-contained unit with its own kitchen (Einliegerwohnung) adds rental potential. */
+export const separateUnitBonus = 1.06;

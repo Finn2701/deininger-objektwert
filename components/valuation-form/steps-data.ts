@@ -1,4 +1,4 @@
-import type { ConditionLevel, YearBuiltBucket } from "@/lib/valuation-benchmarks";
+import type { BathroomCount, ConditionLevel, YearBuiltBucket } from "@/lib/valuation-benchmarks";
 import type { PropertyType } from "./types";
 
 export const propertyTypeOptions: { value: PropertyType; label: string }[] = [
@@ -35,11 +35,26 @@ export const conditionOptions: { value: ConditionLevel; label: string; hint: str
   },
 ];
 
+export const bathroomOptions: { value: BathroomCount; label: string }[] = [
+  { value: "1", label: "1 Badezimmer" },
+  { value: "2", label: "2 Badezimmer" },
+  { value: "3+", label: "3 oder mehr" },
+];
+
+export const separateUnitOptions: { value: "ja" | "nein"; label: string; hint: string }[] = [
+  {
+    value: "ja",
+    label: "Ja",
+    hint: "Eigene Küche, eigener Eingang oder abgeschlossen vermietbar.",
+  },
+  { value: "nein", label: "Nein", hint: "Das Haus wird als eine Einheit genutzt." },
+];
+
 export const formStepLabels = [
   "Objektart",
   "Lage",
   "Fläche & Grundstück",
   "Baujahr & Zustand",
-  "Zimmer",
+  "Ausstattung",
   "Kontakt",
 ] as const;

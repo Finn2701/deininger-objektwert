@@ -1,4 +1,4 @@
-import type { ConditionLevel, YearBuiltBucket } from "@/lib/valuation-benchmarks";
+import type { BathroomCount, ConditionLevel, YearBuiltBucket } from "@/lib/valuation-benchmarks";
 
 export type PropertyType = "haus" | "wohnung" | "grundstueck" | "mehrfamilienhaus";
 
@@ -9,7 +9,8 @@ export interface ValuationFormData {
   plotArea: string;
   yearBuilt: YearBuiltBucket | null;
   condition: ConditionLevel | null;
-  rooms: string;
+  bathrooms: BathroomCount | null;
+  hasSeparateUnit: boolean | null;
   name: string;
   email: string;
   phone: string;
@@ -23,7 +24,8 @@ export const initialValuationFormData: ValuationFormData = {
   plotArea: "",
   yearBuilt: null,
   condition: null,
-  rooms: "",
+  bathrooms: null,
+  hasSeparateUnit: null,
   name: "",
   email: "",
   phone: "",

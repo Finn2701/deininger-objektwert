@@ -13,15 +13,23 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between md:h-20">
-        <Link href="/" className="flex items-center" aria-label={siteConfig.name}>
+        <Link href="/" className="flex items-center gap-2.5" aria-label={siteConfig.name}>
           <Image
-            src="/images/brand/logo.png"
-            alt={siteConfig.name}
-            width={559}
-            height={452}
+            src="/images/brand/mark.png"
+            alt=""
+            width={547}
+            height={400}
             priority
-            className="h-10 w-auto md:h-12"
+            className="h-8 w-auto md:h-9"
           />
+          <span className="flex flex-col leading-none">
+            <span className="font-display text-sm font-semibold tracking-[0.08em] text-ink uppercase md:text-base">
+              Deininger
+            </span>
+            <span className="text-[10px] font-medium tracking-[0.28em] text-ink-soft uppercase md:text-[11px]">
+              Objektwert
+            </span>
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Hauptnavigation">

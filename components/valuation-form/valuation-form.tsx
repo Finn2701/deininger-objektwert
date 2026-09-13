@@ -4,7 +4,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitValuationRequest } from "@/lib/valuation-submit";
 import { estimateValue, formatEuro, type ValuationEstimate } from "@/lib/valuation-estimate";
-import { conditionOptions, formStepLabels, propertyTypeOptions, yearBuiltOptions } from "./steps-data";
+import {
+  bathroomOptions,
+  conditionOptions,
+  formStepLabels,
+  propertyTypeOptions,
+  separateUnitOptions,
+  yearBuiltOptions,
+} from "./steps-data";
 import { initialValuationFormData, type ValuationFormData } from "./types";
 import { TurnstileWidget } from "./turnstile-widget";
 
@@ -82,6 +89,7 @@ function TextField({
 
 const isLand = (data: ValuationFormData) => data.propertyType === "grundstueck";
 const hasOwnPlot = (data: ValuationFormData) => data.propertyType !== "wohnung";
+const canHaveSeparateUnit = (data: ValuationFormData) => data.propertyType === "haus";
 
 function isStepValid(step: number, data: ValuationFormData) {
   switch (step) {
@@ -94,7 +102,10 @@ function isStepValid(step: number, data: ValuationFormData) {
     case 3:
       return isLand(data) || (data.yearBuilt !== null && data.condition !== null);
     case 4:
-      return isLand(data) || data.rooms.trim().length > 0;
+      return (
+        isLand(data) ||
+        (data.bathrooms !== null && (!canHaveSeparateUnit(data) || data.hasSeparateUnit !== null))
+      );
     case 5:
       return !data.contactConsent || (data.name.trim().length > 1 && data.email.trim().includes("@"));
     default:
@@ -119,13 +130,11 @@ export function ValuationForm() {
     setStatus("submitting");
     const result = estimateValue(data);
     setEstimate(result);
-    if (data.contactConsent) {
-      try {
-        await submitValuationRequest(data, result, turnstileToken);
-        setLeadSaveFailed(false);
-      } catch {
-        setLeadSaveFailed(true);
-      }
+    try {
+      await submitValuationRequest(data, result, turnstileToken);
+      setLeadSaveFailed(false);
+    } catch {
+      setLeadSaveFailed(true);
     }
     setStatus("done");
   }
@@ -158,14 +167,14 @@ export function ValuationForm() {
           </p>
         )}
 
-        {data.contactConsent && leadSaveFailed ? (
+        {leadSaveFailed ? (
           <p className="mt-6 rounded-lg border border-accent/30 bg-accent/10 p-3 text-sm text-ink-soft">
-            Ihre Anfrage konnte technisch nicht gespeichert werden. Bitte schreiben Sie uns
+            Ihre Angaben konnten technisch nicht übermittelt werden. Bitte schreiben Sie uns
             zusätzlich kurz an{" "}
             <a href="mailto:kontakt@deininger-objektwert.de" className="underline">
               kontakt@deininger-objektwert.de
             </a>
-            , damit wir uns melden können.
+            {data.contactConsent ? ", damit wir uns melden können." : "."}
           </p>
         ) : data.contactConsent ? (
           <p className="mt-6 text-sm text-ink-soft/70">
@@ -173,8 +182,8 @@ export function ValuationForm() {
           </p>
         ) : (
           <p className="mt-6 text-sm text-ink-soft/70">
-            Diese Einschätzung wurde nicht gespeichert. Wenn Sie sie vertiefen möchten, füllen Sie
-            das Formular gerne erneut mit gesetztem Häkchen aus.
+            Danke! Wenn Sie diese Einschätzung vertiefen möchten, kontaktieren Sie uns gerne
+            direkt.
           </p>
         )}
       </div>
@@ -278,13 +287,30 @@ export function ValuationForm() {
                   Für unbebaute Grundstücke nicht erforderlich — weiter geht&apos;s.
                 </p>
               ) : (
-                <TextField
-                  label="Zimmeranzahl"
-                  value={data.rooms}
-                  onChange={(value) => update("rooms", value)}
-                  type="number"
-                  placeholder="z. B. 5"
-                />
+                <>
+                  <p className="text-sm text-ink-soft">Anzahl Badezimmer</p>
+                  <OptionGrid
+                    options={bathroomOptions}
+                    value={data.bathrooms}
+                    onChange={(value) => update("bathrooms", value)}
+                    columns={2}
+                  />
+                  {canHaveSeparateUnit(data) && (
+                    <>
+                      <p className="pt-2 text-sm text-ink-soft">
+                        Gibt es eine Einliegerwohnung oder separate Wohneinheit?
+                      </p>
+                      <OptionGrid
+                        options={separateUnitOptions}
+                        value={
+                          data.hasSeparateUnit === null ? null : data.hasSeparateUnit ? "ja" : "nein"
+                        }
+                        onChange={(value) => update("hasSeparateUnit", value === "ja")}
+                        columns={2}
+                      />
+                    </>
+                  )}
+                </>
               ))}
 
             {step === 5 && (
@@ -323,14 +349,14 @@ export function ValuationForm() {
                       type="tel"
                       autoComplete="tel"
                     />
-                    {captchaRequired && <TurnstileWidget onToken={setTurnstileToken} />}
                   </>
                 ) : (
                   <p className="text-sm text-ink-soft/70">
-                    Ohne Häkchen erhalten Sie Ihre Einschätzung direkt hier, ohne dass Ihre Daten
-                    gespeichert werden.
+                    Ohne Häkchen erhalten Sie Ihre Einschätzung direkt im nächsten Schritt, ganz
+                    ohne dass Sie Name oder Kontaktdaten angeben müssen.
                   </p>
                 )}
+                {captchaRequired && <TurnstileWidget onToken={setTurnstileToken} />}
               </div>
             )}
           </motion.div>
@@ -361,9 +387,7 @@ export function ValuationForm() {
             type="button"
             onClick={handleSubmit}
             disabled={
-              !isStepValid(step, data) ||
-              status === "submitting" ||
-              (data.contactConsent && captchaRequired && !turnstileToken)
+              !isStepValid(step, data) || status === "submitting" || (captchaRequired && !turnstileToken)
             }
             className="rounded-full bg-ink px-6 py-2.5 text-sm text-paper transition-opacity hover:bg-ink-soft disabled:opacity-30"
           >

@@ -19,11 +19,12 @@ async function verifyTurnstile(token: string | null): Promise<boolean> {
 }
 
 /**
- * Persists the lead to Supabase (server-side, so the write can't be forged
- * by editing client JS) so it actually reaches the site owner via the
- * /backend dashboard. A failure THROWS so the UI can show a real error
- * state rather than telling the visitor "danke" for a lead that was never
- * saved.
+ * Persists every completed run to Supabase (server-side, so the write can't
+ * be forged by editing client JS) — regardless of whether the visitor wants
+ * to be contacted, so the site owner can see all usage via /backend, not
+ * just opted-in leads. `wants_contact` distinguishes the two. A failure
+ * THROWS so the UI can show a real error state rather than telling the
+ * visitor "danke" for a submission that was never saved.
  */
 export async function submitValuationRequest(
   data: ValuationFormData,
@@ -44,10 +45,12 @@ export async function submitValuationRequest(
     plot_area: data.plotArea || null,
     year_built: data.yearBuilt,
     condition: data.condition,
-    rooms: data.rooms || null,
-    name: data.name || null,
-    email: data.email || null,
-    phone: data.phone || null,
+    bathrooms: data.bathrooms,
+    has_separate_unit: data.hasSeparateUnit,
+    wants_contact: data.contactConsent,
+    name: data.contactConsent ? data.name || null : null,
+    email: data.contactConsent ? data.email || null : null,
+    phone: data.contactConsent ? data.phone || null : null,
     estimate_low: estimate?.low ?? null,
     estimate_high: estimate?.high ?? null,
     estimate_headline: estimate?.headline ?? null,
