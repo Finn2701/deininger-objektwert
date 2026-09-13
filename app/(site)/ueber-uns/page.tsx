@@ -85,6 +85,17 @@ export default async function UeberUnsPage() {
                 </li>
               </ul>
             </Reveal>
+
+            <Reveal delay={0.2} className="mt-12">
+              <h2 className="font-display text-xl font-medium text-ink">Regionale Kompetenz</h2>
+              <p className="mt-4 text-balance text-ink-soft/90">
+                Zuhause ist {siteConfig.region} — entsprechend gut kenne ich die Nachbarschaften,
+                Lagen und Preisniveaus vor Ort. Der Wirkungskreis reicht darüber hinaus über den
+                gesamten Ostalbkreis, einschließlich Aalen und den umliegenden Gemeinden. Die
+                kostenlose Online-Ersteinschätzung lässt sich darüber hinaus deutschlandweit
+                nutzen.
+              </p>
+            </Reveal>
           </Container>
         </section>
       </main>

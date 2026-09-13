@@ -9,9 +9,9 @@ import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { getContentOverrides, withOverrides } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Immobilienwert ermitteln – kostenloser Online-Rechner",
+  title: "Immobilie bewerten lassen – Immobilienwert ermitteln Heidenheim",
   description:
-    "Immobilie bewerten lassen in wenigen Minuten: kostenloser Online-Rechner, deutschlandweit nutzbar. Objektart, Lage, Baujahr und Zustand eingeben – Wertspanne sofort erhalten. Besondere Marktkenntnis in Heidenheim an der Brenz.",
+    "Haus oder Wohnung bewerten lassen: kostenloser Online-Rechner für Heidenheim an der Brenz und deutschlandweit. Objektart, Lage, Baujahr und Zustand eingeben – Wertspanne sofort erhalten.",
   alternates: { canonical: "/immobilienbewertung" },
 };
 

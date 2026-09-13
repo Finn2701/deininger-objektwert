@@ -19,6 +19,7 @@ export function realEstateAgentJsonLd() {
     provider: {
       "@type": "Person",
       name: siteConfig.operator.name,
+      jobTitle: "Immobilienbewertung & Beratung",
       email: siteConfig.email,
       address: {
         "@type": "PostalAddress",

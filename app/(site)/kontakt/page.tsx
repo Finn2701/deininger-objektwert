@@ -39,22 +39,38 @@ export default function KontaktPage() {
             </p>
 
             <Reveal delay={0.1} className="mt-10">
-              <div className="space-y-4 text-lg">
+              <p className="text-sm text-ink-soft/70">Ihr Ansprechpartner</p>
+              <p className="mt-1 text-lg text-ink">{siteConfig.operator.name}</p>
+
+              <div className="mt-6 space-y-4 text-lg">
                 <a
                   href={`mailto:${siteConfig.email}`}
                   className="block text-ink hover:text-ink-soft"
                 >
                   {siteConfig.email}
                 </a>
-                <p className="text-base text-ink-soft/80">{siteConfig.region}</p>
+                <p className="text-base text-ink-soft/80">{siteConfig.operator.zipCity}</p>
               </div>
 
-              <Link
-                href="/immobilienbewertung"
-                className="mt-8 inline-flex rounded-full border border-ink px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-paper"
-              >
-                Zum Bewertungsformular
-              </Link>
+              <p className="mt-6 max-w-sm text-sm text-ink-soft/80">
+                Ich lese jede Nachricht persönlich und melde mich in der Regel innerhalb eines
+                Werktags zurück.
+              </p>
+
+              <div className="mt-8 flex flex-wrap gap-4">
+                <Link
+                  href="/immobilienbewertung"
+                  className="inline-flex rounded-full border border-ink px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-paper"
+                >
+                  Zum Bewertungsformular
+                </Link>
+                <Link
+                  href="/ueber-uns"
+                  className="inline-flex items-center text-sm text-ink-soft underline decoration-line underline-offset-4 hover:text-ink"
+                >
+                  Mehr über mich
+                </Link>
+              </div>
             </Reveal>
           </Container>
         </section>

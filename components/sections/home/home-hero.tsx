@@ -5,7 +5,7 @@ import { getContentOverrides, withOverrides } from "@/lib/content";
 
 const defaults = {
   "home.hero.eyebrow":
-    "Kostenlose Online-Immobilienbewertung – deutschlandweit, mit Marktkenntnis in Heidenheim an der Brenz",
+    "Kostenlose Immobilienbewertung in Heidenheim an der Brenz – deutschlandweit nutzbar",
   "home.hero.title": "Was ist Ihre Immobilie wirklich wert?",
   "home.hero.lede":
     "Lage, Substanz, Technik und Markt entscheiden über den tatsächlichen Wert – nicht eine Zahl aus dem Internet. In wenigen Minuten zu einer ersten, unverbindlichen Ersteinschätzung.",

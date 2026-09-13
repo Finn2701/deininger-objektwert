@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/sections/home/home-hero";
+import { AdvisorSection } from "@/components/sections/home/advisor-section";
 import { ValueFactorsSection } from "@/components/sections/home/value-factors-section";
 import { HowItWorksSection } from "@/components/sections/home/how-it-works-section";
 import { StatementSection } from "@/components/sections/statement-section";
+import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { realEstateAgentJsonLd } from "@/lib/structured-data";
-import { siteConfig } from "@/lib/site-config";
 
 export const metadata: Metadata = {
-  title: "Immobilienbewertung online – kostenlose Ersteinschätzung",
+  title: "Immobilienbewertung Heidenheim – kostenlose Ersteinschätzung",
   description:
-    "Kostenlose Online-Immobilienbewertung, deutschlandweit nutzbar: Ermitteln Sie in wenigen Minuten eine erste, unverbindliche Einschätzung Ihres Immobilienwerts. Besondere Marktkenntnis in Heidenheim an der Brenz und Umgebung.",
+    "Immobilie bewerten lassen in Heidenheim an der Brenz und deutschlandweit: kostenlose, unverbindliche Online-Immobilienbewertung in wenigen Minuten. Persönlich betreut von Finn Deininger.",
   alternates: { canonical: "/" },
 };
 
@@ -23,8 +24,10 @@ export default function HomePage() {
       <main>
         <HomeHero />
         <ValueFactorsSection />
+        <AdvisorSection />
         <HowItWorksSection />
         <StatementSection />
+        <FinalCtaSection />
       </main>
     </>
   );

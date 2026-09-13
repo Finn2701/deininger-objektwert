@@ -44,7 +44,12 @@ export const defaultFaqs: FaqItem[] = [
   },
   {
     question: "In welchen Regionen ist Deininger Objektwert tätig?",
-    answer: `Der Fokus liegt aktuell auf ${siteConfig.region} und der näheren Umgebung. Sprechen Sie uns gerne zu Ihrer konkreten Lage an.`,
+    answer: `Der Fokus liegt auf ${siteConfig.region} und dem gesamten Ostalbkreis, einschließlich Aalen und den umliegenden Gemeinden. Der kostenlose Online-Rechner lässt sich darüber hinaus deutschlandweit nutzen. Sprechen Sie uns gerne zu Ihrer konkreten Lage an.`,
+  },
+  {
+    question: "Was ist der Unterschied zwischen einer Online-Bewertung und einer Bewertung vor Ort?",
+    answer:
+      "Die Online-Ersteinschätzung basiert auf Ihren Angaben und regionalen Vergleichswerten – sie zeigt eine realistische Wertspanne, ersetzt aber keine Besichtigung. Erst ein Termin vor Ort erfasst Details wie tatsächlichen Renovierungszustand, individuelle Lagequalität oder besondere Ausstattungsmerkmale, die den Wert zusätzlich beeinflussen können.",
   },
 ];
 
