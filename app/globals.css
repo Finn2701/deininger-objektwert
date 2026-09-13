@@ -1,26 +1,59 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-paper: #f7f4ee;
+  --color-paper-dim: #efe9de;
+  --color-stone: #ddd3bf;
+  --color-stone-dark: #b3a68d;
+  --color-ink: #17140f;
+  --color-ink-soft: #423b31;
+  --color-line: rgba(23, 20, 15, 0.12);
+  --color-accent: #a9714b;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--color-paper);
+  --color-paper-dim: var(--color-paper-dim);
+  --color-stone: var(--color-stone);
+  --color-stone-dark: var(--color-stone-dark);
+  --color-ink: var(--color-ink);
+  --color-ink-soft: var(--color-ink-soft);
+  --color-line: var(--color-line);
+  --color-accent: var(--color-accent);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+@keyframes drift-pan {
+  0%,
+  100% {
+    transform: scale(1.02) translateX(-0.8%);
+  }
+  50% {
+    transform: scale(1.02) translateX(0.8%);
+  }
+}
+
+.drift-pan {
+  animation: drift-pan 40s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drift-pan {
+    animation: none;
+  }
 }
