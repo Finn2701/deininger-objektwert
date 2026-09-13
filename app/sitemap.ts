@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "", priority: 1, changeFrequency: "weekly" },
     { path: "/immobilienbewertung", priority: 0.9, changeFrequency: "weekly" },
     { path: "/immobilie-verkaufen", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/unterlagen-einreichen", priority: 0.6, changeFrequency: "monthly" },
     { path: "/ueber-uns", priority: 0.6, changeFrequency: "monthly" },
     { path: "/faq", priority: 0.7, changeFrequency: "monthly" },
     { path: "/kontakt", priority: 0.6, changeFrequency: "monthly" },

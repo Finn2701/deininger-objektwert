@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
 import type { ProAssessment } from "@/lib/pro-valuation";
 import { emptyAssessment } from "@/lib/pro-valuation";
-import { addProjectNote, deleteProjectNote, saveProjectAssessment } from "../../crm-actions";
+import { addProjectNote, deleteProject, deleteProjectNote, saveProjectAssessment } from "../../crm-actions";
 
 export const metadata: Metadata = {
   title: "Projekt",
@@ -129,6 +129,12 @@ export default async function ProjectDetailPage({
         <div>
           <h1 className="font-display text-2xl font-medium text-ink">{project.title}</h1>
           {project.address ? <p className="mt-1 text-sm text-ink-soft">{project.address}</p> : null}
+          <form action={deleteProject} className="mt-2">
+            <input type="hidden" name="id" value={project.id} />
+            <button type="submit" className="text-xs text-ink-soft/50 hover:text-red-600">
+              Projekt löschen
+            </button>
+          </form>
         </div>
         <div className="rounded-xl border border-line bg-paper-dim px-5 py-4 text-right">
           <p className="text-xs text-ink-soft/60 uppercase tracking-[0.1em]">Aktuelle Schätzung</p>

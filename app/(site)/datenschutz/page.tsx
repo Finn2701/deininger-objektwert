@@ -88,6 +88,13 @@ export default function DatenschutzPage() {
               zur technischen Optimierung der Website (Art. 6 Abs. 1 lit. f DSGVO). Eine
               Zusammenführung dieser Daten mit anderen Datenquellen findet nicht statt.
             </p>
+            <p>
+              Zusätzlich zählen wir serverseitig, wie oft die einzelnen Seiten aufgerufen werden
+              (Datum, aufgerufener Pfad, Zähler) — ohne Cookie, ohne IP-Adresse und ohne jede
+              Kennung, die Sie als Person oder Ihr Gerät wiedererkennbar macht. Diese Zählung
+              dient ausschließlich der Auswertung, welche Inhalte gefragt sind (Art. 6 Abs. 1
+              lit. f DSGVO).
+            </p>
           </Section>
 
           <Section title="5. Kontaktaufnahme per E-Mail">
@@ -130,7 +137,23 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="7. Regionale Preiseinordnung (OpenStreetMap)">
+          <Section title="7. Objektunterlagen einreichen">
+            <p>
+              Über das Formular unter „Unterlagen einreichen" können Sie uns Kontaktdaten, eine
+              Nachricht sowie Dokumente zu Ihrer Immobilie (z. B. Grundriss, Energieausweis,
+              Grundbuchauszug, Fotos) übermitteln. Diese Dateien speichern wir verschlüsselt in
+              einem privaten Speicherbereich bei unserem Auftragsverarbeiter Supabase
+              (Serverstandort Frankfurt am Main, EU) und sind ausschließlich für den
+              Verantwortlichen einsehbar.
+            </p>
+            <p>
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, da die Übermittlung auf Ihren
+              Wunsch nach einer persönlichen Einschätzung bzw. einer möglichen Beauftragung
+              erfolgt.
+            </p>
+          </Section>
+
+          <Section title="8. Regionale Preiseinordnung (OpenStreetMap)">
             <p>
               Damit die Ersteinschätzung nicht überall in Deutschland dieselben Preise ansetzt,
               gleichen wir den von Ihnen eingegebenen Ort serverseitig mit dem
@@ -153,7 +176,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="8. Datenbank / Auftragsverarbeitung">
+          <Section title="9. Datenbank / Auftragsverarbeitung">
             <p>
               Die über das Bewertungsformular erhobenen Daten speichern wir bei unserem
               Datenbank-Dienstleister Supabase, Serverstandort Frankfurt am Main (EU). Mit
@@ -162,13 +185,13 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="9. Cookies">
+          <Section title="10. Cookies">
             <p>Wir unterscheiden zwischen zwei Bereichen unserer Website:</p>
             <p>
               Auf den öffentlichen Seiten setzen wir selbst keine Cookies ein. Beim Ausfüllen des
               Bewertungsformulars lädt Ihr Browser das unten beschriebene Sicherheitstool
               Cloudflare Turnstile, das dabei ein technisch notwendiges Cookie zur Spam-Abwehr
-              setzen kann (siehe Punkt 10).
+              setzen kann (siehe Punkt 11).
             </p>
             <p>
               Im passwortgeschützten Verwaltungsbereich, den ausschließlich der Verantwortliche
@@ -178,7 +201,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="10. Spam- und Missbrauchsschutz (Cloudflare Turnstile)">
+          <Section title="11. Spam- und Missbrauchsschutz (Cloudflare Turnstile)">
             <p>
               Zum Schutz des Bewertungsformulars vor automatisierten Zugriffen (Bots) setzen wir
               den Dienst Cloudflare Turnstile der Cloudflare, Inc., 101 Townsend St, San
@@ -205,7 +228,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="11. Analyse-Tools und Google-Dienste">
+          <Section title="12. Analyse-Tools und Google-Dienste">
             <p>
               Wir setzen derzeit keine Analyse- oder Marketing-Tools ein (z. B. Google Analytics,
               Matomo). Die auf dieser Website verwendeten Schriftarten werden beim Bau der Website
@@ -216,7 +239,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="12. Datensicherheit">
+          <Section title="13. Datensicherheit">
             <p>
               Die Übertragung zwischen Ihrem Browser und unserer Website erfolgt verschlüsselt
               (TLS/HTTPS). Der Zugriff auf gespeicherte Anfragedaten ist über
@@ -226,7 +249,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="13. Ihre Rechte">
+          <Section title="14. Ihre Rechte">
             <p>Ihnen stehen folgende Rechte zu:</p>
             <ul className="list-disc space-y-1 pl-5">
               <li>Recht auf Auskunft über die von uns zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -246,7 +269,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="14. Beschwerderecht bei einer Aufsichtsbehörde">
+          <Section title="15. Beschwerderecht bei einer Aufsichtsbehörde">
             <p>
               Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren,
               insbesondere in dem Mitgliedstaat Ihres gewöhnlichen Aufenthaltsorts, Ihres
@@ -256,7 +279,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="15. Aktualität und Änderung dieser Datenschutzerklärung">
+          <Section title="16. Aktualität und Änderung dieser Datenschutzerklärung">
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung anzupassen, wenn sich rechtliche
               oder technische Änderungen ergeben, etwa beim Einsatz neuer Dienste. Die jeweils

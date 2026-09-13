@@ -30,6 +30,16 @@ export async function updateSession(request: NextRequest) {
   const isBackendRoute = request.nextUrl.pathname.startsWith("/backend");
   const isLoginRoute = request.nextUrl.pathname === "/backend/login";
 
+  if (!isBackendRoute) {
+    // Cookie-free page view count (see supabase/schema.sql: record_page_view)
+    // — a simple per-day, per-path counter, not a per-visitor tracker, so it
+    // never blocks the response and a failure here is silently ignored.
+    supabase.rpc("record_page_view", { p_path: request.nextUrl.pathname }).then(
+      () => {},
+      () => {}
+    );
+  }
+
   if (isBackendRoute && !isLoginRoute && !user) {
     const loginUrl = new URL("/backend/login", request.url);
     return NextResponse.redirect(loginUrl);

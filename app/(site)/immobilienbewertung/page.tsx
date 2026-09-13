@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { ValuationForm } from "@/components/valuation-form/valuation-form";
@@ -72,6 +73,16 @@ export default async function ImmobilienbewertungPage() {
                     </li>
                   ))}
                 </ul>
+              </Reveal>
+
+              <Reveal delay={0.15} className="mt-8">
+                <p className="text-sm text-ink-soft/80">
+                  Grundriss, Energieausweis oder Fotos schon zur Hand?{" "}
+                  <Link href="/unterlagen-einreichen" className="text-ink underline decoration-line underline-offset-4 hover:text-ink-soft">
+                    Unterlagen direkt einreichen
+                  </Link>{" "}
+                  für eine persönliche statt automatische Einschätzung.
+                </p>
               </Reveal>
             </div>
 

@@ -85,5 +85,14 @@ export async function updateLeadStatus(formData: FormData) {
   const id = String(formData.get("id") ?? "");
   const status = String(formData.get("status") ?? "neu");
   await supabase.from("leads").update({ status }).eq("id", id);
+  revalidatePath("/backend");
   redirect("/backend?saved=1");
+}
+
+export async function deleteLead(formData: FormData) {
+  const supabase = await createClient();
+  const id = String(formData.get("id") ?? "");
+  await supabase.from("leads").delete().eq("id", id);
+  revalidatePath("/backend");
+  redirect("/backend?deleted=1");
 }
