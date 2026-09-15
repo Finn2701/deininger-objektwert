@@ -3,6 +3,8 @@ import { createClient } from "@/lib/supabase/server";
 import type { ProAssessment } from "@/lib/pro-valuation";
 import { emptyAssessment } from "@/lib/pro-valuation";
 import { addProjectNote, deleteProject, deleteProjectNote, saveProjectAssessment } from "../../crm-actions";
+import { generateExpose } from "../../expose-actions";
+import { ExposeUpload } from "@/components/backend/expose-upload";
 
 export const metadata: Metadata = {
   title: "Projekt",
@@ -111,17 +113,46 @@ export default async function ProjectDetailPage({
   const { saved } = await searchParams;
   const supabase = await createClient();
 
-  const [{ data: project }, { data: customers }, { data: notes }] = await Promise.all([
-    supabase.from("projects").select("*").eq("id", id).single(),
-    supabase.from("customers").select("id, name").order("name"),
-    supabase.from("project_notes").select("*").eq("project_id", id).order("created_at", { ascending: false }),
-  ]);
+  const [{ data: project }, { data: customers }, { data: notes }, { data: projectImages }, { data: projectDocuments }] =
+    await Promise.all([
+      supabase.from("projects").select("*").eq("id", id).single(),
+      supabase.from("customers").select("id, name").order("name"),
+      supabase.from("project_notes").select("*").eq("project_id", id).order("created_at", { ascending: false }),
+      supabase.from("project_images").select("id, category, storage_path").eq("project_id", id),
+      supabase.from("project_documents").select("id, filename, storage_path").eq("project_id", id),
+    ]);
 
   if (!project) {
     return <p className="text-sm text-ink-soft">Projekt nicht gefunden.</p>;
   }
 
   const a: ProAssessment = { ...emptyAssessment, ...(project.assessment as Partial<ProAssessment>) };
+
+  const mediaPaths = [
+    ...(projectImages ?? []).map((i) => i.storage_path),
+    ...(projectDocuments ?? []).map((d) => d.storage_path),
+    ...(project.expose_docx_path ? [project.expose_docx_path] : []),
+  ];
+  const signedUrlByPath = new Map<string, string>();
+  if (mediaPaths.length > 0) {
+    const { data: signed } = await supabase.storage.from("project-media").createSignedUrls(mediaPaths, 60 * 60);
+    signed?.forEach((entry) => {
+      if (entry.signedUrl) signedUrlByPath.set(entry.path ?? "", entry.signedUrl);
+    });
+  }
+  const exposeImages = (projectImages ?? []).map((img) => ({
+    id: img.id,
+    category: img.category,
+    storagePath: img.storage_path,
+    url: signedUrlByPath.get(img.storage_path) ?? null,
+  }));
+  const exposeDocuments = (projectDocuments ?? []).map((doc) => ({
+    id: doc.id,
+    filename: doc.filename,
+    storagePath: doc.storage_path,
+    url: signedUrlByPath.get(doc.storage_path) ?? null,
+  }));
+  const exposeDocxUrl = project.expose_docx_path ? signedUrlByPath.get(project.expose_docx_path) : null;
 
   return (
     <div>
@@ -149,6 +180,46 @@ export default async function ProjectDetailPage({
       </div>
 
       {saved ? <p className="mt-4 text-sm text-ink-soft/70">Gespeichert.</p> : null}
+
+      <section className="mt-8 rounded-2xl border border-line p-5">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 className="font-display text-lg font-medium text-ink">Exposé</h2>
+          <form action={generateExpose} className="flex items-center gap-3">
+            <input type="hidden" name="project_id" value={project.id} />
+            <button
+              type="submit"
+              className="rounded-full bg-ink px-5 py-2 text-sm text-paper hover:bg-ink-soft"
+            >
+              Exposé generieren
+            </button>
+          </form>
+        </div>
+        <p className="mt-2 text-sm text-ink-soft/70">
+          Fotos nach Kategorie hochladen (mind. eines), optional weitere Dokumente — daraus entsteht
+          ein bearbeitbarer Word-Entwurf mit Text und passend eingeordneten Bildern.
+        </p>
+
+        <div className="mt-4">
+          <ExposeUpload projectId={project.id} images={exposeImages} documents={exposeDocuments} />
+        </div>
+
+        {project.expose_error ? (
+          <p className="mt-4 text-sm text-red-600">{project.expose_error}</p>
+        ) : null}
+        {exposeDocxUrl ? (
+          <div className="mt-4 flex flex-wrap items-center gap-3 rounded-xl border border-line bg-paper-dim px-4 py-3">
+            <p className="text-sm text-ink">
+              Zuletzt generiert: {project.expose_generated_at ? formatDateTime(project.expose_generated_at) : "–"}
+            </p>
+            <a
+              href={exposeDocxUrl}
+              className="rounded-full border border-ink px-4 py-1.5 text-sm text-ink hover:bg-ink hover:text-paper"
+            >
+              Word-Datei herunterladen
+            </a>
+          </div>
+        ) : null}
+      </section>
 
       <form action={saveProjectAssessment} className="mt-8 space-y-10">
         <input type="hidden" name="id" value={project.id} />
