@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { getClarityInsights } from "@/lib/clarity";
 
 export async function login(formData: FormData) {
   const email = String(formData.get("email") ?? "");
@@ -22,6 +23,12 @@ export async function logout() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   redirect("/backend/login");
+}
+
+export async function refreshClarityInsights() {
+  const supabase = await createClient();
+  await getClarityInsights(supabase, { forceRefresh: true });
+  revalidatePath("/backend");
 }
 
 export async function saveContent(formData: FormData) {

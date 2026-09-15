@@ -4,7 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 import { featureOptions } from "@/components/valuation-form/steps-data";
 import { SelectAllCheckbox } from "@/components/backend/select-all-checkbox";
 import { ConfirmSubmitButton } from "@/components/backend/confirm-submit-button";
-import { bulkUpdateLeads, deleteLead, updateLeadStatus } from "./actions";
+import { bulkUpdateLeads, deleteLead, updateLeadStatus, refreshClarityInsights } from "./actions";
+import { getClarityInsights } from "@/lib/clarity";
 import { createCustomerAndProjectFromLead } from "./crm-actions";
 
 const BULK_FORM_ID = "bulk-leads-form";
@@ -32,6 +33,13 @@ function formatDate(value: string) {
     dateStyle: "medium",
     timeStyle: "short",
   }).format(new Date(value));
+}
+
+function formatSeconds(value: number | null) {
+  if (value === null || !Number.isFinite(value)) return "–";
+  const minutes = Math.floor(value / 60);
+  const seconds = Math.round(value % 60);
+  return `${minutes}:${String(seconds).padStart(2, "0")} Min`;
 }
 
 function formatEuro(value: number | null) {
@@ -65,10 +73,11 @@ export default async function BackendLeadsPage({
   if (to) query = query.lte("created_at", `${to}T23:59:59`);
 
   const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-  const [{ data: leadsRaw, error }, { data: linkedCustomers }, { data: views }] = await Promise.all([
+  const [{ data: leadsRaw, error }, { data: linkedCustomers }, { data: views }, clarity] = await Promise.all([
     query,
     supabase.from("customers").select("id, lead_id").not("lead_id", "is", null),
     supabase.from("page_views").select("day, path, views").gte("day", thirtyDaysAgo),
+    getClarityInsights(supabase),
   ]);
 
   const today = new Date().toISOString().slice(0, 10);
@@ -143,6 +152,65 @@ export default async function BackendLeadsPage({
             )}
           </div>
         </div>
+      </div>
+
+      <div className="mt-6 rounded-xl border border-line p-4">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <p className="text-xs font-medium tracking-[0.1em] text-ink-soft/70 uppercase">
+            Microsoft Clarity (letzte 3 Tage)
+          </p>
+          <div className="flex items-center gap-3 text-xs text-ink-soft/60">
+            {clarity.fetchedAt ? (
+              <span>Stand: {formatDate(clarity.fetchedAt)}</span>
+            ) : null}
+            <form action={refreshClarityInsights}>
+              <button type="submit" className="rounded-full border border-line px-3 py-1 text-ink-soft hover:text-ink">
+                Aktualisieren
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {clarity.error ? (
+          <p className="mt-2 text-xs text-amber-700">{clarity.error}</p>
+        ) : null}
+
+        {clarity.data ? (
+          <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            <div>
+              <p className="text-xs text-ink-soft/60">Sitzungen</p>
+              <p className="mt-0.5 font-display text-lg font-medium text-ink">{clarity.data.sessions}</p>
+            </div>
+            <div>
+              <p className="text-xs text-ink-soft/60">Besucher</p>
+              <p className="mt-0.5 font-display text-lg font-medium text-ink">{clarity.data.distinctUsers}</p>
+            </div>
+            <div>
+              <p className="text-xs text-ink-soft/60">Bot-Sitzungen</p>
+              <p className="mt-0.5 font-display text-lg font-medium text-ink">{clarity.data.botSessions}</p>
+            </div>
+            <div>
+              <p className="text-xs text-ink-soft/60">Ø Seiten/Sitzung</p>
+              <p className="mt-0.5 font-display text-lg font-medium text-ink">
+                {clarity.data.avgPagesPerSession?.toFixed(1) ?? "–"}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-ink-soft/60">Ø Verweildauer</p>
+              <p className="mt-0.5 font-display text-lg font-medium text-ink">
+                {formatSeconds(clarity.data.avgEngagementSeconds)}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-ink-soft/60">Sessions mit Dead-/Rage-Clicks</p>
+              <p className="mt-0.5 font-display text-lg font-medium text-ink">
+                {clarity.data.deadClicks} / {clarity.data.rageClicks}
+              </p>
+            </div>
+          </div>
+        ) : !clarity.error ? (
+          <p className="mt-2 text-sm text-ink-soft/50">Noch keine Daten geladen.</p>
+        ) : null}
       </div>
 
       <div className="mt-8 flex flex-wrap items-end justify-between gap-4">
