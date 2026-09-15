@@ -56,6 +56,28 @@ export function faqJsonLd(faqs: FaqItem[]) {
   };
 }
 
+export function articleJsonLd(article: {
+  title: string;
+  meta_description: string;
+  slug: string;
+  created_at: string;
+  updated_at: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.meta_description,
+    url: `${siteConfig.url}/ratgeber/${article.slug}`,
+    datePublished: article.created_at,
+    dateModified: article.updated_at,
+    author: {
+      "@type": "Person",
+      name: siteConfig.operator.name,
+    },
+  };
+}
+
 export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     "@context": "https://schema.org",

@@ -30,6 +30,11 @@ export function SiteFooter() {
                 Unterlagen einreichen
               </Link>
             </li>
+            <li>
+              <Link href="/ratgeber" className="text-sm text-ink-soft hover:text-ink">
+                Ratgeber
+              </Link>
+            </li>
           </ul>
         </div>
 

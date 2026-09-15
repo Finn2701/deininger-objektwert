@@ -34,6 +34,9 @@ export default async function BackendLayout({ children }: { children: React.Reac
               <Link href="/backend/faq" className="hover:text-ink">
                 FAQ
               </Link>
+              <Link href="/backend/ratgeber" className="hover:text-ink">
+                Ratgeber
+              </Link>
             </nav>
           </div>
           <form action={logout}>
