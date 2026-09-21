@@ -150,7 +150,7 @@ async function uniqueSlug(baseSlug) {
 
 const REQUIRED_FIELDS = ["title", "excerpt", "meta_description", "content_html"];
 
-async function runOneCycle() {
+async function runOneCycle({ skipCap = false } = {}) {
   const timestamp = new Date().toLocaleString("de-DE");
 
   const { data: pending, error: pendingError } = await supabase
@@ -158,7 +158,7 @@ async function runOneCycle() {
     .select("id")
     .eq("published", false);
   if (pendingError) throw pendingError;
-  if (pending.length >= MAX_PENDING_DRAFTS) {
+  if (!skipCap && pending.length >= MAX_PENDING_DRAFTS) {
     console.log(
       `[${timestamp}] ${pending.length} unreviewte Entwürfe warten bereits im Backend -- überspringe diesen Zyklus.`
     );
@@ -174,7 +174,7 @@ async function runOneCycle() {
 Bereits vorhandene Ratgeber-Artikel (NICHT wiederholen, auch keine sehr ähnlichen Themen):
 ${existingList}
 
-Aufgabe: Recherchiere (WebSearch) EIN neues, konkretes, für die Zielgruppe wertvolles Ratgeber-Thema, das noch nicht abgedeckt ist -- z.B. ein rechtlicher, steuerlicher oder praktischer Aspekt rund um Immobilienbewertung/-verkauf, der oft gesucht wird. Bevorzuge Themen mit echtem Suchvolumen und klarem Bezug zu Deutschland/deutschem Recht.
+Aufgabe: Recherchiere (WebSearch) EIN neues, konkretes, für die Zielgruppe wertvolles Ratgeber-Thema, das noch nicht abgedeckt ist. Mögliche Kategorien (nicht nur juristisch/steuerlich denken, gerade wenn schon viele Artikel existieren): rechtliche/steuerliche Aspekte, praktischer Verkaufsprozess (Unterlagen, Notar, Energieausweis, Maklerprovision, Home Staging, Besichtigungen), Bewertungsmethodik (Vergleichswert- vs. Sachwert- vs. Ertragswertverfahren, was beeinflusst den Wert), besondere Objekt-/Lebenssituationen (Zwangsversteigerung, Baumängel/Sanierungsstau, Denkmalschutz, vermietete Immobilie verkaufen, Auswandern und Immobilie zurücklassen), oder regionale Aspekte (Immobilienmarkt Heidenheim/Ostalbkreis, Baden-Württemberg-spezifische Regeln). Bevorzuge Themen mit echtem Suchvolumen und klarem Bezug zu Deutschland/deutschem Recht.
 
 Schreibe dann einen vollständigen Artikel im GENAU gleichen Format wie die bestehenden Artikel:
 - Einleitender Absatz, der das Thema und die Relevanz für den Leser einführt
@@ -242,13 +242,31 @@ async function main() {
   });
 
   const once = process.argv.includes("--once");
+  const bulkIndex = process.argv.indexOf("--bulk");
+  const bulkCount = bulkIndex !== -1 ? parseInt(process.argv[bulkIndex + 1], 10) : null;
 
-  async function tick() {
+  async function tick(opts) {
     try {
-      await runOneCycle();
+      await runOneCycle(opts);
     } catch (err) {
       console.error(`[${new Date().toLocaleString("de-DE")}] Fehler im Durchlauf:`, err.message);
     }
+  }
+
+  // --bulk N: an explicit, human-requested stockpiling run (Finn, 2026-09-21:
+  // "schreib dann schon 40-50 artikel im voraus als entwurf, die ich die
+  // nächsten monate immer auf veröffentlichen kann") -- deliberately ignores
+  // MAX_PENDING_DRAFTS, since that cap exists only to stop the UNATTENDED
+  // recurring loop from flooding the review queue, not to block an
+  // intentional one-time batch Finn asked for himself.
+  if (bulkCount) {
+    console.log(`Bulk-Modus: erzeuge ${bulkCount} Entwürfe nacheinander...`);
+    for (let i = 1; i <= bulkCount; i++) {
+      console.log(`--- Entwurf ${i}/${bulkCount} ---`);
+      await tick({ skipCap: true });
+    }
+    console.log("Bulk-Lauf abgeschlossen.");
+    return;
   }
 
   await tick();
