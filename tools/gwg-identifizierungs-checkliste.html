@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GwG-Identifizierungs-Checkliste | pro Mandant</title>
+<style>
+  :root {
+    --bg: #f7f8f6;
+    --card: #ffffff;
+    --ink: #1f2a24;
+    --muted: #5c6b62;
+    --accent: #2f6b4f;
+    --accent-light: #e7f1ec;
+    --border: #e1e5e1;
+    --warn: #7a5400;
+    --warn-bg: #fdf3dd;
+    --done-bg: #e7f1ec;
+    --done-ink: #1f5a3d;
+    --open-bg: #fbeceb;
+    --open-ink: #8a3324;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 24px 16px 60px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 20px; font-size: 0.95rem; max-width: 720px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 20px 24px;
+    margin-bottom: 20px;
+  }
+  .card h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  .card .card-sub { color: var(--muted); font-size: 0.85rem; margin: 0 0 16px; }
+
+  .banner {
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .banner.pending { background: var(--warn-bg); color: var(--warn); }
+  .banner.ready { background: var(--done-bg); color: var(--done-ink); }
+  .banner .count { font-weight: 400; font-size: 0.82rem; opacity: 0.85; }
+
+  .toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 10px; flex-wrap: wrap; }
+  .mandant-select { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+  .mandant-select select {
+    padding: 6px 8px; border: 1px solid var(--border); border-radius: 7px;
+    font-size: 0.85rem; background: #fff; color: var(--ink); max-width: 220px;
+  }
+  .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .reset-btn, .add-btn {
+    background: none; border: 1px solid var(--border); border-radius: 8px;
+    color: var(--muted); font-size: 0.78rem; padding: 6px 12px; cursor: pointer;
+  }
+  .add-btn { color: var(--accent); border-color: var(--accent); }
+  .reset-btn:hover { border-color: var(--open-ink); color: var(--open-ink); }
+  .add-btn:hover { background: var(--accent-light); }
+
+  .party-type { display: flex; gap: 10px; margin-bottom: 16px; }
+  .party-type label {
+    display: flex; align-items: center; gap: 6px;
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 12px; font-size: 0.85rem; cursor: pointer;
+    background: #fcfdfc; flex: 1;
+  }
+  .party-type input { width: 15px; height: 15px; }
+
+  .field-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 4px; }
+  .field { margin-bottom: 0; }
+  label.field-label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+  label.field-label .req { color: var(--open-ink); }
+  input[type=text].plain, input[type=date].plain {
+    width: 100%;
+    padding: 8px 9px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: 0.9rem;
+    background: #fff;
+    color: var(--ink);
+  }
+  input.plain.missing { border-color: var(--open-ink); background: #fffaf9; }
+
+  .section-divider { border-top: 1px solid var(--border); margin: 18px 0 14px; padding-top: 14px; }
+  .section-title { font-size: 0.85rem; font-weight: 700; margin: 0 0 10px; color: var(--ink); }
+
+  .check-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .check-row:last-child { border-bottom: none; }
+  .check-row input[type=checkbox] { width: 17px; height: 17px; margin-top: 2px; flex-shrink: 0; }
+  .check-row label { font-size: 0.9rem; cursor: pointer; }
+  .check-row .detail { font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
+
+  .mandant-row {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    background: #fcfdfc;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+    cursor: pointer;
+  }
+  .mandant-row:hover { border-color: var(--accent); }
+  .mandant-row.active { border-color: var(--accent); background: var(--accent-light); }
+  .mandant-name { font-weight: 700; font-size: 0.9rem; }
+  .mandant-hint { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+  .status-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-pill.offen { background: var(--open-bg); color: var(--open-ink); }
+  .status-pill.teilweise { background: var(--warn-bg); color: var(--warn); }
+  .status-pill.vollstaendig { background: var(--done-bg); color: var(--done-ink); }
+  .del-btn {
+    background: none; border: none; color: var(--muted); font-size: 0.75rem;
+    cursor: pointer; text-decoration: underline; padding: 2px;
+  }
+  .del-btn:hover { color: var(--open-ink); }
+
+  .confidence { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; padding: 1px 7px; border-radius: 999px; margin-left: 6px; }
+  .confidence.high { background: var(--done-bg); color: var(--done-ink); }
+  .confidence.medium { background: var(--warn-bg); color: var(--warn); }
+
+  .note {
+    background: var(--warn-bg);
+    color: var(--warn);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  .docs-list { font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+  .docs-list code { background: var(--accent-light); padding: 1px 6px; border-radius: 4px; font-size: 0.78rem; color: var(--ink); }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>GwG-Identifizierungs-Checkliste</h1>
+  <p class="sub">Pro Mandant auszufüllen, bevor ein Maklervertrag abgeschlossen wird (§§ 11/12 GwG).
+    Rein lokales Tool — Speicherung nur im Browser dieses Geräts, keine Anbindung an die Website oder
+    eine Datenbank. Enthält keine Ausweiskopien/Dokumente, nur die erhobenen Angaben als Gedächtnisstütze.
+    Hintergrund/Quellen: <code>docs/legal/gwg-identifizierungspflichten-verifiziert.md</code>.</p>
+
+  <div class="note" style="margin-bottom:20px;">
+    Kein Rechtsberatungs-Ersatz. Identifizierungspflicht gilt <strong>vor Abschluss des Maklervertrags</strong>
+    bzw. spätestens wenn eine Vertragspartei den Kaufvertrag(sentwurf) der anderen erhält — nicht schon bei
+    der ersten unverbindlichen Anfrage. <span class="confidence high">HIGH</span>
+  </div>
+
+  <div class="toolbar">
+    <div class="mandant-select">Mandant:
+      <select id="mandantSelect"></select>
+    </div>
+    <div class="btn-row">
+      <button class="add-btn" id="addBtn" type="button">+ Neuer Mandant</button>
+      <button class="reset-btn" id="delBtn" type="button">Diesen Mandanten löschen</button>
+    </div>
+  </div>
+
+  <div id="banner" class="banner pending"></div>
+
+  <div class="card">
+    <h2>1. Art der Vertragspartei</h2>
+    <p class="card-sub">Bei einer Gesellschaft kommen zusätzliche Angaben zum wirtschaftlich Berechtigten dazu (Abschnitt 3).</p>
+    <div class="party-type" id="partyType">
+      <label><input type="radio" name="ptype" value="natuerlich"> Natürliche Person</label>
+      <label><input type="radio" name="ptype" value="juristisch"> Gesellschaft (GmbH/UG/…)</label>
+    </div>
+
+    <div id="natFields">
+      <div class="field-grid">
+        <div class="field"><label class="field-label" for="f_vorname">Vorname<span class="req"> *</span></label><input class="plain" type="text" id="f_vorname"></div>
+        <div class="field"><label class="field-label" for="f_nachname">Nachname<span class="req"> *</span></label><input class="plain" type="text" id="f_nachname"></div>
+        <div class="field"><label class="field-label" for="f_geburtsdatum">Geburtsdatum<span class="req"> *</span></label><input class="plain" type="date" id="f_geburtsdatum"></div>
+        <div class="field"><label class="field-label" for="f_geburtsort">Geburtsort<span class="req"> *</span></label><input class="plain" type="text" id="f_geburtsort"></div>
+        <div class="field"><label class="field-label" for="f_staatsangehoerigkeit">Staatsangehörigkeit<span class="req"> *</span></label><input class="plain" type="text" id="f_staatsangehoerigkeit"></div>
+        <div class="field"><label class="field-label" for="f_anschrift">Wohnanschrift<span class="req"> *</span></label><input class="plain" type="text" id="f_anschrift"></div>
+      </div>
+    </div>
+
+    <div id="jurFields" style="display:none;">
+      <div class="field-grid">
+        <div class="field"><label class="field-label" for="f_firma">Firma/Name<span class="req"> *</span></label><input class="plain" type="text" id="f_firma"></div>
+        <div class="field"><label class="field-label" for="f_rechtsform">Rechtsform<span class="req"> *</span></label><input class="plain" type="text" id="f_rechtsform" placeholder="z. B. GmbH, UG"></div>
+        <div class="field"><label class="field-label" for="f_registernummer">Registernummer</label><input class="plain" type="text" id="f_registernummer" placeholder="Handelsregister, falls vorhanden"></div>
+        <div class="field"><label class="field-label" for="f_sitzanschrift">Anschrift des Sitzes<span class="req"> *</span></label><input class="plain" type="text" id="f_sitzanschrift"></div>
+      </div>
+
+      <div class="section-divider">
+        <p class="section-title">Wirtschaftlich Berechtigter (§ 3 GwG)</p>
+        <div class="field-grid">
+          <div class="field"><label class="field-label" for="f_wb_name">Name<span class="req"> *</span></label><input class="plain" type="text" id="f_wb_name"></div>
+          <div class="field"><label class="field-label" for="f_wb_geburtsdatum">Geburtsdatum</label><input class="plain" type="date" id="f_wb_geburtsdatum"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider">
+      <p class="section-title">2. Ausweisprüfung / Überprüfung der Angaben (§ 12 GwG)</p>
+      <div id="checksIdent"></div>
+    </div>
+
+    <div class="section-divider" id="checksJurWrap" style="display:none;">
+      <p class="section-title">3. Zusätzlich bei Gesellschaften</p>
+      <div id="checksJur"></div>
+    </div>
+
+    <div class="section-divider">
+      <p class="section-title">4. Aufbewahrung (§ 8 GwG)</p>
+      <div class="field-grid">
+        <div class="field"><label class="field-label" for="f_erhoben_am">Angaben erhoben am</label><input class="plain" type="date" id="f_erhoben_am"></div>
+      </div>
+      <p class="card-sub" style="margin-top:10px;">
+        Aufbewahrungsfrist: <strong>5 Jahre</strong> ab Ende des Kalenderjahres, in dem die
+        Geschäftsbeziehung endet (bzw. ab Ende des Kalenderjahres der Erhebung, wenn es nicht zum
+        Vertrag kommt). Danach grundsätzlich löschen/vernichten. <span class="confidence high">HIGH</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Hintergrund-Dokumente</h2>
+    <p class="docs-list">
+      <code>docs/legal/gwg-identifizierungspflichten-verifiziert.md</code> — verifizierte Rechtsgrundlagen, Quellen<br>
+      <code>docs/legal/datenschutz-ergaenzung-maklertaetigkeit.md</code> — Datenschutz-Rechtsgrundlage für die Erhebung<br>
+      <code>docs/legal/maklervertrag-alleinauftrag.md</code> / <code>maklervertrag-einfacher-auftrag.md</code> — § 8 „Geldwäscherechtliche Identifizierung"
+    </p>
+    <div class="note">
+      Verdachtsmeldungen (goAML/FIU) sind bewusst kein ausfüllbarer Teil dieses Tools — das betrifft
+      nur den seltenen tatsächlichen Verdachtsfall, nicht den Normalablauf eines Mandats, und braucht
+      im Ernstfall ohnehin eine individuelle rechtliche Einschätzung. Die Kurzanleitung unten erklärt
+      nur den Mechanismus (wann/wie), nicht die Einzelfall-Bewertung.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Kurzanleitung: Verdachtsmeldung an die FIU (§ 43 GwG)</h2>
+    <p class="card-sub">Nur für den seltenen Fall eines tatsächlichen Geldwäsche-Verdachts — nicht Teil des normalen Mandatsablaufs.</p>
+    <div class="field-grid" style="grid-template-columns: 1fr;">
+      <div class="check-row" style="border-bottom:1px solid var(--border);">
+        <div>
+          <label style="font-weight:700;">Wann?</label>
+          <div class="detail">Sobald tatsächliche Anhaltspunkte vorliegen, dass ein Vermögensgegenstand
+            im Zusammenhang mit dem Maklergeschäft aus einer Straftat stammt, die Vortat der Geldwäsche
+            sein könnte, oder Terrorismusfinanzierung vorliegen könnte — nicht erst bei sicherem Nachweis,
+            aber auch nicht bei bloßem vagem Bauchgefühl. <span class="confidence high">HIGH</span></div>
+        </div>
+      </div>
+      <div class="check-row" style="border-bottom:1px solid var(--border);">
+        <div>
+          <label style="font-weight:700;">Frist</label>
+          <div class="detail">„Unverzüglich" (§ 43 Abs. 1 GwG) — in der Praxis: melden am selben oder
+            spätestens am folgenden Werktag, sobald die Anhaltspunkte erkannt wurden. Nicht erst am
+            Monatsende oder nach dem Notartermin. <span class="confidence high">HIGH</span></div>
+        </div>
+      </div>
+      <div class="check-row" style="border-bottom:1px solid var(--border);">
+        <div>
+          <label style="font-weight:700;">Wie?</label>
+          <div class="detail">Elektronisch über die goAML-Webanwendung der Zentralstelle für
+            Finanztransaktionsuntersuchungen (FIU) — nicht formlos per E-Mail/Telefon. Registrierung bei
+            goAML ist vorab nötig, das dauert; wer noch nicht registriert ist, sollte sich im echten
+            Verdachtsfall sofort darum kümmern statt erst bei der ersten Meldung. <span class="confidence high">HIGH</span></div>
+        </div>
+      </div>
+      <div class="check-row">
+        <div>
+          <label style="font-weight:700;">Was NICHT tun (§ 47 GwG — „Tipping-off"-Verbot)</label>
+          <div class="detail">Die betroffene Vertragspartei darf von der Meldung nichts erfahren — weder
+            direkt noch indirekt (z. B. durch auffälliges plötzliches Zurückhalten/Verzögern ohne
+            Erklärung). Das Geschäft im Zweifel ruhig weiterlaufen lassen, bis die FIU reagiert oder
+            rechtlicher Rat eingeholt ist. <span class="confidence high">HIGH</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:14px;">
+      Diese Kurzanleitung ersetzt keine Rechtsberatung. Ob im Einzelfall tatsächlich meldepflichtige
+      Anhaltspunkte vorliegen, ist eine Wertungsfrage — im echten Verdachtsfall zeitnah rechtlichen Rat
+      einholen, nicht auf eigene Faust entscheiden.
+    </div>
+  </div>
+
+  <footer>GwG-Identifizierungs-Checkliste · deininger-objektwert · lokales Notiz-Tool, Stand 2026-09-21</footer>
+</div>
+
+<script>
+(function () {
+  var STORAGE_KEY = "gwg-checkliste-v1";
+
+  var IDENT_CHECKS = [
+    { id: "ausweis_vorgelegt", label: "Gültiges amtliches Ausweisdokument mit Lichtbild vorgelegt (Personalausweis/Reisepass)", detail: "Nur einsehen/prüfen, keine Kopie in diesem Tool ablegen." },
+    { id: "angaben_abgeglichen", label: "Erhobene Angaben (Abschnitt 1) mit dem Ausweisdokument abgeglichen", detail: "Name, Geburtsdatum, Geburtsort, Staatsangehörigkeit stimmen überein." },
+    { id: "vor_vertrag", label: "Identifizierung erfolgt vor Abschluss des Maklervertrags bzw. vor Übergabe des Kaufvertrags(entwurfs)", detail: "Spätestens zu diesem Zeitpunkt zwingend, siehe Recherche-Notiz Abschnitt 1." }
+  ];
+
+  var JUR_CHECKS = [
+    { id: "registerauszug", label: "Aktueller Handelsregister-/Vereinsregisterauszug bzw. Gründungsdokument eingesehen", detail: "" },
+    { id: "transparenzregister", label: "Transparenzregister zur Feststellung des wirtschaftlich Berechtigten eingesehen", detail: "Öffentlich einsehbar seit 2020, ohne Nachweis eines berechtigten Interesses." }
+  ];
+
+  function defaultMandant(name) {
+    var d = {
+      name: name || "Neuer Mandant",
+      ptype: "natuerlich",
+      felder: {
+        vorname: "", nachname: "", geburtsdatum: "", geburtsort: "", staatsangehoerigkeit: "", anschrift: "",
+        firma: "", rechtsform: "", registernummer: "", sitzanschrift: "", wb_name: "", wb_geburtsdatum: "",
+        erhoben_am: ""
+      },
+      checks: {}
+    };
+    IDENT_CHECKS.forEach(function (c) { d.checks[c.id] = false; });
+    JUR_CHECKS.forEach(function (c) { d.checks[c.id] = false; });
+    return d;
+  }
+
+  function defaultState() {
+    var id = "m1";
+    var state = { activeId: id, mandanten: {} };
+    state.mandanten[id] = defaultMandant("Mandant 1");
+    return state;
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      var parsed = JSON.parse(raw);
+      if (!parsed.mandanten || Object.keys(parsed.mandanten).length === 0) return defaultState();
+      return parsed;
+    } catch (e) {
+      return defaultState();
+    }
+  }
+
+  var state = load();
+
+  function save() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function current() { return state.mandanten[state.activeId]; }
+
+  function requiredFieldsFilled(m) {
+    var req;
+    if (m.ptype === "juristisch") {
+      req = ["firma", "rechtsform", "sitzanschrift", "wb_name"];
+    } else {
+      req = ["vorname", "nachname", "geburtsdatum", "geburtsort", "staatsangehoerigkeit", "anschrift"];
+    }
+    return req.every(function (k) { return m.felder[k] && m.felder[k].trim() !== ""; });
+  }
+
+  function requiredChecksDone(m) {
+    var identOk = IDENT_CHECKS.every(function (c) { return m.checks[c.id]; });
+    var jurOk = m.ptype !== "juristisch" || JUR_CHECKS.every(function (c) { return m.checks[c.id]; });
+    return identOk && jurOk;
+  }
+
+  function mandantStatus(m) {
+    var fieldsOk = requiredFieldsFilled(m);
+    var checksOk = requiredChecksDone(m);
+    if (fieldsOk && checksOk) return "vollstaendig";
+    if (fieldsOk || Object.keys(m.checks).some(function (k) { return m.checks[k]; })) return "teilweise";
+    return "offen";
+  }
+
+  function displayName(m) {
+    if (m.ptype === "juristisch" && m.felder.firma) return m.felder.firma;
+    var full = (m.felder.vorname + " " + m.felder.nachname).trim();
+    return full || m.name;
+  }
+
+  function renderMandantSelect() {
+    var sel = $("mandantSelect");
+    sel.innerHTML = "";
+    Object.keys(state.mandanten).forEach(function (id) {
+      var opt = document.createElement("option");
+      opt.value = id;
+      opt.textContent = displayName(state.mandanten[id]);
+      if (id === state.activeId) opt.selected = true;
+      sel.appendChild(opt);
+    });
+  }
+
+  function renderBanner() {
+    var m = current();
+    var status = mandantStatus(m);
+    var banner = $("banner");
+    var name = displayName(m);
+    if (status === "vollstaendig") {
+      banner.className = "banner ready";
+      banner.innerHTML = "Identifizierung für „" + name + "“ vollständig — Pflichtangaben erfasst und Ausweisprüfung abgehakt.";
+    } else {
+      banner.className = "banner pending";
+      var fehlt = [];
+      if (!requiredFieldsFilled(m)) fehlt.push("Pflichtfelder");
+      if (!requiredChecksDone(m)) fehlt.push("Ausweisprüfung/Checks");
+      banner.innerHTML = "Noch offen für „" + name + "“: " + fehlt.join(" und ") + ". Vor Vertragsabschluss vervollständigen.";
+    }
+  }
+
+  function renderFields() {
+    var m = current();
+    document.querySelectorAll('input[name="ptype"]').forEach(function (r) {
+      r.checked = (r.value === m.ptype);
+    });
+    $("natFields").style.display = m.ptype === "juristisch" ? "none" : "block";
+    $("jurFields").style.display = m.ptype === "juristisch" ? "block" : "none";
+    $("checksJurWrap").style.display = m.ptype === "juristisch" ? "block" : "none";
+
+    ["vorname", "nachname", "geburtsdatum", "geburtsort", "staatsangehoerigkeit", "anschrift",
+     "firma", "rechtsform", "registernummer", "sitzanschrift", "wb_name", "wb_geburtsdatum", "erhoben_am"]
+      .forEach(function (k) {
+        var el = $("f_" + k);
+        if (el) el.value = m.felder[k] || "";
+      });
+  }
+
+  function renderChecks() {
+    var m = current();
+    var identContainer = $("checksIdent");
+    identContainer.innerHTML = "";
+    IDENT_CHECKS.forEach(function (c) {
+      identContainer.appendChild(buildCheckRow(c, m));
+    });
+    var jurContainer = $("checksJur");
+    jurContainer.innerHTML = "";
+    JUR_CHECKS.forEach(function (c) {
+      jurContainer.appendChild(buildCheckRow(c, m));
+    });
+  }
+
+  function buildCheckRow(c, m) {
+    var row = document.createElement("div");
+    row.className = "check-row";
+    var checked = !!m.checks[c.id];
+    row.innerHTML =
+      '<input type="checkbox" id="chk_' + c.id + '" ' + (checked ? "checked" : "") + '>' +
+      '<div><label for="chk_' + c.id + '">' + c.label + '</label>' +
+      (c.detail ? '<div class="detail">' + c.detail + '</div>' : '') + '</div>';
+    row.querySelector("input").addEventListener("change", function (e) {
+      current().checks[c.id] = e.target.checked;
+      save();
+      renderBanner();
+    });
+    return row;
+  }
+
+  function bindFieldInputs() {
+    ["vorname", "nachname", "geburtsdatum", "geburtsort", "staatsangehoerigkeit", "anschrift",
+     "firma", "rechtsform", "registernummer", "sitzanschrift", "wb_name", "wb_geburtsdatum", "erhoben_am"]
+      .forEach(function (k) {
+        var el = $("f_" + k);
+        if (!el) return;
+        el.addEventListener("input", function () {
+          current().felder[k] = el.value;
+          save();
+          renderBanner();
+          if (k === "vorname" || k === "nachname" || k === "firma") renderMandantSelect();
+        });
+      });
+
+    document.querySelectorAll('input[name="ptype"]').forEach(function (r) {
+      r.addEventListener("change", function () {
+        current().ptype = r.value;
+        save();
+        renderFields();
+        renderChecks();
+        renderBanner();
+      });
+    });
+  }
+
+  $("mandantSelect").addEventListener("change", function () {
+    state.activeId = $("mandantSelect").value;
+    save();
+    renderAll();
+  });
+
+  $("addBtn").addEventListener("click", function () {
+    var n = Object.keys(state.mandanten).length + 1;
+    var id = "m" + Date.now();
+    state.mandanten[id] = defaultMandant("Mandant " + n);
+    state.activeId = id;
+    save();
+    renderAll();
+  });
+
+  $("delBtn").addEventListener("click", function () {
+    var ids = Object.keys(state.mandanten);
+    if (ids.length <= 1) {
+      alert("Der letzte verbleibende Mandant kann nicht gelöscht werden.");
+      return;
+    }
+    if (!confirm("Mandant „" + displayName(current()) + "“ wirklich löschen? Das kann nicht rückgängig gemacht werden.")) return;
+    delete state.mandanten[state.activeId];
+    state.activeId = Object.keys(state.mandanten)[0];
+    save();
+    renderAll();
+  });
+
+  function renderAll() {
+    renderMandantSelect();
+    renderFields();
+    renderChecks();
+    renderBanner();
+  }
+
+  bindFieldInputs();
+  renderAll();
+})();
+</script>
+</body>
+</html>

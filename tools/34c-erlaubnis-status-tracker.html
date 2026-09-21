@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>§34c-Status-Tracker | Gewerbeerlaubnis Immobilienmakler</title>
+<style>
+  :root {
+    --bg: #f7f8f6;
+    --card: #ffffff;
+    --ink: #1f2a24;
+    --muted: #5c6b62;
+    --accent: #2f6b4f;
+    --accent-light: #e7f1ec;
+    --border: #e1e5e1;
+    --warn: #7a5400;
+    --warn-bg: #fdf3dd;
+    --done-bg: #e7f1ec;
+    --done-ink: #1f5a3d;
+    --open-bg: #fbeceb;
+    --open-ink: #8a3324;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 24px 16px 60px;
+  }
+  .wrap { max-width: 900px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 20px; font-size: 0.95rem; max-width: 720px; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 20px 24px;
+    margin-bottom: 20px;
+  }
+  .card h2 { font-size: 1.1rem; margin: 0 0 4px; }
+  .card .card-sub { color: var(--muted); font-size: 0.85rem; margin: 0 0 16px; }
+
+  .banner {
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .banner.pending { background: var(--warn-bg); color: var(--warn); }
+  .banner.ready { background: var(--done-bg); color: var(--done-ink); }
+  .banner .count { font-weight: 400; font-size: 0.82rem; opacity: 0.85; }
+
+  .progress-track { background: var(--accent-light); border-radius: 999px; height: 8px; overflow: hidden; margin: 10px 0 4px; }
+  .progress-fill { background: var(--accent); height: 100%; border-radius: 999px; }
+  .progress-label { font-size: 0.78rem; color: var(--muted); }
+
+  .nachweis-row {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: #fcfdfc;
+  }
+  .nachweis-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+  .nachweis-title { font-weight: 700; font-size: 0.95rem; }
+  .nachweis-hint { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
+  .status-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .status-pill.offen { background: var(--open-bg); color: var(--open-ink); }
+  .status-pill.beantragt { background: var(--warn-bg); color: var(--warn); }
+  .status-pill.eingereicht { background: var(--warn-bg); color: var(--warn); }
+  .status-pill.erhalten { background: var(--done-bg); color: var(--done-ink); }
+
+  .nachweis-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 10px;
+    align-items: center;
+  }
+  .check-field { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; }
+  .check-field input[type=checkbox] { width: 16px; height: 16px; }
+  .date-field { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--muted); }
+  .date-field input[type=date] { border: 1px solid var(--border); border-radius: 6px; padding: 3px 6px; font-size: 0.85rem; }
+  .notiz-field { width: 100%; margin-top: 8px; }
+  .notiz-field input[type=text] {
+    width: 100%;
+    padding: 7px 9px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: 0.85rem;
+    background: #fff;
+    color: var(--ink);
+  }
+
+  .step-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .step-row:last-child { border-bottom: none; }
+  .step-row input[type=checkbox] { width: 17px; height: 17px; margin-top: 2px; flex-shrink: 0; }
+  .step-row label { font-size: 0.9rem; cursor: pointer; }
+  .step-row.done label { color: var(--muted); text-decoration: line-through; }
+  .step-detail { font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
+  .step-detail code { background: var(--accent-light); padding: 1px 5px; border-radius: 4px; font-size: 0.78rem; }
+
+  .bescheid-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .field { margin-bottom: 0; }
+  label.field-label { display: block; font-size: 0.8rem; font-weight: 600; margin-bottom: 4px; color: var(--ink); }
+  input[type=text].plain, input[type=date].plain {
+    width: 100%;
+    padding: 8px 9px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: 0.9rem;
+    background: #fff;
+    color: var(--ink);
+  }
+
+  select.status-select {
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: 0.82rem;
+    background: #fff;
+    color: var(--ink);
+  }
+
+  .vsh-options { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .vsh-options label {
+    display: flex; align-items: center; gap: 6px;
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 12px; font-size: 0.85rem; cursor: pointer;
+    background: #fcfdfc;
+  }
+  .vsh-options input { width: 15px; height: 15px; }
+
+  .confidence { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 700; padding: 1px 7px; border-radius: 999px; margin-left: 6px; }
+  .confidence.high { background: var(--done-bg); color: var(--done-ink); }
+  .confidence.medium { background: var(--warn-bg); color: var(--warn); }
+  .confidence.low { background: var(--open-bg); color: var(--open-ink); }
+
+  .note {
+    background: var(--warn-bg);
+    color: var(--warn);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+  .docs-list { font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.6; }
+  .docs-list code { background: var(--accent-light); padding: 1px 6px; border-radius: 4px; font-size: 0.78rem; color: var(--ink); }
+
+  .toolbar { display: flex; justify-content: flex-end; margin-bottom: 14px; }
+  .reset-btn {
+    background: none; border: 1px solid var(--border); border-radius: 8px;
+    color: var(--muted); font-size: 0.78rem; padding: 6px 12px; cursor: pointer;
+  }
+  .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.78rem; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>§34c-Erlaubnis-Status-Tracker</h1>
+  <p class="sub">Übersicht über den laufenden Antrag auf Erlaubnis nach §34c GewO (Immobilienmakler) bei der
+    IHK Ostwürttemberg: welche Nachweise eingereicht/beantragt sind, und was danach ansteht. Rein lokales
+    Notiz-Tool (Speicherung nur im Browser dieses Geräts, keine Anbindung an die Website oder eine Datenbank) —
+    Status hier von Hand nachpflegen, sobald sich etwas ändert.</p>
+
+  <div class="toolbar"><button class="reset-btn" id="resetBtn" type="button">Zurücksetzen auf Ausgangsstand</button></div>
+
+  <div id="banner" class="banner pending"></div>
+
+  <div class="card">
+    <h2>1. Nachweise für den Antrag</h2>
+    <p class="card-sub">Laut letztem Stand (September 2026) wurden alle fünf Nachweise bei den jeweiligen
+      Stellen eingereicht bzw. beantragt. Hier pro Nachweis nachhalten, wann die Rückmeldung/das Dokument
+      tatsächlich vorliegt.</p>
+    <div id="nachweise"></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label" id="progressLabel"></div>
+  </div>
+
+  <div class="card">
+    <h2>2. Bescheid-Daten (sobald die Erlaubnis erteilt ist)</h2>
+    <p class="card-sub">Direkt vom Bescheid abschreiben, nicht raten — wird für Impressum-Ergänzung und
+      Gewerbeanmeldung gebraucht.</p>
+    <div class="bescheid-grid">
+      <div class="field">
+        <label class="field-label" for="erlaubnisnummer">Erlaubnisnummer</label>
+        <input class="plain" type="text" id="erlaubnisnummer" placeholder="noch offen">
+      </div>
+      <div class="field">
+        <label class="field-label" for="erteilungsdatum">Erteilungsdatum</label>
+        <input class="plain" type="date" id="erteilungsdatum">
+      </div>
+      <div class="field">
+        <label class="field-label" for="behoerde">Erteilende Behörde (exakt lt. Bescheid)</label>
+        <input class="plain" type="text" id="behoerde" placeholder="z. B. IHK Ostwürttemberg">
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>3. Nächste Schritte nach Erteilung der Erlaubnis</h2>
+    <p class="card-sub">Chronologisch, siehe <code>docs/legal/post-erlaubnis-launch-checkliste.md</code> für Details/Quellen.</p>
+    <div id="steps"></div>
+  </div>
+
+  <div class="card">
+    <h2>4. Vermögensschadenhaftpflicht (freiwillig)</h2>
+    <p class="card-sub">
+      Gesetzlich <strong>nicht verpflichtend</strong> für reine Immobilienmakler (§34c Abs. 1 Nr. 1 GewO) —
+      Pflicht gilt nur für Wohnimmobilienverwalter (Nr. 4) und Darlehensvermittler.
+      <span class="confidence high">HIGH</span>
+    </p>
+    <p class="card-sub">Realistische Bandbreite für Einzelmakler ohne Mitarbeiter: ca. 115–370€/Jahr
+      (Exali ab 115,06€/Jahr netto, R+V Mindestbeitrag 360€/Jahr). <span class="confidence medium">MEDIUM</span> —
+      Details/Quellen in <code>docs/legal/vermoegensschadenhaftpflicht-vergleich.md</code>.
+      Ein tatsächlicher Abschluss ist eine finanzielle Entscheidung, die dieses Tool nicht auslöst oder vorbereitet.</p>
+    <div class="vsh-options" id="vshOptions">
+      <label><input type="radio" name="vsh" value="offen"> Noch nicht entschieden</label>
+      <label><input type="radio" name="vsh" value="ja"> Abschließen (z. B. Exali/R+V)</label>
+      <label><input type="radio" name="vsh" value="nein"> Bewusst verzichten</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Hintergrund-Dokumente</h2>
+    <p class="docs-list">
+      Detail-Recherchen liegen bereits fertig in <code>docs/legal/</code>:<br>
+      <code>naechste-schritte-nach-34c-erlaubnis.md</code> — IHK-Bearbeitungsdauer, Gewerbeanmeldung Heidenheim<br>
+      <code>post-erlaubnis-launch-checkliste.md</code> — vollständige Schritt-für-Schritt-Liste<br>
+      <code>vermoegensschadenhaftpflicht-vergleich.md</code> — Versicherungsvergleich<br>
+      <code>maklerprovision-preismodell.md</code> — Provisionsmodell<br>
+      <code>impressum-pflichtangaben-34c-verifiziert.md</code> — verifizierte Impressum-Pflichtangaben
+    </p>
+    <div class="note">
+      Kein Rechtsberatungs-Ersatz. Bearbeitungsdauer bei der IHK Ostwürttemberg selbst ist mit
+      <span class="confidence low">LOW/MEDIUM</span> nur grob auf 1–3 Monate ab vollständiger Einreichung
+      (September 2026) geschätzt — keine belastbare Zusage.
+    </div>
+  </div>
+
+  <footer>§34c-Status-Tracker · deininger-objektwert · lokales Notiz-Tool, Stand 2026-09-20</footer>
+</div>
+
+<script>
+(function () {
+  var STORAGE_KEY = "tracker34c-v1";
+
+  var NACHWEISE = [
+    { id: "fuehrungszeugnis", label: "Erweitertes Führungszeugnis", hint: "Bürgeramt/Bundesamt für Justiz" },
+    { id: "gewerbezentralregister", label: "Gewerbezentralregisterauszug", hint: "Bundesamt für Justiz" },
+    { id: "finanzamt", label: "Finanzamt-Unbedenklichkeitsbescheinigung", hint: "zuständiges Finanzamt" },
+    { id: "schuldnerverzeichnis", label: "Schuldnerverzeichnis-Auszug", hint: "zentrales Vollstreckungsgericht" },
+    { id: "amtsgericht", label: "Einsichtnahme Insolvenzgericht/Amtsgericht Aalen", hint: "Amtsgericht Aalen" }
+  ];
+
+  var STEPS = [
+    { id: "gewerbe", label: "Gewerbe bei der Stadt Heidenheim anmelden (Gewerbeamt, Grabenstraße 15)", detail: "Externe/behördliche Aktion, muss Finn persönlich erledigen. Erlaubnisbescheid mitbringen. Kosten ca. 20–40€ + ggf. Prüfgebühr." },
+    { id: "ihk", label: "IHK-Pflichtmitgliedschaft (automatisch, nichts zu tun)", detail: "Entsteht automatisch mit der Gewerbeanmeldung. Beitrag als Existenzgründer voraussichtlich befreit/reduziert – bei der IHK gegenprüfen." },
+    { id: "impressum", label: "Impressum-Ergänzung aktivieren", detail: "docs/legal/impressum-ergaenzung-34c.md mit echten Bescheid-Daten befüllen → app/(site)/impressum/page.tsx." },
+    { id: "datenschutz", label: "Datenschutz-Ergänzung aktivieren", detail: "docs/legal/datenschutz-ergaenzung-maklertaetigkeit.md → app/(site)/datenschutz/page.tsx. Kann bis zur ersten echten Vermittlung warten." },
+    { id: "agb", label: "AGB-Hinweiskasten aktualisieren", detail: "app/(site)/agb/page.tsx: Hinweis „Maklertätigkeit in Vorbereitung“ entfernen/anpassen." },
+    { id: "vsh", label: "Vermögensschadenhaftpflicht entscheiden (siehe Abschnitt 4 unten)", detail: "Freiwillig, aber vor erstem echten Vermittlungsfall sinnvoll." },
+    { id: "preismodell", label: "Preismodell/Provisionssatz festlegen", detail: "docs/legal/maklerprovision-preismodell.md — Baseline 7,14% inkl. MwSt. (3,57%/3,57%) bei Verbraucherverkauf Wohnung/EFH." },
+    { id: "gwg", label: "Geldwäschegesetz (GwG) kurz recherchieren", detail: "Identifizierungspflichten + Transparenzregister-Meldeportal (goAML), vor erstem echten Vermittlungsfall." },
+    { id: "expose", label: "§87 GEG-Pflichtangaben in Exposés berücksichtigen", detail: "Sobald ein Energieausweis vorliegt: Art, Wert, Energieträger, Baujahr, Effizienzklasse im Exposé nennen." }
+  ];
+
+  function defaultState() {
+    var s = { nachweise: {}, bescheid: { nr: "", datum: "", behoerde: "" }, steps: {}, vsh: "offen" };
+    NACHWEISE.forEach(function (n) {
+      s.nachweise[n.id] = { eingereicht: true, erhalten: false, datum: "", notiz: "" };
+    });
+    STEPS.forEach(function (st) { s.steps[st.id] = false; });
+    return s;
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      var parsed = JSON.parse(raw);
+      var d = defaultState();
+      return {
+        nachweise: Object.assign({}, d.nachweise, parsed.nachweise || {}),
+        bescheid: Object.assign({}, d.bescheid, parsed.bescheid || {}),
+        steps: Object.assign({}, d.steps, parsed.steps || {}),
+        vsh: parsed.vsh || "offen"
+      };
+    } catch (e) {
+      return defaultState();
+    }
+  }
+
+  var state = load();
+
+  function save() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  function renderBanner() {
+    var total = NACHWEISE.length;
+    var erhalten = NACHWEISE.filter(function (n) { return state.nachweise[n.id].erhalten; }).length;
+    var eingereicht = NACHWEISE.filter(function (n) { return state.nachweise[n.id].eingereicht; }).length;
+    var banner = $("banner");
+    if (erhalten === total) {
+      banner.className = "banner ready";
+      banner.innerHTML = "Alle 5 Nachweise liegen zurück vor – Antrag sollte vollständig bei der IHK Ostwürttemberg sein. <span class=\"count\">Als Nächstes: auf den Bescheid warten.</span>";
+    } else if (eingereicht === total) {
+      banner.className = "banner pending";
+      banner.innerHTML = "Alle 5 Nachweise eingereicht/beantragt – Antrag läuft bei der IHK Ostwürttemberg. <span class=\"count\">(" + erhalten + " von " + total + " bereits zurückerhalten)</span>";
+    } else {
+      banner.className = "banner pending";
+      banner.innerHTML = (total - eingereicht) + " von " + total + " Nachweisen noch nicht eingereicht/beantragt.";
+    }
+  }
+
+  function renderNachweise() {
+    var container = $("nachweise");
+    container.innerHTML = "";
+    NACHWEISE.forEach(function (n) {
+      var s = state.nachweise[n.id];
+      var status = s.erhalten ? "erhalten" : (s.eingereicht ? "eingereicht" : "offen");
+      var statusLabel = s.erhalten ? "Erhalten" : (s.eingereicht ? "Eingereicht/beantragt" : "Offen");
+
+      var row = document.createElement("div");
+      row.className = "nachweis-row";
+      row.innerHTML =
+        '<div class="nachweis-top">' +
+          '<div><div class="nachweis-title">' + n.label + '</div><div class="nachweis-hint">' + n.hint + '</div></div>' +
+          '<span class="status-pill ' + status + '">' + statusLabel + '</span>' +
+        '</div>' +
+        '<div class="nachweis-controls">' +
+          '<label class="check-field"><input type="checkbox" data-n="' + n.id + '" data-f="eingereicht" ' + (s.eingereicht ? "checked" : "") + '> Eingereicht/beantragt</label>' +
+          '<label class="check-field"><input type="checkbox" data-n="' + n.id + '" data-f="erhalten" ' + (s.erhalten ? "checked" : "") + '> Rückmeldung/Dokument erhalten</label>' +
+          '<span class="date-field">Datum: <input type="date" data-n="' + n.id + '" data-f="datum" value="' + s.datum + '"></span>' +
+        '</div>' +
+        '<div class="notiz-field"><input type="text" data-n="' + n.id + '" data-f="notiz" placeholder="Notiz (z. B. Aktenzeichen, Rückfrage)" value="' + s.notiz.replace(/"/g, "&quot;") + '"></div>';
+      container.appendChild(row);
+    });
+
+    container.querySelectorAll("input").forEach(function (el) {
+      var evt = el.type === "checkbox" ? "change" : "input";
+      el.addEventListener(evt, function () {
+        var n = el.getAttribute("data-n");
+        var f = el.getAttribute("data-f");
+        var val = el.type === "checkbox" ? el.checked : el.value;
+        state.nachweise[n][f] = val;
+        save();
+        renderBanner();
+        renderNachweise();
+        renderProgress();
+      });
+    });
+  }
+
+  function renderProgress() {
+    var total = NACHWEISE.length;
+    var erhalten = NACHWEISE.filter(function (n) { return state.nachweise[n.id].erhalten; }).length;
+    var pct = Math.round((erhalten / total) * 100);
+    $("progressFill").style.width = pct + "%";
+    $("progressLabel").textContent = erhalten + " von " + total + " Nachweisen zurückerhalten (" + pct + "%)";
+  }
+
+  function renderBescheid() {
+    $("erlaubnisnummer").value = state.bescheid.nr;
+    $("erteilungsdatum").value = state.bescheid.datum;
+    $("behoerde").value = state.bescheid.behoerde;
+  }
+
+  function renderSteps() {
+    var container = $("steps");
+    container.innerHTML = "";
+    STEPS.forEach(function (st) {
+      var checked = !!state.steps[st.id];
+      var row = document.createElement("div");
+      row.className = "step-row" + (checked ? " done" : "");
+      row.innerHTML =
+        '<input type="checkbox" id="step_' + st.id + '" ' + (checked ? "checked" : "") + '>' +
+        '<div><label for="step_' + st.id + '">' + st.label + '</label><div class="step-detail">' + st.detail + '</div></div>';
+      container.appendChild(row);
+      row.querySelector("input").addEventListener("change", function (e) {
+        state.steps[st.id] = e.target.checked;
+        save();
+        renderSteps();
+      });
+    });
+  }
+
+  function renderVsh() {
+    var radios = document.querySelectorAll('input[name="vsh"]');
+    radios.forEach(function (r) {
+      r.checked = (r.value === state.vsh);
+      r.addEventListener("change", function () {
+        state.vsh = r.value;
+        save();
+      });
+    });
+  }
+
+  ["erlaubnisnummer", "erteilungsdatum", "behoerde"].forEach(function (id) {
+    $(id).addEventListener("input", function () {
+      var key = id === "erlaubnisnummer" ? "nr" : (id === "erteilungsdatum" ? "datum" : "behoerde");
+      state.bescheid[key] = $(id).value;
+      save();
+    });
+  });
+
+  $("resetBtn").addEventListener("click", function () {
+    if (!confirm("Wirklich auf den Ausgangsstand zurücksetzen? Alle Notizen/Häkchen in diesem Browser gehen verloren.")) return;
+    state = defaultState();
+    save();
+    renderAll();
+  });
+
+  function renderAll() {
+    renderBanner();
+    renderNachweise();
+    renderProgress();
+    renderBescheid();
+    renderSteps();
+    renderVsh();
+  }
+
+  renderAll();
+})();
+</script>
+</body>
+</html>
