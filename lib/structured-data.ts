@@ -71,10 +71,24 @@ export function articleJsonLd(article: {
     url: `${siteConfig.url}/ratgeber/${article.slug}`,
     datePublished: article.created_at,
     dateModified: article.updated_at,
-    author: {
-      "@type": "Person",
-      name: siteConfig.operator.name,
-    },
+    author: personJsonLd(),
+  };
+}
+
+/**
+ * Standalone Person entity for the site operator, given a URL back to
+ * /ueber-uns -- this is the E-E-A-T signal search engines and AI answer
+ * engines look for: a named, identifiable author with a page establishing
+ * their expertise, not just a bare name string repeated in every article's
+ * JSON-LD. Reused as articleJsonLd's `author` so every article points at
+ * the same entity instead of a disconnected name.
+ */
+export function personJsonLd() {
+  return {
+    "@type": "Person",
+    name: siteConfig.operator.name,
+    url: `${siteConfig.url}/ueber-uns`,
+    jobTitle: "Immobilienbewertung & Beratung",
   };
 }
 

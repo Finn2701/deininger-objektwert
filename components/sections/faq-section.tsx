@@ -8,6 +8,11 @@ export interface FaqItem {
 
 export const defaultFaqs: FaqItem[] = [
   {
+    question: "Wie verkaufe ich meine Immobilie?",
+    answer:
+      "Der erste Schritt ist eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts – sie zeigt Ihnen in wenigen Minuten eine realistische Wertspanne. Darauf folgt bei Bedarf ein persönliches Gespräch, das Zusammenstellen der wichtigsten Unterlagen (Grundbuchauszug, Energieausweis, Baupläne) und – auf Wunsch – eine diskrete Vermarktung ohne öffentliches Inserat. Details zum genauen Ablauf finden Sie auf der Seite „Immobilie verkaufen“.",
+  },
+  {
     question: "Was kostet die Immobilienbewertung?",
     answer:
       "Die automatische Ersteinschätzung über unseren Online-Rechner ist für Sie kostenlos und unverbindlich. Es entstehen keine Kosten und keine Verpflichtung.",
