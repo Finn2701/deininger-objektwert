@@ -68,6 +68,27 @@ export async function saveArticle(formData: FormData) {
   }
 }
 
+// Quick publish/unpublish toggle from the list view (/backend/ratgeber),
+// so Finn doesn't have to open each article's full edit form just to flip
+// one field -- useful now that the growth engine (scripts/growth-loop.mjs)
+// can queue up many drafts at once for him to work through over time.
+export async function toggleArticlePublished(formData: FormData) {
+  const id = str(formData, "id");
+  const nextPublished = formData.get("next_published") === "true";
+  const supabase = await createClient();
+
+  const { data: article } = await supabase.from("articles").select("slug").eq("id", id).single();
+
+  await supabase
+    .from("articles")
+    .update({ published: nextPublished, updated_at: new Date().toISOString() })
+    .eq("id", id);
+
+  revalidatePath("/backend/ratgeber");
+  revalidatePath("/ratgeber");
+  if (article?.slug) revalidatePath(`/ratgeber/${article.slug}`);
+}
+
 export async function deleteArticle(formData: FormData) {
   const id = str(formData, "id");
   const supabase = await createClient();
