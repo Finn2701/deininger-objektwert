@@ -48,3 +48,4 @@ supabase/.temp
 
 # impeccable
 .impeccable
+.worktrees/
