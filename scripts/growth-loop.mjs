@@ -185,12 +185,14 @@ Schreibe dann einen vollständigen Artikel im GENAU gleichen Format wie die best
 
 WICHTIG: Erfinde keine Rechtsvorschriften oder Zahlen -- nur was du per WebSearch tatsächlich verifiziert hast. Wenn du dir bei einem Detail unsicher bist, formuliere vorsichtiger oder lass es weg.
 
+WICHTIG für das JSON-Format: Verwende in content_html für ALLE HTML-Attribute einfache Anführungszeichen ('...'), NIEMALS doppelte ("..."), also z.B. <a href='...' target='_blank' rel='noopener'>. Grund: content_html steht selbst in doppelten Anführungszeichen im JSON, und doppelte Anführungszeichen innerhalb von href/target/rel-Attributen machen das JSON sonst ungültig.
+
 Gib das Ergebnis NUR als valides JSON zurück (keine Erklärung davor/danach, kein Markdown-Codeblock), mit genau diesen Feldern:
 {
   "title": "...",
   "excerpt": "1-2 Sätze, Hook + Versprechen, wie ein Aufmacher",
   "meta_description": "prägnant, keyword-reich, sagt was der Leser lernt",
-  "content_html": "<p>...</p><h2>...</h2>..."
+  "content_html": "<p>...</p><h2>...</h2><a href='https://...' target='_blank' rel='noopener'>...</a>"
 }`;
 
   console.log(`[${timestamp}] Starte Recherche + Artikel-Entwurf...`);
