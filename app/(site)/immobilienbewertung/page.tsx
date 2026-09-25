@@ -27,7 +27,7 @@ const drivers = [
 const defaults = {
   "bewertung.hero.title": "Immobilienwert ermitteln – kostenlos und unverbindlich.",
   "bewertung.hero.lede":
-    "Egal wo in Deutschland Ihre Immobilie steht – ob Haus, Wohnung, Mehrfamilienhaus oder unbebautes Grundstück: Beantworten Sie ein paar Fragen zu Lage, Baujahr, Fläche und Zustand und erhalten sofort eine erste Wertspanne. Besonders fundiert ist unsere Einschätzung für {region} und Umgebung, wo wir den Markt aus erster Hand kennen.",
+    "Egal wo in Deutschland Ihre Immobilie steht – ob Haus, Wohnung, Mehrfamilienhaus oder unbebautes Grundstück: Beantworten Sie ein paar Fragen zu Lage, Baujahr, Fläche und Zustand und erhalten sofort eine erste Wertspanne. Das Ergebnis ist eine grobe, unverbindliche Ersteinschätzung, keine Wertermittlung durch einen Sachverständigen – je mehr Details Sie angeben (z. B. Energieausweis oder Zustand), desto enger wird die Spanne. Besonders fundiert ist unsere Einschätzung für {region} und Umgebung, wo wir den Markt aus erster Hand kennen.",
 };
 
 export default async function ImmobilienbewertungPage() {

@@ -1,4 +1,4 @@
-import type { ConditionLevel, FeatureId, YearBuiltBucket } from "@/lib/valuation-benchmarks";
+import type { ConditionLevel, EnergyClass, FeatureId, FloorLevel, YearBuiltBucket } from "@/lib/valuation-benchmarks";
 
 export type PropertyType = "haus" | "wohnung" | "grundstueck" | "mehrfamilienhaus";
 
@@ -13,6 +13,15 @@ export interface ValuationFormData {
   yearBuilt: YearBuiltBucket | null;
   condition: ConditionLevel | null;
   features: FeatureId[];
+  // Optional precision-improving fields: all null/false-safe by default so
+  // skipping them never blocks the form, but each filled-in one both feeds
+  // a real adjustment in valuation-estimate.ts and narrows the shown range
+  // (see PRECISION_SIGNALS there) — "more info = a tighter estimate" is
+  // meant literally, not just as copy.
+  energyClass: EnergyClass | null;
+  floorLevel: FloorLevel | null; // wohnung only
+  hasElevator: boolean | null; // wohnung only
+  moistureIssues: boolean | null;
   name: string;
   email: string;
   phone: string;
@@ -30,6 +39,10 @@ export const initialValuationFormData: ValuationFormData = {
   yearBuilt: null,
   condition: null,
   features: [],
+  energyClass: null,
+  floorLevel: null,
+  hasElevator: null,
+  moistureIssues: null,
   name: "",
   email: "",
   phone: "",

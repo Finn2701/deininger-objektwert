@@ -11,11 +11,20 @@
  * in valuation-estimate.ts, since a missing region factor shouldn't block an
  * estimate the visitor is actively waiting for.
  */
+export type SettlementTier = "city" | "town" | "village" | null;
+
 export interface ResolvedLocation {
   display: string;
   state: string | null;
   county: string | null;
   city: string | null;
+  /**
+   * Which Nominatim address field actually matched (city/town/village), so
+   * callers can apply an urban/rural gradient for the many German places
+   * that aren't in the hand-curated city list below but still shouldn't all
+   * be priced as if they were the state's biggest city.
+   */
+  settlementTier: SettlementTier;
 }
 
 export async function resolveLocation(location: string): Promise<ResolvedLocation | null> {
@@ -48,11 +57,20 @@ export async function resolveLocation(location: string): Promise<ResolvedLocatio
     if (!first?.address) return null;
 
     const address = first.address;
+    const settlementTier: SettlementTier = address.city
+      ? "city"
+      : address.town ?? address.municipality
+        ? "town"
+        : address.village
+          ? "village"
+          : null;
+
     return {
       display: first.display_name ?? query,
       state: address.state ?? null,
       county: address.county ?? address.district ?? null,
       city: address.city ?? address.town ?? address.municipality ?? address.village ?? null,
+      settlementTier,
     };
   } catch {
     return null;

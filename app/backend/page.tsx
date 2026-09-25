@@ -21,6 +21,18 @@ const dayLabels: Record<string, string> = {
   so: "So",
 };
 
+const floorLevelLabels: Record<string, string> = {
+  erdgeschoss: "Erdgeschoss",
+  "mittlere-etage": "Mittlere Etage",
+  "oberste-etage": "Oberste Etage / DG",
+};
+
+const precisionLabels: Record<string, string> = {
+  basis: "Basis-Schätzung",
+  erweitert: "Erweiterte Schätzung",
+  detailliert: "Detaillierte Schätzung",
+};
+
 export const metadata: Metadata = {
   title: "Anfragen",
   robots: { index: false, follow: false },
@@ -375,8 +387,15 @@ export default async function BackendLeadsPage({
                   <p className="mt-1.5 font-display text-lg font-medium text-ink">
                     {lead.property_type ?? "–"} · {lead.location || "keine Lage angegeben"}
                   </p>
-                  <p className="mt-0.5 text-sm text-ink-soft">
-                    {formatEuro(lead.estimate_low)} – {formatEuro(lead.estimate_high)}
+                  <p className="mt-0.5 flex flex-wrap items-center gap-2 text-sm text-ink-soft">
+                    <span>
+                      {formatEuro(lead.estimate_low)} – {formatEuro(lead.estimate_high)}
+                    </span>
+                    {lead.estimate_precision ? (
+                      <span className="rounded-full border border-line px-2 py-0.5 text-[11px] text-ink-soft/70">
+                        {precisionLabels[lead.estimate_precision] ?? lead.estimate_precision}
+                      </span>
+                    ) : null}
                   </p>
                   </div>
                 </div>
@@ -416,6 +435,17 @@ export default async function BackendLeadsPage({
                 <Fact label="Grundstück" value={lead.plot_area ? `${lead.plot_area} m²` : "–"} />
                 <Fact label="Baujahr" value={lead.year_built ?? "–"} />
                 <Fact label="Zustand" value={lead.condition ?? "–"} />
+                <Fact label="Energieklasse" value={lead.energy_class ? lead.energy_class.toUpperCase().replace("-PLUS", "+") : "–"} />
+                {lead.property_type === "wohnung" ? (
+                  <>
+                    <Fact label="Etage" value={lead.floor_level ? floorLevelLabels[lead.floor_level] ?? lead.floor_level : "–"} />
+                    <Fact label="Aufzug" value={lead.has_elevator === null ? "–" : lead.has_elevator ? "Ja" : "Nein"} />
+                  </>
+                ) : null}
+                <Fact
+                  label="Feuchtigkeit/Geruch"
+                  value={lead.moisture_issues === null ? "–" : lead.moisture_issues ? "Auffällig" : "Unauffällig"}
+                />
               </dl>
 
               {lead.features && lead.features.length > 0 ? (

@@ -1,13 +1,19 @@
 import { resolveLocation } from "./geocoding";
 import {
   conditionMultiplier,
+  energyClassMultiplier as sharedEnergyClassMultiplier,
   featureBonus,
+  floorLevelMultiplier,
+  moistureIssuesMultiplier,
   pricePerSqmByType,
   plotPricePerSqm,
   resolveRegionFactor,
+  topFloorElevatorBonus,
   yearBuiltMultiplier,
   type ConditionLevel,
+  type EnergyClass,
   type FeatureId,
+  type FloorLevel,
   type YearBuiltBucket,
 } from "./valuation-benchmarks";
 
@@ -54,6 +60,18 @@ export interface ProAssessment {
   energyClass: string; // "A+".."H" or ""
   energyValue: string; // kWh/m²a, free text/number
 
+  // Etage + Aufzug (wohnung only — same value drivers as the public
+  // calculator, see valuation-benchmarks.ts floorLevelMultiplier)
+  floorLevel: FloorLevel | null;
+  hasElevator: YesNoUnknown;
+
+  // Gesamteindruck bei Besichtigung: riecht/wirkt die Immobilie unauffällig,
+  // oder gibt es wahrnehmbare Feuchtigkeits-/Schimmel-/Geruchsauffälligkeiten
+  // über den reinen Kellerzustand (siehe `basement` oben) hinaus? Das ist der
+  // vor-Ort-Eindruck, den ein Sachverständiger als ersten Hinweis auf
+  // Feuchteschäden nutzt.
+  odorImpression: "unauffaellig" | "leicht-auffaellig" | "deutlich-auffaellig" | null;
+
   // E. Ausstattung (reuse the public form's feature ids where they overlap)
   features: FeatureId[];
 
@@ -92,6 +110,9 @@ export const emptyAssessment: ProAssessment = {
   basement: null,
   energyClass: "",
   energyValue: "",
+  floorLevel: null,
+  hasElevator: null,
+  odorImpression: null,
   features: [],
   heritageProtection: null,
   leaseholdLand: null,
@@ -127,18 +148,14 @@ const basementMultiplier = {
 } as const;
 const renovationBacklogMultiplier = { keiner: 1, gering: 0.97, erheblich: 0.88 } as const;
 const noiseMultiplier = { keine: 1, gering: 0.98, erheblich: 0.93 } as const;
+const odorMultiplier = { unauffaellig: 1, "leicht-auffaellig": 0.97, "deutlich-auffaellig": moistureIssuesMultiplier } as const;
 
-const energyClassMultiplier: Record<string, number> = {
-  "A+": 1.06,
-  A: 1.05,
-  B: 1.03,
-  C: 1.01,
-  D: 1,
-  E: 0.98,
-  F: 0.95,
-  G: 0.91,
-  H: 0.87,
-};
+/** "A+".."H" (this form's display format) -> the shared benchmark's key format ("a-plus".."h"). */
+function toSharedEnergyClassKey(display: string): EnergyClass | null {
+  const key = display.trim().toLowerCase().replace("+", "-plus");
+  const valid: EnergyClass[] = ["a-plus", "a", "b", "c", "d", "e", "f", "g", "h"];
+  return (valid as string[]).includes(key) ? (key as EnergyClass) : null;
+}
 
 export interface ProEstimate {
   low: number;
@@ -155,23 +172,32 @@ function roundTo(value: number, step: number) {
   return Math.round(value / step) * step;
 }
 
-/** Fields that count toward the "how much do we actually know" confidence score. */
-const CONFIDENCE_FIELDS: (keyof ProAssessment)[] = [
-  "microLocation",
-  "noise",
-  "publicTransport",
-  "amenities",
-  "roof",
-  "facade",
-  "windows",
-  "heating",
-  "electrics",
-  "basement",
-  "energyClass",
-  "heritageProtection",
-  "leaseholdLand",
-  "renovationBacklog",
-];
+/**
+ * Fields that count toward the "how much do we actually know" confidence
+ * score. Floor/lift only exist for apartments — counting them for a house
+ * would permanently cap its achievable confidence, since they'd always be
+ * null — so the field list is type-aware rather than a single flat list.
+ */
+function confidenceFields(propertyType: ProAssessment["propertyType"]): (keyof ProAssessment)[] {
+  const base: (keyof ProAssessment)[] = [
+    "microLocation",
+    "noise",
+    "publicTransport",
+    "amenities",
+    "roof",
+    "facade",
+    "windows",
+    "heating",
+    "electrics",
+    "basement",
+    "energyClass",
+    "heritageProtection",
+    "leaseholdLand",
+    "renovationBacklog",
+    "odorImpression",
+  ];
+  return propertyType === "wohnung" ? [...base, "floorLevel", "hasElevator"] : base;
+}
 
 export async function computeProEstimate(a: ProAssessment): Promise<ProEstimate | null> {
   const livingArea = Number(a.livingArea) || 0;
@@ -183,8 +209,9 @@ export async function computeProEstimate(a: ProAssessment): Promise<ProEstimate 
   const scaledPlotPrice = knownLandValue > 0 ? knownLandValue : plotPricePerSqm * regionFactor;
 
   let mid: number;
+  const isLand = a.propertyType === "grundstueck";
 
-  if (a.propertyType === "grundstueck") {
+  if (isLand) {
     if (plotArea <= 0) return null;
     mid = plotArea * scaledPlotPrice;
   } else {
@@ -206,7 +233,23 @@ export async function computeProEstimate(a: ProAssessment): Promise<ProEstimate 
     if (a.electrics) value *= electricsMultiplier[a.electrics];
     if (a.basement) value *= basementMultiplier[a.basement];
     if (a.renovationBacklog) value *= renovationBacklogMultiplier[a.renovationBacklog];
-    if (a.energyClass && energyClassMultiplier[a.energyClass]) value *= energyClassMultiplier[a.energyClass];
+    if (a.odorImpression) value *= odorMultiplier[a.odorImpression];
+
+    // Same, more accurately sourced ladder as the public calculator (see
+    // valuation-benchmarks.ts) — replaces this form's own older, flatter
+    // estimate now that both tools can share one researched source.
+    const sharedEnergyKey = toSharedEnergyClassKey(a.energyClass);
+    if (sharedEnergyKey) {
+      const ladder = a.propertyType === "wohnung" ? sharedEnergyClassMultiplier.wohnung : sharedEnergyClassMultiplier.haus;
+      value *= ladder[sharedEnergyKey];
+    }
+
+    if (a.propertyType === "wohnung" && a.floorLevel) {
+      let floorFactor = floorLevelMultiplier[a.floorLevel];
+      if (a.floorLevel === "oberste-etage" && a.hasElevator === "ja") floorFactor += topFloorElevatorBonus;
+      value *= floorFactor;
+    }
+
     if (a.heritageProtection === "ja") value *= 0.95;
     if (a.leaseholdLand === "ja") value *= 0.85;
 
@@ -224,8 +267,15 @@ export async function computeProEstimate(a: ProAssessment): Promise<ProEstimate 
 
   if (!Number.isFinite(mid) || mid <= 0) return null;
 
-  const answeredFields = CONFIDENCE_FIELDS.filter((key) => a[key] !== null && a[key] !== "").length;
-  const totalFields = CONFIDENCE_FIELDS.length;
+  // Land has no confidence checklist of its own — the only thing left to
+  // know beyond plot area is whether we have a locally known Bodenrichtwert
+  // instead of the geocoded regional guess.
+  const answeredFields = isLand
+    ? knownLandValue > 0
+      ? 1
+      : 0
+    : confidenceFields(a.propertyType).filter((key) => a[key] !== null && a[key] !== "").length;
+  const totalFields = isLand ? 1 : confidenceFields(a.propertyType).length;
   const completeness = answeredFields / totalFields;
 
   // More known fields -> tighter, more confident range: 22% wide at zero

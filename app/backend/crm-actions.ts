@@ -235,6 +235,13 @@ export async function saveProjectAssessment(formData: FormData) {
     ] as const),
     energyClass: str(formData, "energyClass"),
     energyValue: str(formData, "energyValue"),
+    floorLevel: pickOrNull(formData, "floorLevel", ["erdgeschoss", "mittlere-etage", "oberste-etage"] as const),
+    hasElevator: pickOrNull(formData, "hasElevator", ["ja", "nein"] as const),
+    odorImpression: pickOrNull(formData, "odorImpression", [
+      "unauffaellig",
+      "leicht-auffaellig",
+      "deutlich-auffaellig",
+    ] as const),
     features: formData.getAll("features").map(String).filter((f): f is FeatureId => featureIds.includes(f as FeatureId)),
     heritageProtection: pickOrNull(formData, "heritageProtection", ["ja", "nein"] as const),
     leaseholdLand: pickOrNull(formData, "leaseholdLand", ["ja", "nein"] as const),

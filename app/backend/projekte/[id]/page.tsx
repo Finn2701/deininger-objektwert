@@ -327,6 +327,31 @@ export default async function ProjectDetailPage({
                 current={a.condition}
               />
             </Field>
+            {a.propertyType === "wohnung" && (
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field label="Etage">
+                  <Pills
+                    name="floorLevel"
+                    options={[
+                      { value: "erdgeschoss", label: "Erdgeschoss" },
+                      { value: "mittlere-etage", label: "Mittlere Etage" },
+                      { value: "oberste-etage", label: "Oberste Etage / Dachgeschoss" },
+                    ]}
+                    current={a.floorLevel}
+                  />
+                </Field>
+                <Field label="Aufzug vorhanden">
+                  <Pills
+                    name="hasElevator"
+                    options={[
+                      { value: "ja", label: "Ja" },
+                      { value: "nein", label: "Nein" },
+                    ]}
+                    current={a.hasElevator}
+                  />
+                </Field>
+              </div>
+            )}
           </div>
         </section>
 
@@ -425,6 +450,17 @@ export default async function ProjectDetailPage({
                   { value: "kein-keller", label: "Kein Keller" },
                 ]}
                 current={a.basement}
+              />
+            </Field>
+            <Field label="Gesamteindruck bei Besichtigung (Geruch, Feuchtigkeit, Schimmel)">
+              <Pills
+                name="odorImpression"
+                options={[
+                  { value: "unauffaellig", label: "Unauffällig" },
+                  { value: "leicht-auffaellig", label: "Leicht auffällig" },
+                  { value: "deutlich-auffaellig", label: "Deutlich auffällig" },
+                ]}
+                current={a.odorImpression}
               />
             </Field>
           </div>

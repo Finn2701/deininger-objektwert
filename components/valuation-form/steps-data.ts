@@ -1,4 +1,4 @@
-import type { ConditionLevel, FeatureId, YearBuiltBucket } from "@/lib/valuation-benchmarks";
+import type { ConditionLevel, EnergyClass, FeatureId, FloorLevel, YearBuiltBucket } from "@/lib/valuation-benchmarks";
 import type { ContactDay, ContactTime, PropertyType } from "./types";
 
 export const propertyTypeOptions: { value: PropertyType; label: string }[] = [
@@ -33,6 +33,24 @@ export const conditionOptions: { value: ConditionLevel; label: string; hint: str
     label: "Vollständig saniert",
     hint: "Heizung, Elektrik und Leitungen wurden in den letzten 15 Jahren erneuert.",
   },
+];
+
+export const energyClassOptions: { value: EnergyClass; label: string }[] = [
+  { value: "a-plus", label: "A+" },
+  { value: "a", label: "A" },
+  { value: "b", label: "B" },
+  { value: "c", label: "C" },
+  { value: "d", label: "D" },
+  { value: "e", label: "E" },
+  { value: "f", label: "F" },
+  { value: "g", label: "G" },
+  { value: "h", label: "H" },
+];
+
+export const floorLevelOptions: { value: FloorLevel; label: string }[] = [
+  { value: "erdgeschoss", label: "Erdgeschoss" },
+  { value: "mittlere-etage", label: "Mittlere Etage" },
+  { value: "oberste-etage", label: "Oberste Etage / Dachgeschoss" },
 ];
 
 export const featureOptions: {

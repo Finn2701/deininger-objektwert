@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { submitValuationRequest } from "@/lib/valuation-submit";
 import { formatEuro, type ValuationEstimate } from "@/lib/valuation-estimate";
@@ -8,7 +8,9 @@ import {
   conditionOptions,
   contactDayOptions,
   contactTimeOptions,
+  energyClassOptions,
   featureOptions,
+  floorLevelOptions,
   formStepLabels,
   propertyTypeOptions,
   yearBuiltOptions,
@@ -17,6 +19,12 @@ import { initialValuationFormData, type ValuationFormData } from "./types";
 import { TurnstileWidget } from "./turnstile-widget";
 
 const TOTAL_STEPS = formStepLabels.length;
+
+const PRECISION_BADGE: Record<ValuationEstimate["precision"], string> = {
+  basis: "Basis-Schätzung",
+  erweitert: "Erweiterte Schätzung",
+  detailliert: "Detaillierte Schätzung",
+};
 
 function OptionGrid<T extends string>({
   options,
@@ -82,6 +90,43 @@ function ChipGrid<T extends string>({
             className={`rounded-xl border text-sm transition-colors ${
               wrap ? "px-4 py-2" : "px-4 py-3.5 text-left"
             } ${active ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink-soft"}`}
+          >
+            {option.label}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+function BoolToggle({
+  value,
+  onChange,
+  yesLabel = "Ja",
+  noLabel = "Nein",
+}: {
+  value: boolean | null;
+  onChange: (value: boolean) => void;
+  yesLabel?: string;
+  noLabel?: string;
+}) {
+  const options = [
+    { key: "yes", label: yesLabel, v: true },
+    { key: "no", label: noLabel, v: false },
+  ];
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      {options.map((option) => {
+        const active = value === option.v;
+        return (
+          <button
+            key={option.key}
+            type="button"
+            onClick={() => onChange(option.v)}
+            aria-pressed={active}
+            className={`rounded-xl border px-4 py-3.5 text-left text-sm transition-colors ${
+              active ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink-soft"
+            }`}
           >
             {option.label}
           </button>
@@ -160,7 +205,20 @@ export function ValuationForm() {
   const [estimate, setEstimate] = useState<ValuationEstimate | null>(null);
   const [saveFailed, setSaveFailed] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [captchaBlocked, setCaptchaBlocked] = useState(false);
   const captchaRequired = Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY);
+
+  // The captcha is anti-spam, not a gate on the estimate itself -- an ad
+  // blocker, a GPU/driver quirk, or a slow network can leave the widget
+  // stuck forever with zero feedback, silently trapping a real visitor on
+  // the last step (see valuation-submit.ts, which already treats a missing
+  // token as "unverified" rather than fatal). So if it hasn't produced a
+  // token within 8s, stop waiting on it.
+  useEffect(() => {
+    if (step !== 5 || !captchaRequired || turnstileToken) return;
+    const timer = setTimeout(() => setCaptchaBlocked(true), 8000);
+    return () => clearTimeout(timer);
+  }, [step, captchaRequired, turnstileToken]);
 
   function update<K extends keyof ValuationFormData>(key: K, value: ValuationFormData[K]) {
     setData((prev) => ({ ...prev, [key]: value }));
@@ -213,9 +271,16 @@ export function ValuationForm() {
             <p className="mt-5 font-display text-4xl font-medium text-ink md:text-5xl">
               {formatEuro(estimate.headline)}
             </p>
-            <p className="mt-2 text-sm text-ink-soft/80">
-              Wahrscheinliche Spanne: {formatEuro(estimate.low)} – {formatEuro(estimate.high)}
-            </p>
+            <div className="mt-2 flex flex-wrap items-center gap-2">
+              <p className="text-sm text-ink-soft/80">
+                Wahrscheinliche Spanne: {formatEuro(estimate.low)} – {formatEuro(estimate.high)}
+              </p>
+              {!isLand(data) ? (
+                <span className="rounded-full border border-line px-2.5 py-0.5 text-xs text-ink-soft/70">
+                  {PRECISION_BADGE[estimate.precision]}
+                </span>
+              ) : null}
+            </div>
             <p className="mt-5 max-w-md text-sm text-ink-soft/80">
               Grobe, unverbindliche Ersteinschätzung auf Basis öffentlich verfügbarer Marktdaten
               {estimate.regionMatched ? (
@@ -226,6 +291,12 @@ export function ValuationForm() {
               (Stand {estimate.asOf}) und Ihrer Angaben. Ersetzt keine Wertermittlung durch einen
               Sachverständigen vor Ort.
             </p>
+            {!isLand(data) && estimate.precision !== "detailliert" ? (
+              <p className="mt-2 max-w-md text-xs text-ink-soft/60">
+                Je mehr Angaben Sie machen (z. B. Energieausweis, Zustand, bei Wohnungen Etage &
+                Aufzug), desto enger wird diese Spanne.
+              </p>
+            ) : null}
           </>
         ) : (
           <p className="mt-4 max-w-md text-ink-soft/90">
@@ -345,6 +416,28 @@ export function ValuationForm() {
                     onChange={(value) => update("condition", value)}
                     columns={1}
                   />
+
+                  <p className="pt-2 text-sm text-ink-soft">
+                    Energieausweis-Effizienzklasse, falls bekannt (optional — beeinflusst den
+                    Wert spürbar, macht die Schätzung genauer)
+                  </p>
+                  <OptionGrid
+                    options={energyClassOptions}
+                    value={data.energyClass}
+                    onChange={(value) => update("energyClass", value)}
+                    columns={2}
+                  />
+
+                  <p className="pt-2 text-sm text-ink-soft">
+                    Sind Feuchtigkeits-, Schimmel- oder Geruchsauffälligkeiten erkennbar?
+                    (optional)
+                  </p>
+                  <BoolToggle
+                    value={data.moistureIssues}
+                    onChange={(value) => update("moistureIssues", value)}
+                    yesLabel="Ja, auffällig"
+                    noLabel="Nein, unauffällig"
+                  />
                 </>
               ))}
 
@@ -355,6 +448,20 @@ export function ValuationForm() {
                 </p>
               ) : (
                 <>
+                  {data.propertyType === "wohnung" && (
+                    <>
+                      <p className="text-sm text-ink-soft">Etage (optional)</p>
+                      <OptionGrid
+                        options={floorLevelOptions}
+                        value={data.floorLevel}
+                        onChange={(value) => update("floorLevel", value)}
+                        columns={1}
+                      />
+                      <p className="pt-2 text-sm text-ink-soft">Aufzug vorhanden? (optional)</p>
+                      <BoolToggle value={data.hasElevator} onChange={(value) => update("hasElevator", value)} />
+                      <div className="pt-2" />
+                    </>
+                  )}
                   <p className="text-sm text-ink-soft">
                     Was trifft auf die Immobilie zu? Einfach das auswählen, was zutrifft —
                     alles optional.
@@ -447,7 +554,16 @@ export function ValuationForm() {
                     ohne dass Sie Name oder Kontaktdaten angeben müssen.
                   </p>
                 )}
-                {captchaRequired && <TurnstileWidget onToken={setTurnstileToken} />}
+                {captchaRequired && (
+                  <TurnstileWidget onToken={setTurnstileToken} onError={() => setCaptchaBlocked(true)} />
+                )}
+                {captchaRequired && !turnstileToken && (
+                  <p className="text-xs text-ink-soft/60">
+                    {captchaBlocked
+                      ? "Sicherheitsprüfung nicht verfügbar — Sie können trotzdem fortfahren."
+                      : "Sicherheitsprüfung wird geladen …"}
+                  </p>
+                )}
               </div>
             )}
           </motion.div>
@@ -478,7 +594,9 @@ export function ValuationForm() {
             type="button"
             onClick={handleSubmit}
             disabled={
-              !isStepValid(step, data) || status === "submitting" || (captchaRequired && !turnstileToken)
+              !isStepValid(step, data) ||
+              status === "submitting" ||
+              (captchaRequired && !turnstileToken && !captchaBlocked)
             }
             className="rounded-full bg-ink px-6 py-2.5 text-sm text-paper transition-opacity hover:bg-ink-soft disabled:opacity-30"
           >

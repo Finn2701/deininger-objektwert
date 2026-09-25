@@ -60,6 +60,10 @@ export async function submitValuationRequest(
       year_built: data.yearBuilt,
       condition: data.condition,
       features: data.features,
+      energy_class: data.energyClass,
+      floor_level: data.floorLevel,
+      has_elevator: data.hasElevator,
+      moisture_issues: data.moistureIssues,
       wants_contact: data.contactConsent,
       name: data.contactConsent ? data.name || null : null,
       email: data.contactConsent ? data.email || null : null,
@@ -70,6 +74,7 @@ export async function submitValuationRequest(
       estimate_low: estimate?.low ?? null,
       estimate_high: estimate?.high ?? null,
       estimate_headline: estimate?.headline ?? null,
+      estimate_precision: estimate?.precision ?? null,
     });
 
     return { estimate, saved: !error };
