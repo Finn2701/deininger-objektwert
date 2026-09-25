@@ -60,6 +60,7 @@ export function articleJsonLd(article: {
   title: string;
   meta_description: string;
   slug: string;
+  published_at: string | null;
   created_at: string;
   updated_at: string;
 }) {
@@ -69,7 +70,7 @@ export function articleJsonLd(article: {
     headline: article.title,
     description: article.meta_description,
     url: `${siteConfig.url}/ratgeber/${article.slug}`,
-    datePublished: article.created_at,
+    datePublished: article.published_at ?? article.created_at,
     dateModified: article.updated_at,
     author: personJsonLd(),
   };

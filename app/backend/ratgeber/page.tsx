@@ -64,7 +64,10 @@ export default async function BackendRatgeberPage() {
             </div>
             <Link href={`/backend/ratgeber/${article.id}`} className="block">
               <p className="mt-1 text-sm text-ink-soft/70">/ratgeber/{article.slug}</p>
-              <p className="mt-1 text-xs text-ink-soft/50">{formatDate(article.created_at)}</p>
+              <p className="mt-1 text-xs text-ink-soft/50">
+                Angelegt {formatDate(article.created_at)}
+                {article.published_at ? <> · veröffentlicht {formatDate(article.published_at)}</> : null}
+              </p>
             </Link>
           </div>
         ))}

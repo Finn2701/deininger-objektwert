@@ -8,6 +8,7 @@ export type Article = {
   meta_description: string;
   content_html: string;
   published: boolean;
+  published_at: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -32,7 +33,7 @@ export async function getPublishedArticles(): Promise<Article[]> {
       .from("articles")
       .select("*")
       .eq("published", true)
-      .order("created_at", { ascending: false });
+      .order("published_at", { ascending: false });
     return data ?? [];
   } catch {
     return [];

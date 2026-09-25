@@ -57,7 +57,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               ← Ratgeber
             </Link>
             <p className="mt-6 text-xs text-ink-soft/60">
-              {formatDate(article.created_at)} · von{" "}
+              {formatDate(article.published_at ?? article.created_at)} · von{" "}
               <Link href="/ueber-uns" className="underline hover:text-ink">
                 {siteConfig.operator.name}
               </Link>

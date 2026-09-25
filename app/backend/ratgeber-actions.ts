@@ -40,6 +40,20 @@ export async function saveArticle(formData: FormData) {
   const supabase = await createClient();
   const slug = await uniqueSlug(supabase, requestedSlug, id || undefined);
 
+  // published_at is the real "veröffentlicht am" date shown to readers —
+  // distinct from created_at, which for growth-engine drafts can be days or
+  // weeks before whoever reviews and actually publishes it. Set once, on the
+  // first transition to published; never cleared or moved afterwards, not
+  // even by an unpublish/republish or a later edit — same as a normal
+  // blog's stable publish date.
+  let publishedAt: string | null = null;
+  if (id) {
+    const { data: existing } = await supabase.from("articles").select("published_at").eq("id", id).single();
+    publishedAt = existing?.published_at ?? (published ? new Date().toISOString() : null);
+  } else if (published) {
+    publishedAt = new Date().toISOString();
+  }
+
   const row = {
     slug,
     title,
@@ -47,6 +61,7 @@ export async function saveArticle(formData: FormData) {
     meta_description: metaDescription || excerpt || title,
     content_html: contentHtml,
     published,
+    published_at: publishedAt,
     updated_at: new Date().toISOString(),
   };
 
@@ -77,11 +92,15 @@ export async function toggleArticlePublished(formData: FormData) {
   const nextPublished = formData.get("next_published") === "true";
   const supabase = await createClient();
 
-  const { data: article } = await supabase.from("articles").select("slug").eq("id", id).single();
+  const { data: article } = await supabase.from("articles").select("slug, published_at").eq("id", id).single();
+
+  // Same stable-publish-date rule as saveArticle: set published_at only the
+  // first time this flips to true, never touch it on unpublish.
+  const publishedAt = article?.published_at ?? (nextPublished ? new Date().toISOString() : null);
 
   await supabase
     .from("articles")
-    .update({ published: nextPublished, updated_at: new Date().toISOString() })
+    .update({ published: nextPublished, published_at: publishedAt, updated_at: new Date().toISOString() })
     .eq("id", id);
 
   revalidatePath("/backend/ratgeber");

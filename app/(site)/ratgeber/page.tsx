@@ -49,7 +49,7 @@ export default async function RatgeberPage() {
                       href={`/ratgeber/${article.slug}`}
                       className="block rounded-2xl border border-line p-6 transition-colors hover:border-ink"
                     >
-                      <p className="text-xs text-ink-soft/60">{formatDate(article.created_at)}</p>
+                      <p className="text-xs text-ink-soft/60">{formatDate(article.published_at ?? article.created_at)}</p>
                       <h2 className="mt-2 font-display text-xl font-medium text-ink">{article.title}</h2>
                       <p className="mt-3 text-sm text-ink-soft/90">{article.excerpt}</p>
                       <span className="mt-4 inline-block text-sm text-accent underline decoration-accent/40 underline-offset-4">
