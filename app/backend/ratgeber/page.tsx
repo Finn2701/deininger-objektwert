@@ -12,6 +12,10 @@ function formatDate(value: string) {
   return new Intl.DateTimeFormat("de-DE", { dateStyle: "medium" }).format(new Date(value));
 }
 
+function formatDateTime(value: string) {
+  return new Intl.DateTimeFormat("de-DE", { dateStyle: "medium", timeStyle: "short" }).format(new Date(value));
+}
+
 export default async function BackendRatgeberPage() {
   const supabase = await createClient();
   const { data: articles } = await supabase.from("articles").select("*").order("created_at", { ascending: false });
@@ -46,6 +50,11 @@ export default async function BackendRatgeberPage() {
                 >
                   {article.published ? "Veröffentlicht" : "Entwurf"}
                 </span>
+                {!article.published && article.scheduled_publish_at ? (
+                  <span className="rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 text-xs text-accent">
+                    geplant: {formatDateTime(article.scheduled_publish_at)}
+                  </span>
+                ) : null}
                 <form action={toggleArticlePublished}>
                   <input type="hidden" name="id" value={article.id} />
                   <input type="hidden" name="next_published" value={(!article.published).toString()} />

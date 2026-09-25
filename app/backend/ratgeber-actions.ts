@@ -29,6 +29,8 @@ export async function saveArticle(formData: FormData) {
   const metaDescription = str(formData, "meta_description");
   const contentHtml = str(formData, "content_html");
   const published = formData.get("published") === "on";
+  const scheduledPublishAtRaw = str(formData, "scheduled_publish_at");
+  const scheduledPublishAt = scheduledPublishAtRaw ? new Date(scheduledPublishAtRaw).toISOString() : null;
   const requestedSlug = slugify(str(formData, "slug") || title);
 
   if (!title || !contentHtml) {
@@ -62,6 +64,7 @@ export async function saveArticle(formData: FormData) {
     content_html: contentHtml,
     published,
     published_at: publishedAt,
+    scheduled_publish_at: scheduledPublishAt,
     updated_at: new Date().toISOString(),
   };
 

@@ -9,6 +9,7 @@ export type Article = {
   content_html: string;
   published: boolean;
   published_at: string | null;
+  scheduled_publish_at: string | null;
   created_at: string;
   updated_at: string;
 };

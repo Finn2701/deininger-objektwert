@@ -13,6 +13,12 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 
 const FORM_ID = "article-form";
 
+// datetime-local inputs need "YYYY-MM-DDTHH:mm" with no timezone suffix.
+function toDatetimeLocal(value?: string | null): string {
+  if (!value) return "";
+  return value.slice(0, 16);
+}
+
 export function ArticleForm({ article }: { article?: Article }) {
   return (
     <form id={FORM_ID} action={saveArticle} className="space-y-6">
@@ -62,6 +68,15 @@ export function ArticleForm({ article }: { article?: Article }) {
         <input type="checkbox" name="published" defaultChecked={article?.published ?? true} className="h-4 w-4 accent-ink" />
         Veröffentlicht (sichtbar unter /ratgeber)
       </label>
+
+      <Field label="Geplante automatische Veröffentlichung (optional, nur solange noch nicht veröffentlicht)">
+        <input
+          type="datetime-local"
+          name="scheduled_publish_at"
+          defaultValue={toDatetimeLocal(article?.scheduled_publish_at)}
+          className="w-full rounded-lg border border-line bg-paper px-3.5 py-2.5 text-ink outline-none focus:border-ink"
+        />
+      </Field>
 
       <button type="submit" className="rounded-full bg-ink px-6 py-2.5 text-sm text-paper hover:bg-ink-soft">
         Speichern

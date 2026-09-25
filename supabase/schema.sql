@@ -292,3 +292,7 @@ alter table leads add column if not exists estimate_precision text;
 -- Wechsel Entwurf -> veröffentlicht gesetzt, siehe app/backend/ratgeber-actions.ts.
 alter table articles add column if not exists published_at timestamptz;
 update articles set published_at = created_at where published = true and published_at is null;
+
+-- Automatisches Veröffentlichen von Ratgeber-Entwürfen nach Zeitplan (siehe
+-- app/api/cron/publish-scheduled/route.ts, per Vercel Cron täglich aufgerufen).
+alter table articles add column if not exists scheduled_publish_at timestamptz;
