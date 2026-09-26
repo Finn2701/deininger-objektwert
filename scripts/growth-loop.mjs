@@ -150,7 +150,7 @@ async function uniqueSlug(baseSlug) {
 
 const REQUIRED_FIELDS = ["title", "excerpt", "meta_description", "content_html"];
 
-async function runOneCycle({ skipCap = false } = {}) {
+async function runOneCycle({ skipCap = false, targetDate = null } = {}) {
   const timestamp = new Date().toLocaleString("de-DE");
 
   const { data: pending, error: pendingError } = await supabase
@@ -169,12 +169,23 @@ async function runOneCycle({ skipCap = false } = {}) {
   if (existingError) throw existingError;
   const existingList = existing.map((a) => `- ${a.title} (${a.slug})`).join("\n");
 
-  const prompt = `Du bist ein SEO-Content-Stratege für "Deininger Objektwert" (deininger-objektwert.de), eine kostenlose Online-Immobilienbewertung von Finn Deininger in Heidenheim an der Brenz / Ostalbkreis, Baden-Württemberg. Zielgruppe: deutsche Immobilieneigentümer, die eine Immobilie bewerten oder verkaufen wollen -- oft ausgelöst durch Erbschaft, Scheidung, Umzug oder allgemeines Interesse am aktuellen Wert.
+  // Articles increasingly get written well ahead of when they'll actually go
+  // live (see scheduled_publish_at / the Vercel cron in
+  // app/api/cron/publish-scheduled) -- seasonal relevance should follow the
+  // date the article will actually be READ on, not the day it happens to be
+  // generated. Falls back to today when no future slot is known (the normal
+  // unattended recurring loop, which publishes close to when it writes).
+  const relevantDate = targetDate ?? new Date();
+  const relevantDateLabel = relevantDate.toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" });
+
+  const prompt = `Du bist ein SEO-Content-Stratege für "Deininger Objektwert" (deininger-objektwert.de), eine kostenlose Online-Immobilienbewertung von Finn Deininger in Heidenheim an der Brenz / Ostalbkreis, Baden-Württemberg. Zielgruppe: Immobilieneigentümer in Deutschland, die eine Immobilie bewerten oder verkaufen wollen -- oft ausgelöst durch Erbschaft, Scheidung, Umzug oder allgemeines Interesse am aktuellen Wert. Dazu zählen auch internationale/fremdsprachige Eigentümer und Käufer (z. B. im Ausland lebende Erben, nicht deutschsprachige Käufer oder Verkäufer) -- eine Nische, die kaum ein lokaler Mitbewerber gezielt bedient.
+
+Dieser Artikel wird voraussichtlich am ${relevantDateLabel} veröffentlicht. Prüfe zuerst, ob es dafür ein gut passendes, noch nicht abgedecktes SAISONALES ODER KALENDARISCHES Thema gibt (z. B. Immobilienverkauf im Winter, Vorbereitung auf die Heizperiode, Verkehrssicherungspflicht bei Schnee/Glätte, Fristen zum Jahreswechsel wie Grundsteuer-Stichtag 1. Januar oder die Spekulationsfrist, ein Jahresrückblick/-ausblick zum Immobilienmarkt kurz vor oder nach Silvester). Nutze ein solches Thema nur, wenn es wirklich zum Datum passt UND für die Zielgruppe echten Mehrwert hat -- ein erzwungener, künstlicher Bezug ist schlechter als gar keiner. Gibt es kein gutes saisonales Thema, wähle stattdessen normal aus den Kategorien unten.
 
 Bereits vorhandene Ratgeber-Artikel (NICHT wiederholen, auch keine sehr ähnlichen Themen):
 ${existingList}
 
-Aufgabe: Recherchiere (WebSearch) EIN neues, konkretes, für die Zielgruppe wertvolles Ratgeber-Thema, das noch nicht abgedeckt ist. Mögliche Kategorien (nicht nur juristisch/steuerlich denken, gerade wenn schon viele Artikel existieren): rechtliche/steuerliche Aspekte, praktischer Verkaufsprozess (Unterlagen, Notar, Energieausweis, Maklerprovision, Home Staging, Besichtigungen), Bewertungsmethodik (Vergleichswert- vs. Sachwert- vs. Ertragswertverfahren, was beeinflusst den Wert), besondere Objekt-/Lebenssituationen (Zwangsversteigerung, Baumängel/Sanierungsstau, Denkmalschutz, vermietete Immobilie verkaufen, Auswandern und Immobilie zurücklassen), oder regionale Aspekte (Immobilienmarkt Heidenheim/Ostalbkreis, Baden-Württemberg-spezifische Regeln). Bevorzuge Themen mit echtem Suchvolumen und klarem Bezug zu Deutschland/deutschem Recht.
+Aufgabe: Recherchiere (WebSearch) EIN neues, konkretes, für die Zielgruppe wertvolles Ratgeber-Thema, das noch nicht abgedeckt ist. Mögliche Kategorien (nicht nur juristisch/steuerlich denken, gerade wenn schon viele Artikel existieren): rechtliche/steuerliche Aspekte, praktischer Verkaufsprozess (Unterlagen, Notar, Energieausweis, Maklerprovision, Home Staging, Besichtigungen), Bewertungsmethodik (Vergleichswert- vs. Sachwert- vs. Ertragswertverfahren, was beeinflusst den Wert), besondere Objekt-/Lebenssituationen (Zwangsversteigerung, Baumängel/Sanierungsstau, Denkmalschutz, vermietete Immobilie verkaufen, Auswandern und Immobilie zurücklassen), regionale Aspekte (Immobilienmarkt Heidenheim/Ostalbkreis, Baden-Württemberg-spezifische Regeln), oder internationale Aspekte (Immobilienkauf/-verkauf in Deutschland für Ausländer bzw. nicht deutschsprachige Beteiligte -- z. B. Grunderwerbsteuer/Finanzierung ohne deutsche Staatsangehörigkeit, Dolmetscherpflicht beim Notartermin nach § 16 BeurkG, im Ausland lebende Erben einer deutschen Immobilie). Bevorzuge Themen mit echtem Suchvolumen und klarem Bezug zu Deutschland/deutschem Recht.
 
 Schreibe dann einen vollständigen Artikel im GENAU gleichen Format wie die bestehenden Artikel:
 - Einleitender Absatz, der das Thema und die Relevanz für den Leser einführt
@@ -227,10 +238,12 @@ Gib das Ergebnis NUR als valides JSON zurück (keine Erklärung davor/danach, ke
     meta_description: article.meta_description,
     content_html: article.content_html,
     published: false,
+    scheduled_publish_at: targetDate ? targetDate.toISOString() : null,
   });
   if (insertError) throw insertError;
 
-  console.log(`[${timestamp}] Neuer Entwurf angelegt: "${article.title}" (/backend/ratgeber, Slug: ${slug})`);
+  const scheduleNote = targetDate ? `, geplant für ${relevantDateLabel}` : "";
+  console.log(`[${timestamp}] Neuer Entwurf angelegt: "${article.title}" (/backend/ratgeber, Slug: ${slug}${scheduleNote})`);
 }
 
 async function main() {
@@ -246,6 +259,10 @@ async function main() {
   const once = process.argv.includes("--once");
   const bulkIndex = process.argv.indexOf("--bulk");
   const bulkCount = bulkIndex !== -1 ? parseInt(process.argv[bulkIndex + 1], 10) : null;
+  const scheduleUntilIndex = process.argv.indexOf("--schedule-until");
+  const scheduleUntil = scheduleUntilIndex !== -1 ? process.argv[scheduleUntilIndex + 1] : null;
+  const targetDateIndex = process.argv.indexOf("--target-date");
+  const targetDateArg = targetDateIndex !== -1 ? process.argv[targetDateIndex + 1] : null;
 
   async function tick(opts) {
     try {
@@ -253,6 +270,15 @@ async function main() {
     } catch (err) {
       console.error(`[${new Date().toLocaleString("de-DE")}] Fehler im Durchlauf:`, err.message);
     }
+  }
+
+  // --target-date YYYY-MM-DD: fills in exactly one specific slot, e.g. to
+  // retry a date --schedule-until skipped after a timeout or a malformed
+  // response (both leave that date's slot empty, not retried automatically).
+  if (targetDateArg) {
+    console.log(`Einzeltermin: erzeuge Entwurf für ${targetDateArg}...`);
+    await tick({ skipCap: true, targetDate: new Date(`${targetDateArg}T09:00:00Z`) });
+    return;
   }
 
   // --bulk N: an explicit, human-requested stockpiling run (Finn, 2026-09-21:
@@ -268,6 +294,38 @@ async function main() {
       await tick({ skipCap: true });
     }
     console.log("Bulk-Lauf abgeschlossen.");
+    return;
+  }
+
+  // --schedule-until YYYY-MM-DD: continues the existing 3-day publish
+  // cadence (see supabase/migrations/20260925170000_ratgeber_scheduled_publish.sql)
+  // by writing one new, date-aware draft per slot from the latest already-
+  // scheduled date up through the given end date, so the automatic
+  // publishing queue never runs dry before then (Finn, 2026-09-25: "Bis zum
+  // 31.12. soll es fertig sein").
+  if (scheduleUntil) {
+    const endDate = new Date(`${scheduleUntil}T09:00:00Z`);
+    const { data: latest, error: latestError } = await supabase
+      .from("articles")
+      .select("scheduled_publish_at")
+      .not("scheduled_publish_at", "is", null)
+      .order("scheduled_publish_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    if (latestError) throw latestError;
+
+    let nextDate = latest?.scheduled_publish_at
+      ? new Date(new Date(latest.scheduled_publish_at).getTime() + CYCLE_INTERVAL_MS)
+      : new Date(Date.now() + CYCLE_INTERVAL_MS);
+
+    let count = 0;
+    while (nextDate.getTime() <= endDate.getTime()) {
+      count++;
+      console.log(`--- Geplanter Entwurf für ${nextDate.toLocaleDateString("de-DE")} ---`);
+      await tick({ skipCap: true, targetDate: nextDate });
+      nextDate = new Date(nextDate.getTime() + CYCLE_INTERVAL_MS);
+    }
+    console.log(`Terminplanung abgeschlossen: ${count} neue Entwürfe bis ${scheduleUntil}.`);
     return;
   }
 
