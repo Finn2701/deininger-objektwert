@@ -109,7 +109,7 @@ export default function ErbschaftsteuerPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Rechner</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Rechner</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Erbschaftsteuer-Rechner für Immobilien
             </h1>
@@ -130,7 +130,7 @@ export default function ErbschaftsteuerPage() {
                 Die Steuerklasse (§ 15 ErbStG) bestimmt außerdem den Steuersatz.
               </p>
               <DataTable headers={["Erwerber", "Steuerklasse", "Freibetrag"]} rows={allowanceRows} />
-              <p className="text-sm text-ink-soft/70">
+              <p className="text-sm text-ink-soft/80">
                 Zusätzlich gibt es für Ehegatten einen besonderen Versorgungsfreibetrag von bis zu 256.000 Euro und für
                 Kinder bis 27 Jahre je nach Alter zwischen 10.300 und 52.000 Euro (§ 17 ErbStG). Er wird um den
                 Kapitalwert steuerfreier Versorgungsbezüge, etwa einer Witwenrente, gekürzt.
@@ -228,7 +228,7 @@ export default function ErbschaftsteuerPage() {
                   Zum Ratgeber
                 </Link>
               </div>
-              <p className="mt-6 text-xs text-ink-soft/70">
+              <p className="mt-6 text-xs text-ink-soft/80">
                 Quellen:{" "}
                 <a
                   href="https://www.gesetze-im-internet.de/erbstg_1974/"

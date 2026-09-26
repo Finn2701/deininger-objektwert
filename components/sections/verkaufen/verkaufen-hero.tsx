@@ -14,7 +14,7 @@ export async function VerkaufenHero() {
   return (
     <section className="py-20 md:py-28">
       <Container className="max-w-3xl">
-        <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+        <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
           Immobilie verkaufen
         </p>
         <h1 className="mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-5xl">

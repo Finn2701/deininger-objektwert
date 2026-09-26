@@ -26,7 +26,7 @@ export function ValuationSection() {
             <ul className="space-y-3">
               {drivers.map((driver) => (
                 <li key={driver.number} className="flex items-baseline gap-4 border-t border-line py-3 first:border-t-0">
-                  <span className="font-display text-sm text-accent">{driver.number}</span>
+                  <span className="font-display text-sm text-accent-text">{driver.number}</span>
                   <span className="text-ink-soft">{driver.label}</span>
                 </li>
               ))}

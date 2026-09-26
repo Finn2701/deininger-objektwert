@@ -24,7 +24,7 @@ export default function AgbPage() {
           <h1 className="font-display text-3xl font-medium text-ink">
             Allgemeine Geschäftsbedingungen
           </h1>
-          <p className="mt-2 text-ink-soft/70">{siteConfig.name}</p>
+          <p className="mt-2 text-ink-soft/80">{siteConfig.name}</p>
 
           <p className="mt-6 rounded-lg border border-line bg-paper-dim px-4 py-3 text-sm text-ink-soft/90">
             Hinweis: Die gewerbliche gemäß § 34c GewO angezeigte Maklertätigkeit befindet sich
@@ -205,7 +205,7 @@ export default function AgbPage() {
             </p>
           </Section>
 
-          <p className="mt-10 text-xs text-ink-soft/60">Stand: September 2026</p>
+          <p className="mt-10 text-xs text-ink-soft/80">Stand: September 2026</p>
         </Container>
       </main>
     </>

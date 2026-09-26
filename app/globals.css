@@ -9,6 +9,8 @@
   --color-ink-soft: #423b31;
   --color-line: rgba(23, 20, 15, 0.12);
   --color-accent: #a9714b;
+  /* Textvariante des Akzents: #a9714b hat auf dem Papierton nur 3,7:1 Kontrast, für kleine Schrift braucht es 4,5:1 */
+  --color-accent-text: #8a5a3c;
 }
 
 @theme inline {
@@ -20,6 +22,7 @@
   --color-ink-soft: var(--color-ink-soft);
   --color-line: var(--color-line);
   --color-accent: var(--color-accent);
+  --color-accent-text: var(--color-accent-text);
   --font-sans: var(--font-sans);
   --font-display: var(--font-display);
 }

@@ -54,7 +54,7 @@ export default async function ImmobilienbewertungPage() {
         <section className="py-20 md:py-28">
           <Container className="grid gap-16 md:grid-cols-2 md:gap-12">
             <div>
-              <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+              <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
                 Immobilienbewertung
               </p>
               <h1 className="mt-4 max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
@@ -71,7 +71,7 @@ export default async function ImmobilienbewertungPage() {
                       key={driver.number}
                       className="flex items-baseline gap-4 border-t border-line py-3 first:border-t-0"
                     >
-                      <span className="font-display text-sm text-accent">{driver.number}</span>
+                      <span className="font-display text-sm text-accent-text">{driver.number}</span>
                       <span className="text-ink-soft">{driver.label}</span>
                     </li>
                   ))}
@@ -97,7 +97,7 @@ export default async function ImmobilienbewertungPage() {
 
         <section className="border-t border-line py-16 md:py-20">
           <Container>
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Region Ostwürttemberg</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Region Ostwürttemberg</p>
             <h2 className="mt-3 max-w-2xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
               Immobilienbewertung in Ihrer Stadt
             </h2>

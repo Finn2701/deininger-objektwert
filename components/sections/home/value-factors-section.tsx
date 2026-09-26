@@ -67,7 +67,7 @@ export function ValueFactorsSection() {
               </Reveal>
 
               <Reveal delay={0.1} className={index % 2 === 1 ? "md:order-1" : ""}>
-                <span className="font-display text-sm text-accent">{factor.number}</span>
+                <span className="font-display text-sm text-accent-text">{factor.number}</span>
                 <h3 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
                   {factor.title}
                 </h3>

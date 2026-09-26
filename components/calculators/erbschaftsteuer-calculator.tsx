@@ -32,7 +32,7 @@ function MoneyField({
         placeholder={placeholder}
         className={fieldClass}
       />
-      {hint ? <span className="mt-1 block text-xs text-ink-soft/70">{hint}</span> : null}
+      {hint ? <span className="mt-1 block text-xs text-ink-soft/80">{hint}</span> : null}
     </label>
   );
 }
@@ -42,7 +42,7 @@ function Row({ label, value, hint, strong }: { label: string; value: string; hin
     <div className={`flex items-baseline justify-between gap-3 py-3 ${strong ? "" : "border-b border-line"}`}>
       <div className="min-w-0">
         <p className={strong ? "font-medium text-ink" : "text-ink-soft"}>{label}</p>
-        {hint ? <p className="mt-0.5 text-xs text-ink-soft/70">{hint}</p> : null}
+        {hint ? <p className="mt-0.5 text-xs text-ink-soft/80">{hint}</p> : null}
       </div>
       <p className={`shrink-0 whitespace-nowrap ${strong ? "font-display text-2xl font-medium text-ink" : "text-ink"}`}>
         {value}
@@ -92,7 +92,7 @@ export function ErbschaftsteuerCalculator() {
               </option>
             ))}
           </select>
-          {relationship.hint ? <span className="mt-1 block text-xs text-ink-soft/70">{relationship.hint}</span> : null}
+          {relationship.hint ? <span className="mt-1 block text-xs text-ink-soft/80">{relationship.hint}</span> : null}
         </label>
 
         <MoneyField
@@ -185,7 +185,7 @@ export function ErbschaftsteuerCalculator() {
         )}
       </div>
 
-      <p className="mt-4 text-xs text-ink-soft/70">
+      <p className="mt-4 text-xs text-ink-soft/80">
         Vereinfachte Orientierung auf Basis der Sätze nach §§ 15, 16, 17 und 19 ErbStG. Maßgeblich ist der Bescheid des
         Finanzamts; im Einzelfall (Betriebsvermögen, Auslandsbezug, Vorerwerbe) sollten Sie Steuerberater oder
         Fachanwalt fragen. Keine Steuer- oder Rechtsberatung.

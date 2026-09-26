@@ -116,7 +116,7 @@ export default function KaufnebenkostenPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Rechner</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Rechner</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Kaufnebenkosten-Rechner für Haus und Wohnung
             </h1>
@@ -166,7 +166,7 @@ export default function KaufnebenkostenPage() {
                 headers={["Bundesland", "Grunderwerbsteuer", "Makler (Käufer)", "Gesamt ohne Makler", "Gesamt mit Makler"]}
                 rows={tableRows}
               />
-              <p className="text-sm text-ink-soft/70">
+              <p className="text-sm text-ink-soft/80">
                 Maklerprovisionen sind ortsübliche Richtwerte, keine gesetzlichen Sätze. In Teilen Niedersachsens sind
                 4,76 bis 5,95 % Gesamtprovision üblich. Notar und Grundbuch: Faustwert, tatsächlich 1,5 bis 2,0 %.
               </p>
@@ -241,7 +241,7 @@ export default function KaufnebenkostenPage() {
                   Zum Ratgeber
                 </Link>
               </div>
-              <p className="mt-6 text-xs text-ink-soft/70">
+              <p className="mt-6 text-xs text-ink-soft/80">
                 Quellen: Grunderwerbsteuergesetze der Länder,{" "}
                 <a
                   href="https://www.gesetze-im-internet.de/grestg_1983/"

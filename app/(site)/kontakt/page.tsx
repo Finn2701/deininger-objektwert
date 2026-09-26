@@ -29,7 +29,7 @@ export default function KontaktPage() {
       <main>
         <section className="py-20 md:py-28">
           <Container className="max-w-2xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Kontakt</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Kontakt</p>
             <h1 className="mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-5xl">
               Sprechen wir über Ihre Immobilie.
             </h1>
@@ -39,7 +39,7 @@ export default function KontaktPage() {
             </p>
 
             <Reveal delay={0.1} className="mt-10">
-              <p className="text-sm text-ink-soft/70">Ihr Ansprechpartner</p>
+              <p className="text-sm text-ink-soft/80">Ihr Ansprechpartner</p>
               <p className="mt-1 text-lg text-ink">{siteConfig.operator.name}</p>
 
               <div className="mt-6 space-y-4 text-lg">
@@ -78,7 +78,7 @@ export default function KontaktPage() {
                 </p>
                 <Link
                   href="/unterlagen-einreichen"
-                  className="mt-2 inline-flex text-sm text-accent underline decoration-accent/40 underline-offset-4 hover:text-ink"
+                  className="mt-2 inline-flex text-sm text-accent-text underline decoration-accent/40 underline-offset-4 hover:text-ink"
                 >
                   Unterlagen direkt einreichen →
                 </Link>

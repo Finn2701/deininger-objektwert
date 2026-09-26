@@ -287,7 +287,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <p className="mt-10 text-xs text-ink-soft/60">Stand: September 2026</p>
+          <p className="mt-10 text-xs text-ink-soft/80">Stand: September 2026</p>
         </Container>
       </main>
     </>

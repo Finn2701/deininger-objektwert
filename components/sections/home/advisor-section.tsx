@@ -19,7 +19,7 @@ export function AdvisorSection() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
             Ihr Ansprechpartner
           </p>
           <h2 className="mt-4 max-w-xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">

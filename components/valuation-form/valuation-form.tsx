@@ -57,7 +57,7 @@ function OptionGrid<T extends string>({
           >
             <span>{option.label}</span>
             {option.hint ? (
-              <span className={`mt-1 block text-xs ${active ? "text-paper/70" : "text-ink-soft/60"}`}>
+              <span className={`mt-1 block text-xs ${active ? "text-paper/70" : "text-ink-soft/80"}`}>
                 {option.hint}
               </span>
             ) : null}
@@ -267,7 +267,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
   if (status === "done") {
     return (
       <div className="rounded-2xl border border-line bg-paper-dim p-8 md:p-10">
-        <p className="text-xs font-medium tracking-[0.2em] text-ink-soft/70 uppercase">
+        <p className="text-xs font-medium tracking-[0.2em] text-ink-soft/80 uppercase">
           Ihre Ersteinschätzung
         </p>
 
@@ -281,7 +281,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
                 Wahrscheinliche Spanne: {formatEuro(estimate.low)} – {formatEuro(estimate.high)}
               </p>
               {!isLand(data) ? (
-                <span className="rounded-full border border-line px-2.5 py-0.5 text-xs text-ink-soft/70">
+                <span className="rounded-full border border-line px-2.5 py-0.5 text-xs text-ink-soft/80">
                   {PRECISION_BADGE[estimate.precision]}
                 </span>
               ) : null}
@@ -296,13 +296,13 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
               (Stand {estimate.asOf}) und Ihrer Angaben. Ersetzt keine Wertermittlung durch einen
               Sachverständigen vor Ort.
             </p>
-            <p className="mt-2 max-w-md text-xs text-ink-soft/60">
+            <p className="mt-2 max-w-md text-xs text-ink-soft/80">
               <Link href="/wie-wir-rechnen" className="underline decoration-line underline-offset-4 hover:text-ink">
                 So haben wir gerechnet: Datengrundlage, Faktoren und Stand →
               </Link>
             </p>
             {!isLand(data) && estimate.precision !== "detailliert" ? (
-              <p className="mt-2 max-w-md text-xs text-ink-soft/60">
+              <p className="mt-2 max-w-md text-xs text-ink-soft/80">
                 Je mehr Angaben Sie machen (z. B. Energieausweis, Zustand, bei Wohnungen Etage &
                 Aufzug), desto enger wird diese Spanne.
               </p>
@@ -325,11 +325,11 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
             , damit wir uns melden können.
           </p>
         ) : data.contactConsent ? (
-          <p className="mt-6 text-sm text-ink-soft/70">
+          <p className="mt-6 text-sm text-ink-soft/80">
             Danke! Wir melden uns zu Ihrer Wunschzeit unter der angegebenen Kontaktmöglichkeit.
           </p>
         ) : (
-          <p className="mt-6 text-sm text-ink-soft/70">
+          <p className="mt-6 text-sm text-ink-soft/80">
             Danke! Wenn Sie diese Einschätzung vertiefen möchten, kontaktieren Sie uns gerne
             direkt.
           </p>
@@ -340,7 +340,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
 
   return (
     <div className="rounded-2xl border border-line bg-paper-dim p-8 md:p-10">
-      <div className="flex items-center justify-between text-xs text-ink-soft/70">
+      <div className="flex items-center justify-between text-xs text-ink-soft/80">
         <span>
           Schritt {step + 1} von {TOTAL_STEPS}
         </span>
@@ -410,7 +410,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
 
             {step === 3 &&
               (isLand(data) ? (
-                <p className="text-sm text-ink-soft/70">
+                <p className="text-sm text-ink-soft/80">
                   Für unbebaute Grundstücke nicht erforderlich — weiter geht&apos;s.
                 </p>
               ) : (
@@ -453,7 +453,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
 
             {step === 4 &&
               (isLand(data) ? (
-                <p className="text-sm text-ink-soft/70">
+                <p className="text-sm text-ink-soft/80">
                   Für unbebaute Grundstücke nicht erforderlich — weiter geht&apos;s.
                 </p>
               ) : (
@@ -522,7 +522,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
                       type="tel"
                       autoComplete="tel"
                     />
-                    <p className="text-xs text-ink-soft/60">
+                    <p className="text-xs text-ink-soft/80">
                       E-Mail oder Telefon reicht — mindestens eines davon brauchen wir, um Sie
                       wirklich zu erreichen.
                     </p>
@@ -559,7 +559,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
                     </label>
                   </>
                 ) : (
-                  <p className="text-sm text-ink-soft/70">
+                  <p className="text-sm text-ink-soft/80">
                     Ohne Häkchen erhalten Sie Ihre Einschätzung direkt im nächsten Schritt, ganz
                     ohne dass Sie Name oder Kontaktdaten angeben müssen.
                   </p>
@@ -568,7 +568,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
                   <TurnstileWidget onToken={setTurnstileToken} onError={() => setCaptchaBlocked(true)} />
                 )}
                 {captchaRequired && !turnstileToken && (
-                  <p className="text-xs text-ink-soft/60">
+                  <p className="text-xs text-ink-soft/80">
                     {captchaBlocked
                       ? "Sicherheitsprüfung nicht verfügbar — Sie können trotzdem fortfahren."
                       : "Sicherheitsprüfung wird geladen …"}

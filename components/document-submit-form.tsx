@@ -41,7 +41,7 @@ export function DocumentSubmitForm() {
   if (status === "done") {
     return (
       <div className="rounded-2xl border border-line bg-paper-dim p-8 md:p-10">
-        <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Danke</p>
+        <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Danke</p>
         <p className="mt-4 font-display text-2xl font-medium text-ink">
           Ihre Unterlagen sind bei uns eingegangen.
         </p>
@@ -105,7 +105,7 @@ export function DocumentSubmitForm() {
             />
           </label>
         </div>
-        <p className="text-xs text-ink-soft/60">E-Mail oder Telefon reicht — eines von beiden brauchen wir.</p>
+        <p className="text-xs text-ink-soft/80">E-Mail oder Telefon reicht — eines von beiden brauchen wir.</p>
 
         <label className="block">
           <span className="text-sm text-ink-soft">Adresse der Immobilie</span>
@@ -138,7 +138,7 @@ export function DocumentSubmitForm() {
             onChange={(event) => setFileNames(Array.from(event.target.files ?? []).map((f) => f.name))}
             className="mt-2 w-full rounded-xl border border-dashed border-line bg-paper px-4 py-3 text-sm text-ink-soft outline-none focus:border-ink"
           />
-          <span className="mt-1.5 block text-xs text-ink-soft/60">
+          <span className="mt-1.5 block text-xs text-ink-soft/80">
             PDF, JPG, PNG oder HEIC, bis zu {MAX_FILE_MB} MB pro Datei, mehrere Dateien möglich.
           </span>
           {fileNames.length > 0 ? (

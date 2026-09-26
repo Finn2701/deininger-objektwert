@@ -11,7 +11,7 @@ export async function RatgeberTeaserSection() {
       <Container>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Ratgeber</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Ratgeber</p>
             <h2 className="mt-3 font-display text-2xl font-medium text-ink md:text-3xl">
               Wissenswertes rund um Immobilienbewertung
             </h2>

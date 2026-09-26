@@ -109,7 +109,7 @@ export default function GrunderwerbsteuerPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Rechner</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Rechner</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Grunderwerbsteuer-Rechner für alle Bundesländer
             </h1>
@@ -248,7 +248,7 @@ export default function GrunderwerbsteuerPage() {
                   Alle Kaufnebenkosten berechnen
                 </Link>
               </div>
-              <p className="mt-6 text-xs text-ink-soft/70">
+              <p className="mt-6 text-xs text-ink-soft/80">
                 Quelle:{" "}
                 <a
                   href="https://www.gesetze-im-internet.de/grestg_1983/"

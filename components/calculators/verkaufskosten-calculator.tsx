@@ -32,7 +32,7 @@ function MoneyField({
         placeholder={placeholder}
         className={fieldClass}
       />
-      {hint ? <span className="mt-1 block text-xs text-ink-soft/70">{hint}</span> : null}
+      {hint ? <span className="mt-1 block text-xs text-ink-soft/80">{hint}</span> : null}
     </label>
   );
 }
@@ -113,7 +113,7 @@ export function VerkaufskostenCalculator({ defaultStateCode = "BW" }: { defaultS
               </button>
             ))}
           </div>
-          <span className="mt-1 block text-xs text-ink-soft/70">
+          <span className="mt-1 block text-xs text-ink-soft/80">
             Ortsüblicher Richtwert. Bei einem Kauf von Verbrauchern teilen sich Käufer und Verkäufer die Provision meist
             zu gleichen Teilen.
           </span>
@@ -195,7 +195,7 @@ export function VerkaufskostenCalculator({ defaultStateCode = "BW" }: { defaultS
         )}
       </div>
 
-      <p className="mt-4 text-xs text-ink-soft/70">
+      <p className="mt-4 text-xs text-ink-soft/80">
         Orientierung ohne Gewähr. Notar, Grundbuch und Grunderwerbsteuer trägt in der Regel der Käufer. Keine Steuer- oder
         Rechtsberatung.
       </p>

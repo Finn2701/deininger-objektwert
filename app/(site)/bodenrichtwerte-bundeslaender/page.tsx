@@ -103,7 +103,7 @@ export default function BodenrichtwertePage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Wegweiser</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Wegweiser</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Bodenrichtwert abrufen: die Portale aller 16 Bundesländer
             </h1>
@@ -136,7 +136,7 @@ export default function BodenrichtwertePage() {
                   <li key={portal.code} className="rounded-2xl border border-line p-5">
                     <h3 className="font-display text-lg font-medium text-ink">{portal.state}</h3>
                     <p className="mt-1 text-sm text-ink-soft/90">{portal.portal}</p>
-                    {portal.note ? <p className="mt-2 text-xs text-ink-soft/70">{portal.note}</p> : null}
+                    {portal.note ? <p className="mt-2 text-xs text-ink-soft/80">{portal.note}</p> : null}
                     <a
                       href={portal.url}
                       target="_blank"

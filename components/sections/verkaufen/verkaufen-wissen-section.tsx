@@ -42,7 +42,7 @@ export function VerkaufenWissenSection() {
     <>
       <section className="border-t border-line py-16 md:py-20">
         <Container className="max-w-4xl">
-          <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Preis und Kosten</p>
+          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Preis und Kosten</p>
           <h2 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
             Der richtige Preis und was der Verkauf kostet
           </h2>
@@ -89,7 +89,7 @@ export function VerkaufenWissenSection() {
 
       <section className="border-t border-line py-16 md:py-20">
         <Container className="max-w-4xl">
-          <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Besondere Situationen</p>
+          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Besondere Situationen</p>
           <h2 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
             Verkauf nach Erbe, Scheidung oder in der Erbengemeinschaft
           </h2>
@@ -122,7 +122,7 @@ export function VerkaufenWissenSection() {
 
       <section className="border-t border-line py-16 md:py-20">
         <Container className="max-w-4xl">
-          <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">FAQ</p>
+          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">FAQ</p>
           <h2 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
             Häufige Fragen zum Immobilienverkauf
           </h2>
@@ -139,7 +139,7 @@ export function VerkaufenWissenSection() {
 
       <section className="border-t border-line py-16 md:py-20">
         <Container className="max-w-4xl">
-          <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Region</p>
+          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Region</p>
           <h2 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
             Immobilie verkaufen in Ihrer Stadt
           </h2>

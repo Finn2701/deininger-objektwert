@@ -11,7 +11,7 @@ const regionGroups = KREIS_ORDER.map((kreis) => ({
 })).filter((group) => group.cities.length > 0);
 
 const linkClass = "text-sm text-ink-soft transition-colors hover:text-ink";
-const headingClass = "text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase";
+const headingClass = "text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase";
 
 const toolLinks = [
   { href: "/immobilienpreise-ostwuerttemberg", label: "Immobilienpreise Region" },
@@ -110,7 +110,7 @@ export function SiteFooter() {
       </Container>
 
       <div className="border-t border-line">
-        <Container className="flex flex-col gap-4 py-6 text-xs text-ink-soft/70 sm:flex-row sm:items-center sm:justify-between">
+        <Container className="flex flex-col gap-4 py-6 text-xs text-ink-soft/80 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. Alle Rechte vorbehalten.
           </p>

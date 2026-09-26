@@ -23,7 +23,7 @@ function Field({
     <label className={`block ${className}`}>
       <span className="text-sm text-ink-soft">{label}</span>
       {children}
-      {hint ? <span className="mt-1 block text-xs text-ink-soft/70">{hint}</span> : null}
+      {hint ? <span className="mt-1 block text-xs text-ink-soft/80">{hint}</span> : null}
     </label>
   );
 }
@@ -187,7 +187,7 @@ export function SpekulationssteuerCalculator() {
         )}
       </div>
 
-      <p className="mt-4 text-xs text-ink-soft/70">
+      <p className="mt-4 text-xs text-ink-soft/80">
         Vereinfachte Orientierung nach § 23 EStG, ohne Solidaritätszuschlag und Kirchensteuer. Maßgeblich ist Ihr Steuerbescheid; bei Erbe,
         gemischter Nutzung oder mehreren Verkäufen im Jahr sollten Sie einen Steuerberater fragen. Keine Steuer- oder Rechtsberatung.
       </p>

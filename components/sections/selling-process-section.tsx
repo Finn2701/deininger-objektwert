@@ -39,7 +39,7 @@ export function SellingProcessSection() {
           {steps.map((step, index) => (
             <Reveal key={step.number} delay={index * 0.08}>
               <div className="border-t border-line pt-6">
-                <span className="font-display text-sm text-accent">{step.number}</span>
+                <span className="font-display text-sm text-accent-text">{step.number}</span>
                 <h3 className="mt-3 font-display text-xl font-medium text-ink">{step.title}</h3>
                 <p className="mt-3 text-sm text-ink-soft/90">{step.body}</p>
               </div>

@@ -130,7 +130,7 @@ function Table({ headers, rows }: { headers: string[]; rows: (string | number)[]
   return (
     <div className="mt-6 overflow-x-auto rounded-xl border border-line">
       <table className="w-full min-w-[420px] text-left text-sm">
-        <thead className="bg-paper-dim text-xs tracking-[0.1em] text-ink-soft/70 uppercase">
+        <thead className="bg-paper-dim text-xs tracking-[0.1em] text-ink-soft/80 uppercase">
           <tr>
             {headers.map((h) => (
               <th key={h} className="px-4 py-3 font-medium">
@@ -207,10 +207,10 @@ export default function WieWirRechnenPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <Link href="/immobilienbewertung" className="text-sm text-ink-soft/70 hover:text-ink">
+            <Link href="/immobilienbewertung" className="text-sm text-ink-soft/80 hover:text-ink">
               ← Zum Rechner
             </Link>
-            <p className="mt-6 text-xs font-medium tracking-[0.2em] text-accent uppercase">Methodik</p>
+            <p className="mt-6 text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Methodik</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               So rechnet unser Immobilienwert-Rechner
             </h1>
@@ -221,15 +221,15 @@ export default function WieWirRechnenPage() {
 
             <div className="mt-8 grid gap-3 rounded-2xl border border-line bg-paper-dim p-6 text-sm sm:grid-cols-3">
               <div>
-                <p className="text-xs text-ink-soft/60">Datenstand</p>
+                <p className="text-xs text-ink-soft/80">Datenstand</p>
                 <p className="mt-1 font-medium text-ink">{dateDe(benchmarkMeta.lastUpdated)}</p>
               </div>
               <div>
-                <p className="text-xs text-ink-soft/60">Basisregion</p>
+                <p className="text-xs text-ink-soft/80">Basisregion</p>
                 <p className="mt-1 font-medium text-ink">{benchmarkMeta.region}</p>
               </div>
               <div>
-                <p className="text-xs text-ink-soft/60">Abdeckung</p>
+                <p className="text-xs text-ink-soft/80">Abdeckung</p>
                 <p className="mt-1 font-medium text-ink">Deutschland, {cityRows.length} Städte einzeln</p>
               </div>
             </div>
@@ -294,7 +294,7 @@ export default function WieWirRechnenPage() {
                   num(Math.round((hausBase * row.factor) / 10) * 10),
                 ])}
               />
-              <p className="text-sm text-ink-soft/70">
+              <p className="text-sm text-ink-soft/80">
                 „Richtwert“ = Basispreis × Faktor, vor allen Objektanpassungen. Für die Städte der Region
                 Ostwürttemberg finden Sie die zugrunde liegenden Portalwerte samt Quelle auf den Ortsseiten:{" "}
                 {cityPages.map((city, i) => (
@@ -432,7 +432,7 @@ export default function WieWirRechnenPage() {
                 ))}
                 <li>u. a. weitere veröffentlichte Marktauswertungen und Immobilienportale</li>
               </ul>
-              <p className="text-sm text-ink-soft/70">{benchmarkMeta.note}</p>
+              <p className="text-sm text-ink-soft/80">{benchmarkMeta.note}</p>
             </section>
 
 

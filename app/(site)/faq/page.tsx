@@ -36,7 +36,7 @@ export default async function FaqPage() {
       <main>
         <section className="py-20 md:py-28">
           <Container className="max-w-2xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
               Häufige Fragen
             </p>
             <h1 className="mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-5xl">
@@ -49,7 +49,7 @@ export default async function FaqPage() {
                   <details className="group py-5">
                     <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-ink">
                       <span className="font-medium">{faq.question}</span>
-                      <span className="shrink-0 text-ink-soft/60 transition-transform group-open:rotate-45">
+                      <span className="shrink-0 text-ink-soft/80 transition-transform group-open:rotate-45">
                         +
                       </span>
                     </summary>

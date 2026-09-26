@@ -16,7 +16,7 @@ export default function ImpressumPage() {
 
           <div className="mt-8 space-y-6 text-ink-soft/90">
             <div>
-              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/60 uppercase">
+              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase">
                 Angaben gemäß § 5 TMG / § 18 Abs. 2 MStV
               </p>
               <p className="mt-3">
@@ -31,7 +31,7 @@ export default function ImpressumPage() {
             </div>
 
             <div>
-              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/60 uppercase">
+              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase">
                 Kontakt
               </p>
               <p className="mt-3">
@@ -43,7 +43,7 @@ export default function ImpressumPage() {
             </div>
 
             <div>
-              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/60 uppercase">
+              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase">
                 Hinweis zum Angebot
               </p>
               <p className="mt-3">
@@ -55,14 +55,14 @@ export default function ImpressumPage() {
             </div>
 
             <div>
-              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/60 uppercase">
+              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase">
                 Verantwortlich für den Inhalt gemäß § 18 Abs. 2 MStV
               </p>
               <p className="mt-3">{siteConfig.operator.name}, Anschrift wie oben.</p>
             </div>
 
             <div>
-              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/60 uppercase">
+              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase">
                 Haftungshinweis
               </p>
               <p className="mt-3">

@@ -96,7 +96,7 @@ export default function VerkaufskostenPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Rechner</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Rechner</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Verkaufskosten-Rechner: Was bleibt beim Hausverkauf übrig?
             </h1>
@@ -154,7 +154,7 @@ export default function VerkaufskostenPage() {
                 gesetzlichen Sätze und im Einzelfall verhandelbar.
               </p>
               <DataTable headers={["Bundesland", "Gesamtprovision", "Anteil pro Seite"]} rows={rows} />
-              <p className="text-sm text-ink-soft/70">
+              <p className="text-sm text-ink-soft/80">
                 In Teilen Niedersachsens sind 4,76 bis 5,95 % Gesamtprovision üblich.
               </p>
             </section>
@@ -207,7 +207,7 @@ export default function VerkaufskostenPage() {
                   Ablauf des Verkaufs
                 </Link>
               </div>
-              <p className="mt-6 text-xs text-ink-soft/70">
+              <p className="mt-6 text-xs text-ink-soft/80">
                 Quellen: §§ 656a ff. BGB, § 489 und § 490 BGB, § 23 EStG (gesetze-im-internet.de). Datenstand:{" "}
                 {dateDe(VERKAUFSKOSTEN_STAND_ISO)}. Keine Steuer- oder Rechtsberatung.
               </p>

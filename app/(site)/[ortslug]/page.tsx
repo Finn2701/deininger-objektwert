@@ -64,9 +64,9 @@ function PriceCard({
 }) {
   return (
     <div className="rounded-2xl border border-line bg-paper-dim p-6">
-      <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase">{label}</p>
+      <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase">{label}</p>
       <p className="mt-3 font-display text-3xl font-medium text-ink">
-        {euro(value)} <span className="text-base font-normal text-ink-soft/70">€/m²</span>
+        {euro(value)} <span className="text-base font-normal text-ink-soft/80">€/m²</span>
       </p>
       {range ? (
         <p className="mt-2 text-sm text-ink-soft/80">
@@ -80,7 +80,7 @@ function PriceCard({
 function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <>
-      <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">{eyebrow}</p>
+      <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">{eyebrow}</p>
       <h2 className="mt-3 max-w-2xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
         {title}
       </h2>
@@ -137,7 +137,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
         <section className="py-20 md:py-28">
           <Container className="grid gap-16 md:grid-cols-2 md:gap-12">
             <div>
-              <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+              <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
                 Immobilienbewertung · {city.kreis}
               </p>
               <h1 className="mt-4 max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
@@ -148,7 +148,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
               <dl className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2">
                 {city.facts.map((fact) => (
                   <div key={fact.label} className="border-t border-line pt-3">
-                    <dt className="text-xs text-ink-soft/60">{fact.label}</dt>
+                    <dt className="text-xs text-ink-soft/80">{fact.label}</dt>
                     <dd className="mt-1 text-sm text-ink">{fact.value}</dd>
                   </div>
                 ))}
@@ -207,7 +207,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
                   </li>
                 ))}
               </ul>
-              {city.prices.note ? <p className="mt-3 text-ink-soft/70">{city.prices.note}</p> : null}
+              {city.prices.note ? <p className="mt-3 text-ink-soft/80">{city.prices.note}</p> : null}
             </div>
           </Container>
         </section>
@@ -304,7 +304,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
                       className="block h-full rounded-xl border border-line p-5 transition-colors hover:border-ink"
                     >
                       <span className="font-display text-base font-medium text-ink">{article.title}</span>
-                      <span className="mt-2 block text-sm text-accent">Weiterlesen →</span>
+                      <span className="mt-2 block text-sm text-accent-text">Weiterlesen →</span>
                     </Link>
                   </li>
                 ))}

@@ -29,7 +29,7 @@ export default function UnterlagenEinreichenPage() {
         <section className="py-20 md:py-28">
           <Container className="grid gap-16 md:grid-cols-2 md:gap-12">
             <div>
-              <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+              <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
                 Für alle mit vollständigen Unterlagen
               </p>
               <h1 className="mt-4 max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
@@ -51,7 +51,7 @@ export default function UnterlagenEinreichenPage() {
                     "Aktuelle Fotos von innen und außen",
                   ].map((item) => (
                     <li key={item} className="flex items-baseline gap-4 border-t border-line py-3 first:border-t-0">
-                      <span className="font-display text-sm text-accent">•</span>
+                      <span className="font-display text-sm text-accent-text">•</span>
                       <span className="text-ink-soft">{item}</span>
                     </li>
                   ))}

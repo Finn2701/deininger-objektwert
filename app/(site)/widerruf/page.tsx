@@ -22,7 +22,7 @@ export default function WiderrufPage() {
       <main className="pt-32 pb-24">
         <Container className="max-w-2xl">
           <h1 className="font-display text-3xl font-medium text-ink">Widerrufsbelehrung</h1>
-          <p className="mt-2 text-ink-soft/70">
+          <p className="mt-2 text-ink-soft/80">
             Gilt für Verträge über Beratungs- oder Vermittlungsleistungen, die außerhalb von
             Geschäftsräumen oder per Fernkommunikationsmittel geschlossen werden. Für die Nutzung
             des kostenlosen Online-Bewertungsrechners kommt kein Vertrag zustande und diese
@@ -129,13 +129,13 @@ export default function WiderrufPage() {
               <p className="mt-4">Name des Verbrauchers:</p>
               <p className="mt-4">Anschrift des Verbrauchers:</p>
               <p className="mt-4">Datum:</p>
-              <p className="mt-4 text-sm text-ink-soft/70">
+              <p className="mt-4 text-sm text-ink-soft/80">
                 Unterschrift des Verbrauchers (nur bei Mitteilung auf Papier)
               </p>
             </div>
           </Section>
 
-          <p className="mt-10 text-xs text-ink-soft/60">Stand: September 2026</p>
+          <p className="mt-10 text-xs text-ink-soft/80">Stand: September 2026</p>
         </Container>
       </main>
     </>

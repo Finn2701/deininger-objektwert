@@ -21,7 +21,7 @@ function ResultRow({ label, value, hint, strong }: { label: string; value: strin
     <div className={`flex items-baseline justify-between gap-3 py-3 ${strong ? "" : "border-b border-line"}`}>
       <div>
         <p className={strong ? "font-medium text-ink" : "text-ink-soft"}>{label}</p>
-        {hint ? <p className="mt-0.5 text-xs text-ink-soft/70">{hint}</p> : null}
+        {hint ? <p className="mt-0.5 text-xs text-ink-soft/80">{hint}</p> : null}
       </div>
       <p className={`shrink-0 whitespace-nowrap ${strong ? "font-display text-2xl font-medium text-ink" : "text-ink"}`}>{value}</p>
     </div>
@@ -95,7 +95,7 @@ export function KaufnebenkostenCalculator({
                 onChange={(event) => setNotarText(event.target.value)}
                 className={fieldClass}
               />
-              <span className="mt-1 block text-xs text-ink-soft/70">
+              <span className="mt-1 block text-xs text-ink-soft/80">
                 Faustwert 1,5 %; üblich sind 1,5 bis 2,0 % (höher, wenn eine Grundschuld eingetragen wird).
               </span>
             </label>
@@ -122,7 +122,7 @@ export function KaufnebenkostenCalculator({
                   </button>
                 ))}
               </div>
-              {state.maklerNote ? <span className="mt-1 block text-xs text-ink-soft/70">{state.maklerNote}</span> : null}
+              {state.maklerNote ? <span className="mt-1 block text-xs text-ink-soft/80">{state.maklerNote}</span> : null}
             </fieldset>
           </>
         ) : null}
@@ -137,7 +137,7 @@ export function KaufnebenkostenCalculator({
             placeholder="z. B. 8.000"
             className={fieldClass}
           />
-          <span className="mt-1 block text-xs text-ink-soft/70">
+          <span className="mt-1 block text-xs text-ink-soft/80">
             Nur wenn es im Kaufvertrag getrennt und angemessen ausgewiesen ist – dieser Betrag zählt nicht zur
             Bemessungsgrundlage der Grunderwerbsteuer.
           </span>
@@ -189,7 +189,7 @@ export function KaufnebenkostenCalculator({
         )}
       </div>
 
-      <p className="mt-4 text-xs text-ink-soft/70">
+      <p className="mt-4 text-xs text-ink-soft/80">
         Richtwerte, keine Steuer- oder Rechtsberatung. Der Steuerbescheid des Finanzamts und die Rechnung des Notars
         sind maßgeblich.
       </p>

@@ -14,7 +14,7 @@ export function SectionHeading({
 }) {
   return (
     <Reveal className={align === "center" ? "text-center" : ""}>
-      <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">{eyebrow}</p>
+      <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">{eyebrow}</p>
       <h2
         className={`mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl ${
           align === "center" ? "mx-auto max-w-2xl" : "max-w-xl"

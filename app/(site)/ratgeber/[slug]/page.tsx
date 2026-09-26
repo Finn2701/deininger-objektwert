@@ -71,10 +71,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-3xl">
-            <Link href="/ratgeber" className="text-sm text-ink-soft/70 hover:text-ink">
+            <Link href="/ratgeber" className="text-sm text-ink-soft/80 hover:text-ink">
               ← Ratgeber
             </Link>
-            <p className="mt-6 text-xs text-ink-soft/60">
+            <p className="mt-6 text-xs text-ink-soft/80">
               {formatDate(article.published_at ?? article.created_at)} · von{" "}
               <Link href="/ueber-uns" className="underline hover:text-ink">
                 {siteConfig.operator.name}
@@ -141,7 +141,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     </li>
                   ))}
                 </ul>
-                <Link href="/faq" className="mt-4 inline-block text-sm text-ink-soft/70 underline hover:text-ink">
+                <Link href="/faq" className="mt-4 inline-block text-sm text-ink-soft/80 underline hover:text-ink">
                   Häufige Fragen zur Immobilienbewertung ansehen
                 </Link>
               </div>

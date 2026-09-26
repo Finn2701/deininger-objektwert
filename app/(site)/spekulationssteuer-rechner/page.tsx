@@ -106,7 +106,7 @@ export default function SpekulationssteuerPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Rechner</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Rechner</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Spekulationssteuer-Rechner für Immobilien
             </h1>
@@ -128,7 +128,7 @@ export default function SpekulationssteuerPage() {
                 jeweils die Daten der notariellen Kaufverträge.
               </p>
               <DataTable headers={["Situation", "Ergebnis"]} rows={rows} />
-              <p className="text-sm text-ink-soft/70">
+              <p className="text-sm text-ink-soft/80">
                 Die Freigrenze beträgt {euro(FREIGRENZE_EUR)} Euro Gesamtgewinn im Kalenderjahr. Das Fristende ist der
                 Kalendertag, der dem Kaufdatum zehn Jahre später entspricht; steuerfrei verkaufen Sie erst danach.
               </p>
@@ -221,7 +221,7 @@ export default function SpekulationssteuerPage() {
                   Ratgeber zur Spekulationssteuer
                 </Link>
               </div>
-              <p className="mt-6 text-xs text-ink-soft/70">
+              <p className="mt-6 text-xs text-ink-soft/80">
                 Quelle:{" "}
                 <a
                   href="https://www.gesetze-im-internet.de/estg/__23.html"

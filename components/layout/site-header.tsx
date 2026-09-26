@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { primaryNav, siteConfig } from "@/lib/site-config";
+import { primaryNav } from "@/lib/site-config";
 import { Container } from "../ui/container";
 
 export function SiteHeader() {
@@ -13,7 +13,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/90 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between md:h-20">
-        <Link href="/" className="flex items-center gap-2.5" aria-label={siteConfig.name}>
+        <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/images/brand/mark.png"
             alt=""

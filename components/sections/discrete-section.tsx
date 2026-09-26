@@ -19,7 +19,7 @@ export function DiscreteSection() {
 
         <div className="order-1 md:order-2">
           <Reveal>
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
               Diskrete Vermittlung
             </p>
             <h2 className="mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">

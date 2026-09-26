@@ -23,7 +23,7 @@ export default function NotFound() {
       <main>
         <section className="py-24 md:py-32">
           <Container className="max-w-3xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Fehler 404</p>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Fehler 404</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Diese Seite gibt es nicht (mehr)
             </h1>

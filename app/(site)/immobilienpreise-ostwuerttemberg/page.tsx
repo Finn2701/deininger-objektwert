@@ -119,10 +119,10 @@ export default function PriceAtlasPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <Link href="/immobilienbewertung" className="text-sm text-ink-soft/70 hover:text-ink">
+            <Link href="/immobilienbewertung" className="text-sm text-ink-soft/80 hover:text-ink">
               ← Zum Rechner
             </Link>
-            <p className="mt-6 text-xs font-medium tracking-[0.2em] text-accent uppercase">Marktdaten</p>
+            <p className="mt-6 text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Marktdaten</p>
             <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Immobilienpreise in Ostwürttemberg: {count} Orte im Vergleich
             </h1>
@@ -133,15 +133,15 @@ export default function PriceAtlasPage() {
 
             <div className="mt-8 grid gap-3 rounded-2xl border border-line bg-paper-dim p-6 text-sm sm:grid-cols-3">
               <div>
-                <p className="text-xs text-ink-soft/60">Mittelwert (Median) Haus</p>
+                <p className="text-xs text-ink-soft/80">Mittelwert (Median) Haus</p>
                 <p className="mt-1 font-display text-2xl font-medium text-ink">{euro(medianHaus)} €/m²</p>
               </div>
               <div>
-                <p className="text-xs text-ink-soft/60">Mittelwert (Median) Wohnung</p>
+                <p className="text-xs text-ink-soft/80">Mittelwert (Median) Wohnung</p>
                 <p className="mt-1 font-display text-2xl font-medium text-ink">{euro(medianWohnung)} €/m²</p>
               </div>
               <div>
-                <p className="text-xs text-ink-soft/60">Orte in der Auswertung</p>
+                <p className="text-xs text-ink-soft/80">Orte in der Auswertung</p>
                 <p className="mt-1 font-display text-2xl font-medium text-ink">{count}</p>
               </div>
             </div>
@@ -201,7 +201,7 @@ export default function PriceAtlasPage() {
                 headers={["Ort", "Landkreis", "Haus €/m²", "Wohnung €/m²", "Faktor"]}
                 rows={tableRows}
               />
-              <p className="text-sm text-ink-soft/70">
+              <p className="text-sm text-ink-soft/80">
                 Angebotspreise aus veröffentlichten Marktauswertungen (u. a. immowelt, ImmoScout24, Homeday), Stand
                 2026, überwiegend Juli bis September. In kleinen Orten schwanken die Durchschnitte je nach Portal, siehe die
                 Hinweise auf den Ortsseiten.
