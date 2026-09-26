@@ -3,7 +3,7 @@ import { primaryNav, siteConfig } from "@/lib/site-config";
 import { cityPagePath, cityPages } from "@/lib/city-pages";
 import { Container } from "../ui/container";
 
-const KREIS_ORDER = ["Landkreis Heidenheim", "Ostalbkreis", "Stadtkreis Ulm"];
+const KREIS_ORDER = ["Landkreis Heidenheim", "Ostalbkreis", "Alb-Donau-Kreis", "Stadtkreis Ulm"];
 
 const regionGroups = KREIS_ORDER.map((kreis) => ({
   kreis,

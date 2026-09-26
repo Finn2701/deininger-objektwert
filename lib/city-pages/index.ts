@@ -7,6 +7,14 @@ import { herbrechtingen } from "./herbrechtingen";
 import { oberkochen } from "./oberkochen";
 import { schwaebischGmuend } from "./schwaebisch-gmuend";
 import { ulm } from "./ulm";
+import { hermaringen } from "./hermaringen";
+import { lauchheim } from "./lauchheim";
+import { heubach } from "./heubach";
+import { essingen } from "./essingen";
+import { abtsgmuend } from "./abtsgmuend";
+import { lorch } from "./lorch";
+import { langenau } from "./langenau";
+import { blaustein } from "./blaustein";
 import { koenigsbronn } from "./koenigsbronn";
 import { nattheim } from "./nattheim";
 import { steinheimAmAlbuch } from "./steinheim-am-albuch";
@@ -38,6 +46,14 @@ export const cityPages: CityPage[] = [
   niederstotzingen,
   bopfingen,
   neresheim,
+  hermaringen,
+  lauchheim,
+  heubach,
+  essingen,
+  abtsgmuend,
+  lorch,
+  langenau,
+  blaustein,
 ];
 
 export const CITY_PAGE_PREFIX = "immobilienbewertung-";

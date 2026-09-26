@@ -97,7 +97,7 @@ export const ulm: CityPage = {
         "Ja. Der Rechner funktioniert für das gesamte Ulmer Stadtgebiet – von der Weststadt über Wiblingen und Söflingen bis zu den Ortschaften wie Jungingen oder Lehr. Geben Sie einfach Ihre Adresse oder Postleitzahl an.",
     },
   ],
-  neighbors: ["giengen", "herbrechtingen", "heidenheim"],
+  neighbors: ["langenau", "blaustein", "giengen", "niederstotzingen"],
   relatedArticles: [
     "bodenrichtwert-erklaert",
     "was-kostet-immobilienbewertung",
