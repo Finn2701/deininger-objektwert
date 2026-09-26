@@ -24,6 +24,12 @@ const METHODIK: ToolLink = {
   text: "Datengrundlage, Faktoren und Genauigkeit der Wertspanne, mit Datenstand.",
 };
 
+const PREISE: ToolLink = {
+  href: "/immobilienpreise-ostwuerttemberg",
+  title: "Immobilienpreise in Ostwürttemberg",
+  text: "Haus- und Wohnungspreise je Ort im Vergleich, mit Daten zum Download.",
+};
+
 function plainText(article: { title: string; content_html: string }) {
   return `${article.title} ${article.content_html.replace(/<[^>]*>/g, " ")}`.toLowerCase();
 }
@@ -52,6 +58,7 @@ export function relatedLinksForArticle(article: { slug: string; title: string; c
   if (/(wert|bewert|preis|bodenrichtwert|verkehrswert)/.test(text)) {
     tools.push(METHODIK);
   }
+  if (/(preis|wert|markt|region|heidenheim|ostalb)/.test(text)) tools.push(PREISE);
   if (tools.length === 0) tools.push(METHODIK);
 
   const mentioned = cityPages.filter((city) => text.includes(city.name.toLowerCase().replace(/ \(.*\)$/, "")));

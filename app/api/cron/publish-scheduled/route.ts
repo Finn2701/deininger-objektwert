@@ -48,6 +48,9 @@ export async function GET(request: NextRequest) {
 
   if (published.length > 0) {
     revalidatePath("/ratgeber");
+    revalidatePath("/");
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/llms.txt");
     revalidatePath("/backend/ratgeber");
   }
 

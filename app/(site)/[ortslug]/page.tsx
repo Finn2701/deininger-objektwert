@@ -18,6 +18,8 @@ import { siteConfig } from "@/lib/site-config";
 import { benchmarkMeta } from "@/lib/valuation-benchmarks";
 import { breadcrumbJsonLd, cityServiceJsonLd, faqJsonLd } from "@/lib/structured-data";
 
+export const revalidate = 3600;
+
 // Only the hand-written city pages exist; any other single-segment URL is a
 // normal 404 rather than an empty/placeholder page.
 export const dynamicParams = false;
@@ -181,6 +183,10 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
                 (Heidenheim = 1,00; Datenstand des Rechners: {benchmarkMeta.lastUpdated}).{" "}
                 <Link href="/wie-wir-rechnen" className="underline decoration-line underline-offset-4 hover:text-ink">
                   So rechnen wir
+                </Link>
+                . Alle Orte im Vergleich:{" "}
+                <Link href="/immobilienpreise-ostwuerttemberg" className="underline decoration-line underline-offset-4 hover:text-ink">
+                  Immobilienpreise in Ostwürttemberg
                 </Link>
                 .
               </p>

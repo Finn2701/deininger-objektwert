@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 
 export type Article = {
   id: string;
@@ -29,7 +29,7 @@ export function slugify(title: string): string {
 
 export async function getPublishedArticles(): Promise<Article[]> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data } = await supabase
       .from("articles")
       .select("*")
@@ -43,7 +43,7 @@ export async function getPublishedArticles(): Promise<Article[]> {
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data } = await supabase.from("articles").select("*").eq("slug", slug).eq("published", true).single();
     return data ?? null;
   } catch {

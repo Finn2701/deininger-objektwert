@@ -3,12 +3,15 @@ import { VerkaufenHero } from "@/components/sections/verkaufen/verkaufen-hero";
 import { SellingProcessSection } from "@/components/sections/selling-process-section";
 import { UnterlagenSection } from "@/components/sections/verkaufen/unterlagen-section";
 import { DiscreteSection } from "@/components/sections/discrete-section";
-import { breadcrumbJsonLd } from "@/lib/structured-data";
+import { VerkaufenWissenSection, verkaufenFaqs } from "@/components/sections/verkaufen/verkaufen-wissen-section";
+import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Immobilie verkaufen – Ablauf, Unterlagen & diskrete Vermarktung",
+  title: "Immobilie verkaufen: Ablauf & Unterlagen",
   description:
-    "Haus oder Wohnung verkaufen in Heidenheim an der Brenz: Ablauf, benötigte Unterlagen und die Option einer diskreten Vermarktung ohne öffentliches Inserat.",
+    "Haus oder Wohnung in Heidenheim verkaufen: Ablauf, benötigte Unterlagen und diskrete Vermarktung ohne öffentliches Inserat.",
   alternates: { canonical: "/immobilie-verkaufen" },
 };
 
@@ -26,11 +29,13 @@ export default function ImmobilieVerkaufenPage() {
           ),
         }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(verkaufenFaqs)) }} />
       <main>
         <VerkaufenHero />
         <SellingProcessSection />
         <UnterlagenSection />
         <DiscreteSection />
+        <VerkaufenWissenSection />
       </main>
     </>
   );

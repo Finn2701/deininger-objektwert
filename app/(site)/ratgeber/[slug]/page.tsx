@@ -4,8 +4,16 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { getArticleBySlug, getPublishedArticles } from "@/lib/articles";
 import { relatedLinksForArticle } from "@/lib/internal-links";
+import { articleSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
+
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const articles = await getPublishedArticles();
+  return articles.map((article) => ({ slug: article.slug }));
+}
 
 export async function generateMetadata({
   params,
@@ -16,10 +24,18 @@ export async function generateMetadata({
   const article = await getArticleBySlug(slug);
   if (!article) return {};
 
+  const seo = articleSeo(article);
   return {
-    title: article.title,
-    description: article.meta_description,
+    title: { absolute: seo.title },
+    description: seo.description,
     alternates: { canonical: `/ratgeber/${article.slug}` },
+    openGraph: {
+      type: "article",
+      title: article.title,
+      description: seo.description,
+      publishedTime: article.published_at ?? article.created_at,
+      modifiedTime: article.updated_at,
+    },
   };
 }
 

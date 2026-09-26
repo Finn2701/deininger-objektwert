@@ -305,6 +305,11 @@ export default function WieWirRechnenPage() {
                     {i < cityPages.length - 1 ? ", " : "."}
                   </span>
                 ))}
+                Alle Orte im direkten Vergleich, auch als Download:{" "}
+                <Link href="/immobilienpreise-ostwuerttemberg" className="underline decoration-line underline-offset-4 hover:text-ink">
+                  Immobilienpreise in Ostwürttemberg
+                </Link>
+                .
               </p>
 
               <h3 className="pt-4 font-display text-xl font-medium text-ink">Bundesländer (Durchschnitt)</h3>

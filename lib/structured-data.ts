@@ -1,43 +1,57 @@
 import { siteConfig } from "./site-config";
+import { cityPages } from "./city-pages";
 import type { FaqItem } from "@/components/sections/faq-section";
 
 /**
- * "Service", not "RealEstateAgent": the §34c Maklererlaubnis is still being
- * applied for and the Gewerbe isn't registered yet, so structured data
- * shouldn't claim a licensed real-estate-agent business any more than the
- * page copy does. Revisit once that's official — RealEstateAgent/LocalBusiness
- * would be the more specific, SEO-favorable type at that point.
+ * "ProfessionalService" (ein LocalBusiness-Untertyp), bewusst nicht "RealEstateAgent": Die Website
+ * bietet eine Online-Ersteinschätzung und Beratung, und die Gewerbeanmeldung für die Maklertätigkeit
+ * ist noch nicht abgeschlossen. Sobald sie durch ist, kann der Typ auf RealEstateAgent wechseln.
+ * areaServed nennt die Orte mit eigener Ortsseite, das stärkt die lokale Zuordnung.
  */
 export function realEstateAgentJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "Service",
+    "@type": "ProfessionalService",
+    "@id": `${siteConfig.url}/#business`,
     serviceType: "Kostenlose Online-Immobilienbewertung",
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
-    provider: {
-      "@type": "Person",
-      name: siteConfig.operator.name,
-      jobTitle: "Immobilienbewertung & Beratung",
-      email: siteConfig.email,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: siteConfig.operator.street,
-        addressLocality: "Heidenheim an der Brenz",
-        postalCode: "89522",
-        addressCountry: "DE",
-      },
+    logo: `${siteConfig.url}/icon.png`,
+    image: `${siteConfig.url}/opengraph-image`,
+    email: siteConfig.email,
+    priceRange: "Kostenlose Ersteinschätzung",
+    knowsAbout: ["Immobilienbewertung", "Verkehrswert", "Bodenrichtwert", "Erbimmobilien", "Immobilienverkauf"],
+    provider: personJsonLd(),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: siteConfig.operator.street,
+      addressLocality: "Heidenheim an der Brenz",
+      postalCode: "89522",
+      addressRegion: "Baden-Württemberg",
+      addressCountry: "DE",
     },
-    areaServed: {
-      "@type": "Country",
-      name: "Deutschland",
-    },
+    areaServed: [
+      ...cityPages.map((city) => ({ "@type": "City", name: city.name })),
+      { "@type": "Country", name: "Deutschland" },
+    ],
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "EUR",
     },
+  };
+}
+
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${siteConfig.url}/#website`,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    inLanguage: "de-DE",
+    publisher: { "@id": `${siteConfig.url}/#business` },
   };
 }
 

@@ -2,6 +2,8 @@ import { siteConfig } from "@/lib/site-config";
 import { getPublishedArticles } from "@/lib/articles";
 import { cityPagePath, cityPages } from "@/lib/city-pages";
 
+export const revalidate = 3600;
+
 /**
  * llms.txt (llmstxt.org): an emerging, unofficial convention -- a plain-text
  * summary of a site's purpose and key pages, aimed at LLM-based crawlers and
@@ -32,6 +34,7 @@ ${siteConfig.operator.name} bietet Eigentümern in Deutschland eine kostenlose, 
 - [Kostenlose Online-Immobilienbewertung](${siteConfig.url}/immobilienbewertung): unverbindliche Ersteinschätzung in wenigen Minuten.
 - [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen, diskrete Vermarktung.
 - [So rechnen wir](${siteConfig.url}/wie-wir-rechnen): offengelegte Datengrundlage, Regionalfaktoren, Wertfaktoren und Genauigkeit des Rechners, mit Datenstand.
+- [Immobilienpreise Ostwürttemberg](${siteConfig.url}/immobilienpreise-ostwuerttemberg): Haus- und Wohnungspreise je Ort im Vergleich (Heidenheim, Ostalb, Ulm), mit CSV-Download und Datenstand.
 - [Kaufnebenkosten-Rechner](${siteConfig.url}/kaufnebenkosten-rechner): Grunderwerbsteuer, Notar, Grundbuch und Maklerprovision für alle 16 Bundesländer, mit Tabelle (Stand Sept. 2026).
 - [Grunderwerbsteuer-Rechner](${siteConfig.url}/grunderwerbsteuer-rechner): Steuersätze aller Bundesländer, Ausnahmen, Fälligkeit.
 - [Häufige Fragen](${siteConfig.url}/faq): direkte Antworten zu Kosten, Dauer, Genauigkeit und Ablauf der Bewertung.

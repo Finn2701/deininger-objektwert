@@ -6,9 +6,9 @@ import { siteConfig } from "@/lib/site-config";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: "Kontakt – Immobilienbewertung anfragen",
   description:
-    "Kontaktieren Sie Deininger Objektwert für eine detaillierte Immobilienbewertung oder ein unverbindliches Gespräch – ansässig in Heidenheim an der Brenz, deutschlandweit erreichbar.",
+    "Kontakt zu Deininger Objektwert: Immobilienbewertung anfragen oder unverbindlich sprechen – aus Heidenheim an der Brenz, deutschlandweit.",
   alternates: { canonical: "/kontakt" },
 };
 

@@ -5,9 +5,9 @@ import { DocumentSubmitForm } from "@/components/document-submit-form";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Objektunterlagen einreichen – persönliche Immobilienbewertung",
+  title: "Unterlagen für die Bewertung einreichen",
   description:
-    "Sie haben Grundriss, Energieausweis oder Fotos schon zur Hand? Reichen Sie Ihre Objektunterlagen direkt ein und erhalten Sie eine persönliche, fundierte Einschätzung statt der groben Online-Schnellbewertung.",
+    "Grundriss, Energieausweis oder Fotos zur Hand? Reichen Sie Ihre Unterlagen ein und erhalten Sie eine persönliche, fundierte Einschätzung.",
   alternates: { canonical: "/unterlagen-einreichen" },
 };
 

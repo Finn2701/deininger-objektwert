@@ -73,6 +73,9 @@ export async function saveArticle(formData: FormData) {
     revalidatePath(`/backend/ratgeber/${id}`);
     revalidatePath("/backend/ratgeber");
     revalidatePath("/ratgeber");
+    revalidatePath("/");
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/llms.txt");
     revalidatePath(`/ratgeber/${slug}`);
     redirect(`/backend/ratgeber/${id}?saved=1`);
   } else {
@@ -82,6 +85,9 @@ export async function saveArticle(formData: FormData) {
     }
     revalidatePath("/backend/ratgeber");
     revalidatePath("/ratgeber");
+    revalidatePath("/");
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/llms.txt");
     redirect(`/backend/ratgeber/${data.id}?saved=1`);
   }
 }
@@ -108,6 +114,9 @@ export async function toggleArticlePublished(formData: FormData) {
 
   revalidatePath("/backend/ratgeber");
   revalidatePath("/ratgeber");
+    revalidatePath("/");
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/llms.txt");
   if (article?.slug) revalidatePath(`/ratgeber/${article.slug}`);
 }
 
@@ -117,5 +126,8 @@ export async function deleteArticle(formData: FormData) {
   await supabase.from("articles").delete().eq("id", id);
   revalidatePath("/backend/ratgeber");
   revalidatePath("/ratgeber");
+    revalidatePath("/");
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/llms.txt");
   redirect("/backend/ratgeber?deleted=1");
 }

@@ -14,6 +14,7 @@ const linkClass = "text-sm text-ink-soft transition-colors hover:text-ink";
 const headingClass = "text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase";
 
 const toolLinks = [
+  { href: "/immobilienpreise-ostwuerttemberg", label: "Immobilienpreise Region" },
   { href: "/kaufnebenkosten-rechner", label: "Kaufnebenkosten-Rechner" },
   { href: "/grunderwerbsteuer-rechner", label: "Grunderwerbsteuer-Rechner" },
   { href: "/wie-wir-rechnen", label: "So rechnen wir" },

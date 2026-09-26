@@ -4,10 +4,12 @@ import { getFaqs } from "@/components/sections/faq-section";
 import { Reveal } from "@/components/ui/reveal";
 import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Häufige Fragen zur Immobilienbewertung",
   description:
-    "Antworten auf häufige Fragen zu Immobilienbewertung, Verkehrswert, Verkaufsablauf und diskreter Vermarktung – für Heidenheim an der Brenz und deutschlandweit.",
+    "Antworten zu Immobilienbewertung, Verkehrswert, Verkaufsablauf und diskreter Vermarktung – für Heidenheim und deutschlandweit.",
   alternates: { canonical: "/faq" },
 };
 

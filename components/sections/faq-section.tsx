@@ -1,5 +1,5 @@
 import { siteConfig } from "@/lib/site-config";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 
 export interface FaqItem {
   question: string;
@@ -60,7 +60,7 @@ export const defaultFaqs: FaqItem[] = [
 
 export async function getFaqs(): Promise<FaqItem[]> {
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data, error } = await supabase
       .from("faq_items")
       .select("question, answer")

@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 
 export async function getContentOverrides(
   keys: string[]
@@ -6,7 +6,7 @@ export async function getContentOverrides(
   if (keys.length === 0) return {};
 
   try {
-    const supabase = await createClient();
+    const supabase = createPublicClient();
     const { data, error } = await supabase
       .from("site_content")
       .select("key, value")

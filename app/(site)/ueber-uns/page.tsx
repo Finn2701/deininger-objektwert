@@ -5,10 +5,12 @@ import { siteConfig } from "@/lib/site-config";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { getContentOverrides, withOverrides } from "@/lib/content";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
-  title: "Über uns",
+  title: "Über uns – Finn Deininger, Heidenheim",
   description:
-    "Deininger Objektwert steht für eine ruhige, sachliche Herangehensweise an Immobilienbewertung – persönlich statt anonym, transparent statt vollmundig. Zuhause in Heidenheim an der Brenz, im Einsatz deutschlandweit.",
+    "Ruhig, sachlich, transparent: So arbeitet Deininger Objektwert bei der Immobilienbewertung. Zuhause in Heidenheim, im Einsatz deutschlandweit.",
   alternates: { canonical: "/ueber-uns" },
 };
 

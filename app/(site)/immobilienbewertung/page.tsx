@@ -10,10 +10,12 @@ import { siteConfig } from "@/lib/site-config";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { getContentOverrides, withOverrides } from "@/lib/content";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
-  title: "Immobilie bewerten lassen – Immobilienwert ermitteln Heidenheim",
+  title: "Immobilie bewerten – kostenloser Rechner",
   description:
-    "Haus oder Wohnung bewerten lassen: kostenloser Online-Rechner für Heidenheim an der Brenz und deutschlandweit. Objektart, Lage, Baujahr und Zustand eingeben – Wertspanne sofort erhalten.",
+    "Haus oder Wohnung bewerten: kostenloser Online-Rechner für Heidenheim und ganz Deutschland. Angaben eingeben, Wertspanne sofort erhalten.",
   alternates: { canonical: "/immobilienbewertung" },
 };
 
@@ -119,6 +121,10 @@ export default async function ImmobilienbewertungPage() {
               Wie der Rechner zu seinen Zahlen kommt, steht offen auf der Seite{" "}
               <Link href="/wie-wir-rechnen" className="underline decoration-line underline-offset-4 hover:text-ink">
                 So rechnen wir
+              </Link>
+              . Die Preise aller Orte im Vergleich finden Sie unter{" "}
+              <Link href="/immobilienpreise-ostwuerttemberg" className="underline decoration-line underline-offset-4 hover:text-ink">
+                Immobilienpreise in Ostwürttemberg
               </Link>
               . Für Käufer und Verkäufer gibt es außerdem den{" "}
               <Link href="/kaufnebenkosten-rechner" className="underline decoration-line underline-offset-4 hover:text-ink">

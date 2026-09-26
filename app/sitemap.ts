@@ -4,6 +4,8 @@ import { getPublishedArticles } from "@/lib/articles";
 import { cityPagePath, cityPages } from "@/lib/city-pages";
 import { benchmarkMeta } from "@/lib/valuation-benchmarks";
 
+export const revalidate = 3600;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
 
@@ -11,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "", priority: 1, changeFrequency: "weekly" },
     { path: "/immobilienbewertung", priority: 0.9, changeFrequency: "weekly" },
     { path: "/wie-wir-rechnen", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/immobilienpreise-ostwuerttemberg", priority: 0.8, changeFrequency: "monthly" },
     { path: "/kaufnebenkosten-rechner", priority: 0.8, changeFrequency: "monthly" },
     { path: "/grunderwerbsteuer-rechner", priority: 0.8, changeFrequency: "monthly" },
     { path: "/immobilie-verkaufen", priority: 0.8, changeFrequency: "monthly" },

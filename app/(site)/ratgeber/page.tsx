@@ -5,10 +5,12 @@ import { Reveal } from "@/components/ui/reveal";
 import { getPublishedArticles } from "@/lib/articles";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
-  title: "Ratgeber – Wissenswertes rund um Immobilienbewertung",
+  title: "Ratgeber Immobilienbewertung & Verkauf",
   description:
-    "Verständlich erklärt: Wie das Finanzamt eine geerbte Immobilie bewertet, was eine Immobilienbewertung kostet und was der Bodenrichtwert bedeutet.",
+    "Ratgeber zu Immobilienbewertung, Erbe, Scheidung und Steuern: verständlich erklärt, mit Rechtsgrundlagen und Praxis-Tipps.",
   alternates: { canonical: "/ratgeber" },
 };
 
