@@ -120,6 +120,14 @@ export default async function ImmobilienbewertungPage() {
               <Link href="/wie-wir-rechnen" className="underline decoration-line underline-offset-4 hover:text-ink">
                 So rechnen wir
               </Link>
+              . Für Käufer und Verkäufer gibt es außerdem den{" "}
+              <Link href="/kaufnebenkosten-rechner" className="underline decoration-line underline-offset-4 hover:text-ink">
+                Kaufnebenkosten-Rechner
+              </Link>{" "}
+              und den{" "}
+              <Link href="/grunderwerbsteuer-rechner" className="underline decoration-line underline-offset-4 hover:text-ink">
+                Grunderwerbsteuer-Rechner
+              </Link>
               .
             </p>
           </Container>

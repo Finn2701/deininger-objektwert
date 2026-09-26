@@ -13,6 +13,7 @@ import {
   getCityPageBySlug,
   type CityPage,
 } from "@/lib/city-pages";
+import { computeKaufnebenkosten, formatEuroExact, formatPercent, getStateRates } from "@/lib/kaufnebenkosten";
 import { siteConfig } from "@/lib/site-config";
 import { benchmarkMeta } from "@/lib/valuation-benchmarks";
 import { breadcrumbJsonLd, cityServiceJsonLd, faqJsonLd } from "@/lib/structured-data";
@@ -91,6 +92,14 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
   if (!city) notFound();
 
   const path = cityPagePath(city);
+  // Alle Ortsseiten liegen in Baden-Württemberg; bei Orten in anderen Ländern hier den Länder-Code je Ort führen.
+  const state = getStateRates("BW");
+  const example = computeKaufnebenkosten({
+    kaufpreis: 350000,
+    stateCode: state.code,
+    maklerPercent: state.maklerBuyerShare,
+    notarPercent: 1.5,
+  });
   const factor = cityRegionFactor(city);
   const published = await getPublishedArticles();
   const related = city.relatedArticles
@@ -229,6 +238,33 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
                   <p className="mt-3 text-sm text-ink-soft/90">{note.text}</p>
                 </div>
               ))}
+            </div>
+          </Container>
+        </section>
+
+        <section className="border-t border-line py-16 md:py-20">
+          <Container>
+            <SectionHeading eyebrow="Rechner" title={`Kaufnebenkosten in ${city.name}`} />
+            <div className="mt-8 max-w-3xl space-y-4 text-ink-soft/90">
+              <p>
+                In Baden-Württemberg beträgt die Grunderwerbsteuer {formatPercent(state.grunderwerbsteuer)}. Kauft jemand
+                in {city.name} ein Haus für 350.000 Euro, sind das {formatEuroExact(example.grunderwerbsteuer)}. Mit
+                Notar und Grundbuch (rund 1,5 %) und einer Käufer-Maklerprovision von {formatPercent(state.maklerBuyerShare)}{" "}
+                kommen rund {formatEuroExact(example.nebenkosten)} an Nebenkosten zusammen ({formatPercent(example.nebenkostenPercent)}).
+                Für Verkäufer ist das relevant, weil Käufer diese Summe als Eigenkapital mitbringen müssen und den Kaufpreis
+                entsprechend kalkulieren.
+              </p>
+              <p>
+                Eigene Zahlen rechnen Sie im{" "}
+                <Link href="/kaufnebenkosten-rechner" className="underline decoration-line underline-offset-4 hover:text-ink">
+                  Kaufnebenkosten-Rechner
+                </Link>{" "}
+                oder im{" "}
+                <Link href="/grunderwerbsteuer-rechner" className="underline decoration-line underline-offset-4 hover:text-ink">
+                  Grunderwerbsteuer-Rechner
+                </Link>
+                .
+              </p>
             </div>
           </Container>
         </section>

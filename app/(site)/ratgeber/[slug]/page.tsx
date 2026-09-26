@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/container";
 import { getArticleBySlug, getPublishedArticles } from "@/lib/articles";
+import { relatedLinksForArticle } from "@/lib/internal-links";
 import { siteConfig } from "@/lib/site-config";
 import { articleJsonLd, breadcrumbJsonLd } from "@/lib/structured-data";
 
@@ -34,6 +35,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const otherArticles = (await getPublishedArticles())
     .filter((a) => a.slug !== article.slug)
     .slice(0, 3);
+  const related = relatedLinksForArticle(article);
 
   return (
     <>
@@ -81,6 +83,34 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               >
                 Jetzt kostenlos bewerten lassen
               </Link>
+            </div>
+
+            <div className="mt-14 grid gap-8 rounded-2xl border border-line p-6 md:grid-cols-2">
+              <div>
+                <p className="font-display text-lg font-medium text-ink">Passende Rechner</p>
+                <ul className="mt-4 space-y-3">
+                  {related.tools.map((tool) => (
+                    <li key={tool.href}>
+                      <Link href={tool.href} className="text-sm font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-ink">
+                        {tool.title}
+                      </Link>
+                      <p className="mt-0.5 text-sm text-ink-soft/80">{tool.text}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="font-display text-lg font-medium text-ink">Immobilienbewertung vor Ort</p>
+                <ul className="mt-4 space-y-2">
+                  {related.cities.map((city) => (
+                    <li key={city.href}>
+                      <Link href={city.href} className="text-sm text-ink-soft/90 underline decoration-line underline-offset-4 hover:text-ink">
+                        Immobilie bewerten in {city.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             {otherArticles.length > 0 && (

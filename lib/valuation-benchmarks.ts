@@ -54,6 +54,17 @@ export const benchmarkMeta = {
  * 3.164 €/m² (ImmoScout24/Statista).
  */
 export const cityFactor: Record<string, number> = {
+  // Umland Heidenheim/Ostalb (Faktor = Mittel aus Haus- und Wohnungspreis relativ zu Heidenheim, Stand 09/2026)
+  königsbronn: 0.91,
+  koenigsbronn: 0.91,
+  nattheim: 0.9,
+  "steinheim am albuch": 0.93,
+  gerstetten: 0.89,
+  "sontheim an der brenz": 0.96,
+  dischingen: 0.9,
+  niederstotzingen: 0.92,
+  bopfingen: 0.91,
+  neresheim: 0.92,
   // Bayern
   münchen: 2.85,
   nürnberg: 1.29,

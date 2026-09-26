@@ -32,6 +32,8 @@ ${siteConfig.operator.name} bietet Eigentümern in Deutschland eine kostenlose, 
 - [Kostenlose Online-Immobilienbewertung](${siteConfig.url}/immobilienbewertung): unverbindliche Ersteinschätzung in wenigen Minuten.
 - [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen, diskrete Vermarktung.
 - [So rechnen wir](${siteConfig.url}/wie-wir-rechnen): offengelegte Datengrundlage, Regionalfaktoren, Wertfaktoren und Genauigkeit des Rechners, mit Datenstand.
+- [Kaufnebenkosten-Rechner](${siteConfig.url}/kaufnebenkosten-rechner): Grunderwerbsteuer, Notar, Grundbuch und Maklerprovision für alle 16 Bundesländer, mit Tabelle (Stand Sept. 2026).
+- [Grunderwerbsteuer-Rechner](${siteConfig.url}/grunderwerbsteuer-rechner): Steuersätze aller Bundesländer, Ausnahmen, Fälligkeit.
 - [Häufige Fragen](${siteConfig.url}/faq): direkte Antworten zu Kosten, Dauer, Genauigkeit und Ablauf der Bewertung.
 - [Über ${siteConfig.operator.name}](${siteConfig.url}/ueber-uns): Hintergrund, Methode, Servicegebiet.
 

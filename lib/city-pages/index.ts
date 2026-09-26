@@ -7,6 +7,15 @@ import { herbrechtingen } from "./herbrechtingen";
 import { oberkochen } from "./oberkochen";
 import { schwaebischGmuend } from "./schwaebisch-gmuend";
 import { ulm } from "./ulm";
+import { koenigsbronn } from "./koenigsbronn";
+import { nattheim } from "./nattheim";
+import { steinheimAmAlbuch } from "./steinheim-am-albuch";
+import { gerstetten } from "./gerstetten";
+import { sontheimAnDerBrenz } from "./sontheim-an-der-brenz";
+import { dischingen } from "./dischingen";
+import { niederstotzingen } from "./niederstotzingen";
+import { bopfingen } from "./bopfingen";
+import { neresheim } from "./neresheim";
 import type { CityPage } from "./types";
 
 export type { CityPage } from "./types";
@@ -20,6 +29,15 @@ export const cityPages: CityPage[] = [
   herbrechtingen,
   oberkochen,
   ellwangen,
+  koenigsbronn,
+  nattheim,
+  steinheimAmAlbuch,
+  gerstetten,
+  sontheimAnDerBrenz,
+  dischingen,
+  niederstotzingen,
+  bopfingen,
+  neresheim,
 ];
 
 export const CITY_PAGE_PREFIX = "immobilienbewertung-";

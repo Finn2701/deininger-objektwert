@@ -133,3 +133,22 @@ export function webPageJsonLd(page: { name: string; description: string; path: s
     author: personJsonLd(),
   };
 }
+
+/** Kostenlose Online-Rechner-Seiten (Kaufnebenkosten, Grunderwerbsteuer): WebApplication mit Bundesland-Abdeckung. */
+export function webApplicationJsonLd(app: { name: string; description: string; path: string; dateModified: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: app.name,
+    description: app.description,
+    url: `${siteConfig.url}${app.path}`,
+    applicationCategory: "FinanceApplication",
+    operatingSystem: "Alle (Browser)",
+    inLanguage: "de-DE",
+    dateModified: app.dateModified,
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    provider: personJsonLd(),
+    areaServed: { "@type": "Country", name: "Deutschland" },
+  };
+}

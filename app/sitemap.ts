@@ -11,6 +11,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "", priority: 1, changeFrequency: "weekly" },
     { path: "/immobilienbewertung", priority: 0.9, changeFrequency: "weekly" },
     { path: "/wie-wir-rechnen", priority: 0.7, changeFrequency: "monthly" },
+    { path: "/kaufnebenkosten-rechner", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/grunderwerbsteuer-rechner", priority: 0.8, changeFrequency: "monthly" },
     { path: "/immobilie-verkaufen", priority: 0.8, changeFrequency: "monthly" },
     { path: "/unterlagen-einreichen", priority: 0.6, changeFrequency: "monthly" },
     { path: "/ratgeber", priority: 0.7, changeFrequency: "weekly" },

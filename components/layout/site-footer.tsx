@@ -41,6 +41,16 @@ export function SiteFooter() {
                 So rechnen wir
               </Link>
             </li>
+            <li>
+              <Link href="/kaufnebenkosten-rechner" className="text-sm text-ink-soft hover:text-ink">
+                Kaufnebenkosten-Rechner
+              </Link>
+            </li>
+            <li>
+              <Link href="/grunderwerbsteuer-rechner" className="text-sm text-ink-soft hover:text-ink">
+                Grunderwerbsteuer-Rechner
+              </Link>
+            </li>
           </ul>
         </div>
 
@@ -48,7 +58,7 @@ export function SiteFooter() {
           <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase">
             Immobilienbewertung in der Region
           </p>
-          <ul className="mt-4 space-y-2">
+          <ul className="mt-4 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
             {cityPages.map((city) => (
               <li key={city.slug}>
                 <Link href={cityPagePath(city)} className="text-sm text-ink-soft hover:text-ink">
