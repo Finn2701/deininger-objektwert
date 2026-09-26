@@ -30,6 +30,18 @@ const VERKAUFSKOSTEN: ToolLink = {
   text: "Was nach Provision, Darlehensablösung und Steuer beim Verkauf übrig bleibt.",
 };
 
+const SPEKULATION: ToolLink = {
+  href: "/spekulationssteuer-rechner",
+  title: "Spekulationssteuer-Rechner",
+  text: "Zehn-Jahres-Frist, Eigennutzung und Gewinn beim Immobilienverkauf prüfen.",
+};
+
+const BODENRICHTWERT: ToolLink = {
+  href: "/bodenrichtwerte-bundeslaender",
+  title: "Bodenrichtwert abrufen",
+  text: "Die amtlichen Portale aller 16 Bundesländer mit Direktlink und Anleitung.",
+};
+
 const METHODIK: ToolLink = {
   href: "/wie-wir-rechnen",
   title: "So rechnet unser Immobilienwert-Rechner",
@@ -68,6 +80,8 @@ export function relatedLinksForArticle(article: { slug: string; title: string; c
     tools.push(GRUNDERWERBSTEUER);
   }
   if (/(erb|nachlass|testament|pflichtteil|schenk)/.test(text)) tools.push(ERBSCHAFTSTEUER);
+  if (/(bodenrichtwert|grundstückswert|grundstückspreis|boris)/.test(text)) tools.push(BODENRICHTWERT);
+  if (/(spekulation|zehn jahre|10 jahre|23 estg|veräußerungsgewinn|frist)/.test(text)) tools.push(SPEKULATION);
   if (/(verkauf|verkaufen|verkäufer|vorfälligkeit|maklerprovision)/.test(text)) tools.push(VERKAUFSKOSTEN);
   if (/(wert|bewert|preis|bodenrichtwert|verkehrswert)/.test(text)) {
     tools.push(METHODIK);

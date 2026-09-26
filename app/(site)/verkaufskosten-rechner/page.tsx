@@ -41,7 +41,7 @@ const faqs = [
   {
     question: "Muss ich beim Verkauf Steuern zahlen?",
     answer:
-      "Nur unter Bedingungen: Verkaufen Sie eine nicht selbst genutzte Immobilie innerhalb von zehn Jahren nach dem Kauf mit Gewinn, ist der Gewinn nach § 23 EStG einkommensteuerpflichtig. Selbst genutzte Immobilien sind unter bestimmten Bedingungen ausgenommen, und der Gewinn bleibt steuerfrei, wenn die Frist abgelaufen ist. Details im Ratgeber zur Spekulationssteuer.",
+      "Nur unter Bedingungen: Verkaufen Sie eine nicht selbst genutzte Immobilie innerhalb von zehn Jahren nach dem Kauf mit Gewinn, ist der Gewinn nach § 23 EStG einkommensteuerpflichtig. Selbst genutzte Immobilien sind unter bestimmten Bedingungen ausgenommen, und der Gewinn bleibt steuerfrei, wenn die Frist abgelaufen ist. Ob und wie viel Steuer anfällt, prüfen Sie im Spekulationssteuer-Rechner; Hintergründe im Ratgeber zur Spekulationssteuer.",
   },
   {
     question: "Was kostet die Löschung der Grundschuld?",

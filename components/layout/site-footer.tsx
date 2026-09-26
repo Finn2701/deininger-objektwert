@@ -19,6 +19,8 @@ const toolLinks = [
   { href: "/grunderwerbsteuer-rechner", label: "Grunderwerbsteuer-Rechner" },
   { href: "/erbschaftsteuer-rechner", label: "Erbschaftsteuer-Rechner" },
   { href: "/verkaufskosten-rechner", label: "Verkaufskosten-Rechner" },
+  { href: "/spekulationssteuer-rechner", label: "Spekulationssteuer-Rechner" },
+  { href: "/bodenrichtwerte-bundeslaender", label: "Bodenrichtwert abrufen" },
   { href: "/wie-wir-rechnen", label: "So rechnen wir" },
   { href: "/ratgeber", label: "Ratgeber" },
 ];
