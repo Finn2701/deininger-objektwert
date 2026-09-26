@@ -41,6 +41,8 @@ export interface CityPage {
   /** Schlüssel in lib/valuation-benchmarks.ts cityFactor (lowercase) */
   factorKey: string;
   kreis: string;
+  /** Bundesland-Kürzel für Steuer-Beispiele auf der Ortsseite (Standard: "BW") */
+  stateCode?: string;
   /** Vorbelegung des Lage-Felds im eingebetteten Rechner */
   calculatorLocation: string;
   seoTitle: string;

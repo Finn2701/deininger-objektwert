@@ -15,6 +15,15 @@ import { abtsgmuend } from "./abtsgmuend";
 import { lorch } from "./lorch";
 import { langenau } from "./langenau";
 import { blaustein } from "./blaustein";
+import { neuUlm } from "./neu-ulm";
+import { ehingen } from "./ehingen";
+import { blaubeuren } from "./blaubeuren";
+import { laichingen } from "./laichingen";
+import { erbach } from "./erbach";
+import { geislingen } from "./geislingen";
+import { waldstetten } from "./waldstetten";
+import { mutlangen } from "./mutlangen";
+import { westhausen } from "./westhausen";
 import { koenigsbronn } from "./koenigsbronn";
 import { nattheim } from "./nattheim";
 import { steinheimAmAlbuch } from "./steinheim-am-albuch";
@@ -54,6 +63,15 @@ export const cityPages: CityPage[] = [
   lorch,
   langenau,
   blaustein,
+  neuUlm,
+  ehingen,
+  blaubeuren,
+  laichingen,
+  erbach,
+  geislingen,
+  waldstetten,
+  mutlangen,
+  westhausen,
 ];
 
 export const CITY_PAGE_PREFIX = "immobilienbewertung-";

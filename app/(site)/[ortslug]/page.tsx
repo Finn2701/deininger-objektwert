@@ -94,8 +94,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
   if (!city) notFound();
 
   const path = cityPagePath(city);
-  // Alle Ortsseiten liegen in Baden-Württemberg; bei Orten in anderen Ländern hier den Länder-Code je Ort führen.
-  const state = getStateRates("BW");
+  const state = getStateRates(city.stateCode ?? "BW");
   const example = computeKaufnebenkosten({
     kaufpreis: 350000,
     stateCode: state.code,
@@ -253,7 +252,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
             <SectionHeading eyebrow="Rechner" title={`Kaufnebenkosten in ${city.name}`} />
             <div className="mt-8 max-w-3xl space-y-4 text-ink-soft/90">
               <p>
-                In Baden-Württemberg beträgt die Grunderwerbsteuer {formatPercent(state.grunderwerbsteuer)}. Kauft jemand
+                In {state.name} beträgt die Grunderwerbsteuer {formatPercent(state.grunderwerbsteuer)}. Kauft jemand
                 in {city.name} ein Haus für 350.000 Euro, sind das {formatEuroExact(example.grunderwerbsteuer)}. Mit
                 Notar und Grundbuch (rund 1,5 %) und einer Käufer-Maklerprovision von {formatPercent(state.maklerBuyerShare)}{" "}
                 kommen rund {formatEuroExact(example.nebenkosten)} an Nebenkosten zusammen ({formatPercent(example.nebenkostenPercent)}).
