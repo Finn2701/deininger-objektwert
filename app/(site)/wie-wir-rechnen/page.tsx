@@ -76,6 +76,10 @@ function canonicalCityKey(key: string) {
     .replace(/ (an der brenz|am main|im breisgau)$/, "");
 }
 
+// Nur nach Leerzeichen/Bindestrich groß schreiben: \b würde Umlaute als Wortgrenze werten ("BadenWÜrttemberg").
+const capitalizeWords = (text: string) =>
+  text.replace(/(^|[\s-])(\p{L})/gu, (_, sep: string, c: string) => sep + c.toUpperCase());
+
 function buildCityRows() {
   const seen = new Map<string, { name: string; factor: number }>();
   for (const [key, factor] of Object.entries(cityFactor)) {
@@ -83,9 +87,8 @@ function buildCityRows() {
     if (seen.has(canon)) continue;
     const name = key
       .replace(/ \(.*\)$/, "")
-      .replace(/ (an der brenz|am main|im breisgau)$/, "")
-      .replace(/\b\p{L}/gu, (c) => c.toUpperCase());
-    seen.set(canon, { name, factor });
+      .replace(/ (an der brenz|am main|im breisgau)$/, "");
+    seen.set(canon, { name: capitalizeWords(name), factor });
   }
   return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name, "de"));
 }
@@ -95,7 +98,7 @@ function buildStateRows() {
   for (const [key, factor] of Object.entries(stateFactor)) {
     const canon = key.replace(/ä/g, "ae").replace(/ü/g, "ue");
     if (seen.has(canon)) continue;
-    seen.set(canon, { name: key.replace(/\b\p{L}/gu, (c) => c.toUpperCase()), factor });
+    seen.set(canon, { name: capitalizeWords(key), factor });
   }
   return [...seen.values()].sort((a, b) => a.name.localeCompare(b.name, "de"));
 }
@@ -104,7 +107,7 @@ const faqs = [
   {
     question: "Woher stammen die Preise, mit denen der Rechner arbeitet?",
     answer:
-      "Aus veröffentlichten Marktauswertungen (u. a. immowelt, ImmoScout24, Engel & Völkers, Homeday, Statista), die manuell recherchiert und in den Rechner eingepflegt werden – nicht aus einem automatischen Abruf von Inseraten. Den jeweiligen Datenstand nennen wir auf dieser Seite und unter jeder Ortsseite.",
+      "Aus veröffentlichten Marktauswertungen (u. a. immowelt und ImmoScout24, ergänzt um weitere Immobilienportale und Marktberichte), die manuell recherchiert und in den Rechner eingepflegt werden – nicht aus einem automatischen Abruf von Inseraten. Den jeweiligen Datenstand nennen wir auf dieser Seite und unter jeder Ortsseite.",
   },
   {
     question: "Wie genau ist die Bewertung?",
@@ -165,12 +168,8 @@ export default function WieWirRechnenPage() {
   const sources: { label: string; url: string }[] = [
     { label: "immowelt – Immobilienpreise Deutschland und Städtevergleich (Sept. 2026)", url: "https://www.immowelt.de/immobilienpreise/deutschland" },
     { label: "immowelt – Preisatlas Heidenheim an der Brenz (Basis-Region)", url: "https://www.immowelt.de/immobilienpreise/baden-wurttemberg/heidenheim-an-der-brenz-89518/ad08de5538" },
-    { label: "Engel & Völkers – Immobilienpreise Heidenheim an der Brenz", url: "https://www.engelvoelkers.com/de-de/immobilienpreise/baden-wuerttemberg/heidenheim-an-der-brenz/" },
-    { label: "ImmoScout24 – Immobilienpreise Heidenheim (Kreis)", url: "https://www.immoscout24.de/immobilienpreise/baden-wuerttemberg/heidenheim-kreis" },
-    { label: "miete-aktuell.de – Bodenrichtwert Heidenheim (Grundstückspreis)", url: "https://www.miete-aktuell.de/bodenrichtwert-grundstueckspreise/Heidenheim-an-der-Brenz/Heidenheim-an-der-Brenz/" },
+    { label: "ImmoScout24 – Immobilienpreise", url: "https://www.immoscout24.de/immobilienpreise" },
     { label: "immowelt – Preisfaktor Energieeffizienz: bis zu 23 % Aufschlag (2025)", url: "https://www.immowelt.de/ueberuns/presse/pressemitteilungenkontakt/2025/preisfaktor-energieeffizienz-bis-zu-23-prozent-aufschlag-fuer-immobilien-mit-bestem-energiestandard/" },
-    { label: "Immobilienmanager – So stark wirkt sich die Energieeffizienzklasse auf Hauspreise aus", url: "https://www.immobilienmanager.de/so-stark-wirkt-sich-die-energieeffizienzklasse-auf-hauspreise-aus-30072024" },
-    { label: "AssCompact – Preisunterschiede nach Etage und Aufzug", url: "https://www.asscompact.de/nachrichten/im-dachgeschoss-wohnt-es-sich-am-teuersten" },
     { label: "OpenStreetMap Nominatim – Geokodierung der eingegebenen Lage", url: "https://nominatim.org" },
     { label: "§ 194 BauGB – Verkehrswert (gesetze-im-internet.de)", url: "https://www.gesetze-im-internet.de/bbaug/__194.html" },
   ];
@@ -426,24 +425,11 @@ export default function WieWirRechnenPage() {
                     </a>
                   </li>
                 ))}
+                <li>u. a. weitere veröffentlichte Marktauswertungen und Immobilienportale</li>
               </ul>
               <p className="text-sm text-ink-soft/70">{benchmarkMeta.note}</p>
             </section>
 
-            <section className="mt-16 space-y-4 text-ink-soft/90">
-              <H2>7. Änderungsprotokoll</H2>
-              <ul className="space-y-3">
-                <li>
-                  <strong className="font-medium text-ink">26.09.2026:</strong> Eigene Faktoren für Aalen, Ulm (neu kalibriert), Giengen, Herbrechtingen, Oberkochen, Ellwangen und Schwäbisch Gmünd; Ortsseiten für die Region Ostwürttemberg; diese Methodikseite.
-                </li>
-                <li>
-                  <strong className="font-medium text-ink">22.09.2026:</strong> Deutschlandweite Städtetabelle (rund 50 Städte), Siedlungsgrößen-Anpassung für alle übrigen Orte, neue Faktoren Energieklasse, Etage/Aufzug und Feuchtigkeits-Check; Spanne wird mit mehr Angaben enger.
-                </li>
-                <li>
-                  <strong className="font-medium text-ink">13.09.2026:</strong> Erste Version mit Basispreisen für die Region Heidenheim und Bundesland-Faktoren.
-                </li>
-              </ul>
-            </section>
 
             <section className="mt-16 space-y-4 text-ink-soft/90">
               <H2>Häufige Fragen zur Methode</H2>

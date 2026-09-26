@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { parseDecimal } from "@/lib/parse-decimal";
 import { submitValuationRequest } from "@/lib/valuation-submit";
 import { formatEuro, type ValuationEstimate } from "@/lib/valuation-estimate";
 import {
@@ -144,6 +145,7 @@ function TextField({
   type = "text",
   placeholder,
   autoComplete,
+  inputMode,
 }: {
   label: string;
   value: string;
@@ -151,6 +153,7 @@ function TextField({
   type?: string;
   placeholder?: string;
   autoComplete?: string;
+  inputMode?: "decimal" | "numeric" | "text";
 }) {
   return (
     <label className="block">
@@ -160,6 +163,7 @@ function TextField({
         value={value}
         placeholder={placeholder}
         autoComplete={autoComplete}
+        inputMode={inputMode}
         onChange={(event) => onChange(event.target.value)}
         className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink"
       />
@@ -187,7 +191,7 @@ function isStepValid(step: number, data: ValuationFormData) {
     case 1:
       return data.location.trim().length > 1;
     case 2:
-      return isLand(data) ? data.plotArea.trim().length > 0 : data.livingArea.trim().length > 0;
+      return parseDecimal(isLand(data) ? data.plotArea : data.livingArea) > 0;
     case 3:
       return isLand(data) || (data.yearBuilt !== null && data.condition !== null);
     case 5:
@@ -388,8 +392,8 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
                     label="Wohnfläche (m²)"
                     value={data.livingArea}
                     onChange={(value) => update("livingArea", value)}
-                    type="number"
-                    placeholder="z. B. 140"
+                    inputMode="decimal"
+                    placeholder="z. B. 140 oder 94,5"
                   />
                 )}
                 {hasOwnPlot(data) && (
@@ -397,7 +401,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
                     label="Grundstück (m²)"
                     value={data.plotArea}
                     onChange={(value) => update("plotArea", value)}
-                    type="number"
+                    inputMode="decimal"
                     placeholder={isLand(data) ? "z. B. 650" : "falls zutreffend"}
                   />
                 )}

@@ -29,10 +29,6 @@ export const oberkochen: CityPage = {
         label: "immowelt Preisatlas Oberkochen",
         url: "https://www.immowelt.de/immobilienpreise/oberkochen",
       },
-      {
-        label: "Engel & Völkers Immobilienpreise Oberkochen",
-        url: "https://www.engelvoelkers.com/de-de/immobilienpreise/baden-wuerttemberg/oberkochen/",
-      },
     ],
     note: "Kleiner Ort, wenige Verkäufe: Die Durchschnitte schwanken je nach Portal und Zeitraum leicht (Häuser rund 2.610–2.720 €/m², Wohnungen rund 2.980–3.040 €/m²).",
   },

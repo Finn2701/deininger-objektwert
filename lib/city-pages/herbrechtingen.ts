@@ -29,10 +29,6 @@ export const herbrechtingen: CityPage = {
         label: "immowelt Preisatlas Herbrechtingen (07/2026)",
         url: "https://www.immowelt.de/immobilienpreise/baden-wurttemberg/herbrechtingen-89542/ad08de5533",
       },
-      {
-        label: "Engel & Völkers Immobilienpreise Herbrechtingen (08/2026)",
-        url: "https://www.engelvoelkers.com/de-de/immobilienpreise/baden-wuerttemberg/herbrechtingen/",
-      },
     ],
     note: "Herbrechtingen ist klein, die Zahl der Verkäufe entsprechend gering – die Portale kommen deshalb zu deutlich unterschiedlichen Werten (Häuser rund 2.455–2.723 €/m², Wohnungen rund 2.509–3.441 €/m²). Die genannten Durchschnitte sind die Mitte dieser Spannen.",
   },

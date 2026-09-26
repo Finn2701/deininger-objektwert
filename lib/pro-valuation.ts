@@ -1,4 +1,5 @@
 import { resolveLocation } from "./geocoding";
+import { parseDecimal } from "./parse-decimal";
 import {
   conditionMultiplier,
   energyClassMultiplier as sharedEnergyClassMultiplier,
@@ -200,12 +201,12 @@ function confidenceFields(propertyType: ProAssessment["propertyType"]): (keyof P
 }
 
 export async function computeProEstimate(a: ProAssessment): Promise<ProEstimate | null> {
-  const livingArea = Number(a.livingArea) || 0;
-  const plotArea = Number(a.plotArea) || 0;
+  const livingArea = parseDecimal(a.livingArea);
+  const plotArea = parseDecimal(a.plotArea);
 
   const geo = await resolveLocation(a.address);
   const { factor: regionFactor, label: regionLabel } = resolveRegionFactor(geo);
-  const knownLandValue = Number(a.knownLandValue) || 0;
+  const knownLandValue = parseDecimal(a.knownLandValue);
   const scaledPlotPrice = knownLandValue > 0 ? knownLandValue : plotPricePerSqm * regionFactor;
 
   let mid: number;

@@ -1,5 +1,6 @@
 import type { ValuationFormData } from "@/components/valuation-form/types";
 import { resolveLocation } from "./geocoding";
+import { parseDecimal } from "./parse-decimal";
 import {
   benchmarkMeta,
   conditionMultiplier,
@@ -92,8 +93,8 @@ function precisionLabel(ratio: number): EstimatePrecision {
  * estimate at the Heidenheim baseline (factor 1) rather than blocking.
  */
 export async function estimateValue(data: ValuationFormData): Promise<ValuationEstimate | null> {
-  const livingArea = Number(data.livingArea) || 0;
-  const plotArea = Number(data.plotArea) || 0;
+  const livingArea = parseDecimal(data.livingArea);
+  const plotArea = parseDecimal(data.plotArea);
 
   const geo = await resolveLocation(data.location);
   const { factor: regionFactor, label: regionLabel } = resolveRegionFactor(geo);

@@ -71,7 +71,10 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function NumberInput({ name, defaultValue, placeholder }: { name: string; defaultValue: string; placeholder?: string }) {
   return (
     <input
-      type="number"
+      type="text"
+      inputMode="decimal"
+      pattern="[0-9]+([.,][0-9]+)?"
+      title="Zahl, Komma oder Punkt als Dezimaltrenner, z. B. 94,34"
       name={name}
       defaultValue={defaultValue}
       placeholder={placeholder}
