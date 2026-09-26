@@ -18,12 +18,12 @@ const fieldClass =
 
 function ResultRow({ label, value, hint, strong }: { label: string; value: string; hint?: string; strong?: boolean }) {
   return (
-    <div className={`flex items-baseline justify-between gap-4 py-3 ${strong ? "" : "border-b border-line"}`}>
+    <div className={`flex items-baseline justify-between gap-3 py-3 ${strong ? "" : "border-b border-line"}`}>
       <div>
         <p className={strong ? "font-medium text-ink" : "text-ink-soft"}>{label}</p>
         {hint ? <p className="mt-0.5 text-xs text-ink-soft/70">{hint}</p> : null}
       </div>
-      <p className={`whitespace-nowrap ${strong ? "font-display text-2xl font-medium text-ink" : "text-ink"}`}>{value}</p>
+      <p className={`shrink-0 whitespace-nowrap ${strong ? "font-display text-2xl font-medium text-ink" : "text-ink"}`}>{value}</p>
     </div>
   );
 }
