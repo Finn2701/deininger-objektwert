@@ -111,7 +111,7 @@ export function totalPercent(state: StateRates, withMakler: boolean, notarPercen
 }
 
 export const formatPercent = (value: number) =>
-  `${new Intl.NumberFormat("de-DE", { minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(value)} %`;
+  `${new Intl.NumberFormat("de-DE", { minimumFractionDigits: 0, maximumFractionDigits: 2 }).format(value)}00a0%`;
 
 export const formatEuroExact = (value: number) =>
   new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(value);

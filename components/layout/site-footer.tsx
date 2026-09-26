@@ -3,104 +3,123 @@ import { primaryNav, siteConfig } from "@/lib/site-config";
 import { cityPagePath, cityPages } from "@/lib/city-pages";
 import { Container } from "../ui/container";
 
+const KREIS_ORDER = ["Landkreis Heidenheim", "Ostalbkreis", "Stadtkreis Ulm"];
+
+const regionGroups = KREIS_ORDER.map((kreis) => ({
+  kreis,
+  cities: cityPages.filter((city) => city.kreis === kreis).sort((a, b) => a.name.localeCompare(b.name, "de")),
+})).filter((group) => group.cities.length > 0);
+
+const linkClass = "text-sm text-ink-soft transition-colors hover:text-ink";
+const headingClass = "text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase";
+
+const toolLinks = [
+  { href: "/kaufnebenkosten-rechner", label: "Kaufnebenkosten-Rechner" },
+  { href: "/grunderwerbsteuer-rechner", label: "Grunderwerbsteuer-Rechner" },
+  { href: "/wie-wir-rechnen", label: "So rechnen wir" },
+  { href: "/ratgeber", label: "Ratgeber" },
+];
+
+const legalLinks = [
+  { href: "/impressum", label: "Impressum" },
+  { href: "/datenschutz", label: "Datenschutz" },
+  { href: "/agb", label: "AGB" },
+  { href: "/widerruf", label: "Widerrufsbelehrung" },
+];
+
 export function SiteFooter() {
   return (
     <footer className="border-t border-line bg-paper">
-      <Container className="grid gap-12 py-16 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
-        <div>
-          <p className="font-display text-sm font-medium tracking-[0.14em] text-ink uppercase">
-            {siteConfig.name}
-          </p>
-          <p className="mt-4 max-w-xs text-sm text-ink-soft/90">{siteConfig.description}</p>
+      <Container className="py-14 md:py-16">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.4fr_1fr_1.1fr_1.3fr] lg:gap-x-12">
+          <div className="col-span-2 lg:col-span-1">
+            <p className="font-display text-sm font-medium tracking-[0.14em] text-ink uppercase">
+              {siteConfig.name}
+            </p>
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft/90">{siteConfig.description}</p>
+          </div>
+
+          <nav aria-label="Navigation">
+            <p className={headingClass}>Navigation</p>
+            <ul className="mt-4 space-y-2.5">
+              {primaryNav.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/unterlagen-einreichen" className={linkClass}>
+                  Unterlagen einreichen
+                </Link>
+              </li>
+            </ul>
+          </nav>
+
+          <nav aria-label="Rechner und Wissen">
+            <p className={headingClass}>Rechner und Wissen</p>
+            <ul className="mt-4 space-y-2.5">
+              {toolLinks.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className={linkClass}>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="col-span-2 lg:col-span-1">
+            <p className={headingClass}>Kontakt</p>
+            <ul className="mt-4 space-y-2.5 text-sm text-ink-soft">
+              <li>
+                <a href={`mailto:${siteConfig.email}`} className="break-words transition-colors hover:text-ink">
+                  {siteConfig.email}
+                </a>
+              </li>
+              <li>{siteConfig.region}</li>
+            </ul>
+          </div>
         </div>
 
-        <div>
-          <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase">
-            Navigation
+        <nav aria-label="Immobilienbewertung in der Region" className="mt-12 border-t border-line pt-10">
+          <p className={headingClass}>Immobilienbewertung in der Region</p>
+          <div className="mt-6 space-y-5">
+            {regionGroups.map((group) => (
+              <div key={group.kreis} className="grid gap-x-8 gap-y-2 md:grid-cols-[11rem_1fr]">
+                <p className="text-sm text-ink/80">{group.kreis}</p>
+                <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                  {group.cities.map((city) => (
+                    <li key={city.slug}>
+                      <Link href={cityPagePath(city)} className={linkClass}>
+                        {city.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </nav>
+      </Container>
+
+      <div className="border-t border-line">
+        <Container className="flex flex-col gap-4 py-6 text-xs text-ink-soft/70 sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {siteConfig.name}. Alle Rechte vorbehalten.
           </p>
-          <ul className="mt-4 space-y-2">
-            {primaryNav.map((item) => (
+          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+            {legalLinks.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-sm text-ink-soft hover:text-ink">
+                <Link href={item.href} className="transition-colors hover:text-ink">
                   {item.label}
                 </Link>
               </li>
             ))}
-            <li>
-              <Link href="/unterlagen-einreichen" className="text-sm text-ink-soft hover:text-ink">
-                Unterlagen einreichen
-              </Link>
-            </li>
-            <li>
-              <Link href="/ratgeber" className="text-sm text-ink-soft hover:text-ink">
-                Ratgeber
-              </Link>
-            </li>
-            <li>
-              <Link href="/wie-wir-rechnen" className="text-sm text-ink-soft hover:text-ink">
-                So rechnen wir
-              </Link>
-            </li>
-            <li>
-              <Link href="/kaufnebenkosten-rechner" className="text-sm text-ink-soft hover:text-ink">
-                Kaufnebenkosten-Rechner
-              </Link>
-            </li>
-            <li>
-              <Link href="/grunderwerbsteuer-rechner" className="text-sm text-ink-soft hover:text-ink">
-                Grunderwerbsteuer-Rechner
-              </Link>
-            </li>
           </ul>
-        </div>
-
-        <div>
-          <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase">
-            Immobilienbewertung in der Region
-          </p>
-          <ul className="mt-4 grid grid-cols-1 gap-x-4 gap-y-2 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-            {cityPages.map((city) => (
-              <li key={city.slug}>
-                <Link href={cityPagePath(city)} className="text-sm text-ink-soft hover:text-ink">
-                  {city.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase">
-            Kontakt
-          </p>
-          <ul className="mt-4 space-y-2 text-sm text-ink-soft">
-            <li>
-              <a href={`mailto:${siteConfig.email}`} className="hover:text-ink">
-                {siteConfig.email}
-              </a>
-            </li>
-            <li>{siteConfig.region}</li>
-          </ul>
-        </div>
-      </Container>
-
-      <Container className="flex flex-col gap-2 border-t border-line py-6 text-xs text-ink-soft/70 md:flex-row md:items-center md:justify-between">
-        <p>© {new Date().getFullYear()} {siteConfig.name}. Alle Rechte vorbehalten.</p>
-        <div className="flex gap-4">
-          <Link href="/impressum" className="hover:text-ink">
-            Impressum
-          </Link>
-          <Link href="/datenschutz" className="hover:text-ink">
-            Datenschutz
-          </Link>
-          <Link href="/agb" className="hover:text-ink">
-            AGB
-          </Link>
-          <Link href="/widerruf" className="hover:text-ink">
-            Widerrufsbelehrung
-          </Link>
-        </div>
-      </Container>
+        </Container>
+      </div>
     </footer>
   );
 }
