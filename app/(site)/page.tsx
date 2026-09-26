@@ -11,7 +11,7 @@ import { realEstateAgentJsonLd, websiteJsonLd } from "@/lib/structured-data";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Immobilienbewertung Heidenheim – kostenlos",
+  title: { absolute: "Immobilie bewerten – kostenlos online | Deininger Objektwert" },
   description:
     "Immobilie kostenlos bewerten in Heidenheim und deutschlandweit: unverbindliche Online-Wertspanne in wenigen Minuten, persönlich betreut von Finn Deininger.",
   alternates: { canonical: "/" },
