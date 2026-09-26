@@ -9,12 +9,12 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   async redirects() {
-    // www und Apex-Domain liefen beide mit 200 aus; eine Domain, damit Links und Rankingsignale nicht auf zwei Hosts verteilt werden.
+    // Kanonisch ist www.deininger-objektwert.de; die Domain ohne www leitet dauerhaft dorthin um, damit Links und Rankingsignale nicht auf zwei Hosts verteilt werden.
     return [
       {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.deininger-objektwert.de" }],
-        destination: "https://deininger-objektwert.de/:path*",
+        source: "/:path((?!api/cron).*)",
+        has: [{ type: "host", value: "deininger-objektwert.de" }],
+        destination: "https://www.deininger-objektwert.de/:path*",
         permanent: true,
       },
     ];
