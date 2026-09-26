@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { primaryNav, siteConfig } from "@/lib/site-config";
+import { cityPagePath, cityPages } from "@/lib/city-pages";
 import { Container } from "../ui/container";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-line bg-paper">
-      <Container className="grid gap-12 py-16 md:grid-cols-[1.2fr_1fr_1fr]">
+      <Container className="grid gap-12 py-16 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
           <p className="font-display text-sm font-medium tracking-[0.14em] text-ink uppercase">
             {siteConfig.name}
@@ -35,6 +36,26 @@ export function SiteFooter() {
                 Ratgeber
               </Link>
             </li>
+            <li>
+              <Link href="/wie-wir-rechnen" className="text-sm text-ink-soft hover:text-ink">
+                So rechnen wir
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/70 uppercase">
+            Immobilienbewertung in der Region
+          </p>
+          <ul className="mt-4 space-y-2">
+            {cityPages.map((city) => (
+              <li key={city.slug}>
+                <Link href={cityPagePath(city)} className="text-sm text-ink-soft hover:text-ink">
+                  {city.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 

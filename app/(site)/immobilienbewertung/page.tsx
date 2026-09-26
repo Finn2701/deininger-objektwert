@@ -5,6 +5,7 @@ import { Reveal } from "@/components/ui/reveal";
 import { ValuationForm } from "@/components/valuation-form/valuation-form";
 import { BewertungsmethodenSection } from "@/components/sections/bewertung/bewertungsmethoden-section";
 import { AnlaesseSection } from "@/components/sections/bewertung/anlaesse-section";
+import { cityPagePath, cityPages } from "@/lib/city-pages";
 import { siteConfig } from "@/lib/site-config";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 import { getContentOverrides, withOverrides } from "@/lib/content";
@@ -89,6 +90,38 @@ export default async function ImmobilienbewertungPage() {
             <Reveal delay={0.05}>
               <ValuationForm />
             </Reveal>
+          </Container>
+        </section>
+
+        <section className="border-t border-line py-16 md:py-20">
+          <Container>
+            <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Region Ostwürttemberg</p>
+            <h2 className="mt-3 max-w-2xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
+              Immobilienbewertung in Ihrer Stadt
+            </h2>
+            <p className="mt-4 max-w-2xl text-ink-soft/90">
+              Für diese Orte finden Sie aktuelle Preisniveaus, Stadtteile und Besonderheiten beim Verkauf – mit dem
+              Rechner direkt auf der Seite.
+            </p>
+            <ul className="mt-8 flex flex-wrap gap-3">
+              {cityPages.map((city) => (
+                <li key={city.slug}>
+                  <Link
+                    href={cityPagePath(city)}
+                    className="inline-block rounded-full border border-line px-4 py-2 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
+                  >
+                    {city.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-8 text-sm text-ink-soft/80">
+              Wie der Rechner zu seinen Zahlen kommt, steht offen auf der Seite{" "}
+              <Link href="/wie-wir-rechnen" className="underline decoration-line underline-offset-4 hover:text-ink">
+                So rechnen wir
+              </Link>
+              .
+            </p>
           </Container>
         </section>
 

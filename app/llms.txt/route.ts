@@ -1,5 +1,6 @@
 import { siteConfig } from "@/lib/site-config";
 import { getPublishedArticles } from "@/lib/articles";
+import { cityPagePath, cityPages } from "@/lib/city-pages";
 
 /**
  * llms.txt (llmstxt.org): an emerging, unofficial convention -- a plain-text
@@ -16,6 +17,10 @@ export async function GET() {
     .map((a) => `- [${a.title}](${siteConfig.url}/ratgeber/${a.slug}): ${a.excerpt}`)
     .join("\n");
 
+  const cityLines = cityPages
+    .map((c) => `- [Immobilienbewertung ${c.name}](${siteConfig.url}${cityPagePath(c)}): Preisniveau, Stadtteile und Besonderheiten in ${c.name}, mit kostenlosem Rechner.`)
+    .join("\n");
+
   const body = `# ${siteConfig.name}
 
 > ${siteConfig.description}
@@ -26,8 +31,13 @@ ${siteConfig.operator.name} bietet Eigentümern in Deutschland eine kostenlose, 
 
 - [Kostenlose Online-Immobilienbewertung](${siteConfig.url}/immobilienbewertung): unverbindliche Ersteinschätzung in wenigen Minuten.
 - [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen, diskrete Vermarktung.
+- [So rechnen wir](${siteConfig.url}/wie-wir-rechnen): offengelegte Datengrundlage, Regionalfaktoren, Wertfaktoren und Genauigkeit des Rechners, mit Datenstand.
 - [Häufige Fragen](${siteConfig.url}/faq): direkte Antworten zu Kosten, Dauer, Genauigkeit und Ablauf der Bewertung.
 - [Über ${siteConfig.operator.name}](${siteConfig.url}/ueber-uns): Hintergrund, Methode, Servicegebiet.
+
+## Immobilienbewertung nach Ort (Region Ostwürttemberg)
+
+${cityLines}
 
 ## Ratgeber (Hintergrundwissen zu Bewertung, Erbschaft, Scheidung, Steuer)
 

@@ -27,7 +27,7 @@ import type { SettlementTier } from "./geocoding";
  */
 export const benchmarkMeta = {
   region: "Heidenheim an der Brenz",
-  lastUpdated: "2026-09-22",
+  lastUpdated: "2026-09-26",
   note: "Manuell kalibrierter Richtwert, kein Live-Scan. Auf Zuruf aktualisierbar.",
 };
 
@@ -70,7 +70,20 @@ export const cityFactor: Record<string, number> = {
   karlsruhe: 1.11,
   mannheim: 0.94,
   heilbronn: 0.9,
-  ulm: 1.15,
+  // Ulm neu kalibriert 2026-09-26: immowelt (Aug. 2026) Haus 4.535 / Wohnung
+  // 4.320 €/m² -> Ø 4.428 / 2.875 = 1,54 (vorher grob geschätzt 1,15).
+  ulm: 1.54,
+  // Ostwürttemberg (2026-09-26, Faktor = Ø aus Haus- und Wohnungspreis laut
+  // Portalauswertungen / 2.875 €/m² Heidenheim-Basis, siehe lib/city-pages):
+  aalen: 1.19,
+  giengen: 0.99,
+  "giengen an der brenz": 0.99,
+  herbrechtingen: 0.97,
+  oberkochen: 0.99,
+  ellwangen: 1.0,
+  "ellwangen (jagst)": 1.0,
+  "schwäbisch gmünd": 1.14,
+  "schwaebisch gmuend": 1.14,
   tübingen: 1.5,
   tuebingen: 1.5,
   heidenheim: 1.0,
@@ -171,7 +184,7 @@ function normalize(value: string): string {
  * state's blended average, a "village" is probably below it. Coarse on
  * purpose — it only fires when there's no better, explicit match.
  */
-const settlementTierAdjustment: Record<Exclude<SettlementTier, null>, number> = {
+export const settlementTierAdjustment: Record<Exclude<SettlementTier, null>, number> = {
   city: 1.15,
   town: 1.0,
   village: 0.85,

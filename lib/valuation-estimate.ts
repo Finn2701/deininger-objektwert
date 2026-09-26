@@ -27,7 +27,18 @@ export interface ValuationEstimate {
   precision: EstimatePrecision;
 }
 
-const TYPICAL_HOUSE_PLOT_SQM = 500;
+export const TYPICAL_HOUSE_PLOT_SQM = 500;
+
+/** Spanne um den Mittelwert: startet weit und wird mit jeder optionalen Angabe enger (siehe precisionRatio). */
+export const RANGE_SPREAD = {
+  lowBase: 0.88,
+  highBase: 1.1,
+  tighten: 0.07,
+  /** Lage der angezeigten Kernzahl innerhalb der Spanne (0 = Untergrenze, 1 = Obergrenze). */
+  headlinePosition: 0.35,
+  /** Anteil des über 500 m² hinausgehenden Grundstücks, der in den Hauswert einfließt. */
+  plotBonusShare: 0.5,
+} as const;
 
 function roundTo(value: number, step: number) {
   return Math.round(value / step) * step;
@@ -125,7 +136,7 @@ export async function estimateValue(data: ValuationFormData): Promise<ValuationE
 
     const plotBonus =
       data.propertyType !== "wohnung" && plotArea > TYPICAL_HOUSE_PLOT_SQM
-        ? (plotArea - TYPICAL_HOUSE_PLOT_SQM) * scaledPlotPrice * 0.5
+        ? (plotArea - TYPICAL_HOUSE_PLOT_SQM) * scaledPlotPrice * RANGE_SPREAD.plotBonusShare
         : 0;
 
     mid = adjusted + plotBonus;
@@ -138,12 +149,12 @@ export async function estimateValue(data: ValuationFormData): Promise<ValuationE
   // filled-in optional field tightens it, up to ±7 percentage points at
   // full precision. Land has nothing further to narrow on, so it keeps the
   // original fixed spread untouched.
-  const lowFactor = isLand ? 0.88 : 0.88 + 0.07 * ratio;
-  const highFactor = isLand ? 1.1 : 1.1 - 0.07 * ratio;
+  const lowFactor = isLand ? RANGE_SPREAD.lowBase : RANGE_SPREAD.lowBase + RANGE_SPREAD.tighten * ratio;
+  const highFactor = isLand ? RANGE_SPREAD.highBase : RANGE_SPREAD.highBase - RANGE_SPREAD.tighten * ratio;
 
   const low = roundTo(mid * lowFactor, 5000);
   const high = roundTo(mid * highFactor, 5000);
-  const headline = roundTo(low + (high - low) * 0.35, 5000);
+  const headline = roundTo(low + (high - low) * RANGE_SPREAD.headlinePosition, 5000);
 
   return {
     low,

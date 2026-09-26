@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import { submitValuationRequest } from "@/lib/valuation-submit";
 import { formatEuro, type ValuationEstimate } from "@/lib/valuation-estimate";
 import {
@@ -198,9 +199,9 @@ function isStepValid(step: number, data: ValuationFormData) {
   }
 }
 
-export function ValuationForm() {
+export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: string } = {}) {
   const [step, setStep] = useState(0);
-  const [data, setData] = useState<ValuationFormData>(initialValuationFormData);
+  const [data, setData] = useState<ValuationFormData>({ ...initialValuationFormData, location: defaultLocation });
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
   const [estimate, setEstimate] = useState<ValuationEstimate | null>(null);
   const [saveFailed, setSaveFailed] = useState(false);
@@ -290,6 +291,11 @@ export function ValuationForm() {
               )}{" "}
               (Stand {estimate.asOf}) und Ihrer Angaben. Ersetzt keine Wertermittlung durch einen
               Sachverständigen vor Ort.
+            </p>
+            <p className="mt-2 max-w-md text-xs text-ink-soft/60">
+              <Link href="/wie-wir-rechnen" className="underline decoration-line underline-offset-4 hover:text-ink">
+                So haben wir gerechnet: Datengrundlage, Faktoren und Stand →
+              </Link>
             </p>
             {!isLand(data) && estimate.precision !== "detailliert" ? (
               <p className="mt-2 max-w-md text-xs text-ink-soft/60">

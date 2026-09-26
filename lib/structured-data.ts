@@ -105,3 +105,31 @@ export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
     })),
   };
 }
+
+/** Orts-Landingpage: gleicher Service wie oben, aber mit konkretem Einzugsgebiet (City) statt ganz Deutschland. */
+export function cityServiceJsonLd(cityName: string, path: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Kostenlose Online-Immobilienbewertung",
+    name: `Immobilienbewertung ${cityName}`,
+    url: `${siteConfig.url}${path}`,
+    provider: personJsonLd(),
+    areaServed: { "@type": "City", name: cityName },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  };
+}
+
+export function webPageJsonLd(page: { name: string; description: string; path: string; dateModified: string }) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: page.name,
+    description: page.description,
+    url: `${siteConfig.url}${page.path}`,
+    dateModified: page.dateModified,
+    inLanguage: "de-DE",
+    isPartOf: { "@type": "WebSite", name: siteConfig.name, url: siteConfig.url },
+    author: personJsonLd(),
+  };
+}
