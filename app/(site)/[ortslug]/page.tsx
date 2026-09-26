@@ -187,6 +187,10 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
                 <Link href="/immobilienpreise-ostwuerttemberg" className="underline decoration-line underline-offset-4 hover:text-ink">
                   Immobilienpreise in Ostwürttemberg
                 </Link>
+                . Den amtlichen Bodenrichtwert Ihres Grundstücks finden Sie im{" "}
+                <Link href="/bodenrichtwerte-bundeslaender" className="underline decoration-line underline-offset-4 hover:text-ink">
+                  Portal Ihres Bundeslandes
+                </Link>
                 .
               </p>
               <ul className="mt-3 space-y-1">

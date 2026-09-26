@@ -51,7 +51,7 @@ export function VerkaufenWissenSection() {
               Der häufigste Fehler beim Verkauf ist ein Preis, der aus Wunschdenken oder aus einem einzelnen
               Portalwert entsteht. Zu hoch angesetzte Objekte bleiben lange im Angebot und verlieren dann oft mehr
               durch spätere Nachlässe, als ein realistischer Startpreis gekostet hätte. Eine belastbare Grundlage sind
-              der Vergleich mit ähnlichen Objekten, der Bodenrichtwert und der Zustand Ihrer Immobilie. Wie der{" "}
+              der Vergleich mit ähnlichen Objekten, der <Link href="/bodenrichtwerte-bundeslaender" className={linkClass}>Bodenrichtwert</Link> und der Zustand Ihrer Immobilie. Wie der{" "}
               <Link href="/immobilienbewertung" className={linkClass}>
                 Online-Rechner
               </Link>{" "}

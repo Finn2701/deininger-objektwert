@@ -175,7 +175,7 @@ export default function ErbschaftsteuerPage() {
             <section className="mt-16 space-y-4 text-ink-soft/90">
               <SectionH2>Was ist die Immobilie steuerlich wert?</SectionH2>
               <p>
-                Das Finanzamt setzt nicht den Marktpreis an, sondern einen Steuerwert nach dem Bewertungsgesetz. Der
+                Das Finanzamt setzt nicht den Marktpreis an, sondern einen Steuerwert nach dem Bewertungsgesetz, in den auch der Bodenrichtwert einfließt (Portale aller Länder: <Link href="/bodenrichtwerte-bundeslaender" className="underline decoration-line underline-offset-4 hover:text-ink">Bodenrichtwert abrufen</Link>). Der
                 liegt oft über dem, was Sie am Markt erzielen würden. Hält das Finanzamt Ihre Immobilie für zu hoch
                 bewertet, können Sie einen niedrigeren Verkehrswert nachweisen (§ 198 BewG). Wie das funktioniert und
                 wann es sich lohnt, steht im Ratgeber{" "}
