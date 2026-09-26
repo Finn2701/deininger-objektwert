@@ -20,6 +20,7 @@ export function SiteHeader() {
             width={512}
             height={512}
             priority
+            sizes="40px"
             className="h-9 w-auto md:h-10"
           />
           <span className="flex flex-col leading-none">

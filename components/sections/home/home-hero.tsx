@@ -22,6 +22,7 @@ export async function HomeHero() {
         alt="Luftaufnahme eines gepflegten Einfamilienhauses in einer Wohnsiedlung in Heidenheim an der Brenz"
         fill
         priority
+        fetchPriority="high"
         sizes="100vw"
         className="object-cover"
       />

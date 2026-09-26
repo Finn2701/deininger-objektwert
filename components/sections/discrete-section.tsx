@@ -12,6 +12,7 @@ export function DiscreteSection() {
             alt="Gepflegtes Einfamilienhaus, Seitenansicht mit Garage"
             width={1200}
             height={1500}
+            sizes="(min-width: 768px) 45vw, 100vw"
             className="h-full w-full object-cover"
           />
         </Reveal>

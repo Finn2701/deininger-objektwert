@@ -61,6 +61,7 @@ export function ValueFactorsSection() {
                   alt={factor.alt}
                   width={1200}
                   height={900}
+                  sizes="(min-width: 768px) 45vw, 100vw"
                   className="h-full w-full object-cover"
                 />
               </Reveal>
