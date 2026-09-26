@@ -18,6 +18,18 @@ const GRUNDERWERBSTEUER: ToolLink = {
   text: "Steuersätze aller Bundesländer, Ausnahmen und Beispielrechnung.",
 };
 
+const ERBSCHAFTSTEUER: ToolLink = {
+  href: "/erbschaftsteuer-rechner",
+  title: "Erbschaftsteuer-Rechner",
+  text: "Freibeträge, Steuerklassen und Familienheim-Regel beim Erben einer Immobilie.",
+};
+
+const VERKAUFSKOSTEN: ToolLink = {
+  href: "/verkaufskosten-rechner",
+  title: "Verkaufskosten-Rechner",
+  text: "Was nach Provision, Darlehensablösung und Steuer beim Verkauf übrig bleibt.",
+};
+
 const METHODIK: ToolLink = {
   href: "/wie-wir-rechnen",
   title: "So rechnet unser Immobilienwert-Rechner",
@@ -55,6 +67,8 @@ export function relatedLinksForArticle(article: { slug: string; title: string; c
   if (/(grunderwerb|steuer|erb|schenk|scheid|kaufvertrag)/.test(text)) {
     tools.push(GRUNDERWERBSTEUER);
   }
+  if (/(erb|nachlass|testament|pflichtteil|schenk)/.test(text)) tools.push(ERBSCHAFTSTEUER);
+  if (/(verkauf|verkaufen|verkäufer|vorfälligkeit|maklerprovision)/.test(text)) tools.push(VERKAUFSKOSTEN);
   if (/(wert|bewert|preis|bodenrichtwert|verkehrswert)/.test(text)) {
     tools.push(METHODIK);
   }
@@ -70,5 +84,5 @@ export function relatedLinksForArticle(article: { slug: string; title: string; c
     if (cities.length === 3) break;
   }
 
-  return { tools: tools.slice(0, 3), cities: cities.map((city) => ({ name: city.name, href: cityPagePath(city) })) };
+  return { tools: tools.slice(0, 4), cities: cities.map((city) => ({ name: city.name, href: cityPagePath(city) })) };
 }

@@ -17,6 +17,8 @@ const toolLinks = [
   { href: "/immobilienpreise-ostwuerttemberg", label: "Immobilienpreise Region" },
   { href: "/kaufnebenkosten-rechner", label: "Kaufnebenkosten-Rechner" },
   { href: "/grunderwerbsteuer-rechner", label: "Grunderwerbsteuer-Rechner" },
+  { href: "/erbschaftsteuer-rechner", label: "Erbschaftsteuer-Rechner" },
+  { href: "/verkaufskosten-rechner", label: "Verkaufskosten-Rechner" },
   { href: "/wie-wir-rechnen", label: "So rechnen wir" },
   { href: "/ratgeber", label: "Ratgeber" },
 ];

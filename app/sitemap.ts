@@ -15,6 +15,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/wie-wir-rechnen", priority: 0.7, changeFrequency: "monthly" },
     { path: "/immobilienpreise-ostwuerttemberg", priority: 0.8, changeFrequency: "monthly" },
     { path: "/kaufnebenkosten-rechner", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/erbschaftsteuer-rechner", priority: 0.8, changeFrequency: "monthly" },
+    { path: "/verkaufskosten-rechner", priority: 0.8, changeFrequency: "monthly" },
     { path: "/grunderwerbsteuer-rechner", priority: 0.8, changeFrequency: "monthly" },
     { path: "/immobilie-verkaufen", priority: 0.8, changeFrequency: "monthly" },
     { path: "/unterlagen-einreichen", priority: 0.6, changeFrequency: "monthly" },

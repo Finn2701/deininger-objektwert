@@ -73,6 +73,10 @@ export function VerkaufenWissenSection() {
               <Link href="/ratgeber/spekulationssteuer-beim-immobilienverkauf-wann-sie-anfaellt-und-wie-sie-sie-legal-vermeiden" className={linkClass}>
                 Ratgeber zur Spekulationssteuer
               </Link>
+              . Was am Ende für Sie übrig bleibt, zeigt der{" "}
+              <Link href="/verkaufskosten-rechner" className={linkClass}>
+                Verkaufskosten-Rechner
+              </Link>
               . Was Ihre Käufer zusätzlich zum Kaufpreis aufbringen müssen, rechnet der{" "}
               <Link href="/kaufnebenkosten-rechner" className={linkClass}>
                 Kaufnebenkosten-Rechner

@@ -35,6 +35,8 @@ ${siteConfig.operator.name} bietet Eigentümern in Deutschland eine kostenlose, 
 - [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen, diskrete Vermarktung.
 - [So rechnen wir](${siteConfig.url}/wie-wir-rechnen): offengelegte Datengrundlage, Regionalfaktoren, Wertfaktoren und Genauigkeit des Rechners, mit Datenstand.
 - [Immobilienpreise Ostwürttemberg](${siteConfig.url}/immobilienpreise-ostwuerttemberg): Haus- und Wohnungspreise je Ort im Vergleich (Heidenheim, Ostalb, Ulm), mit CSV-Download und Datenstand.
+- [Erbschaftsteuer-Rechner](${siteConfig.url}/erbschaftsteuer-rechner): Freibeträge, Steuerklassen, Steuersätze und Familienheim-Regel beim Erben einer Immobilie (Stand Sept. 2026).
+- [Verkaufskosten-Rechner](${siteConfig.url}/verkaufskosten-rechner): Nettoerlös beim Hausverkauf nach Maklerprovision, Vorfälligkeitsentschädigung, Energieausweis und Steuer.
 - [Kaufnebenkosten-Rechner](${siteConfig.url}/kaufnebenkosten-rechner): Grunderwerbsteuer, Notar, Grundbuch und Maklerprovision für alle 16 Bundesländer, mit Tabelle (Stand Sept. 2026).
 - [Grunderwerbsteuer-Rechner](${siteConfig.url}/grunderwerbsteuer-rechner): Steuersätze aller Bundesländer, Ausnahmen, Fälligkeit.
 - [Häufige Fragen](${siteConfig.url}/faq): direkte Antworten zu Kosten, Dauer, Genauigkeit und Ablauf der Bewertung.
