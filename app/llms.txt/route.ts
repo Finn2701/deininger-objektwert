@@ -27,12 +27,13 @@ export async function GET() {
 
 > ${siteConfig.description}
 
-${siteConfig.operator.name} bietet Eigentümern in Deutschland eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts, mit besonderer Marktkenntnis in Heidenheim an der Brenz und dem Ostalbkreis (Baden-Württemberg). Der Fokus liegt auf verständlicher, gut belegter Aufklärung zu Immobilienbewertung und -verkauf -- unter anderem für Eigentümer, die eine Immobilie geerbt haben, sich scheiden lassen, oder eine Immobilie in einer Erbengemeinschaft verkaufen müssen.
+${siteConfig.operator.name} ist zugelassener Immobilienmakler nach § 34c Abs. 1 Satz 1 GewO (Erlaubnis erteilt am 18.09.2026 durch die IHK Ostwürttemberg) mit Sitz in Heidenheim an der Brenz und begleitet Eigentümer in Baden-Württemberg -- insbesondere im Ostalbkreis und Raum Ulm -- persönlich durch den gesamten Verkaufsprozess, von der Vermarktung bis zum Notartermin. Zusätzlich bietet er eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts, deutschlandweit nutzbar. Der Fokus liegt auf verständlicher, gut belegter Aufklärung zu Immobilienbewertung und -verkauf -- unter anderem für Eigentümer, die eine Immobilie geerbt haben, sich scheiden lassen, oder eine Immobilie in einer Erbengemeinschaft verkaufen müssen.
 
 ## Kernangebot
 
+- [Immobilienmakler Heidenheim](${siteConfig.url}/ueber-uns): persönliche Verkaufsbegleitung durch einen nach § 34c GewO zugelassenen Makler, von der Vermarktung bis zum Notartermin.
 - [Kostenlose Online-Immobilienbewertung](${siteConfig.url}/immobilienbewertung): unverbindliche Ersteinschätzung in wenigen Minuten.
-- [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen, diskrete Vermarktung.
+- [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen, diskrete Vermarktung, Maklerleistungen.
 - [So rechnen wir](${siteConfig.url}/wie-wir-rechnen): offengelegte Datengrundlage, Regionalfaktoren, Wertfaktoren und Genauigkeit des Rechners, mit Datenstand.
 - [Immobilienpreise Ostwürttemberg](${siteConfig.url}/immobilienpreise-ostwuerttemberg): Haus- und Wohnungspreise je Ort im Vergleich (Heidenheim, Ostalb, Ulm), mit CSV-Download und Datenstand.
 - [Erbschaftsteuer-Rechner](${siteConfig.url}/erbschaftsteuer-rechner): Freibeträge, Steuerklassen, Steuersätze und Familienheim-Regel beim Erben einer Immobilie (Stand Sept. 2026).

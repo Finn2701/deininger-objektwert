@@ -153,7 +153,48 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="8. Regionale Preiseinordnung (OpenStreetMap)">
+          <Section title="8. Maklervermittlung (Interessenten- und Objektverwaltung)">
+            <p>
+              Sobald Sie uns mit dem Verkauf einer Immobilie beauftragen oder sich als
+              Kaufinteressent bei uns registrieren, verarbeiten wir zusätzlich zu den oben
+              genannten Daten:
+            </p>
+            <ul className="list-disc space-y-1 pl-5">
+              <li>
+                bei Verkäufern: Objektunterlagen (Grundbuchauszug, Energieausweis, Grundrisse,
+                Fotos, bekannte Mängel und Lasten) sowie die Vertragsdaten aus dem
+                Maklervertrag,
+              </li>
+              <li>
+                bei Kaufinteressenten: Kontaktdaten, gewünschtes Objektprofil,
+                Besichtigungstermine und ggf. Bonitätsangaben, soweit für eine
+                Finanzierungsvorprüfung erforderlich und von Ihnen freiwillig mitgeteilt,
+              </li>
+              <li>
+                bei Vertragsabschluss: die zur Identifizierung nach dem Geldwäschegesetz (GwG)
+                erforderlichen Angaben (z. B. Ausweiskopie), soweit wir als Verpflichtete nach
+                § 2 Abs. 1 Nr. 14 GwG hierzu verpflichtet sind.
+              </li>
+            </ul>
+            <p>
+              Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung bzw.
+              vorvertragliche Maßnahmen) sowie, soweit gesetzlich vorgeschrieben, Art. 6 Abs. 1
+              lit. c DSGVO (rechtliche Verpflichtung, insbesondere GwG).
+            </p>
+            <p>
+              Objektunterlagen und Interessentendaten werden gelöscht, sobald sie für die
+              Vermittlung nicht mehr erforderlich sind und keine gesetzlichen
+              Aufbewahrungspflichten entgegenstehen (insbesondere die Aufbewahrungsfristen nach
+              dem GwG von bis zu fünf Jahren für Identifizierungsunterlagen, sofern diese
+              erhoben wurden).
+            </p>
+            <p>
+              Eine Weitergabe von Interessentendaten an den Verkäufer bzw. von Objektdaten an
+              Kaufinteressenten erfolgt nur im für die Vermittlung erforderlichen Umfang.
+            </p>
+          </Section>
+
+          <Section title="9. Regionale Preiseinordnung (OpenStreetMap)">
             <p>
               Damit die Ersteinschätzung nicht überall in Deutschland dieselben Preise ansetzt,
               gleichen wir den von Ihnen eingegebenen Ort serverseitig mit dem
@@ -176,16 +217,17 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="9. Datenbank / Auftragsverarbeitung">
+          <Section title="10. Datenbank / Auftragsverarbeitung">
             <p>
-              Die über das Bewertungsformular erhobenen Daten speichern wir bei unserem
-              Datenbank-Dienstleister Supabase, Serverstandort Frankfurt am Main (EU). Mit
-              Supabase besteht ein Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Der Zugriff
-              auf diese Daten ist technisch auf den Verantwortlichen beschränkt.
+              Die über das Bewertungsformular sowie im Rahmen der Maklervermittlung (siehe
+              Punkt 8) erhobenen Daten speichern wir bei unserem Datenbank-Dienstleister
+              Supabase, Serverstandort Frankfurt am Main (EU). Mit Supabase besteht ein
+              Auftragsverarbeitungsvertrag gemäß Art. 28 DSGVO. Der Zugriff auf diese Daten ist
+              technisch auf den Verantwortlichen beschränkt.
             </p>
           </Section>
 
-          <Section title="10. Cookies">
+          <Section title="11. Cookies">
             <p>Wir unterscheiden zwischen zwei Bereichen unserer Website:</p>
             <p>
               Auf den öffentlichen Seiten setzen wir selbst keine Cookies ein. Beim Ausfüllen des
@@ -201,7 +243,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="11. Spam- und Missbrauchsschutz (Cloudflare Turnstile)">
+          <Section title="12. Spam- und Missbrauchsschutz (Cloudflare Turnstile)">
             <p>
               Zum Schutz des Bewertungsformulars vor automatisierten Zugriffen (Bots) setzen wir
               den Dienst Cloudflare Turnstile der Cloudflare, Inc., 101 Townsend St, San
@@ -228,7 +270,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="12. Analyse-Tools und Google-Dienste">
+          <Section title="13. Analyse-Tools und Google-Dienste">
             <p>
               Wir setzen derzeit keine Analyse- oder Marketing-Tools ein (z. B. Google Analytics,
               Matomo). Die auf dieser Website verwendeten Schriftarten werden beim Bau der Website
@@ -239,7 +281,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="13. Datensicherheit">
+          <Section title="14. Datensicherheit">
             <p>
               Die Übertragung zwischen Ihrem Browser und unserer Website erfolgt verschlüsselt
               (TLS/HTTPS). Der Zugriff auf gespeicherte Anfragedaten ist über
@@ -249,7 +291,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="14. Ihre Rechte">
+          <Section title="15. Ihre Rechte">
             <p>Ihnen stehen folgende Rechte zu:</p>
             <ul className="list-disc space-y-1 pl-5">
               <li>Recht auf Auskunft über die von uns zu Ihrer Person gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -269,7 +311,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="15. Beschwerderecht bei einer Aufsichtsbehörde">
+          <Section title="16. Beschwerderecht bei einer Aufsichtsbehörde">
             <p>
               Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren,
               insbesondere in dem Mitgliedstaat Ihres gewöhnlichen Aufenthaltsorts, Ihres
@@ -279,7 +321,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section title="16. Aktualität und Änderung dieser Datenschutzerklärung">
+          <Section title="17. Aktualität und Änderung dieser Datenschutzerklärung">
             <p>
               Wir behalten uns vor, diese Datenschutzerklärung anzupassen, wenn sich rechtliche
               oder technische Änderungen ergeben, etwa beim Einsatz neuer Dienste. Die jeweils
@@ -287,7 +329,7 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <p className="mt-10 text-xs text-ink-soft/80">Stand: September 2026</p>
+          <p className="mt-10 text-xs text-ink-soft/80">Stand: Oktober 2026</p>
         </Container>
       </main>
     </>

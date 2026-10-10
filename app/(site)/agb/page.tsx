@@ -27,11 +27,14 @@ export default function AgbPage() {
           <p className="mt-2 text-ink-soft/80">{siteConfig.name}</p>
 
           <p className="mt-6 rounded-lg border border-line bg-paper-dim px-4 py-3 text-sm text-ink-soft/90">
-            Hinweis: Die gewerbliche gemäß § 34c GewO angezeigte Maklertätigkeit befindet sich
-            derzeit in Vorbereitung. Bis zur offiziellen Aufnahme dieser Tätigkeit bietet{" "}
-            {siteConfig.operator.name} ausschließlich den kostenlosen, unverbindlichen
-            Online-Bewertungsrechner auf dieser Website an. Diese AGB regeln bereits jetzt den
-            Rahmen für künftige Beratungs- und Vermittlungsleistungen.
+            Hinweis: {siteConfig.operator.name} ist als Immobilienmakler nach § 34c Abs. 1 Satz 1
+            GewO zugelassen (Erlaubnis erteilt am 18.09.2026 durch die IHK Ostwürttemberg, siehe{" "}
+            <a href="/impressum" className="underline decoration-line underline-offset-4 hover:text-ink">
+              Impressum
+            </a>
+            ). Neben dem kostenlosen, unverbindlichen Online-Bewertungsrechner bietet{" "}
+            {siteConfig.operator.name} damit auch Beratungs- und Vermittlungsleistungen gemäß
+            den nachfolgenden AGB an.
           </p>
 
           <Section title="1. Geltungsbereich">
@@ -205,7 +208,7 @@ export default function AgbPage() {
             </p>
           </Section>
 
-          <p className="mt-10 text-xs text-ink-soft/80">Stand: September 2026</p>
+          <p className="mt-10 text-xs text-ink-soft/80">Stand: Oktober 2026</p>
         </Container>
       </main>
     </>

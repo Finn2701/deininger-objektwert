@@ -47,10 +47,39 @@ export default function ImpressumPage() {
                 Hinweis zum Angebot
               </p>
               <p className="mt-3">
-                Diese Website bietet derzeit ausschließlich eine kostenlose, automatisierte
-                Ersteinschätzung des Immobilienwerts an. Es handelt sich nicht um eine
-                Wertermittlung durch einen Sachverständigen und nicht um eine gewerbliche
-                Immobilienmaklertätigkeit im Sinne des § 34c GewO.
+                Diese Website bietet neben der kostenlosen, automatisierten Ersteinschätzung des
+                Immobilienwerts auch gewerbliche Immobilienmaklerleistungen an. Die
+                Online-Ersteinschätzung selbst stellt weiterhin keine Wertermittlung durch einen
+                Sachverständigen dar.
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase">
+                Angaben zur Erlaubnis nach § 34c GewO
+              </p>
+              <p className="mt-3">
+                {siteConfig.operator.name} ({siteConfig.name}) ist als Immobilienmakler nach
+                § 34c Abs. 1 Satz 1 GewO erlaubnispflichtig tätig.
+                <br />
+                Erteilt am: 18.09.2026
+                <br />
+                Zuständige Erlaubnis- und Aufsichtsbehörde:
+                <br />
+                Industrie- und Handelskammer Ostwürttemberg
+                <br />
+                Ludwig-Erhard-Str. 1
+                <br />
+                89520 Heidenheim
+                <br />
+                <a
+                  href="https://www.ihk.de/ostwuerttemberg"
+                  className="text-ink hover:text-ink-soft"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  www.ihk.de/ostwuerttemberg
+                </a>
               </p>
             </div>
 

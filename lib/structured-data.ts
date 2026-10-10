@@ -3,17 +3,17 @@ import { cityPages } from "./city-pages";
 import type { FaqItem } from "@/components/sections/faq-section";
 
 /**
- * "ProfessionalService" (ein LocalBusiness-Untertyp), bewusst nicht "RealEstateAgent": Die Website
- * bietet eine Online-Ersteinschätzung und Beratung, und die Gewerbeanmeldung für die Maklertätigkeit
- * ist noch nicht abgeschlossen. Sobald sie durch ist, kann der Typ auf RealEstateAgent wechseln.
- * areaServed nennt die Orte mit eigener Ortsseite, das stärkt die lokale Zuordnung.
+ * "RealEstateAgent" (ein LocalBusiness-Untertyp): Seit der §34c-Erlaubnis (erteilt 18.09.2026
+ * durch die IHK Ostwürttemberg, siehe /impressum) ist die gewerbliche Maklertätigkeit aktiv, der
+ * Typ wurde entsprechend von "ProfessionalService" auf das spezifischere "RealEstateAgent"
+ * umgestellt. areaServed nennt die Orte mit eigener Ortsseite, das stärkt die lokale Zuordnung.
  */
 export function realEstateAgentJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "RealEstateAgent",
     "@id": `${siteConfig.url}/#business`,
-    serviceType: "Kostenlose Online-Immobilienbewertung",
+    serviceType: "Immobilienmakler & kostenlose Online-Immobilienbewertung",
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
@@ -21,7 +21,7 @@ export function realEstateAgentJsonLd() {
     image: `${siteConfig.url}/opengraph-image`,
     email: siteConfig.email,
     priceRange: "Kostenlose Ersteinschätzung",
-    knowsAbout: ["Immobilienbewertung", "Verkehrswert", "Bodenrichtwert", "Erbimmobilien", "Immobilienverkauf"],
+    knowsAbout: ["Immobilienbewertung", "Verkehrswert", "Bodenrichtwert", "Erbimmobilien", "Immobilienverkauf", "Immobilienvermittlung"],
     provider: personJsonLd(),
     address: {
       "@type": "PostalAddress",
@@ -103,7 +103,7 @@ export function personJsonLd() {
     "@type": "Person",
     name: siteConfig.operator.name,
     url: `${siteConfig.url}/ueber-uns`,
-    jobTitle: "Immobilienbewertung & Beratung",
+    jobTitle: "Immobilienmakler (§ 34c GewO)",
   };
 }
 

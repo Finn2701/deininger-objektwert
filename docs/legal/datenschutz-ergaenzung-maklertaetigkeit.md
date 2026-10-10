@@ -1,13 +1,10 @@
 # Datenschutz-Ergänzung — für echte Maklervermittlungstätigkeit
 
-> **Noch nicht aktivieren.** Die bestehende Datenschutzerklärung
-> (`app/(site)/datenschutz/page.tsx`) deckt den aktuellen Stand (kostenloser
-> Bewertungsrechner, Dokumenten-Upload, Kontaktformular) bereits sauber ab.
-> Dieser Abschnitt beschreibt zusätzliche Datenverarbeitung, die erst entsteht,
-> sobald echte Vermittlungsfälle laufen (Objekt beauftragt, Interessenten
-> werden verwaltet, Besichtigungen organisiert, Notarabwicklung begleitet).
-> Erst dann als neue `<Section>` einfügen (Nummerierung der Folgeabschnitte
-> anpassen).
+> **Aktiviert am 10.10.2026** als Abschnitt 8 „Maklervermittlung (Interessenten-
+> und Objektverwaltung)" in `app/(site)/datenschutz/page.tsx`, zusammen mit der
+> §34c-Gewerbeanmeldung — bewusst schon vor dem ersten echten Vermittlungsfall,
+> damit die Datenverarbeitung von Anfang an korrekt offengelegt ist statt erst
+> nachträglich ergänzt zu werden. Folgeabschnitte auf 9–17 umnummeriert.
 
 ## Einzufügender Abschnitt (Beispieltext, an tatsächliche Umsetzung anpassen)
 

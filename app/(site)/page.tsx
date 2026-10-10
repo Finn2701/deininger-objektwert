@@ -11,9 +11,9 @@ import { realEstateAgentJsonLd, websiteJsonLd } from "@/lib/structured-data";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: { absolute: "Immobilie bewerten – kostenlos online | Deininger Objektwert" },
+  title: { absolute: "Immobilienmakler Heidenheim | Immobilie bewerten – kostenlos online | Deininger Objektwert" },
   description:
-    "Immobilie kostenlos bewerten in Heidenheim und deutschlandweit: unverbindliche Online-Wertspanne in wenigen Minuten, persönlich betreut von Finn Deininger.",
+    "Zugelassener Immobilienmakler (§ 34c GewO) in Heidenheim: persönliche Verkaufsbegleitung von Finn Deininger – oder starten Sie unverbindlich mit der kostenlosen Online-Wertspanne in wenigen Minuten, deutschlandweit nutzbar.",
   alternates: { canonical: "/" },
 };
 

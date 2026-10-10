@@ -1,11 +1,18 @@
 # Impressum-Ergänzung nach § 5 DDG (ehem. § 5 TMG) — für erlaubnispflichtige Gewerbe
 
-> **Noch nicht aktivieren.** Erst einfügen, wenn der §34c-Erlaubnisbescheid der
-> IHK Ostwürttemberg tatsächlich vorliegt. Vorher wäre die Angabe „zugelassener
-> Immobilienmakler" unwahr und wettbewerbsrechtlich riskant (§ 5 UWG,
-> Irreführung). Bis dahin bleibt der bestehende Satz im Impressum
-> (`app/(site)/impressum/page.tsx`) korrekt: „...nicht um eine gewerbliche
-> Immobilienmaklertätigkeit im Sinne des § 34c GewO."
+> **WebSearch-verifiziert am 2026-09-20, siehe `impressum-pflichtangaben-34c-verifiziert.md`
+> für Quellen/Confidence.** Eine Korrektur aus dieser Verifizierung: die Zeile
+> „Berufsbezeichnung ... verliehen in: Deutschland" unten ist **keine
+> zwingende Pflichtangabe** (Immobilienmakler ist kein Kammerberuf im Sinne
+> von § 5 Abs. 1 Nr. 4/5 DDG) — kann bei Aktivierung weggelassen werden.
+> Zwingend ist nur Name + volle Anschrift + Website der Aufsichtsbehörde
+> (IHK Ostwürttemberg).
+
+> **Aktiviert am 10.10.2026.** Der §34c-Erlaubnisbescheid der IHK Ostwürttemberg
+> liegt vor (erteilt 18.09.2026, kein separates Erlaubnisnummer-Feld). Der
+> Abschnitt unten ist seitdem live in `app/(site)/impressum/page.tsx` (ohne die
+> Berufsbezeichnungs-Zeile, siehe Korrektur unten); der alte Satz „...nicht um
+> eine gewerbliche Immobilienmaklertätigkeit..." wurde entfernt.
 
 ## Warum diese Ergänzung nötig wird
 

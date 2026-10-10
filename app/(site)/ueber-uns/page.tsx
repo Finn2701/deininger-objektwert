@@ -60,13 +60,14 @@ export default async function UeberUnsPage() {
                 und bildet eine sachliche Gesprächsgrundlage für alles Weitere.
               </p>
               <p className="mt-5 text-balance text-ink-soft/90 md:text-lg">
-                Eine Zulassung als Immobilienmakler nach § 34c GewO wird derzeit beantragt.
-                Solange diese noch aussteht, bleibt der Fokus bewusst auf der kostenlosen
-                Ersteinschätzung – Details dazu finden Sie im{" "}
+                Seit September 2026 als Immobilienmakler nach § 34c Abs. 1 Satz 1 GewO
+                zugelassen (Erlaubnis erteilt durch die IHK Ostwürttemberg) – Details dazu
+                finden Sie im{" "}
                 <a href="/impressum" className="underline decoration-line underline-offset-4 hover:text-ink">
                   Impressum
                 </a>
-                .
+                . Neben der kostenlosen Ersteinschätzung begleite ich damit auch den gesamten
+                Verkaufsprozess, von der Vermarktung bis zum Notartermin.
               </p>
             </Reveal>
 
