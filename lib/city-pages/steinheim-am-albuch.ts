@@ -6,7 +6,7 @@ export const steinheimAmAlbuch: CityPage = {
   factorKey: "steinheim am albuch",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Steinheim am Albuch",
-  seoTitle: "Immobilienbewertung Steinheim am Albuch",
+  seoTitle: "Immobilienmakler Steinheim am Albuch",
   metaDescription:
     "Was ist Ihre Immobilie in Steinheim am Albuch wert? Aktuelle Preise (Haus ca. 2.800 €/m², Wohnung ca. 2.500 €/m²), Ortsteile und kostenloser Rechner.",
   h1: "Immobilienbewertung in Steinheim am Albuch",

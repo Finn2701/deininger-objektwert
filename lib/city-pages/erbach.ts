@@ -6,7 +6,7 @@ export const erbach: CityPage = {
   factorKey: "erbach (donau)",
   kreis: "Alb-Donau-Kreis",
   calculatorLocation: "Erbach (Donau)",
-  seoTitle: "Immobilienbewertung Erbach (Donau)",
+  seoTitle: "Immobilienmakler Erbach (Donau)",
   metaDescription:
     "Was ist Ihre Immobilie in Erbach (Donau) wert? Preise (Haus ca. 2.920 €/m², Wohnung ca. 3.420 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Erbach (Donau)",

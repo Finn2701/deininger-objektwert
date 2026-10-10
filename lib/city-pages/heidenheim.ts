@@ -6,7 +6,7 @@ export const heidenheim: CityPage = {
   factorKey: "heidenheim an der brenz",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Heidenheim an der Brenz",
-  seoTitle: "Immobilienbewertung Heidenheim – kostenlos",
+  seoTitle: "Immobilienmakler Heidenheim – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Heidenheim wert? Aktuelle Preise (Wohnung ca. 2.800 €/m², Haus ca. 2.890 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Heidenheim an der Brenz",

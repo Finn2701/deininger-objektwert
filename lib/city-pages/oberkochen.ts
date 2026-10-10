@@ -6,7 +6,7 @@ export const oberkochen: CityPage = {
   factorKey: "oberkochen",
   kreis: "Ostalbkreis",
   calculatorLocation: "Oberkochen",
-  seoTitle: "Immobilienbewertung Oberkochen – kostenlos",
+  seoTitle: "Immobilienmakler Oberkochen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Oberkochen wert? Zeiss-Pendlermarkt mit Preisen von ca. 2.720 €/m² (Haus) und 3.000 €/m² (Wohnung) – kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Oberkochen",

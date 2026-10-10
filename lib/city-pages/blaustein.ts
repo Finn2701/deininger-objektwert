@@ -6,7 +6,7 @@ export const blaustein: CityPage = {
   factorKey: "blaustein",
   kreis: "Alb-Donau-Kreis",
   calculatorLocation: "Blaustein",
-  seoTitle: "Immobilienbewertung Blaustein – kostenlos",
+  seoTitle: "Immobilienmakler Blaustein – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Blaustein wert? Preise (Haus ca. 3.480 €/m², Wohnung ca. 4.070 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Blaustein",

@@ -6,7 +6,7 @@ export const niederstotzingen: CityPage = {
   factorKey: "niederstotzingen",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Niederstotzingen",
-  seoTitle: "Immobilienbewertung Niederstotzingen",
+  seoTitle: "Immobilienmakler Niederstotzingen",
   metaDescription:
     "Was ist Ihre Immobilie in Niederstotzingen wert? Preise (Haus ca. 2.690 €/m², Wohnung ca. 2.570 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Niederstotzingen",

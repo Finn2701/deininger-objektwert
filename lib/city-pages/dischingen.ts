@@ -6,7 +6,7 @@ export const dischingen: CityPage = {
   factorKey: "dischingen",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Dischingen",
-  seoTitle: "Immobilienbewertung Dischingen – kostenlos",
+  seoTitle: "Immobilienmakler Dischingen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Dischingen wert? Preise (Haus ca. 2.300–2.700 €/m², Wohnung ca. 2.400–2.850 €/m²), Ortsteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Dischingen",

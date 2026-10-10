@@ -6,7 +6,7 @@ export const waldstetten: CityPage = {
   factorKey: "waldstetten",
   kreis: "Ostalbkreis",
   calculatorLocation: "Waldstetten",
-  seoTitle: "Immobilienbewertung Waldstetten – kostenlos",
+  seoTitle: "Immobilienmakler Waldstetten – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Waldstetten wert? Preise (Haus ca. 2.600–3.400 €/m², Wohnung ca. 2.900–3.100 €/m²), Ortsteile und kostenloser Rechner.",
   h1: "Immobilienbewertung in Waldstetten",

@@ -6,7 +6,7 @@ export const ulm: CityPage = {
   factorKey: "ulm",
   kreis: "Stadtkreis Ulm",
   calculatorLocation: "Ulm",
-  seoTitle: "Immobilienbewertung Ulm – kostenlos",
+  seoTitle: "Immobilienmakler Ulm – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Ulm wert? Aktuelle Preise (Wohnung ca. 4.320 €/m², Haus ca. 4.535 €/m²), Stadtteile im Vergleich und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Ulm",

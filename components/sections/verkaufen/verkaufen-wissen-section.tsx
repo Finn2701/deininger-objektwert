@@ -19,6 +19,11 @@ export const verkaufenFaqs = [
       "Ja. Bei Verkauf und Vermietung muss der Energieausweis spätestens bei der Besichtigung vorliegen, und in der Anzeige müssen die Energiekennwerte genannt werden. Verstöße können mit Bußgeld geahndet werden. Worauf es bei Bedarfs- und Verbrauchsausweis ankommt, erklärt der Ratgeber zum Energieausweis beim Hausverkauf.",
   },
   {
+    question: "Wie hoch ist die Maklerprovision bei Deininger Objektwert?",
+    answer:
+      "Bei Wohnung oder Einfamilienhaus im Verkauf an Privatpersonen gilt gesetzlich der Halbteilungsgrundsatz (§ 656c BGB): Käufer und Verkäufer tragen die Provision je zur Hälfte. Marktüblich sind in Baden-Württemberg insgesamt 7,14 % des Kaufpreises inkl. MwSt., also je 3,57 %. Bei Mehrfamilienhäusern, Gewerbeimmobilien oder gewerblichen Käufern ist die Höhe frei verhandelbar. Die genaue Vereinbarung steht im Maklervertrag, bevor es zu einer Beauftragung kommt.",
+  },
+  {
     question: "Wer zahlt beim Immobilienverkauf die Notarkosten?",
     answer:
       "Üblicherweise der Käufer. Die Notar- und Grundbuchkosten sowie die Grunderwerbsteuer tragen im Normalfall die Käufer; der Verkäufer trägt eigene Kosten wie einen eventuellen Makleranteil, die Löschung einer Grundschuld oder eine Vorfälligkeitsentschädigung der Bank.",
@@ -68,8 +73,11 @@ export function VerkaufenWissenSection() {
             <p>
               Beim Verkauf fallen auf Verkäuferseite je nach Fall folgende Kosten an: der Energieausweis, eine
               Vorfälligkeitsentschädigung, falls die Bank das Darlehen vor Ablauf der Zinsbindung ablöst, die Löschung
-              der Grundschuld beim Notar und Grundbuchamt und – wenn ein Makler beteiligt ist – dessen Provision. Dazu
-              kommt gegebenenfalls die Steuer auf den Gewinn, siehe{" "}
+              der Grundschuld beim Notar und Grundbuchamt sowie die Maklerprovision. Als zugelassener Immobilienmakler
+              (§ 34c GewO) begleitet Deininger Objektwert den gesamten Verkaufsprozess; bei Verkauf einer Wohnung oder
+              eines Einfamilienhauses an Privatpersonen gilt gesetzlich der Halbteilungsgrundsatz (§ 656c BGB) – Käufer
+              und Verkäufer tragen die marktübliche Provision von insgesamt 7,14 % des Kaufpreises (inkl. MwSt.) je zur
+              Hälfte. Dazu kommt gegebenenfalls die Steuer auf den Gewinn, siehe{" "}
               <Link href="/ratgeber/spekulationssteuer-beim-immobilienverkauf-wann-sie-anfaellt-und-wie-sie-sie-legal-vermeiden" className={linkClass}>
                 Ratgeber zur Spekulationssteuer
               </Link>

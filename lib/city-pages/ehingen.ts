@@ -6,7 +6,7 @@ export const ehingen: CityPage = {
   factorKey: "ehingen (donau)",
   kreis: "Alb-Donau-Kreis",
   calculatorLocation: "Ehingen (Donau)",
-  seoTitle: "Immobilienbewertung Ehingen (Donau)",
+  seoTitle: "Immobilienmakler Ehingen (Donau)",
   metaDescription:
     "Was ist Ihre Immobilie in Ehingen (Donau) wert? Preise (Haus ca. 3.010 €/m², Wohnung ca. 3.100 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Ehingen (Donau)",

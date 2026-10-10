@@ -6,7 +6,7 @@ export const blaubeuren: CityPage = {
   factorKey: "blaubeuren",
   kreis: "Alb-Donau-Kreis",
   calculatorLocation: "Blaubeuren",
-  seoTitle: "Immobilienbewertung Blaubeuren – kostenlos",
+  seoTitle: "Immobilienmakler Blaubeuren – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Blaubeuren wert? Preise (Haus ca. 2.900–3.150 €/m², Wohnung ca. 3.000–3.550 €/m²), Stadtteile und kostenloser Rechner.",
   h1: "Immobilienbewertung in Blaubeuren",

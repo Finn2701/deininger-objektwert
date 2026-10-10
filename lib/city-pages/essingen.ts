@@ -6,7 +6,7 @@ export const essingen: CityPage = {
   factorKey: "essingen",
   kreis: "Ostalbkreis",
   calculatorLocation: "Essingen",
-  seoTitle: "Immobilienbewertung Essingen – kostenlos",
+  seoTitle: "Immobilienmakler Essingen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Essingen (Ostalbkreis) wert? Preise (Haus ca. 3.450 €/m², Wohnung ca. 3.090 €/m²), Ortsteile und kostenloser Rechner.",
   h1: "Immobilienbewertung in Essingen (Württemberg)",

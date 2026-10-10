@@ -6,7 +6,7 @@ export const abtsgmuend: CityPage = {
   factorKey: "abtsgmünd",
   kreis: "Ostalbkreis",
   calculatorLocation: "Abtsgmünd",
-  seoTitle: "Immobilienbewertung Abtsgmünd – kostenlos",
+  seoTitle: "Immobilienmakler Abtsgmünd – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Abtsgmünd wert? Aktuelle Preise (Haus ca. 2.500 €/m², Wohnung ca. 2.750 €/m²), Ortsteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Abtsgmünd",

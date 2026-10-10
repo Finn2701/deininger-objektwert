@@ -9,9 +9,9 @@ import { breadcrumbJsonLd, faqJsonLd } from "@/lib/structured-data";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Immobilie verkaufen: Ablauf & Unterlagen",
+  title: "Immobilie verkaufen mit Immobilienmakler Heidenheim: Ablauf & Unterlagen",
   description:
-    "Haus oder Wohnung in Heidenheim verkaufen: Ablauf, benötigte Unterlagen und diskrete Vermarktung ohne öffentliches Inserat.",
+    "Haus oder Wohnung in Heidenheim verkaufen: persönliche Begleitung durch einen zugelassenen Immobilienmakler (§ 34c GewO), Ablauf, benötigte Unterlagen und diskrete Vermarktung ohne öffentliches Inserat.",
   alternates: { canonical: "/immobilie-verkaufen" },
 };
 

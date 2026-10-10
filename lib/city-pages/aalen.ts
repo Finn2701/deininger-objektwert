@@ -6,7 +6,7 @@ export const aalen: CityPage = {
   factorKey: "aalen",
   kreis: "Ostalbkreis",
   calculatorLocation: "Aalen",
-  seoTitle: "Immobilienbewertung Aalen – kostenlos",
+  seoTitle: "Immobilienmakler Aalen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihr Haus oder Ihre Wohnung in Aalen wert? Aktuelle Preise (Wohnung ca. 3.580 €/m², Haus ca. 3.290 €/m²), Stadtbezirke und kostenloser Rechner.",
   h1: "Immobilienbewertung in Aalen",

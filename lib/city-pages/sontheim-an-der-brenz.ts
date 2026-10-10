@@ -6,7 +6,7 @@ export const sontheimAnDerBrenz: CityPage = {
   factorKey: "sontheim an der brenz",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Sontheim an der Brenz",
-  seoTitle: "Immobilienbewertung Sontheim (Brenz)",
+  seoTitle: "Immobilienmakler Sontheim (Brenz)",
   metaDescription:
     "Was ist Ihre Immobilie in Sontheim an der Brenz wert? Aktuelle Preise (Haus ca. 2.910 €/m², Wohnung ca. 2.620 €/m²), Ortsteile und kostenloser Rechner.",
   h1: "Immobilienbewertung in Sontheim an der Brenz",

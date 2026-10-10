@@ -6,7 +6,7 @@ export const herbrechtingen: CityPage = {
   factorKey: "herbrechtingen",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Herbrechtingen",
-  seoTitle: "Immobilienbewertung Herbrechtingen",
+  seoTitle: "Immobilienmakler Herbrechtingen",
   metaDescription:
     "Was ist Ihre Immobilie in Herbrechtingen wert? Preisniveau, Ortsteile (Bolheim, Bissingen, Anhausen) und kostenloser Online-Rechner für Haus und Wohnung.",
   h1: "Immobilienbewertung in Herbrechtingen",

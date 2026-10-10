@@ -6,7 +6,7 @@ export const lauchheim: CityPage = {
   factorKey: "lauchheim",
   kreis: "Ostalbkreis",
   calculatorLocation: "Lauchheim",
-  seoTitle: "Immobilienbewertung Lauchheim – kostenlos",
+  seoTitle: "Immobilienmakler Lauchheim – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Lauchheim wert? Aktuelle Preise (Haus ca. 2.820 €/m², Wohnung ca. 2.930 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Lauchheim",

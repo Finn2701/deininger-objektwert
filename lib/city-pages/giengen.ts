@@ -6,7 +6,7 @@ export const giengen: CityPage = {
   factorKey: "giengen an der brenz",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Giengen an der Brenz",
-  seoTitle: "Immobilienbewertung Giengen – kostenlos",
+  seoTitle: "Immobilienmakler Giengen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Giengen an der Brenz wert? Aktuelle Preise (Wohnung ca. 3.170 €/m², Haus ca. 2.500 €/m²), Ortsteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Giengen an der Brenz",

@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Deininger Objektwert",
-  tagline: "Immobilienmakler & kostenlose Online-Bewertung – Heidenheim und deutschlandweit",
+  tagline: "Immobilienmakler & kostenlose Online-Bewertung",
   description:
     "Deininger Objektwert ist zugelassener Immobilienmakler nach § 34c GewO (IHK Ostwürttemberg) mit Sitz in Heidenheim an der Brenz und bietet neben der persönlichen Verkaufsbegleitung eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts – deutschlandweit nutzbar.",
   // Kanonische Domain ist die www-Variante (Entscheidung 2026-09-26): jede kanonische URL, Sitemap-

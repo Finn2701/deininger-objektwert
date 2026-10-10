@@ -6,7 +6,7 @@ export const langenau: CityPage = {
   factorKey: "langenau",
   kreis: "Alb-Donau-Kreis",
   calculatorLocation: "Langenau",
-  seoTitle: "Immobilienbewertung Langenau – kostenlos",
+  seoTitle: "Immobilienmakler Langenau – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Langenau wert? Preise (Haus ca. 3.300–3.600 €/m², Wohnung ca. 3.500–3.900 €/m²), Stadtteile und kostenloser Rechner.",
   h1: "Immobilienbewertung in Langenau",

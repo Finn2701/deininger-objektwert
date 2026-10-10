@@ -6,7 +6,7 @@ export const laichingen: CityPage = {
   factorKey: "laichingen",
   kreis: "Alb-Donau-Kreis",
   calculatorLocation: "Laichingen",
-  seoTitle: "Immobilienbewertung Laichingen – kostenlos",
+  seoTitle: "Immobilienmakler Laichingen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Laichingen wert? Preise (Haus ca. 2.570–2.890 €/m², Wohnung ca. 2.890–3.190 €/m²), Stadtteile und kostenloser Rechner.",
   h1: "Immobilienbewertung in Laichingen",

@@ -6,7 +6,7 @@ export const schwaebischGmuend: CityPage = {
   factorKey: "schwäbisch gmünd",
   kreis: "Ostalbkreis",
   calculatorLocation: "Schwäbisch Gmünd",
-  seoTitle: "Immobilienbewertung Schwäbisch Gmünd",
+  seoTitle: "Immobilienmakler Schwäbisch Gmünd",
   metaDescription:
     "Was ist Ihre Immobilie in Schwäbisch Gmünd wert? Aktuelle Preise (Wohnung ca. 3.250 €/m², Haus ca. 3.330 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Schwäbisch Gmünd",

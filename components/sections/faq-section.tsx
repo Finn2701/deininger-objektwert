@@ -45,7 +45,12 @@ export const defaultFaqs: FaqItem[] = [
   {
     question: "Ist Deininger Objektwert ein Immobilienmakler?",
     answer:
-      "Aktuell bietet Deininger Objektwert ausschließlich die kostenlose Online-Ersteinschätzung an. Eine Zulassung als Immobilienmakler nach § 34c GewO wird derzeit beantragt.",
+      "Ja. Finn Deininger ist seit September 2026 als Immobilienmakler nach § 34c Abs. 1 Satz 1 GewO zugelassen (Erlaubnis erteilt durch die IHK Ostwürttemberg, Details im Impressum). Neben der persönlichen Verkaufsbegleitung bietet Deininger Objektwert weiterhin die kostenlose Online-Ersteinschätzung an.",
+  },
+  {
+    question: "Was kostet die Maklerleistung beim Verkauf?",
+    answer:
+      "Beim Verkauf einer Eigentumswohnung oder eines Einfamilienhauses an Privatpersonen gilt gesetzlich der Halbteilungsgrundsatz (§ 656c BGB): Käufer und Verkäufer tragen die Provision je zur Hälfte, marktüblich sind in Baden-Württemberg insgesamt 7,14 % des Kaufpreises inkl. MwSt., also je 3,57 %. Bei Mehrfamilienhäusern, Gewerbeimmobilien oder gewerblichen Käufern ist die Gestaltung frei verhandelbar. Die konkrete Höhe wird im Maklervertrag vor Beauftragung festgehalten.",
   },
   {
     question: "In welchen Regionen ist Deininger Objektwert tätig?",

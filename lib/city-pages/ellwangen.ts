@@ -6,7 +6,7 @@ export const ellwangen: CityPage = {
   factorKey: "ellwangen (jagst)",
   kreis: "Ostalbkreis",
   calculatorLocation: "Ellwangen (Jagst)",
-  seoTitle: "Immobilienbewertung Ellwangen – kostenlos",
+  seoTitle: "Immobilienmakler Ellwangen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Ellwangen (Jagst) wert? Aktuelle Preise (Wohnung ca. 2.850 €/m², Haus ca. 2.930 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Ellwangen (Jagst)",

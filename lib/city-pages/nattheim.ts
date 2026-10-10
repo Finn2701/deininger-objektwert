@@ -6,7 +6,7 @@ export const nattheim: CityPage = {
   factorKey: "nattheim",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Nattheim",
-  seoTitle: "Immobilienbewertung Nattheim – kostenlos",
+  seoTitle: "Immobilienmakler Nattheim – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Nattheim wert? Aktuelle Preise (Haus ca. 2.580 €/m², Wohnung ca. 2.610 €/m²), Ortsteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Nattheim",

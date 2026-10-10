@@ -6,7 +6,7 @@ export const hermaringen: CityPage = {
   factorKey: "hermaringen",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Hermaringen",
-  seoTitle: "Immobilienbewertung Hermaringen – kostenlos",
+  seoTitle: "Immobilienmakler Hermaringen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Hermaringen wert? Preise (Haus ca. 2.450 €/m², Wohnung ca. 2.750 €/m²), Ortsteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Hermaringen",

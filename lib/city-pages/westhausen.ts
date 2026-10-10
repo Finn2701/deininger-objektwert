@@ -6,7 +6,7 @@ export const westhausen: CityPage = {
   factorKey: "westhausen",
   kreis: "Ostalbkreis",
   calculatorLocation: "Westhausen",
-  seoTitle: "Immobilienbewertung Westhausen – kostenlos",
+  seoTitle: "Immobilienmakler Westhausen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Westhausen wert? Aktuelle Preise (Haus ca. 3.280 €/m², Wohnung ca. 2.860 €/m²), Ortsteile und kostenloser Rechner.",
   h1: "Immobilienbewertung in Westhausen (Ostalbkreis)",

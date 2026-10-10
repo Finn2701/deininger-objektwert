@@ -6,7 +6,7 @@ export const neresheim: CityPage = {
   factorKey: "neresheim",
   kreis: "Ostalbkreis",
   calculatorLocation: "Neresheim",
-  seoTitle: "Immobilienbewertung Neresheim – kostenlos",
+  seoTitle: "Immobilienmakler Neresheim – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Neresheim wert? Preise (Haus ca. 2.830 €/m², Wohnung ca. 2.450 €/m²), Stadtteile auf dem Härtsfeld und kostenloser Rechner.",
   h1: "Immobilienbewertung in Neresheim",

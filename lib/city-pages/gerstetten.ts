@@ -6,7 +6,7 @@ export const gerstetten: CityPage = {
   factorKey: "gerstetten",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Gerstetten",
-  seoTitle: "Immobilienbewertung Gerstetten – kostenlos",
+  seoTitle: "Immobilienmakler Gerstetten – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Gerstetten wert? Aktuelle Preise (Haus ca. 2.620 €/m², Wohnung ca. 2.480 €/m²), Ortsteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Gerstetten",

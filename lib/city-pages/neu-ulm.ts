@@ -7,7 +7,7 @@ export const neuUlm: CityPage = {
   kreis: "Landkreis Neu-Ulm",
   stateCode: "BY",
   calculatorLocation: "Neu-Ulm",
-  seoTitle: "Immobilienbewertung Neu-Ulm – kostenlos",
+  seoTitle: "Immobilienmakler Neu-Ulm – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Neu-Ulm wert? Aktuelle Preise (Haus ca. 4.420 €/m², Wohnung ca. 3.950 €/m²), Bayern-Besonderheiten und kostenloser Rechner.",
   h1: "Immobilienbewertung in Neu-Ulm",

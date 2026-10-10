@@ -6,7 +6,7 @@ export const bopfingen: CityPage = {
   factorKey: "bopfingen",
   kreis: "Ostalbkreis",
   calculatorLocation: "Bopfingen",
-  seoTitle: "Immobilienbewertung Bopfingen – kostenlos",
+  seoTitle: "Immobilienmakler Bopfingen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Bopfingen wert? Aktuelle Preise (Haus ca. 2.720 €/m², Wohnung ca. 2.520 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Bopfingen",

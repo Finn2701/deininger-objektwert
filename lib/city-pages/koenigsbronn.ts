@@ -6,7 +6,7 @@ export const koenigsbronn: CityPage = {
   factorKey: "königsbronn",
   kreis: "Landkreis Heidenheim",
   calculatorLocation: "Königsbronn",
-  seoTitle: "Immobilienbewertung Königsbronn – kostenlos",
+  seoTitle: "Immobilienmakler Königsbronn – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Königsbronn wert? Aktuelle Preise (Haus ca. 2.500 €/m², Wohnung ca. 2.730 €/m²), Ortsteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Königsbronn",

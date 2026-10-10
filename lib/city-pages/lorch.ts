@@ -6,7 +6,7 @@ export const lorch: CityPage = {
   factorKey: "lorch",
   kreis: "Ostalbkreis",
   calculatorLocation: "Lorch",
-  seoTitle: "Immobilienbewertung Lorch (Württemberg)",
+  seoTitle: "Immobilienmakler Lorch (Württemberg)",
   metaDescription:
     "Was ist Ihre Immobilie in Lorch wert? Preise (Haus ca. 2.660 €/m², Wohnung ca. 3.070 €/m²), Stadtteile, Limes und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Lorch (Württemberg)",

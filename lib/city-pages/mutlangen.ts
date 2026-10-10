@@ -6,7 +6,7 @@ export const mutlangen: CityPage = {
   factorKey: "mutlangen",
   kreis: "Ostalbkreis",
   calculatorLocation: "Mutlangen",
-  seoTitle: "Immobilienbewertung Mutlangen – kostenlos",
+  seoTitle: "Immobilienmakler Mutlangen – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Mutlangen wert? Preise (Haus ca. 3.140 €/m², Wohnung ca. 2.990 €/m²), Ortsteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Mutlangen",

@@ -6,7 +6,7 @@ export const heubach: CityPage = {
   factorKey: "heubach",
   kreis: "Ostalbkreis",
   calculatorLocation: "Heubach",
-  seoTitle: "Immobilienbewertung Heubach – kostenlos",
+  seoTitle: "Immobilienmakler Heubach – Bewertung kostenlos",
   metaDescription:
     "Was ist Ihre Immobilie in Heubach wert? Aktuelle Preise (Haus ca. 2.920 €/m², Wohnung ca. 2.830 €/m²), Stadtteile und kostenloser Online-Rechner.",
   h1: "Immobilienbewertung in Heubach",

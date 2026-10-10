@@ -6,7 +6,7 @@ export const geislingen: CityPage = {
   factorKey: "geislingen an der steige",
   kreis: "Landkreis Göppingen",
   calculatorLocation: "Geislingen an der Steige",
-  seoTitle: "Immobilienbewertung Geislingen (Steige)",
+  seoTitle: "Immobilienmakler Geislingen (Steige)",
   metaDescription:
     "Was ist Ihre Immobilie in Geislingen an der Steige wert? Preise (Haus ca. 2.910 €/m², Wohnung ca. 2.500 €/m²), Stadtbezirke und kostenloser Rechner.",
   h1: "Immobilienbewertung in Geislingen an der Steige",
