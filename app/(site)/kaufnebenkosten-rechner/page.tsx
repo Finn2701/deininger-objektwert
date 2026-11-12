@@ -116,10 +116,10 @@ export default function KaufnebenkostenPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Rechner</p>
-            <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+            <h1 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Kaufnebenkosten-Rechner für Haus und Wohnung
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Rechner</p>
             <p className="mt-5 max-w-2xl text-lg text-ink-soft/90">
               Grunderwerbsteuer, Notar, Grundbuch und Makler: Was beim Immobilienkauf zusätzlich zum Kaufpreis
               fällig wird – für alle 16 Bundesländer, Stand {KAUFNEBENKOSTEN_STAND}.
@@ -220,7 +220,7 @@ export default function KaufnebenkostenPage() {
               </div>
             </section>
 
-            <section className="mt-16 rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+            <section className="mt-16 border border-line bg-paper-dim p-6 md:p-8">
               <h2 className="font-display text-xl font-medium text-ink">Sie verkaufen statt zu kaufen?</h2>
               <p className="mt-3 text-sm text-ink-soft/90">
                 Als Verkäufer sind die Kaufnebenkosten des Käufers ein Verhandlungsargument: Je höher sie ausfallen,
@@ -230,13 +230,13 @@ export default function KaufnebenkostenPage() {
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
                 <Link
                   href="/immobilienbewertung"
-                  className="inline-flex rounded-full bg-ink px-5 py-2.5 text-paper hover:bg-ink-soft"
+                  className="inline-flex bg-accent text-white px-5 py-2.5 hover:bg-ink"
                 >
                   Immobilie kostenlos bewerten
                 </Link>
                 <Link
                   href="/ratgeber"
-                  className="inline-flex rounded-full border border-line px-5 py-2.5 text-ink hover:border-ink"
+                  className="inline-flex border border-line px-5 py-2.5 text-ink hover:border-ink"
                 >
                   Zum Ratgeber
                 </Link>

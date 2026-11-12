@@ -86,7 +86,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             <div className="prose-article mt-10 max-w-none" dangerouslySetInnerHTML={{ __html: article.content_html }} />
 
-            <div className="mt-14 rounded-2xl border border-line p-6">
+            <div className="mt-14 border border-line p-6">
               <p className="font-display text-lg font-medium text-ink">
                 Wie viel ist Ihre Immobilie wert?
               </p>
@@ -95,13 +95,13 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </p>
               <Link
                 href="/immobilienbewertung"
-                className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm text-paper hover:bg-ink-soft"
+                className="mt-4 inline-flex bg-accent text-white px-5 py-2.5 text-sm hover:bg-ink"
               >
                 Jetzt kostenlos bewerten lassen
               </Link>
             </div>
 
-            <div className="mt-14 grid gap-8 rounded-2xl border border-line p-6 md:grid-cols-2">
+            <div className="mt-14 grid gap-8 border border-line p-6 md:grid-cols-2">
               <div>
                 <p className="font-display text-lg font-medium text-ink">Passende Rechner</p>
                 <ul className="mt-4 space-y-3">

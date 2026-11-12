@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --color-paper: #f7f4ee;
-  --color-paper-dim: #efe9de;
-  --color-stone: #ddd3bf;
-  --color-stone-dark: #b3a68d;
-  --color-ink: #17140f;
-  --color-ink-soft: #423b31;
-  --color-line: rgba(23, 20, 15, 0.12);
-  --color-accent: #a9714b;
-  /* Textvariante des Akzents: #a9714b hat auf dem Papierton nur 3,7:1 Kontrast, für kleine Schrift braucht es 4,5:1 */
-  --color-accent-text: #8a5a3c;
+  /* Ulmer Schule: kühles Neutralweiß, Blauschwarz, ein Signalton. Klassennamen bleiben, damit alle Seiten mitziehen. */
+  --color-paper: #f2f4f5;
+  --color-paper-dim: #e5e9ec;
+  --color-stone: #d1d7db;
+  --color-stone-dark: #8a959b;
+  --color-ink: #0f1519;
+  --color-ink-soft: #364046;
+  --color-line: rgba(15, 21, 25, 0.16);
+  --color-accent: #1f3fd6;
+  /* Kobalt auf Neutralweiß: ca. 7:1, reicht für Fließtext-Links */
+  --color-accent-text: #1a35b8;
 }
 
 @theme inline {
@@ -24,7 +25,7 @@
   --color-accent: var(--color-accent);
   --color-accent-text: var(--color-accent-text);
   --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
+  --font-display: var(--font-sans);
 }
 
 html {
@@ -34,30 +35,127 @@ html {
 body {
   background: var(--color-paper);
   color: var(--color-ink);
+  font-feature-settings: "ss01", "tnum" 0;
+  text-rendering: optimizeLegibility;
+}
+
+/* Überschriften: breitere Laufweite der Grotesk, enge Zeichenabstände */
+.font-display {
+  font-variation-settings: "wdth" 108;
+  letter-spacing: -0.028em;
+}
+
+/* Ziffern in Tabellen, Preisen und Rechnern stehen auf einer Linie */
+table,
+output,
+input[type="number"],
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
 ::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+a {
+  text-underline-offset: 0.22em;
+  text-decoration-thickness: 1px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 0;
+}
+
+/* Scrollleiste im Ton der Seite */
+html {
+  scrollbar-color: var(--color-stone-dark) var(--color-paper);
+  scrollbar-width: thin;
+}
+
+@layer components {
+/* Hauptbutton und Zweitbutton: rechteckig, ohne Schatten */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--color-accent);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  transition: background-color 0.2s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-primary:hover {
+  background: var(--color-ink);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid var(--color-ink);
+  color: var(--color-ink);
+  padding: 0.875rem 1.375rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+.btn-ghost:hover {
   background: var(--color-ink);
   color: var(--color-paper);
 }
+}
 
-@keyframes drift-pan {
-  0%,
-  100% {
-    transform: scale(1.02) translateX(-0.8%);
+@keyframes scroll-hint {
+  0% {
+    opacity: 0;
+    transform: translateY(-0.2rem);
   }
-  50% {
-    transform: scale(1.02) translateX(0.8%);
+  25% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+    transform: translateY(0.9rem);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(0.9rem);
   }
 }
 
-.drift-pan {
-  animation: drift-pan 40s ease-in-out infinite;
+.scroll-hint {
+  animation: scroll-hint 2.2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.rule-draw {
+  transform-origin: left;
+  animation: rule-draw 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .drift-pan {
+  .rule-draw,
+  .scroll-hint {
     animation: none;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -73,14 +171,16 @@ body {
   margin-top: 1.25em;
 }
 .prose-article h2 {
-  font-family: var(--font-display);
+  font-variation-settings: "wdth" 108;
+  letter-spacing: -0.02em;
   color: var(--color-ink);
   font-size: 1.375rem;
   font-weight: 500;
   margin-top: 1.75em;
 }
 .prose-article h3 {
-  font-family: var(--font-display);
+  font-variation-settings: "wdth" 108;
+  letter-spacing: -0.015em;
   color: var(--color-ink);
   font-size: 1.125rem;
   font-weight: 500;

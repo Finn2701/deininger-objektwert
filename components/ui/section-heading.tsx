@@ -1,36 +1,37 @@
 import type { ReactNode } from "react";
+import { DrawRule } from "./draw-rule";
 import { Reveal } from "./reveal";
 
+/**
+ * Raster der Ulmer Schule: die Beschriftung steht in der linken Randspalte unter einer Linie,
+ * Überschrift und Einleitung laufen daneben. Das `align`-Prop bleibt für bestehende Aufrufer erhalten.
+ */
 export function SectionHeading({
   eyebrow,
   title,
   lede,
-  align = "left",
+  size = "md",
 }: {
   eyebrow: string;
   title: ReactNode;
   lede?: ReactNode;
   align?: "left" | "center";
+  size?: "md" | "xl";
 }) {
   return (
-    <Reveal className={align === "center" ? "text-center" : ""}>
-      <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">{eyebrow}</p>
-      <h2
-        className={`mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl ${
-          align === "center" ? "mx-auto max-w-2xl" : "max-w-xl"
-        }`}
-      >
-        {title}
-      </h2>
-      {lede ? (
-        <p
-          className={`mt-5 text-balance text-ink-soft/90 md:text-lg ${
-            align === "center" ? "mx-auto max-w-xl" : "max-w-lg"
-          }`}
-        >
-          {lede}
-        </p>
-      ) : null}
+    <Reveal className="grid gap-6 md:grid-cols-12 md:gap-8">
+      <div className="order-last self-start md:order-none md:col-span-3">
+        <DrawRule />
+        <p className="pt-3 text-sm font-medium text-ink">{eyebrow}</p>
+      </div>
+      <div className="md:col-span-9">
+        <h2 className={`font-display text-3xl leading-[1.05] font-semibold text-balance text-ink ${
+            size === "xl" ? "max-w-5xl md:text-7xl lg:text-8xl" : "max-w-3xl md:text-5xl"
+          }`}>
+          {title}
+        </h2>
+        {lede ? <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">{lede}</p> : null}
+      </div>
     </Reveal>
   );
 }

@@ -24,7 +24,7 @@ export function ContactSection() {
 
           <Link
             href="/immobilienbewertung"
-            className="mt-8 inline-flex rounded-full border border-ink px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-paper"
+            className="mt-8 inline-flex border border-ink px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-paper"
           >
             Zum Bewertungsformular
           </Link>

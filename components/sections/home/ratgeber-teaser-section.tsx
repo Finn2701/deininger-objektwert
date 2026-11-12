@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { getPublishedArticles } from "@/lib/articles";
 
 export async function RatgeberTeaserSection() {
@@ -7,34 +8,36 @@ export async function RatgeberTeaserSection() {
   if (articles.length === 0) return null;
 
   return (
-    <section className="border-t border-line py-20 md:py-28">
+    <section className="border-t border-ink py-20 md:py-32">
       <Container>
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Ratgeber</p>
-            <h2 className="mt-3 font-display text-2xl font-medium text-ink md:text-3xl">
-              Wissenswertes rund um Immobilienbewertung
-            </h2>
-          </div>
-          <Link
-            href="/ratgeber"
-            className="text-sm text-ink-soft underline decoration-ink-soft/30 underline-offset-4 hover:text-ink"
-          >
-            Alle Artikel
-          </Link>
-        </div>
+        <SectionHeading eyebrow="Ratgeber" title="Wissenswertes rund um Immobilienbewertung" />
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+        <div className="mt-14 md:mt-20">
           {articles.map((article) => (
             <Link
               key={article.id}
               href={`/ratgeber/${article.slug}`}
-              className="block rounded-2xl border border-line p-5 transition-colors hover:border-ink"
+              className="group grid gap-3 border-t border-ink py-7 transition-colors hover:bg-paper-dim md:grid-cols-12 md:gap-8 md:py-9"
             >
-              <p className="font-display text-base font-medium text-ink">{article.title}</p>
-              <p className="mt-2 text-sm text-ink-soft/90">{article.excerpt}</p>
+              <p className="font-display text-xl leading-snug font-semibold text-ink md:col-span-5 md:text-2xl">
+                {article.title}
+              </p>
+              <p className="max-w-xl text-base leading-relaxed text-ink-soft md:col-span-6">{article.excerpt}</p>
+              <span
+                className="text-ink transition-transform group-hover:translate-x-1 md:col-span-1 md:justify-self-end"
+                aria-hidden
+              >
+                <svg width="22" height="14" viewBox="0 0 18 12" fill="none">
+                  <path d="M0 6h16M11 1l5 5-5 5" stroke="currentColor" strokeWidth="1.5" />
+                </svg>
+              </span>
             </Link>
           ))}
+          <div className="flex justify-end border-t border-ink pt-6">
+            <Link href="/ratgeber" className="text-sm font-semibold text-ink underline decoration-ink/40 hover:decoration-ink">
+              Alle Artikel
+            </Link>
+          </div>
         </div>
       </Container>
     </section>

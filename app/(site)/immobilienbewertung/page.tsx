@@ -54,12 +54,12 @@ export default async function ImmobilienbewertungPage() {
         <section className="py-20 md:py-28">
           <Container className="grid gap-16 md:grid-cols-2 md:gap-12">
             <div>
-              <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
-                Immobilienbewertung
-              </p>
-              <h1 className="mt-4 max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+              <h1 className="max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
                 {t["bewertung.hero.title"]}
               </h1>
+              <p className="mt-4 text-sm font-medium text-ink-soft">
+                Immobilienbewertung
+              </p>
               <p className="mt-5 max-w-lg text-balance text-ink-soft/90 md:text-lg">
                 {t["bewertung.hero.lede"].replace("{region}", siteConfig.region)}
               </p>
@@ -97,10 +97,10 @@ export default async function ImmobilienbewertungPage() {
 
         <section className="border-t border-line py-16 md:py-20">
           <Container>
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Region Ostwürttemberg</p>
-            <h2 className="mt-3 max-w-2xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
+            <h2 className="max-w-2xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
               Immobilienbewertung in Ihrer Stadt
             </h2>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Region Ostwürttemberg</p>
             <p className="mt-4 max-w-2xl text-ink-soft/90">
               Für diese Orte finden Sie aktuelle Preisniveaus, Stadtteile und Besonderheiten beim Verkauf – mit dem
               Rechner direkt auf der Seite.
@@ -110,7 +110,7 @@ export default async function ImmobilienbewertungPage() {
                 <li key={city.slug}>
                   <Link
                     href={cityPagePath(city)}
-                    className="inline-block rounded-full border border-line px-4 py-2 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
+                    className="inline-block border border-line px-4 py-2 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
                   >
                     {city.name}
                   </Link>

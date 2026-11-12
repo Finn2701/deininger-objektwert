@@ -40,7 +40,7 @@ export function DocumentSubmitForm() {
 
   if (status === "done") {
     return (
-      <div className="rounded-2xl border border-line bg-paper-dim p-8 md:p-10">
+      <div className="border border-line bg-paper-dim p-8 md:p-10">
         <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Danke</p>
         <p className="mt-4 font-display text-2xl font-medium text-ink">
           Ihre Unterlagen sind bei uns eingegangen.
@@ -49,7 +49,7 @@ export function DocumentSubmitForm() {
           Wir melden uns persönlich bei Ihnen, sobald wir alles gesichtet haben.
         </p>
         {skippedFiles.length > 0 ? (
-          <p className="mt-4 rounded-lg border border-accent/30 bg-accent/10 p-3 text-sm text-ink-soft">
+          <p className="mt-4 border border-accent/30 bg-accent/10 p-3 text-sm text-ink-soft">
             Diese Dateien konnten nicht übernommen werden (zu groß oder falsches Format, max.{" "}
             {MAX_FILE_MB} MB, PDF/JPG/PNG/HEIC): {skippedFiles.join(", ")}. Schicken Sie diese
             gerne zusätzlich per E-Mail.
@@ -63,7 +63,7 @@ export function DocumentSubmitForm() {
     <form
       ref={formRef}
       onSubmit={handleSubmit}
-      className="rounded-2xl border border-line bg-paper-dim p-8 md:p-10"
+      className="border border-line bg-paper-dim p-8 md:p-10"
     >
       <div className="space-y-5">
         <div className="grid gap-5 sm:grid-cols-2">
@@ -72,14 +72,14 @@ export function DocumentSubmitForm() {
             <input
               name="name"
               required
-              className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
+              className="mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
             />
           </label>
           <label className="block">
             <span className="text-sm text-ink-soft">Objektart</span>
             <select
               name="propertyType"
-              className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
+              className="mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
             >
               <option value="">Bitte wählen</option>
               <option value="haus">Haus</option>
@@ -93,7 +93,7 @@ export function DocumentSubmitForm() {
             <input
               name="email"
               type="email"
-              className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
+              className="mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
             />
           </label>
           <label className="block">
@@ -101,7 +101,7 @@ export function DocumentSubmitForm() {
             <input
               name="phone"
               type="tel"
-              className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
+              className="mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
             />
           </label>
         </div>
@@ -112,7 +112,7 @@ export function DocumentSubmitForm() {
           <input
             name="location"
             placeholder="z. B. 89522 Heidenheim, Musterstraße 5"
-            className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
+            className="mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
           />
         </label>
 
@@ -122,7 +122,7 @@ export function DocumentSubmitForm() {
             name="message"
             rows={4}
             placeholder="Was möchten Sie uns zu Ihrer Immobilie mitteilen?"
-            className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
+            className="mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-ink"
           />
         </label>
 
@@ -136,7 +136,7 @@ export function DocumentSubmitForm() {
             multiple
             accept="application/pdf,image/jpeg,image/png,image/webp,image/heic"
             onChange={(event) => setFileNames(Array.from(event.target.files ?? []).map((f) => f.name))}
-            className="mt-2 w-full rounded-xl border border-dashed border-line bg-paper px-4 py-3 text-sm text-ink-soft outline-none focus:border-ink"
+            className="mt-2 w-full border border-dashed border-line bg-paper px-4 py-3 text-sm text-ink-soft outline-none focus:border-ink"
           />
           <span className="mt-1.5 block text-xs text-ink-soft/80">
             PDF, JPG, PNG oder HEIC, bis zu {MAX_FILE_MB} MB pro Datei, mehrere Dateien möglich.
@@ -147,7 +147,7 @@ export function DocumentSubmitForm() {
         </label>
 
         {errorMessage ? (
-          <p className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>
+          <p className="border border-red-200 bg-red-50 p-3 text-sm text-red-700">{errorMessage}</p>
         ) : null}
 
         {captchaRequired && <TurnstileWidget onToken={setTurnstileToken} />}
@@ -155,7 +155,7 @@ export function DocumentSubmitForm() {
         <button
           type="submit"
           disabled={status === "submitting" || (captchaRequired && !turnstileToken)}
-          className="rounded-full bg-ink px-6 py-2.5 text-sm text-paper transition-opacity hover:bg-ink-soft disabled:opacity-50"
+          className="bg-accent text-white px-6 py-2.5 text-sm transition-opacity hover:bg-ink disabled:opacity-50"
         >
           {status === "submitting" ? "Wird gesendet …" : "Unterlagen einreichen"}
         </button>

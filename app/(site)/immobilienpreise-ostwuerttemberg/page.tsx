@@ -122,16 +122,16 @@ export default function PriceAtlasPage() {
             <Link href="/immobilienbewertung" className="text-sm text-ink-soft/80 hover:text-ink">
               ← Zum Rechner
             </Link>
-            <p className="mt-6 text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Marktdaten</p>
-            <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+            <h1 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Immobilienpreise in Ostwürttemberg: {count} Orte im Vergleich
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Marktdaten</p>
             <p className="mt-5 max-w-2xl text-lg text-ink-soft/90">
               Was Häuser und Eigentumswohnungen in Heidenheim, auf der Ostalb und rund um Ulm pro Quadratmeter kosten –
               Datenstand {dateDe(priceAtlasUpdated)}.
             </p>
 
-            <div className="mt-8 grid gap-3 rounded-2xl border border-line bg-paper-dim p-6 text-sm sm:grid-cols-3">
+            <div className="mt-8 grid gap-3 border border-line bg-paper-dim p-6 text-sm sm:grid-cols-3">
               <div>
                 <p className="text-xs text-ink-soft/80">Mittelwert (Median) Haus</p>
                 <p className="mt-1 font-display text-2xl font-medium text-ink">{euro(medianHaus)} €/m²</p>
@@ -182,8 +182,8 @@ export default function PriceAtlasPage() {
                     <Link href={row.path} className="text-ink leading-snug underline decoration-line underline-offset-4 hover:decoration-ink">
                       {row.name}
                     </Link>
-                    <div className="h-3 rounded-full bg-paper-dim" aria-hidden="true">
-                      <div className="h-3 rounded-full bg-accent" style={{ width: `${Math.round((row.haus / maxHaus) * 100)}%` }} />
+                    <div className="h-3 bg-paper-dim" aria-hidden="true">
+                      <div className="h-3 bg-accent" style={{ width: `${Math.round((row.haus / maxHaus) * 100)}%` }} />
                     </div>
                     <span className="text-right text-ink">{euro(row.haus)} €</span>
                   </li>
@@ -210,7 +210,7 @@ export default function PriceAtlasPage() {
                 <a
                   href={PRICE_ATLAS_CSV_PATH}
                   download
-                  className="inline-flex rounded-full bg-ink px-5 py-2.5 text-sm text-paper hover:bg-ink-soft"
+                  className="inline-flex bg-accent text-white px-5 py-2.5 text-sm hover:bg-ink"
                 >
                   Tabelle als CSV herunterladen
                 </a>
@@ -256,15 +256,15 @@ export default function PriceAtlasPage() {
               </div>
             </section>
 
-            <section className="mt-16 rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+            <section className="mt-16 border border-line bg-paper-dim p-6 md:p-8">
               <h2 className="font-display text-xl font-medium text-ink">Daten zitieren oder verlinken</h2>
               <p className="mt-3 text-sm text-ink-soft/90">
                 Sie dürfen die Zahlen gern mit Quellenangabe verwenden – für Artikel, Studienarbeiten, Verzeichnisse
                 oder Ihre eigene Website. Vorschlag für die Quellenangabe:
               </p>
-              <p className="mt-4 rounded-lg border border-line bg-paper p-4 font-mono text-sm break-words text-ink">{citation}</p>
+              <p className="mt-4 border border-line bg-paper p-4 font-mono text-sm break-words text-ink">{citation}</p>
               <p className="mt-4 text-sm text-ink-soft/90">Oder als Link für Ihre Website:</p>
-              <p className="mt-2 rounded-lg border border-line bg-paper p-4 font-mono text-xs break-all text-ink">{htmlSnippet}</p>
+              <p className="mt-2 border border-line bg-paper p-4 font-mono text-xs break-all text-ink">{htmlSnippet}</p>
             </section>
           </Container>
         </article>

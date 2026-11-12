@@ -6,7 +6,7 @@ import { parseDecimal } from "@/lib/parse-decimal";
 import { computeSpeculation, usageOptions, type UsageKind } from "@/lib/spekulationssteuer";
 
 const fieldClass =
-  "mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink";
+  "mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink";
 
 function Field({
   label,
@@ -97,7 +97,7 @@ export function SpekulationssteuerCalculator() {
   };
 
   return (
-    <div className="rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+    <div className="border border-line bg-paper-dim p-6 md:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Kaufdatum der Immobilie" hint="Datum des notariellen Kaufvertrags. Bei Erbe: Kaufdatum des Erblassers.">
           <input type="date" value={purchaseDate} onChange={(event) => setPurchaseDate(event.target.value)} className={fieldClass} />
@@ -140,7 +140,7 @@ export function SpekulationssteuerCalculator() {
         </Field>
       </div>
 
-      <div className="mt-8 rounded-xl border border-line bg-paper p-5" aria-live="polite">
+      <div className="mt-8 border border-line bg-paper p-5" aria-live="polite">
         <p className={`font-display text-xl font-medium ${headline[result.status].tone}`}>{headline[result.status].title}</p>
 
         {result.status === "ungueltig" ? (

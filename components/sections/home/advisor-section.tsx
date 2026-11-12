@@ -10,36 +10,37 @@ export function AdvisorSection() {
     .join("");
 
   return (
-    <section className="border-t border-line py-24 md:py-32">
-      <Container className="grid gap-12 md:grid-cols-[auto_1fr] md:items-start md:gap-16">
-        <Reveal>
-          <div className="flex h-20 w-20 items-center justify-center rounded-full border border-line font-display text-xl text-ink md:h-24 md:w-24 md:text-2xl">
+    <section className="border-t border-ink bg-paper-dim py-20 md:py-32">
+      <Container className="grid gap-10 md:grid-cols-12 md:gap-8">
+        <Reveal className="md:col-span-3 md:row-span-2">
+          <div className="flex h-24 w-24 items-center justify-center bg-ink font-display text-3xl font-bold text-paper md:h-32 md:w-32 md:text-4xl">
             {initials}
           </div>
         </Reveal>
 
-        <Reveal delay={0.08}>
-          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
-            Ihr Ansprechpartner
-          </p>
-          <h2 className="mt-4 max-w-xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
+        <Reveal delay={0.08} className="md:col-span-9">
+          <h2 className="font-display text-4xl leading-[1.05] font-semibold text-ink md:text-6xl">
             {siteConfig.operator.name}
           </h2>
-          <p className="mt-4 max-w-xl text-balance text-ink-soft/90 md:text-lg">
+          <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
             Ich bewerte und begleite Immobilien in {siteConfig.region} und Umgebung persönlich —
             von der ersten Einschätzung bis zum Gespräch über einen möglichen Verkauf. Keine
             anonyme Formel, kein Callcenter: Sie sprechen direkt mit mir, und ich erkläre Ihnen
             nachvollziehbar, wie sich der Wert Ihrer Immobilie zusammensetzt.
           </p>
-          <div className="mt-6 flex flex-wrap items-center gap-6 text-sm">
-            <Link href="/ueber-uns" className="text-ink underline decoration-line underline-offset-4 hover:text-ink-soft">
+          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-base">
+            <Link href="/ueber-uns" className="btn-ghost">
               Mehr über meinen Ansatz
             </Link>
-            <a href={`mailto:${siteConfig.email}`} className="text-ink-soft hover:text-ink">
+            <a href={`mailto:${siteConfig.email}`} className="font-medium text-ink underline decoration-ink/40 hover:decoration-ink">
               {siteConfig.email}
             </a>
           </div>
         </Reveal>
+
+        <p className="order-last border-t border-ink pt-3 text-sm font-medium text-ink md:order-none md:col-span-9 md:col-start-4 md:max-w-[12rem]">
+          Ihr Ansprechpartner
+        </p>
       </Container>
     </section>
   );

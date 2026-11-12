@@ -29,12 +29,12 @@ export default function UnterlagenEinreichenPage() {
         <section className="py-20 md:py-28">
           <Container className="grid gap-16 md:grid-cols-2 md:gap-12">
             <div>
-              <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
-                Für alle mit vollständigen Unterlagen
-              </p>
-              <h1 className="mt-4 max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+              <h1 className="max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
                 Sie haben die Unterlagen schon — reichen Sie sie direkt ein.
               </h1>
+              <p className="mt-4 text-sm font-medium text-ink-soft">
+                Für alle mit vollständigen Unterlagen
+              </p>
               <p className="mt-5 max-w-lg text-balance text-ink-soft/90 md:text-lg">
                 Grundriss, Energieausweis, Grundbuchauszug oder aktuelle Fotos vorhanden? Dann
                 überspringen Sie den Online-Schnellrechner: Laden Sie Ihre Unterlagen direkt hoch

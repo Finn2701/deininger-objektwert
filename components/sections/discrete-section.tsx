@@ -6,7 +6,7 @@ export function DiscreteSection() {
   return (
     <section id="diskrete-vermittlung" className="scroll-mt-24 border-t border-line py-24 md:py-32">
       <Container className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
-        <Reveal className="order-2 aspect-[4/5] overflow-hidden rounded-2xl md:order-1">
+        <Reveal className="order-2 aspect-[4/5] overflow-hidden md:order-1">
           <Image
             src="/images/story/technik-waermepumpe.png"
             alt="Gepflegtes Einfamilienhaus, Seitenansicht mit Garage"
@@ -19,12 +19,12 @@ export function DiscreteSection() {
 
         <div className="order-1 md:order-2">
           <Reveal>
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
-              Diskrete Vermittlung
-            </p>
-            <h2 className="mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+            <h2 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Nicht jede Immobilie muss öffentlich inseriert werden.
             </h2>
+            <p className="mt-4 text-sm font-medium text-ink-soft">
+              Diskrete Vermittlung
+            </p>
           </Reveal>
 
           <Reveal delay={0.1}>

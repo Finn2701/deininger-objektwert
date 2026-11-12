@@ -63,7 +63,7 @@ function PriceCard({
   range?: [number, number];
 }) {
   return (
-    <div className="rounded-2xl border border-line bg-paper-dim p-6">
+    <div className="border border-line bg-paper-dim p-6">
       <p className="text-xs font-medium tracking-[0.16em] text-ink-soft/80 uppercase">{label}</p>
       <p className="mt-3 font-display text-3xl font-medium text-ink">
         {euro(value)} <span className="text-base font-normal text-ink-soft/80">€/m²</span>
@@ -80,10 +80,10 @@ function PriceCard({
 function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <>
-      <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">{eyebrow}</p>
-      <h2 className="mt-3 max-w-2xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
+      <h2 className="max-w-2xl font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
         {title}
       </h2>
+      <p className="mt-4 text-sm font-medium text-ink-soft">{eyebrow}</p>
     </>
   );
 }
@@ -137,12 +137,12 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
         <section className="py-20 md:py-28">
           <Container className="grid gap-16 md:grid-cols-2 md:gap-12">
             <div>
-              <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
-                Immobilienbewertung · {city.kreis}
-              </p>
-              <h1 className="mt-4 max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+              <h1 className="max-w-xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
                 {city.h1}
               </h1>
+              <p className="mt-4 text-sm font-medium text-ink-soft">
+                Immobilienbewertung · {city.kreis}
+              </p>
               <p className="mt-5 max-w-lg text-balance text-ink-soft/90 md:text-lg">{city.lead}</p>
 
               <dl className="mt-10 grid gap-x-8 gap-y-4 sm:grid-cols-2">
@@ -173,7 +173,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
                 <p key={i}>{paragraph}</p>
               ))}
             </div>
-            <div className="mt-8 max-w-3xl rounded-xl border border-line p-5 text-sm text-ink-soft/80">
+            <div className="mt-8 max-w-3xl border border-line p-5 text-sm text-ink-soft/80">
               <p>
                 <strong className="font-medium text-ink">Stand und Quellen:</strong> Preise sind
                 durchschnittliche Angebotspreise (Stand: {city.prices.asOf}), keine beurkundeten
@@ -217,7 +217,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
             <SectionHeading eyebrow="Lagen" title={`Stadtteile und Lagen in ${city.name}`} />
             <div className="mt-8 grid gap-4 md:grid-cols-2">
               {city.quarters.map((quarter) => (
-                <div key={quarter.name} className="rounded-2xl border border-line p-6">
+                <div key={quarter.name} className="border border-line p-6">
                   <h3 className="font-display text-lg font-medium text-ink">{quarter.name}</h3>
                   <p className="mt-2 text-sm text-ink-soft/90">{quarter.note}</p>
                 </div>
@@ -242,7 +242,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
             <SectionHeading eyebrow="Verkauf" title={`Worauf Sie beim Verkauf in ${city.name} achten sollten`} />
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {city.sellingNotes.map((note) => (
-                <div key={note.title} className="rounded-2xl border border-line bg-paper-dim p-6">
+                <div key={note.title} className="border border-line bg-paper-dim p-6">
                   <h3 className="font-display text-lg font-medium text-ink">{note.title}</h3>
                   <p className="mt-3 text-sm text-ink-soft/90">{note.text}</p>
                 </div>
@@ -301,7 +301,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
                   <li key={article.slug}>
                     <Link
                       href={`/ratgeber/${article.slug}`}
-                      className="block h-full rounded-xl border border-line p-5 transition-colors hover:border-ink"
+                      className="block h-full border border-line p-5 transition-colors hover:border-ink"
                     >
                       <span className="font-display text-base font-medium text-ink">{article.title}</span>
                       <span className="mt-2 block text-sm text-accent-text">Weiterlesen →</span>
@@ -321,7 +321,7 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
                 <li key={c.slug}>
                   <Link
                     href={cityPagePath(c)}
-                    className="inline-block rounded-full border border-line px-4 py-2 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
+                    className="inline-block border border-line px-4 py-2 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
                   >
                     {c.name}
                   </Link>

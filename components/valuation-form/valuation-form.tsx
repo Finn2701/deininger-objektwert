@@ -49,7 +49,7 @@ function OptionGrid<T extends string>({
             type="button"
             onClick={() => onChange(option.value)}
             aria-pressed={active}
-            className={`rounded-xl border px-4 py-3.5 text-left text-sm transition-colors ${
+            className={`border px-4 py-3.5 text-left text-sm transition-colors ${
               active
                 ? "border-ink bg-ink text-paper"
                 : "border-line text-ink-soft hover:border-ink-soft"
@@ -89,7 +89,7 @@ function ChipGrid<T extends string>({
             type="button"
             onClick={() => onToggle(option.value)}
             aria-pressed={active}
-            className={`rounded-xl border text-sm transition-colors ${
+            className={`border text-sm transition-colors ${
               wrap ? "px-4 py-2" : "px-4 py-3.5 text-left"
             } ${active ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink-soft"}`}
           >
@@ -126,7 +126,7 @@ function BoolToggle({
             type="button"
             onClick={() => onChange(option.v)}
             aria-pressed={active}
-            className={`rounded-xl border px-4 py-3.5 text-left text-sm transition-colors ${
+            className={`border px-4 py-3.5 text-left text-sm transition-colors ${
               active ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink-soft"
             }`}
           >
@@ -165,7 +165,7 @@ function TextField({
         autoComplete={autoComplete}
         inputMode={inputMode}
         onChange={(event) => onChange(event.target.value)}
-        className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink"
+        className="mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink"
       />
     </label>
   );
@@ -266,7 +266,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
 
   if (status === "done") {
     return (
-      <div className="rounded-2xl border border-line bg-paper-dim p-8 md:p-10">
+      <div className="border border-line bg-paper-dim p-8 md:p-10">
         <p className="text-xs font-medium tracking-[0.2em] text-ink-soft/80 uppercase">
           Ihre Ersteinschätzung
         </p>
@@ -281,7 +281,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
                 Wahrscheinliche Spanne: {formatEuro(estimate.low)} – {formatEuro(estimate.high)}
               </p>
               {!isLand(data) ? (
-                <span className="rounded-full border border-line px-2.5 py-0.5 text-xs text-ink-soft/80">
+                <span className="border border-line px-2.5 py-0.5 text-xs text-ink-soft/80">
                   {PRECISION_BADGE[estimate.precision]}
                 </span>
               ) : null}
@@ -316,7 +316,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
         )}
 
         {saveFailed && data.contactConsent ? (
-          <p className="mt-6 rounded-lg border border-accent/30 bg-accent/10 p-3 text-sm text-ink-soft">
+          <p className="mt-6 border border-accent/30 bg-accent/10 p-3 text-sm text-ink-soft">
             Ihr Kontaktwunsch konnte technisch nicht übermittelt werden. Bitte schreiben Sie uns
             zusätzlich kurz an{" "}
             <a href="mailto:kontakt@deininger-objektwert.de" className="underline">
@@ -339,7 +339,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
   }
 
   return (
-    <div className="rounded-2xl border border-line bg-paper-dim p-8 md:p-10">
+    <div className="border border-line bg-paper-dim p-8 md:p-10">
       <div className="flex items-center justify-between text-xs text-ink-soft/80">
         <span>
           Schritt {step + 1} von {TOTAL_STEPS}
@@ -488,7 +488,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
 
             {step === 5 && (
               <div className="space-y-5">
-                <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-line px-4 py-3.5 text-sm">
+                <label className="flex cursor-pointer items-start gap-3 border border-line px-4 py-3.5 text-sm">
                   <input
                     type="checkbox"
                     checked={data.contactConsent}
@@ -554,7 +554,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
                         onChange={(event) => update("contactNotes", event.target.value)}
                         rows={3}
                         placeholder="z. B. Besonderheiten der Immobilie, konkrete Fragen…"
-                        className="mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink"
+                        className="mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink"
                       />
                     </label>
                   </>
@@ -595,7 +595,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
             type="button"
             onClick={() => setStep((s) => Math.min(TOTAL_STEPS - 1, s + 1))}
             disabled={!isStepValid(step, data)}
-            className="rounded-full bg-ink px-6 py-2.5 text-sm text-paper transition-opacity hover:bg-ink-soft disabled:opacity-30"
+            className="bg-accent text-white px-6 py-2.5 text-sm transition-opacity hover:bg-ink disabled:opacity-30"
           >
             Weiter
           </button>
@@ -608,7 +608,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
               status === "submitting" ||
               (captchaRequired && !turnstileToken && !captchaBlocked)
             }
-            className="rounded-full bg-ink px-6 py-2.5 text-sm text-paper transition-opacity hover:bg-ink-soft disabled:opacity-30"
+            className="bg-accent text-white px-6 py-2.5 text-sm transition-opacity hover:bg-ink disabled:opacity-30"
           >
             {status === "submitting" ? "Region wird abgeglichen …" : "Wert ermitteln"}
           </button>

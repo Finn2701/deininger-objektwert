@@ -103,10 +103,10 @@ export default function BodenrichtwertePage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Wegweiser</p>
-            <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+            <h1 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Bodenrichtwert abrufen: die Portale aller 16 Bundesländer
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Wegweiser</p>
             <p className="mt-5 max-w-2xl text-lg text-ink-soft/90">
               Jedes Bundesland betreibt ein eigenes, kostenloses Portal für Bodenrichtwerte. Hier finden Sie alle
               Direktlinks, so wie sie im {PORTALE_STAND} erreichbar waren, und eine kurze Anleitung.
@@ -133,7 +133,7 @@ export default function BodenrichtwertePage() {
               <SectionH2>Die Portale der Bundesländer</SectionH2>
               <ul className="mt-8 grid gap-4 sm:grid-cols-2">
                 {bodenrichtwertPortale.map((portal) => (
-                  <li key={portal.code} className="rounded-2xl border border-line p-5">
+                  <li key={portal.code} className="border border-line p-5">
                     <h3 className="font-display text-lg font-medium text-ink">{portal.state}</h3>
                     <p className="mt-1 text-sm text-ink-soft/90">{portal.portal}</p>
                     {portal.note ? <p className="mt-2 text-xs text-ink-soft/80">{portal.note}</p> : null}
@@ -209,17 +209,17 @@ export default function BodenrichtwertePage() {
               </div>
             </section>
 
-            <section className="mt-16 rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+            <section className="mt-16 border border-line bg-paper-dim p-6 md:p-8">
               <h2 className="font-display text-xl font-medium text-ink">Was ist Ihre Immobilie wert?</h2>
               <p className="mt-3 text-sm text-ink-soft/90">
                 Der Bodenrichtwert ist nur ein Baustein. Die kostenlose Ersteinschätzung berücksichtigt Lage, Baujahr,
                 Zustand und Energieklasse.
               </p>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                <Link href="/immobilienbewertung" className="inline-flex rounded-full bg-ink px-5 py-2.5 text-paper hover:bg-ink-soft">
+                <Link href="/immobilienbewertung" className="inline-flex bg-accent text-white px-5 py-2.5 hover:bg-ink">
                   Immobilie kostenlos bewerten
                 </Link>
-                <Link href="/ratgeber/bodenrichtwert-erklaert" className="inline-flex rounded-full border border-line px-5 py-2.5 text-ink hover:border-ink">
+                <Link href="/ratgeber/bodenrichtwert-erklaert" className="inline-flex border border-line px-5 py-2.5 text-ink hover:border-ink">
                   Bodenrichtwert erklärt
                 </Link>
               </div>

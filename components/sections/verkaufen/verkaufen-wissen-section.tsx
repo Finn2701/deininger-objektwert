@@ -47,10 +47,10 @@ export function VerkaufenWissenSection() {
     <>
       <section className="border-t border-line py-16 md:py-20">
         <Container className="max-w-4xl">
-          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Preis und Kosten</p>
-          <h2 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
+          <h2 className="font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
             Der richtige Preis und was der Verkauf kostet
           </h2>
+          <p className="mt-4 text-sm font-medium text-ink-soft">Preis und Kosten</p>
           <div className="mt-6 space-y-4 text-ink-soft/90">
             <p>
               Der häufigste Fehler beim Verkauf ist ein Preis, der aus Wunschdenken oder aus einem einzelnen
@@ -97,10 +97,10 @@ export function VerkaufenWissenSection() {
 
       <section className="border-t border-line py-16 md:py-20">
         <Container className="max-w-4xl">
-          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Besondere Situationen</p>
-          <h2 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
+          <h2 className="font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
             Verkauf nach Erbe, Scheidung oder in der Erbengemeinschaft
           </h2>
+          <p className="mt-4 text-sm font-medium text-ink-soft">Besondere Situationen</p>
           <div className="mt-6 space-y-4 text-ink-soft/90">
             <p>
               Viele Verkäufe entstehen nicht aus freier Entscheidung, sondern aus einem Ereignis: einem Todesfall,
@@ -130,10 +130,10 @@ export function VerkaufenWissenSection() {
 
       <section className="border-t border-line py-16 md:py-20">
         <Container className="max-w-4xl">
-          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">FAQ</p>
-          <h2 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
+          <h2 className="font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
             Häufige Fragen zum Immobilienverkauf
           </h2>
+          <p className="mt-4 text-sm font-medium text-ink-soft">FAQ</p>
           <div className="mt-8 divide-y divide-line border-y border-line">
             {verkaufenFaqs.map((item) => (
               <div key={item.question} className="py-6">
@@ -147,10 +147,10 @@ export function VerkaufenWissenSection() {
 
       <section className="border-t border-line py-16 md:py-20">
         <Container className="max-w-4xl">
-          <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Region</p>
-          <h2 className="mt-3 font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
+          <h2 className="font-display text-2xl leading-[1.2] font-medium text-ink md:text-3xl">
             Immobilie verkaufen in Ihrer Stadt
           </h2>
+          <p className="mt-4 text-sm font-medium text-ink-soft">Region</p>
           <p className="mt-4 max-w-2xl text-ink-soft/90">
             Preisniveau, Stadtteile und Besonderheiten beim Verkauf – für {cityPages.length} Orte in der Region:
           </p>
@@ -159,7 +159,7 @@ export function VerkaufenWissenSection() {
               <li key={city.slug}>
                 <Link
                   href={cityPagePath(city)}
-                  className="inline-block rounded-full border border-line px-4 py-2 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
+                  className="inline-block border border-line px-4 py-2 text-sm text-ink-soft transition-colors hover:border-ink hover:text-ink"
                 >
                   {city.name}
                 </Link>

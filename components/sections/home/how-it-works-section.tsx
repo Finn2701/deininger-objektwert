@@ -23,32 +23,32 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section className="border-t border-line py-24 md:py-32">
+    <section className="border-t border-ink py-20 md:py-32">
       <Container>
-        <SectionHeading
-          eyebrow="So funktioniert's"
-          title="In drei Schritten zur ersten Einschätzung."
-          align="center"
-        />
+        <SectionHeading eyebrow="So funktioniert's" title="In drei Schritten zur ersten Einschätzung." size="xl" />
 
-        <div className="mt-16 grid gap-10 md:grid-cols-3 md:gap-8">
+        <div className="mt-16 grid border-t border-ink md:mt-24 md:grid-cols-3">
           {steps.map((step, index) => (
             <Reveal key={step.number} delay={index * 0.08}>
-              <div className="border-t border-line pt-6">
-                <span className="font-display text-sm text-accent-text">{step.number}</span>
-                <h3 className="mt-3 font-display text-xl font-medium text-ink">{step.title}</h3>
-                <p className="mt-3 text-sm text-ink-soft/90">{step.body}</p>
+              <div
+                className={`h-full py-8 md:py-10 md:pr-8 ${
+                  index > 0 ? "border-t border-ink md:border-t-0 md:border-l md:pl-8" : ""
+                }`}
+              >
+                <span className="font-display text-7xl leading-none font-bold text-accent md:text-8xl">{step.number}</span>
+                <h3 className="font-display mt-8 text-xl font-semibold text-ink md:text-2xl">{step.title}</h3>
+                <p className="mt-3 max-w-sm text-base leading-relaxed text-ink-soft">{step.body}</p>
               </div>
             </Reveal>
           ))}
         </div>
 
-        <Reveal delay={0.2} className="mt-14 text-center">
-          <Link
-            href="/immobilienbewertung"
-            className="inline-flex rounded-full bg-ink px-7 py-3.5 text-sm text-paper transition-colors hover:bg-ink-soft"
-          >
+        <Reveal delay={0.2} className="mt-4 border-t border-ink pt-10">
+          <Link href="/immobilienbewertung" className="btn-primary">
             Jetzt kostenlos starten
+            <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden>
+              <path d="M0 6h16M11 1l5 5-5 5" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
           </Link>
         </Reveal>
       </Container>

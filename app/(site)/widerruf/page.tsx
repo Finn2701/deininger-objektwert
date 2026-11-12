@@ -110,7 +110,7 @@ export default function WiderrufPage() {
 
           <Section title="Muster-Widerrufsformular">
             <p>(Wenn Sie den Vertrag widerrufen möchten, können Sie dieses Formular verwenden.)</p>
-            <div className="rounded-lg border border-line p-5">
+            <div className="border border-line p-5">
               <p>An:</p>
               <p className="mt-2">
                 {siteConfig.name}

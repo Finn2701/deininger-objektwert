@@ -14,7 +14,7 @@ import { parseDecimal } from "@/lib/parse-decimal";
 type Mode = "nebenkosten" | "grunderwerbsteuer";
 
 const fieldClass =
-  "mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink";
+  "mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink";
 
 function ResultRow({ label, value, hint, strong }: { label: string; value: string; hint?: string; strong?: boolean }) {
   return (
@@ -59,7 +59,7 @@ export function KaufnebenkostenCalculator({
   const hasInput = result.kaufpreis > 0;
 
   return (
-    <div className="rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+    <div className="border border-line bg-paper-dim p-6 md:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block">
           <span className="text-sm text-ink-soft">Kaufpreis (€)</span>
@@ -112,7 +112,7 @@ export function KaufnebenkostenCalculator({
                     type="button"
                     onClick={() => setWithMakler(option.value)}
                     aria-pressed={withMakler === option.value}
-                    className={`rounded-xl border px-4 py-3 text-sm transition-colors ${
+                    className={`border px-4 py-3 text-sm transition-colors ${
                       withMakler === option.value
                         ? "border-ink bg-ink text-paper"
                         : "border-line bg-paper text-ink-soft hover:border-ink"
@@ -144,7 +144,7 @@ export function KaufnebenkostenCalculator({
         </label>
       </div>
 
-      <div className="mt-8 rounded-xl border border-line bg-paper p-5" aria-live="polite">
+      <div className="mt-8 border border-line bg-paper p-5" aria-live="polite">
         {hasInput ? (
           <>
             <ResultRow

@@ -96,10 +96,10 @@ export default function VerkaufskostenPage() {
       <main>
         <article className="py-20 md:py-28">
           <Container className="max-w-4xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Rechner</p>
-            <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+            <h1 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Verkaufskosten-Rechner: Was bleibt beim Hausverkauf übrig?
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Rechner</p>
             <p className="mt-5 max-w-2xl text-lg text-ink-soft/90">
               Vom Verkaufspreis zum Nettoerlös: Maklerprovision, Darlehensablösung, Energieausweis und Steuer auf einen
               Blick – Stand {VERKAUFSKOSTEN_STAND}.
@@ -193,17 +193,17 @@ export default function VerkaufskostenPage() {
               </div>
             </section>
 
-            <section className="mt-16 rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+            <section className="mt-16 border border-line bg-paper-dim p-6 md:p-8">
               <h2 className="font-display text-xl font-medium text-ink">Bevor Sie verkaufen: Wert kennen</h2>
               <p className="mt-3 text-sm text-ink-soft/90">
                 Ein realistischer Preis ist die Grundlage für jede Rechnung. Die Ersteinschätzung ist kostenlos und
                 unverbindlich.
               </p>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                <Link href="/immobilienbewertung" className="inline-flex rounded-full bg-ink px-5 py-2.5 text-paper hover:bg-ink-soft">
+                <Link href="/immobilienbewertung" className="inline-flex bg-accent text-white px-5 py-2.5 hover:bg-ink">
                   Immobilie kostenlos bewerten
                 </Link>
-                <Link href="/immobilie-verkaufen" className="inline-flex rounded-full border border-line px-5 py-2.5 text-ink hover:border-ink">
+                <Link href="/immobilie-verkaufen" className="inline-flex border border-line px-5 py-2.5 text-ink hover:border-ink">
                   Ablauf des Verkaufs
                 </Link>
               </div>

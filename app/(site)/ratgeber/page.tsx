@@ -32,10 +32,10 @@ export default async function RatgeberPage() {
       <main>
         <section className="py-20 md:py-28">
           <Container>
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Ratgeber</p>
-            <h1 className="mt-4 max-w-2xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+            <h1 className="max-w-2xl font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Wissenswertes rund um Immobilienbewertung
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Ratgeber</p>
             <p className="mt-5 max-w-xl text-balance text-ink-soft/90 md:text-lg">
               Verständlich erklärt, ohne Makler-Floskeln: Hintergründe, die bei einer Bewertung wirklich
               weiterhelfen.
@@ -49,7 +49,7 @@ export default async function RatgeberPage() {
                   <Reveal key={article.id} delay={i * 0.05}>
                     <Link
                       href={`/ratgeber/${article.slug}`}
-                      className="block rounded-2xl border border-line p-6 transition-colors hover:border-ink"
+                      className="block border border-line p-6 transition-colors hover:border-ink"
                     >
                       <p className="text-xs text-ink-soft/80">{formatDate(article.published_at ?? article.created_at)}</p>
                       <h2 className="mt-2 font-display text-xl font-medium text-ink">{article.title}</h2>

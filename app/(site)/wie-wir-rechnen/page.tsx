@@ -128,7 +128,7 @@ const faqs = [
 
 function Table({ headers, rows }: { headers: string[]; rows: (string | number)[][] }) {
   return (
-    <div className="mt-6 overflow-x-auto rounded-xl border border-line">
+    <div className="mt-6 overflow-x-auto border border-line">
       <table className="w-full min-w-[420px] text-left text-sm">
         <thead className="bg-paper-dim text-xs tracking-[0.1em] text-ink-soft/80 uppercase">
           <tr>
@@ -210,16 +210,16 @@ export default function WieWirRechnenPage() {
             <Link href="/immobilienbewertung" className="text-sm text-ink-soft/80 hover:text-ink">
               ← Zum Rechner
             </Link>
-            <p className="mt-6 text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Methodik</p>
-            <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+            <h1 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               So rechnet unser Immobilienwert-Rechner
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Methodik</p>
             <p className="mt-5 max-w-2xl text-lg text-ink-soft/90">
               Datengrundlage, Faktoren und Grenzen des kostenlosen Rechners – vollständig offengelegt,
               damit Sie nachvollziehen können, wie eine Wertspanne zustande kommt und wie belastbar sie ist.
             </p>
 
-            <div className="mt-8 grid gap-3 rounded-2xl border border-line bg-paper-dim p-6 text-sm sm:grid-cols-3">
+            <div className="mt-8 grid gap-3 border border-line bg-paper-dim p-6 text-sm sm:grid-cols-3">
               <div>
                 <p className="text-xs text-ink-soft/80">Datenstand</p>
                 <p className="mt-1 font-medium text-ink">{dateDe(benchmarkMeta.lastUpdated)}</p>
@@ -243,7 +243,7 @@ export default function WieWirRechnenPage() {
                 steht eine Spanne – bewusst keine einzelne „genaue“ Zahl, weil eine Handvoll Angaben nie mehr
                 Präzision hergeben kann.
               </p>
-              <p className="rounded-xl border border-line p-4 font-mono text-sm text-ink">
+              <p className="border border-line p-4 font-mono text-sm text-ink">
                 Wert ≈ Basispreis × Regionalfaktor × Wohnfläche × Baujahr × Zustand × Ausstattung × Energieklasse
                 × Etage × Feuchtigkeit (+ Grundstücksanteil)
               </p>
@@ -448,13 +448,13 @@ export default function WieWirRechnenPage() {
               </div>
             </section>
 
-            <section className="mt-16 rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+            <section className="mt-16 border border-line bg-paper-dim p-6 md:p-8">
               <h2 className="font-display text-xl font-medium text-ink">Diese Seite zitieren oder verlinken</h2>
               <p className="mt-3 text-sm text-ink-soft/90">
                 Sie dürfen die Methodik und die genannten Kennzahlen gern mit Quellenangabe verwenden – für
                 Ratgeber, Presse, Studienarbeiten oder Verzeichnisse. Vorschlag für die Quellenangabe:
               </p>
-              <p className="mt-4 rounded-lg border border-line bg-paper p-4 font-mono text-sm text-ink">
+              <p className="mt-4 border border-line bg-paper p-4 font-mono text-sm text-ink">
                 Deininger Objektwert: „So rechnet unser Immobilienwert-Rechner“, Datenstand{" "}
                 {dateDe(benchmarkMeta.lastUpdated)}, {siteConfig.url}
                 {PATH}

@@ -23,10 +23,10 @@ export default function NotFound() {
       <main>
         <section className="py-24 md:py-32">
           <Container className="max-w-3xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Fehler 404</p>
-            <h1 className="mt-3 font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
+            <h1 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-4xl">
               Diese Seite gibt es nicht (mehr)
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Fehler 404</p>
             <p className="mt-5 text-lg text-ink-soft/90">
               Der Link ist veraltet oder enthält einen Tippfehler. Hier finden Sie weiter:
             </p>
@@ -35,7 +35,7 @@ export default function NotFound() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block h-full rounded-2xl border border-line p-5 transition-colors hover:border-ink"
+                    className="block h-full border border-line p-5 transition-colors hover:border-ink"
                   >
                     <span className="font-display text-lg font-medium text-ink">{link.label}</span>
                     <span className="mt-1 block text-sm text-ink-soft/90">{link.text}</span>

@@ -6,7 +6,7 @@ import { formatEuroExact, formatPercent } from "@/lib/kaufnebenkosten";
 import { parseDecimal } from "@/lib/parse-decimal";
 
 const fieldClass =
-  "mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink";
+  "mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink";
 
 function MoneyField({
   label,
@@ -81,7 +81,7 @@ export function ErbschaftsteuerCalculator() {
   const hasInput = parseDecimal(total) > 0;
 
   return (
-    <div className="rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+    <div className="border border-line bg-paper-dim p-6 md:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <label className="block sm:col-span-2">
           <span className="text-sm text-ink-soft">Ihr Verhältnis zum Verstorbenen</span>
@@ -150,7 +150,7 @@ export function ErbschaftsteuerCalculator() {
         />
       </div>
 
-      <div className="mt-8 rounded-xl border border-line bg-paper p-5" aria-live="polite">
+      <div className="mt-8 border border-line bg-paper p-5" aria-live="polite">
         {hasInput ? (
           <>
             <Row label={`Persönlicher Freibetrag (Steuerklasse ${result.taxClass})`} value={formatEuroExact(result.allowance)} />

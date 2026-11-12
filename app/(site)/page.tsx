@@ -6,7 +6,9 @@ import { HowItWorksSection } from "@/components/sections/home/how-it-works-secti
 import { StatementSection } from "@/components/sections/statement-section";
 import { RatgeberTeaserSection } from "@/components/sections/home/ratgeber-teaser-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
-import { realEstateAgentJsonLd, websiteJsonLd } from "@/lib/structured-data";
+import { HomeFaqSection } from "@/components/sections/home/home-faq-section";
+import { getFaqs } from "@/components/sections/faq-section";
+import { faqJsonLd, realEstateAgentJsonLd, websiteJsonLd } from "@/lib/structured-data";
 
 export const revalidate = 3600;
 
@@ -17,7 +19,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-export default function HomePage() {
+export default async function HomePage() {
+  const faqs = (await getFaqs()).slice(0, 8);
   return (
     <>
       <script
@@ -25,6 +28,7 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgentJsonLd()) }}
       />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
       <main>
         <HomeHero />
         <ValueFactorsSection />
@@ -32,6 +36,7 @@ export default function HomePage() {
         <HowItWorksSection />
         <StatementSection />
         <RatgeberTeaserSection />
+        <HomeFaqSection faqs={faqs} />
         <FinalCtaSection />
       </main>
     </>

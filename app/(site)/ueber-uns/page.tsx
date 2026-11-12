@@ -40,12 +40,12 @@ export default async function UeberUnsPage() {
       <main>
         <section className="py-20 md:py-28">
           <Container className="max-w-2xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
-              Über Deininger Objektwert
-            </p>
-            <h1 className="mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-5xl">
+            <h1 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-5xl">
               {t["ueber-uns.title"]}
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">
+              Über Deininger Objektwert
+            </p>
 
             <Reveal delay={0.1}>
               <p className="mt-8 text-balance text-ink-soft/90 md:text-lg">

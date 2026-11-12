@@ -6,7 +6,7 @@ import { parseDecimal } from "@/lib/parse-decimal";
 import { computeSale } from "@/lib/verkaufskosten";
 
 const fieldClass =
-  "mt-2 w-full rounded-xl border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink";
+  "mt-2 w-full border border-line bg-paper px-4 py-3 text-ink outline-none transition-colors focus:border-ink";
 
 function MoneyField({
   label,
@@ -77,7 +77,7 @@ export function VerkaufskostenCalculator({ defaultStateCode = "BW" }: { defaultS
   );
 
   return (
-    <div className="rounded-2xl border border-line bg-paper-dim p-6 md:p-8">
+    <div className="border border-line bg-paper-dim p-6 md:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <MoneyField label="Erwarteter Verkaufspreis (€)" value={price} onChange={setPrice} placeholder="z. B. 420.000" />
         <label className="block">
@@ -103,7 +103,7 @@ export function VerkaufskostenCalculator({ defaultStateCode = "BW" }: { defaultS
                 type="button"
                 onClick={() => setWithBroker(option.value)}
                 aria-pressed={withBroker === option.value}
-                className={`rounded-xl border px-4 py-3 text-sm transition-colors ${
+                className={`border px-4 py-3 text-sm transition-colors ${
                   withBroker === option.value
                     ? "border-ink bg-ink text-paper"
                     : "border-line bg-paper text-ink-soft hover:border-ink"
@@ -156,7 +156,7 @@ export function VerkaufskostenCalculator({ defaultStateCode = "BW" }: { defaultS
         <MoneyField label="Sonstiges (€, optional)" value={other} onChange={setOther} placeholder="z. B. Fotos, Renovierung" />
       </div>
 
-      <div className="mt-8 rounded-xl border border-line bg-paper p-5" aria-live="polite">
+      <div className="mt-8 border border-line bg-paper p-5" aria-live="polite">
         {result.price > 0 ? (
           <>
             <Row label="Verkaufspreis" value={formatEuroExact(result.price)} />

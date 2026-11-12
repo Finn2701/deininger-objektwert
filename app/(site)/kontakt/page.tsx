@@ -29,10 +29,10 @@ export default function KontaktPage() {
       <main>
         <section className="py-20 md:py-28">
           <Container className="max-w-2xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">Kontakt</p>
-            <h1 className="mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-5xl">
+            <h1 className="font-display text-3xl leading-[1.15] font-medium text-ink md:text-5xl">
               Sprechen wir über Ihre Immobilie.
             </h1>
+            <p className="mt-4 text-sm font-medium text-ink-soft">Kontakt</p>
             <p className="mt-6 max-w-lg text-balance text-ink-soft/90 md:text-lg">
               Für eine detaillierte Einschätzung oder einfach ein erstes, unverbindliches
               Gespräch.
@@ -60,7 +60,7 @@ export default function KontaktPage() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link
                   href="/immobilienbewertung"
-                  className="inline-flex rounded-full border border-ink px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-paper"
+                  className="inline-flex border border-ink px-6 py-3 text-sm text-ink transition-colors hover:bg-ink hover:text-paper"
                 >
                   Zum Bewertungsformular
                 </Link>
@@ -72,7 +72,7 @@ export default function KontaktPage() {
                 </Link>
               </div>
 
-              <div className="mt-10 rounded-xl border border-line p-5">
+              <div className="mt-10 border border-line p-5">
                 <p className="text-sm text-ink">
                   Haben Sie Grundriss, Energieausweis oder Fotos schon parat?
                 </p>

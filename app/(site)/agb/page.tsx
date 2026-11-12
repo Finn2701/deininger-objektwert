@@ -26,7 +26,7 @@ export default function AgbPage() {
           </h1>
           <p className="mt-2 text-ink-soft/80">{siteConfig.name}</p>
 
-          <p className="mt-6 rounded-lg border border-line bg-paper-dim px-4 py-3 text-sm text-ink-soft/90">
+          <p className="mt-6 border border-line bg-paper-dim px-4 py-3 text-sm text-ink-soft/90">
             Hinweis: {siteConfig.operator.name} ist als Immobilienmakler nach § 34c Abs. 1 Satz 1
             GewO zugelassen (Erlaubnis erteilt am 18.09.2026 durch die IHK Ostwürttemberg, siehe{" "}
             <a href="/impressum" className="underline decoration-line underline-offset-4 hover:text-ink">

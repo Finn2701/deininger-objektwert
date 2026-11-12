@@ -1,17 +1,14 @@
-import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Archivo } from "next/font/google";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-const fraunces = Fraunces({
+// Eine Grotesk für alles (Ulmer Schule): die Breitenachse trägt die Überschriften, das Gewicht den Rest.
+const archivo = Archivo({
   subsets: ["latin"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
+  axes: ["wdth"],
   variable: "--font-sans",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +37,26 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
+  authors: [{ name: siteConfig.operator.name, url: `${siteConfig.url}/ueber-uns` }],
+  creator: siteConfig.operator.name,
+  publisher: siteConfig.name,
+  category: "Immobilien",
+  formatDetection: { telephone: false, email: false, address: false },
+  // Regionale Zuordnung für Suchmaschinen: Sitz Heidenheim an der Brenz, Baden-Württemberg
+  other: {
+    "geo.region": "DE-BW",
+    "geo.placename": siteConfig.region,
+    "geo.position": "48.6766;10.1546",
+    ICBM: "48.6766, 10.1546",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#f2f4f5",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -48,7 +64,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="de"
       data-scroll-behavior="smooth"
-      className={`${fraunces.variable} ${inter.variable}`}
+      className={archivo.variable}
     >
       <body className="bg-paper font-sans text-ink antialiased">{children}</body>
     </html>

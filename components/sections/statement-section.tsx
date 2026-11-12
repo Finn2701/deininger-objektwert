@@ -4,28 +4,28 @@ import { Reveal } from "../ui/reveal";
 
 export function StatementSection() {
   return (
-    <section className="relative flex h-[70vh] min-h-[480px] items-center overflow-hidden bg-ink">
-      <Image
-        src="/images/story/garten-dach-transition.png"
-        alt="Blick über Terrasse und Garten auf Dach und Photovoltaikanlage"
-        fill
-        sizes="100vw"
-        className="object-cover"
-      />
-      <div className="absolute inset-0 bg-ink/55" />
-      {/* Eases the cut from the dark photographic hero into the paper-toned
-          sections below instead of a hard line at the section boundary. */}
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-paper" />
-
-      <Container className="relative">
-        <Reveal>
-          <span className="mb-5 block h-px w-12 bg-accent" aria-hidden />
-          <p className="max-w-2xl font-display text-2xl leading-snug text-balance text-paper md:text-4xl">
-            Jede Immobilie erzählt ihre eigene Geschichte. Wir hören genau hin, bevor wir über
-            ihren Wert sprechen.
-          </p>
-        </Reveal>
-      </Container>
+    <section className="border-t border-ink bg-ink text-paper">
+      <div className="mx-auto grid w-full max-w-[96rem] lg:grid-cols-12">
+        <div className="flex items-center lg:col-span-7">
+          <Container className="py-20 md:py-28 lg:!mx-0 lg:max-w-none">
+            <Reveal>
+              <p className="font-display max-w-2xl text-3xl leading-[1.12] font-semibold text-balance md:text-5xl">
+                Jede Immobilie erzählt ihre eigene Geschichte. Wir hören genau hin, bevor wir über
+                ihren Wert sprechen.
+              </p>
+            </Reveal>
+          </Container>
+        </div>
+        <div className="relative aspect-[4/3] lg:col-span-5 lg:aspect-auto">
+          <Image
+            src="/images/story/garten-dach-transition.png"
+            alt="Blick über Terrasse und Garten auf Dach und Photovoltaikanlage"
+            fill
+            sizes="(min-width: 1024px) 40vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+      </div>
     </section>
   );
 }

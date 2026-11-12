@@ -34,29 +34,32 @@ export default async function FaqPage() {
         }}
       />
       <main>
-        <section className="py-20 md:py-28">
-          <Container className="max-w-2xl">
-            <p className="text-xs font-medium tracking-[0.2em] text-accent-text uppercase">
-              Häufige Fragen
-            </p>
-            <h1 className="mt-4 font-display text-3xl leading-[1.15] font-medium text-ink md:text-5xl">
+        <section className="py-20 md:py-32">
+          <Container>
+            <h1 className="font-display max-w-4xl text-4xl leading-[1.02] font-bold text-balance text-ink md:text-7xl">
               Fragen zu Immobilienbewertung und Verkauf
             </h1>
 
-            <div className="mt-14 divide-y divide-line">
+            <div className="mt-14 md:mt-24">
               {faqs.map((faq, index) => (
-                <Reveal key={faq.question} delay={index * 0.03}>
-                  <details className="group py-5">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-ink">
-                      <span className="font-medium">{faq.question}</span>
-                      <span className="shrink-0 text-ink-soft/80 transition-transform group-open:rotate-45">
+                <Reveal key={faq.question} delay={index * 0.02}>
+                  <details className="group border-t border-ink">
+                    <summary className="grid cursor-pointer list-none gap-3 py-6 md:grid-cols-12 md:gap-8 md:py-8 [&::-webkit-details-marker]:hidden">
+                      <span className="font-display text-xl leading-snug font-semibold text-ink md:col-span-11 md:text-2xl">
+                        {faq.question}
+                      </span>
+                      <span
+                        className="text-3xl leading-none font-light text-ink transition-transform duration-300 group-open:rotate-45 md:col-span-1 md:justify-self-end"
+                        aria-hidden
+                      >
                         +
                       </span>
                     </summary>
-                    <p className="mt-3 text-ink-soft/90">{faq.answer}</p>
+                    <p className="max-w-3xl pb-8 text-base leading-relaxed text-ink-soft md:pb-10 md:text-lg">{faq.answer}</p>
                   </details>
                 </Reveal>
               ))}
+              <div className="border-t border-ink" />
             </div>
           </Container>
         </section>
