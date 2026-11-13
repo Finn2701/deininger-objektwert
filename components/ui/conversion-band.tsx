@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { siteConfig } from "@/lib/site-config";
+import { ModelArt } from "@/components/ui/model-art";
 
 // Seiten, auf denen der Abschlussbalken stören würde (Formular, Kontakt, Rechtstexte)
 const HIDDEN = ["/immobilienbewertung", "/kontakt", "/unterlagen-einreichen", "/impressum", "/datenschutz", "/agb", "/widerruf"];
@@ -23,7 +24,8 @@ export function ConversionBand() {
             In wenigen Minuten zu einer ersten, unverbindlichen Einschätzung — kostenlos, ohne Verpflichtung.
           </p>
         </div>
-        <div className="flex flex-col gap-3 md:col-span-4 md:items-end">
+        <div className="relative flex flex-col gap-3 md:col-span-4 md:items-end">
+          <ModelArt className="pointer-events-none mb-2 hidden w-60 lg:block" />
           <Link href="/immobilienbewertung" className="btn-primary">
             Jetzt kostenlos bewerten lassen
             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden>
