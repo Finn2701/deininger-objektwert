@@ -202,3 +202,193 @@ html {
 .prose-article strong {
   color: var(--color-ink);
 }
+
+/* ------------------------------------------------------------------ */
+/* Unterseiten: Illustrationsband, runde Karten, Bewegung              */
+/* ------------------------------------------------------------------ */
+
+.page-band {
+  position: relative;
+  height: 10.5rem;
+  background: #0c3c47;
+  border-bottom-left-radius: 2.5rem;
+  border-bottom-right-radius: 2.5rem;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .page-band {
+    height: 16rem;
+  }
+}
+.page-band-art {
+  height: 138%;
+  width: auto;
+  max-width: 100%;
+  margin-left: auto;
+  margin-bottom: -2.6rem;
+  animation: band-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.page-band-dots {
+  flex: 1;
+  align-self: stretch;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.6px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(90deg, #000, transparent 85%);
+}
+@keyframes band-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.art-pin {
+  animation: art-float 3.2s ease-in-out infinite;
+}
+@keyframes art-float {
+  0%,
+  100% {
+    transform: translate(var(--px, 0), var(--py, 0));
+  }
+  50% {
+    transform: translate(var(--px, 0), calc(var(--py, 0px) - 8px));
+  }
+}
+.art-cloud {
+  animation: art-drift 14s ease-in-out infinite alternate;
+}
+.art-cloud-2 {
+  animation-duration: 18s;
+  animation-direction: alternate-reverse;
+}
+@keyframes art-drift {
+  from {
+    transform: translateX(-14px);
+  }
+  to {
+    transform: translateX(22px);
+  }
+}
+
+.site-main {
+  position: relative;
+  background-color: var(--color-paper);
+  background-image: radial-gradient(rgba(10, 43, 51, 0.07) 1.2px, transparent 1.3px);
+  background-size: 26px 26px;
+}
+
+/* Überschriften der Unterseiten: groß, kräftig, mit sanftem Einstieg */
+.site-main h1 {
+  font-family: var(--font-gabarito), sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.3rem, 5vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+  animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.site-main h2 {
+  font-family: var(--font-gabarito), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(1.1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Karten: alles mit Rundumrahmen und Innenabstand wird zur runden Karte */
+.site-main :is(div, section, li, a, p, article)[class*="border-line"][class*="p-"]:not([class*="border-t"]):not([class*="border-b"]):not([class*="border-l"]):not([class*="border-r"]) {
+  border-radius: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.7);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s, background-color 0.2s;
+}
+.site-main a[class*="border-line"][class*="p-"]:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-ink);
+  background-color: #fff;
+}
+.site-main [class*="bg-paper-dim"][class*="p-"] {
+  border-radius: 1.75rem;
+}
+.site-main :is(input, select, textarea) {
+  border-radius: 0.9rem;
+}
+.site-main [class*="overflow-x-auto"][class*="border-line"] {
+  border-radius: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.site-main :is(img) {
+  border-radius: 1.5rem;
+}
+.site-main details {
+  transition: background-color 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-band-art,
+  .site-main h1,
+  .art-pin,
+  .art-cloud {
+    animation: none;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Backend: gleiche Bildwelt, ruhiger Arbeitsbereich                   */
+/* ------------------------------------------------------------------ */
+.backend-shell {
+  background-image: radial-gradient(rgba(10, 43, 51, 0.07) 1.2px, transparent 1.3px);
+  background-size: 26px 26px;
+}
+.backend-wave {
+  height: 1.75rem;
+  background: var(--color-paper);
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 2rem;
+  margin-top: 0.5rem;
+}
+.backend-shell h1 {
+  font-family: var(--font-gabarito), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  animation: rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.backend-shell :is(div, section, li, a, details, article)[class*="rounded-xl"][class*="border-line"],
+.backend-shell :is(div, section, li, a, details, article)[class*="rounded-lg"][class*="border-line"],
+.backend-shell :is(div, section, li, a, details, article)[class*="rounded-2xl"][class*="border-line"] {
+  border-radius: 1.4rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s;
+}
+.backend-shell a[class*="rounded-xl"][class*="border-line"]:hover,
+.backend-shell a[class*="rounded-lg"][class*="border-line"]:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-ink);
+}
+.backend-shell :is(input, select, textarea) {
+  border-radius: 0.9rem;
+}
+.backend-shell button[class*="bg-accent"],
+.backend-shell button[class*="bg-ink"] {
+  border-radius: 9999px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .backend-shell h1 {
+    animation: none;
+  }
+}
+
+.site-main :is(a, button)[class*="border-ink"],
+.site-main :is(a, button)[class*="border-line"][class*="px-"][class*="py-"] {
+  border-radius: 9999px;
+}

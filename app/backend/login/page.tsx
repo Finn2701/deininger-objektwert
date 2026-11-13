@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { login } from "../actions";
+import { ModelArt } from "@/components/ui/model-art";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -14,8 +15,9 @@ export default async function BackendLoginPage({
   const { error } = await searchParams;
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-paper px-6">
-      <div className="w-full max-w-sm">
+    <div className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 py-10">
+      <ModelArt className="h-auto w-64 max-w-full sm:w-80" />
+      <div className="w-full max-w-sm rounded-[2rem] bg-paper p-8 md:p-10">
         <p className="text-xs font-medium tracking-[0.2em] text-accent uppercase">Backend</p>
         <h1 className="mt-3 font-display text-2xl font-medium text-ink">Anmelden</h1>
 
@@ -36,7 +38,7 @@ export default async function BackendLoginPage({
               type="email"
               required
               autoComplete="email"
-              className="mt-1.5 w-full rounded-lg border border-line bg-paper px-3.5 py-2.5 text-ink outline-none focus:border-ink"
+              className="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-ink outline-none focus:border-ink"
             />
           </div>
           <div>
@@ -49,7 +51,7 @@ export default async function BackendLoginPage({
               type="password"
               required
               autoComplete="current-password"
-              className="mt-1.5 w-full rounded-lg border border-line bg-paper px-3.5 py-2.5 text-ink outline-none focus:border-ink"
+              className="mt-1.5 w-full rounded-xl border border-line bg-white px-4 py-3 text-ink outline-none focus:border-ink"
             />
           </div>
           <button

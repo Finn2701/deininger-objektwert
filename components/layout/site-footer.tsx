@@ -34,7 +34,7 @@ const legalLinks = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-ink bg-paper">
+    <footer className="bg-[#082a32] text-[#cfe0e3] [--color-ink:#f6f3ec] [--color-ink-soft:#a9c4c9] [--color-line:rgba(255,255,255,0.18)]">
       <Container className="py-16 md:py-24">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.4fr_1fr_1.1fr_1.3fr] lg:gap-x-12">
           <div className="col-span-2 lg:col-span-1">

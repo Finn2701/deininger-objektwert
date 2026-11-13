@@ -11,7 +11,7 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink bg-paper">
+    <header className="sticky top-0 z-50 bg-[#0c3c47] text-[#f6f3ec]">
       <Container className="flex h-16 items-stretch justify-between md:h-[4.5rem]">
         <Link href="/" className="flex items-center gap-3" aria-label="Deininger Objektwert, zur Startseite">
           <Image
@@ -21,13 +21,13 @@ export function SiteHeader() {
             height={512}
             priority
             sizes="40px"
-            className="h-8 w-auto md:h-9"
+            className="h-8 w-auto brightness-0 invert md:h-9"
           />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-base font-bold tracking-[0.02em] text-ink uppercase md:text-lg">
+            <span className="font-display text-base font-black tracking-[0.02em] text-[#f6f3ec] uppercase md:text-lg">
               Deininger
             </span>
-            <span className="mt-1 text-[10px] font-semibold tracking-[0.3em] text-ink-soft uppercase md:text-[11px]">
+            <span className="mt-1 text-[10px] font-medium tracking-[0.3em] text-[#a9c4c9] uppercase md:text-[11px]">
               Objektwert
             </span>
           </span>
@@ -38,7 +38,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="flex items-center px-4 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-paper"
+              className="flex items-center rounded-full px-4 text-sm font-semibold text-[#cfe0e3] transition-colors hover:bg-white/10 hover:text-white"
             >
               {item.label}
             </Link>
@@ -57,7 +57,7 @@ export function SiteHeader() {
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Menü schließen" : "Menü öffnen"}
-            className="flex h-10 w-10 items-center justify-center border border-ink text-ink lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/40 text-white lg:hidden"
           >
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
               {menuOpen ? (
@@ -82,7 +82,7 @@ export function SiteHeader() {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             aria-label="Mobile Navigation"
-            className="overflow-hidden border-t border-ink bg-paper lg:hidden"
+            className="overflow-hidden border-t border-white/15 bg-[#0c3c47] lg:hidden"
           >
             <Container className="flex flex-col py-2">
               {primaryNav.map((item) => (
@@ -90,7 +90,7 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMenuOpen(false)}
-                  className="border-b border-line py-4 text-lg font-semibold text-ink last:border-b-0"
+                  className="border-b border-white/10 py-4 text-lg font-bold text-[#f6f3ec] last:border-b-0"
                 >
                   {item.label}
                 </Link>
