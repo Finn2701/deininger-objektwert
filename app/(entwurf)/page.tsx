@@ -4,6 +4,8 @@ import { Experience } from "@/components/entwurf2/experience";
 import { getFaqs } from "@/components/sections/faq-section";
 import { RatgeberTeaserSection } from "@/components/sections/home/ratgeber-teaser-section";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { Container } from "@/components/ui/container";
+import { SectionHeading } from "@/components/ui/section-heading";
 import { primaryNav, siteConfig } from "@/lib/site-config";
 import { faqJsonLd, realEstateAgentJsonLd, websiteJsonLd } from "@/lib/structured-data";
 
@@ -46,6 +48,15 @@ const stages = [
     title: "Wohnfläche & Grundriss",
     body: "Nicht allein die Quadratmeterzahl zählt, sondern auch Aufteilung, Zuschnitt und Nutzbarkeit der Räume. Ein durchdachter, offener Grundriss mit gutem Lichteinfall wird am Markt häufig höher bewertet als eine größere, aber ungünstig geschnittene Fläche.",
   },
+];
+
+const tools = [
+  { href: "/kaufnebenkosten-rechner", title: "Kaufnebenkosten-Rechner", body: "Grunderwerbsteuer, Notar, Grundbuch und Maklerprovision für alle 16 Bundesländer." },
+  { href: "/verkaufskosten-rechner", title: "Verkaufskosten-Rechner", body: "Nettoerlös beim Hausverkauf nach Maklerprovision, Energieausweis und Steuer." },
+  { href: "/spekulationssteuer-rechner", title: "Spekulationssteuer-Rechner", body: "Zehn-Jahres-Frist, Eigennutzung, Erbe und Freigrenze nach § 23 EStG." },
+  { href: "/erbschaftsteuer-rechner", title: "Erbschaftsteuer-Rechner", body: "Freibeträge, Steuerklassen und Familienheim-Regel beim Erben einer Immobilie." },
+  { href: "/immobilienpreise-ostwuerttemberg", title: "Immobilienpreise Ostwürttemberg", body: "Haus- und Wohnungspreise je Ort im Vergleich, mit Datenstand." },
+  { href: "/bodenrichtwerte-bundeslaender", title: "Bodenrichtwert abrufen", body: "Amtliche Portale aller 16 Bundesländer mit Direktlink und Anleitung." },
 ];
 
 const steps = [
@@ -251,6 +262,30 @@ export default async function Entwurf2Page() {
       </main>
 
       <div className="bg-paper text-ink">
+        <section className="py-20 md:py-28">
+          <Container>
+            <SectionHeading
+              eyebrow="Rechner und Wissen"
+              title="Kostenlose Rechner rund um Kauf und Verkauf."
+              lede="Wer eine Immobilie verkauft oder erbt, steht vor Fragen zu Steuern und Kosten. Diese Rechner geben eine erste, nachvollziehbare Orientierung."
+            />
+            <div className="mt-12 grid gap-4 md:mt-16 md:grid-cols-2 lg:grid-cols-3">
+              {tools.map((tool) => (
+                <Link
+                  key={tool.href}
+                  href={tool.href}
+                  className="group rounded-3xl border border-ink/15 bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-ink md:p-7"
+                >
+                  <h3 className="font-display text-xl leading-tight font-extrabold text-ink">{tool.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-ink-soft">{tool.body}</p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-accent-text">
+                    Zum Rechner <span className="transition-transform group-hover:translate-x-1" aria-hidden>→</span>
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
         <RatgeberTeaserSection />
         <SiteFooter />
       </div>

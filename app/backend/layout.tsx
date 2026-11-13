@@ -24,7 +24,7 @@ export default async function BackendLayout({ children }: { children: React.Reac
   return (
     <div className="backend-shell min-h-screen bg-paper">
       <header className="bg-[#0c3c47] text-[#f6f3ec]">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-4">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-2.5">
           <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
             <span className="font-display text-base font-black tracking-[0.02em] uppercase">
               Deininger <span className="font-medium tracking-[0.18em] text-[#a9c4c9]">Backend</span>

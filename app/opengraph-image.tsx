@@ -26,15 +26,15 @@ export default async function Image() {
           alignItems: "flex-start",
           justifyContent: "center",
           padding: "80px",
-          background: "#f7f4ee",
+          background: "#0c3c47",
           fontFamily: "sans-serif",
         }}
       >
         <img src={markBase64} alt="" width={90} height={90} style={{ marginBottom: 40 }} />
-        <div style={{ fontSize: 56, fontWeight: 600, color: "#17140f", lineHeight: 1.2, maxWidth: 900 }}>
+        <div style={{ fontSize: 56, fontWeight: 600, color: "#f6f3ec", lineHeight: 1.2, maxWidth: 900 }}>
           {siteConfig.name}
         </div>
-        <div style={{ fontSize: 30, color: "#423b31", marginTop: 24, maxWidth: 900 }}>
+        <div style={{ fontSize: 30, color: "#cfe0e3", marginTop: 24, maxWidth: 900 }}>
           {siteConfig.tagline}
         </div>
         <div
@@ -42,7 +42,7 @@ export default async function Image() {
             display: "flex",
             marginTop: 48,
             fontSize: 24,
-            color: "#a9714b",
+            color: "#ffd23f",
             fontWeight: 600,
           }}
         >

@@ -35,6 +35,39 @@ export function realEstateAgentJsonLd() {
       ...cityPages.map((city) => ({ "@type": "City", name: city.name })),
       { "@type": "Country", name: "Deutschland" },
     ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      email: siteConfig.email,
+      areaServed: "DE",
+      availableLanguage: ["de"],
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Leistungen von Deininger Objektwert",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "EUR",
+          itemOffered: {
+            "@type": "Service",
+            name: "Kostenlose Online-Immobilienbewertung",
+            description: "Unverbindliche Ersteinschätzung des Immobilienwerts als Wertspanne in wenigen Minuten, deutschlandweit nutzbar.",
+            url: `${siteConfig.url}/immobilienbewertung`,
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Persönliche Verkaufsbegleitung als Immobilienmakler",
+            description: "Begleitung vom ersten Gespräch über die Vermarktung bis zum Notartermin, auf Wunsch diskret ohne öffentliches Inserat.",
+            url: `${siteConfig.url}/immobilie-verkaufen`,
+          },
+        },
+      ],
+    },
     offers: {
       "@type": "Offer",
       price: "0",

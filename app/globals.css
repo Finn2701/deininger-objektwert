@@ -207,38 +207,26 @@ html {
 /* Unterseiten: Illustrationsband, runde Karten, Bewegung              */
 /* ------------------------------------------------------------------ */
 
-.page-band {
-  position: relative;
-  height: 10.5rem;
-  background: #0c3c47;
-  border-bottom-left-radius: 2.5rem;
-  border-bottom-right-radius: 2.5rem;
-  overflow: hidden;
+.site-art {
+  display: none;
 }
-@media (min-width: 768px) {
-  .page-band {
-    height: 16rem;
+@media (min-width: 1100px) {
+  .site-art {
+    display: block;
+    position: absolute;
+    z-index: 0;
+    top: 2.5rem;
+    right: max(1.5rem, calc((100% - 84rem) / 2 + 2rem));
+    width: 19rem;
+    height: auto;
+    pointer-events: none;
+    animation: band-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
-}
-.page-band-art {
-  height: 138%;
-  width: auto;
-  max-width: 100%;
-  margin-left: auto;
-  margin-bottom: -2.6rem;
-  animation: band-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-.page-band-dots {
-  flex: 1;
-  align-self: stretch;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.6px);
-  background-size: 22px 22px;
-  mask-image: linear-gradient(90deg, #000, transparent 85%);
 }
 @keyframes band-in {
   from {
     opacity: 0;
-    transform: translateY(1.5rem);
+    transform: translateY(1.2rem);
   }
   to {
     opacity: 1;
@@ -276,16 +264,18 @@ html {
 .site-main {
   position: relative;
   background-color: var(--color-paper);
-  background-image: radial-gradient(rgba(10, 43, 51, 0.07) 1.2px, transparent 1.3px);
-  background-size: 26px 26px;
+}
+.site-main > :not(.site-art) {
+  position: relative;
+  z-index: 1;
 }
 
 /* Überschriften der Unterseiten: groß, kräftig, mit sanftem Einstieg */
 .site-main h1 {
   font-family: var(--font-gabarito), sans-serif;
   font-weight: 800;
-  font-size: clamp(2.3rem, 5vw, 4.25rem);
-  line-height: 1.02;
+  font-size: clamp(2.1rem, 4.2vw, 3.5rem);
+  line-height: 1.05;
   letter-spacing: -0.025em;
   text-wrap: balance;
   animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -308,8 +298,8 @@ html {
 
 /* Karten: alles mit Rundumrahmen und Innenabstand wird zur runden Karte */
 .site-main :is(div, section, li, a, p, article)[class*="border-line"][class*="p-"]:not([class*="border-t"]):not([class*="border-b"]):not([class*="border-l"]):not([class*="border-r"]) {
-  border-radius: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.9rem;
+  background-color: #fff;
   transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s, background-color 0.2s;
 }
 .site-main a[class*="border-line"][class*="p-"]:hover {
@@ -318,24 +308,24 @@ html {
   background-color: #fff;
 }
 .site-main [class*="bg-paper-dim"][class*="p-"] {
-  border-radius: 1.75rem;
+  border-radius: 1.1rem;
 }
 .site-main :is(input, select, textarea) {
-  border-radius: 0.9rem;
+  border-radius: 0.6rem;
 }
 .site-main [class*="overflow-x-auto"][class*="border-line"] {
-  border-radius: 1.25rem;
-  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 0.9rem;
+  background-color: #fff;
 }
 .site-main :is(img) {
-  border-radius: 1.5rem;
+  border-radius: 0.9rem;
 }
 .site-main details {
   transition: background-color 0.2s;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-band-art,
+  .site-art,
   .site-main h1,
   .art-pin,
   .art-cloud {
@@ -346,16 +336,8 @@ html {
 /* ------------------------------------------------------------------ */
 /* Backend: gleiche Bildwelt, ruhiger Arbeitsbereich                   */
 /* ------------------------------------------------------------------ */
-.backend-shell {
-  background-image: radial-gradient(rgba(10, 43, 51, 0.07) 1.2px, transparent 1.3px);
-  background-size: 26px 26px;
-}
 .backend-wave {
-  height: 1.75rem;
-  background: var(--color-paper);
-  border-top-left-radius: 2rem;
-  border-top-right-radius: 2rem;
-  margin-top: 0.5rem;
+  display: none;
 }
 .backend-shell h1 {
   font-family: var(--font-gabarito), sans-serif;
@@ -366,8 +348,8 @@ html {
 .backend-shell :is(div, section, li, a, details, article)[class*="rounded-xl"][class*="border-line"],
 .backend-shell :is(div, section, li, a, details, article)[class*="rounded-lg"][class*="border-line"],
 .backend-shell :is(div, section, li, a, details, article)[class*="rounded-2xl"][class*="border-line"] {
-  border-radius: 1.4rem;
-  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 0.9rem;
+  background-color: #fff;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s;
 }
 .backend-shell a[class*="rounded-xl"][class*="border-line"]:hover,

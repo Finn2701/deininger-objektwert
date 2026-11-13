@@ -31,6 +31,7 @@ ${siteConfig.operator.name} ist zugelassener Immobilienmakler nach § 34c Abs. 1
 
 ## Kernangebot
 
+- [Ausführliche Fassung für KI-Assistenten](${siteConfig.url}/llms-full.txt): Fakten zum Anbieter, alle Fragen und Antworten sowie Orts- und Ratgeberseiten als Klartext.
 - [Immobilienmakler Heidenheim](${siteConfig.url}/ueber-uns): persönliche Verkaufsbegleitung durch einen nach § 34c GewO zugelassenen Makler, von der Vermarktung bis zum Notartermin.
 - [Kostenlose Online-Immobilienbewertung](${siteConfig.url}/immobilienbewertung): unverbindliche Ersteinschätzung in wenigen Minuten.
 - [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen, diskrete Vermarktung, Maklerleistungen.

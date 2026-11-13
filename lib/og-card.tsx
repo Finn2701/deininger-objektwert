@@ -20,25 +20,25 @@ export async function ogCard({ kicker, title, subtitle }: { kicker: string; titl
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "80px",
-          background: "#f7f4ee",
+          background: "#0c3c47",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center" }}>
-          <img src={markBase64} alt="" width={56} height={56} style={{ marginRight: 20 }} />
-          <div style={{ display: "flex", fontSize: 28, fontWeight: 600, color: "#423b31" }}>
+          <img src={markBase64} alt="" width={56} height={56} style={{ marginRight: 20, background: "#f6f3ec", borderRadius: 14, padding: 6 }} />
+          <div style={{ display: "flex", fontSize: 28, fontWeight: 600, color: "#cfe0e3" }}>
             {kicker} &middot; {siteConfig.name}
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 64, fontWeight: 600, color: "#17140f", lineHeight: 1.15, maxWidth: 1040 }}>
+          <div style={{ display: "flex", fontSize: 64, fontWeight: 600, color: "#f6f3ec", lineHeight: 1.15, maxWidth: 1040 }}>
             {title}
           </div>
           {subtitle ? (
-            <div style={{ display: "flex", fontSize: 30, color: "#423b31", marginTop: 28, maxWidth: 1040 }}>{subtitle}</div>
+            <div style={{ display: "flex", fontSize: 30, color: "#cfe0e3", marginTop: 28, maxWidth: 1040 }}>{subtitle}</div>
           ) : null}
         </div>
-        <div style={{ display: "flex", fontSize: 24, color: "#a9714b", fontWeight: 600 }}>
+        <div style={{ display: "flex", fontSize: 24, color: "#ffd23f", fontWeight: 600 }}>
           {siteConfig.url.replace("https://", "")}
         </div>
       </div>

@@ -12,7 +12,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 bg-[#0c3c47] text-[#f6f3ec]">
-      <Container className="flex h-16 items-stretch justify-between md:h-[4.5rem]">
+      <Container className="flex h-14 items-stretch justify-between md:h-16">
         <Link href="/" className="flex items-center gap-3" aria-label="Deininger Objektwert, zur Startseite">
           <Image
             src="/images/brand/mark.png"
@@ -21,13 +21,13 @@ export function SiteHeader() {
             height={512}
             priority
             sizes="40px"
-            className="h-8 w-auto brightness-0 invert md:h-9"
+            className="h-7 w-auto brightness-0 invert md:h-8"
           />
           <span className="flex flex-col leading-none">
-            <span className="font-display text-base font-black tracking-[0.02em] text-[#f6f3ec] uppercase md:text-lg">
+            <span className="font-display text-sm font-black tracking-[0.04em] text-[#f6f3ec] uppercase md:text-base">
               Deininger
             </span>
-            <span className="mt-1 text-[10px] font-medium tracking-[0.3em] text-[#a9c4c9] uppercase md:text-[11px]">
+            <span className="mt-0.5 text-[9px] font-medium tracking-[0.32em] text-[#a9c4c9] uppercase md:text-[10px]">
               Objektwert
             </span>
           </span>
@@ -46,7 +46,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/immobilienbewertung" className="btn-primary hidden !py-2.5 md:inline-flex">
+          <Link href="/immobilienbewertung" className="btn-primary hidden !px-5 !py-2 !text-sm md:inline-flex">
             Immobilienwert einschätzen
           </Link>
           <Link href="/immobilienbewertung" className="btn-primary hidden !px-4 !py-2 !text-xs sm:inline-flex md:hidden">
