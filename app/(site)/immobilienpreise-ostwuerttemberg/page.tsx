@@ -210,7 +210,7 @@ export default function PriceAtlasPage() {
                 <a
                   href={PRICE_ATLAS_CSV_PATH}
                   download
-                  className="inline-flex bg-accent text-white px-5 py-2.5 text-sm hover:bg-ink"
+                  className="inline-flex bg-signal font-bold text-ink rounded-full px-5 py-2.5 text-sm hover:bg-ink hover:text-white"
                 >
                   Tabelle als CSV herunterladen
                 </a>

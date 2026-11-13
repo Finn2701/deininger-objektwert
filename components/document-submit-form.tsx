@@ -155,7 +155,7 @@ export function DocumentSubmitForm() {
         <button
           type="submit"
           disabled={status === "submitting" || (captchaRequired && !turnstileToken)}
-          className="bg-accent text-white px-6 py-2.5 text-sm transition-opacity hover:bg-ink disabled:opacity-50"
+          className="bg-signal font-bold text-ink rounded-full px-6 py-2.5 text-sm transition-opacity hover:bg-ink hover:text-white disabled:opacity-50"
         >
           {status === "submitting" ? "Wird gesendet …" : "Unterlagen einreichen"}
         </button>

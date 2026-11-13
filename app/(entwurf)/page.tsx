@@ -1,7 +1,20 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Experience } from "@/components/entwurf2/experience";
 import { getFaqs } from "@/components/sections/faq-section";
-import { siteConfig } from "@/lib/site-config";
+import { RatgeberTeaserSection } from "@/components/sections/home/ratgeber-teaser-section";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { primaryNav, siteConfig } from "@/lib/site-config";
+import { faqJsonLd, realEstateAgentJsonLd, websiteJsonLd } from "@/lib/structured-data";
+
+export const revalidate = 3600;
+
+export const metadata: Metadata = {
+  title: { absolute: "Immobilienmakler Heidenheim | Immobilie bewerten – kostenlos online | Deininger Objektwert" },
+  description:
+    "Zugelassener Immobilienmakler (§ 34c GewO) in Heidenheim: persönliche Verkaufsbegleitung von Finn Deininger – oder starten Sie unverbindlich mit der kostenlosen Online-Wertspanne in wenigen Minuten, deutschlandweit nutzbar.",
+  alternates: { canonical: "/" },
+};
 
 const display = "font-[family-name:var(--font-gabarito)] font-black tracking-[-0.02em]";
 
@@ -62,14 +75,25 @@ function Arrow() {
 }
 
 export default async function Entwurf2Page() {
-  const faqs = (await getFaqs()).slice(0, 6);
+  const allFaqs = await getFaqs();
+  const faqs = allFaqs.slice(0, 8);
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(realEstateAgentJsonLd()) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd()) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd(faqs)) }} />
       <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between bg-[#0c3c47]/85 px-5 py-4 sm:px-8 lg:px-12">
-        <Link href="/entwurf-2" className={`${display} text-lg uppercase tracking-[0.02em] text-[#f6f3ec]`}>
+        <Link href="/" className={`${display} text-lg uppercase tracking-[0.02em] text-[#f6f3ec]`}>
           Deininger <span className="font-medium tracking-[0.18em] text-[#a9c4c9]">Objektwert</span>
         </Link>
+        <nav className="hidden items-center gap-7 lg:flex" aria-label="Hauptnavigation">
+          {primaryNav.map((item) => (
+            <Link key={item.href} href={item.href} className="text-sm font-semibold text-[#cfe0e3] transition-colors hover:text-white">
+              {item.label}
+            </Link>
+          ))}
+        </nav>
         <Link href="/immobilienbewertung" className={`${btn} whitespace-nowrap !px-5 !py-2.5 !text-sm`}>
           Wert einschätzen
         </Link>
@@ -226,28 +250,10 @@ export default async function Entwurf2Page() {
         </section>
       </main>
 
-      <footer className="bg-[#061f25] px-5 py-12 text-sm text-[#a9c4c9] sm:px-8 lg:px-12">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} {siteConfig.name} · zugelassener Immobilienmakler nach § 34c GewO · {siteConfig.region}
-          </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2">
-            {[
-              ["/impressum", "Impressum"],
-              ["/datenschutz", "Datenschutz"],
-              ["/agb", "AGB"],
-              ["/widerruf", "Widerrufsbelehrung"],
-              ["/", "Zur bisherigen Seite"],
-            ].map(([href, label]) => (
-              <li key={href}>
-                <Link href={href} className="underline-offset-4 hover:text-white hover:underline">
-                  {label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </footer>
+      <div className="bg-paper text-ink">
+        <RatgeberTeaserSection />
+        <SiteFooter />
+      </div>
     </>
   );
 }

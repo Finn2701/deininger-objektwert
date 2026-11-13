@@ -221,7 +221,7 @@ export default function ErbschaftsteuerPage() {
                 kostenlose Ersteinschätzung dauert wenige Minuten.
               </p>
               <div className="mt-4 flex flex-wrap gap-3 text-sm">
-                <Link href="/immobilienbewertung" className="inline-flex bg-accent text-white px-5 py-2.5 hover:bg-ink">
+                <Link href="/immobilienbewertung" className="inline-flex bg-signal font-bold text-ink rounded-full px-5 py-2.5 hover:bg-ink hover:text-white">
                   Immobilie kostenlos bewerten
                 </Link>
                 <Link href="/ratgeber" className="inline-flex border border-line px-5 py-2.5 text-ink hover:border-ink">

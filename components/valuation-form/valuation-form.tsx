@@ -595,7 +595,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
             type="button"
             onClick={() => setStep((s) => Math.min(TOTAL_STEPS - 1, s + 1))}
             disabled={!isStepValid(step, data)}
-            className="bg-accent text-white px-6 py-2.5 text-sm transition-opacity hover:bg-ink disabled:opacity-30"
+            className="bg-signal font-bold text-ink rounded-full px-6 py-2.5 text-sm transition-opacity hover:bg-ink hover:text-white disabled:opacity-30"
           >
             Weiter
           </button>
@@ -608,7 +608,7 @@ export function ValuationForm({ defaultLocation = "" }: { defaultLocation?: stri
               status === "submitting" ||
               (captchaRequired && !turnstileToken && !captchaBlocked)
             }
-            className="bg-accent text-white px-6 py-2.5 text-sm transition-opacity hover:bg-ink disabled:opacity-30"
+            className="bg-signal font-bold text-ink rounded-full px-6 py-2.5 text-sm transition-opacity hover:bg-ink hover:text-white disabled:opacity-30"
           >
             {status === "submitting" ? "Region wird abgeglichen …" : "Wert ermitteln"}
           </button>

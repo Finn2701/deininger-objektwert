@@ -1,20 +1,13 @@
-import type { Metadata } from "next";
-import { Gabarito, Hanken_Grotesk } from "next/font/google";
+import { CookieConsent } from "@/components/analytics/cookie-consent";
+import { ClarityLoader } from "@/components/analytics/clarity-loader";
 
-const gabarito = Gabarito({ subsets: ["latin"], variable: "--font-gabarito", display: "swap" });
-const hanken = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-hanken", display: "swap" });
-
-// Entwurf: nicht in Suchmaschinen aufnehmen
-export const metadata: Metadata = {
-  robots: { index: false, follow: false },
-};
-
-export default function EntwurfLayout({ children }: { children: React.ReactNode }) {
+/** Startseite mit dem scrollgesteuerten 3D-Modell: eigener Rahmen in Petrol, Schrift kommt aus dem Root-Layout. */
+export default function StartLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      className={`${gabarito.variable} ${hanken.variable} min-h-screen bg-[#0c3c47] font-[family-name:var(--font-hanken)] text-[#f6f3ec] selection:bg-[#ffd23f] selection:text-[#0a2b33]`}
-    >
+    <div className="min-h-screen bg-[#0c3c47] font-[family-name:var(--font-hanken)] text-[#f6f3ec] selection:bg-[#ffd23f] selection:text-[#0a2b33]">
       {children}
+      <ClarityLoader projectId={process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID ?? ""} />
+      <CookieConsent />
     </div>
   );
 }

@@ -95,7 +95,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               </p>
               <Link
                 href="/immobilienbewertung"
-                className="mt-4 inline-flex bg-accent text-white px-5 py-2.5 text-sm hover:bg-ink"
+                className="mt-4 inline-flex bg-signal font-bold text-ink rounded-full px-5 py-2.5 text-sm hover:bg-ink hover:text-white"
               >
                 Jetzt kostenlos bewerten lassen
               </Link>

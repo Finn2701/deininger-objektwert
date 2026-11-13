@@ -1,17 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  /* Ulmer Schule: kühles Neutralweiß, Blauschwarz, ein Signalton. Klassennamen bleiben, damit alle Seiten mitziehen. */
-  --color-paper: #f2f4f5;
-  --color-paper-dim: #e5e9ec;
-  --color-stone: #d1d7db;
-  --color-stone-dark: #8a959b;
-  --color-ink: #0f1519;
-  --color-ink-soft: #364046;
-  --color-line: rgba(15, 21, 25, 0.16);
-  --color-accent: #1f3fd6;
-  /* Kobalt auf Neutralweiß: ca. 7:1, reicht für Fließtext-Links */
-  --color-accent-text: #1a35b8;
+  /* Entwurf 2: Petrol und Gelb. Klassennamen bleiben, damit alle Seiten mitziehen. */
+  --color-paper: #f2f6f5;
+  --color-paper-dim: #e2ebe9;
+  --color-stone: #cfdcd9;
+  --color-stone-dark: #87999b;
+  --color-ink: #0a2b33;
+  --color-ink-soft: #2f4f57;
+  --color-line: rgba(10, 43, 51, 0.16);
+  /* Petrol: Akzent für Links, Balken und das Backend; weißer Text darauf hat ca. 7:1 */
+  --color-accent: #0e5c6e;
+  --color-accent-text: #0c5160;
+  /* Gelb: Hauptbuttons und Markierungen */
+  --color-signal: #ffd23f;
 }
 
 @theme inline {
@@ -24,8 +26,9 @@
   --color-line: var(--color-line);
   --color-accent: var(--color-accent);
   --color-accent-text: var(--color-accent-text);
-  --font-sans: var(--font-sans);
-  --font-display: var(--font-sans);
+  --color-signal: var(--color-signal);
+  --font-sans: var(--font-hanken);
+  --font-display: var(--font-gabarito);
 }
 
 html {
@@ -35,14 +38,12 @@ html {
 body {
   background: var(--color-paper);
   color: var(--color-ink);
-  font-feature-settings: "ss01", "tnum" 0;
   text-rendering: optimizeLegibility;
 }
 
-/* Überschriften: breitere Laufweite der Grotesk, enge Zeichenabstände */
+/* Überschriften: Gabarito, enge Zeichenabstände */
 .font-display {
-  font-variation-settings: "wdth" 108;
-  letter-spacing: -0.028em;
+  letter-spacing: -0.02em;
 }
 
 /* Ziffern in Tabellen, Preisen und Rechnern stehen auf einer Linie */
@@ -81,16 +82,16 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: var(--color-accent);
-  color: #fff;
-  padding: 1rem 1.5rem;
+  background: var(--color-signal);
+  color: var(--color-ink);
+  border-radius: 9999px;
+  padding: 1rem 1.75rem;
   font-size: 0.9375rem;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-  transition: background-color 0.2s, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  font-weight: 700;
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .btn-primary:hover {
-  background: var(--color-ink);
+  transform: scale(1.03);
 }
 .btn-primary:active {
   transform: translateY(1px);
@@ -101,7 +102,8 @@ html {
   gap: 0.75rem;
   border: 1px solid var(--color-ink);
   color: var(--color-ink);
-  padding: 0.875rem 1.375rem;
+  border-radius: 9999px;
+  padding: 0.875rem 1.5rem;
   font-size: 0.9375rem;
   font-weight: 500;
   transition: background-color 0.2s, color 0.2s;
@@ -171,7 +173,6 @@ html {
   margin-top: 1.25em;
 }
 .prose-article h2 {
-  font-variation-settings: "wdth" 108;
   letter-spacing: -0.02em;
   color: var(--color-ink);
   font-size: 1.375rem;
@@ -179,7 +180,6 @@ html {
   margin-top: 1.75em;
 }
 .prose-article h3 {
-  font-variation-settings: "wdth" 108;
   letter-spacing: -0.015em;
   color: var(--color-ink);
   font-size: 1.125rem;
@@ -187,7 +187,7 @@ html {
   margin-top: 1.5em;
 }
 .prose-article a {
-  color: var(--color-accent);
+  color: var(--color-accent-text);
   text-decoration: underline;
   text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
   text-underline-offset: 4px;

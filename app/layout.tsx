@@ -1,15 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo } from "next/font/google";
+import { Gabarito, Hanken_Grotesk } from "next/font/google";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
-// Eine Grotesk für alles (Ulmer Schule): die Breitenachse trägt die Überschriften, das Gewicht den Rest.
-const archivo = Archivo({
-  subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-sans",
-  display: "swap",
-});
+// Überschriften in Gabarito, Fließtext in Hanken Grotesk
+const gabarito = Gabarito({ subsets: ["latin"], variable: "--font-gabarito", display: "swap" });
+const hanken = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-hanken", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -54,7 +50,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f2f4f5",
+  themeColor: "#0c3c47",
   width: "device-width",
   initialScale: 1,
 };
@@ -64,7 +60,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="de"
       data-scroll-behavior="smooth"
-      className={archivo.variable}
+      className={`${gabarito.variable} ${hanken.variable}`}
     >
       <body className="bg-paper font-sans text-ink antialiased">{children}</body>
     </html>
