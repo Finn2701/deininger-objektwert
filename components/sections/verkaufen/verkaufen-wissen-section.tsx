@@ -154,6 +154,16 @@ export function VerkaufenWissenSection() {
           <p className="mt-4 max-w-2xl text-ink-soft/90">
             Preisniveau, Stadtteile und Besonderheiten beim Verkauf – für {cityPages.length} Orte in der Region:
           </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <Link href="/haus-verkaufen-heidenheim" className="border border-line p-5 transition-colors hover:border-ink">
+              <span className="font-display text-lg font-medium text-ink">Haus verkaufen in Heidenheim</span>
+              <span className="mt-2 block text-sm text-ink-soft">Ablauf, Unterlagen und kostenlose Werteinschätzung →</span>
+            </Link>
+            <Link href="/wohnung-verkaufen-heidenheim" className="border border-line p-5 transition-colors hover:border-ink">
+              <span className="font-display text-lg font-medium text-ink">Wohnung verkaufen in Heidenheim</span>
+              <span className="mt-2 block text-sm text-ink-soft">WEG-Unterlagen, Wertfaktoren und Verkaufsschritte →</span>
+            </Link>
+          </div>
           <ul className="mt-6 flex flex-wrap gap-3">
             {cityPages.map((city) => (
               <li key={city.slug}>
