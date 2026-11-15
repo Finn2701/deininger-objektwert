@@ -8,10 +8,16 @@ import { ModelArt } from "@/components/ui/model-art";
 // Seiten, auf denen der Abschlussbalken stören würde (Formular, Kontakt, Rechtstexte)
 const HIDDEN = ["/immobilienbewertung", "/kontakt", "/unterlagen-einreichen", "/impressum", "/datenschutz", "/agb", "/widerruf"];
 
+function localValuationPath(pathname: string) {
+  const localSalePage = pathname.match(/^\/(?:haus|wohnung)-verkaufen-([a-z0-9-]+)$/);
+  return localSalePage ? `/immobilienbewertung-${localSalePage[1]}` : "/immobilienbewertung";
+}
+
 /** Abschlussbalken mit der wichtigsten Handlung: die kostenlose Ersteinschätzung. */
 export function ConversionBand() {
   const path = usePathname();
-  if (HIDDEN.some((p) => path === p || path.startsWith(`${p}/`))) return null;
+  if (HIDDEN.some((p) => path === p || path.startsWith(`${p}/`)) || path.startsWith("/immobilienbewertung-")) return null;
+  const valuationPath = localValuationPath(path);
 
   return (
     <section className="bg-[#0c3c47] text-[#f6f3ec]">
@@ -26,7 +32,7 @@ export function ConversionBand() {
         </div>
         <div className="relative flex flex-col gap-3 md:col-span-4 md:items-end">
           <ModelArt className="pointer-events-none mb-2 hidden w-60 lg:block" />
-          <Link href="/immobilienbewertung" className="btn-primary">
+          <Link href={valuationPath} className="btn-primary">
             Jetzt kostenlos bewerten lassen
             <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden>
               <path d="M0 6h16M11 1l5 5-5 5" stroke="currentColor" strokeWidth="2" />
