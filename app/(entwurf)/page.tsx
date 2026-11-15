@@ -12,9 +12,9 @@ import { faqJsonLd, realEstateAgentJsonLd, websiteJsonLd } from "@/lib/structure
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: { absolute: "Immobilienmakler Heidenheim | Immobilie bewerten – kostenlos online | Deininger Objektwert" },
+  title: { absolute: "Immobilie bewerten in Heidenheim – kostenlos online | Deininger Objektwert" },
   description:
-    "Zugelassener Immobilienmakler (§ 34c GewO) in Heidenheim: persönliche Verkaufsbegleitung von Finn Deininger – oder starten Sie unverbindlich mit der kostenlosen Online-Wertspanne in wenigen Minuten, deutschlandweit nutzbar.",
+    "Kostenlose, unverbindliche Online-Wertspanne für Ihre Immobilie: in wenigen Minuten starten, mit Schwerpunkt Heidenheim und deutschlandweit nutzbar.",
   alternates: { canonical: "/" },
 };
 
@@ -73,7 +73,7 @@ const steps = [
   {
     n: "3",
     title: "Bei Bedarf: persönliches Gespräch",
-    body: "Möchten Sie die Einschätzung vertiefen oder über einen Verkauf sprechen, melden wir uns unverbindlich bei Ihnen.",
+    body: "Möchten Sie die Einschätzung einordnen oder Ihren Verkauf vorbereiten, melden wir uns unverbindlich bei Ihnen.",
   },
 ];
 
@@ -191,10 +191,9 @@ export default async function Entwurf2Page() {
               <h2 className={`${display} text-5xl leading-[0.95] md:text-8xl`}>{siteConfig.operator.name}</h2>
               <p className="mt-3 text-base font-bold">Ihr Ansprechpartner</p>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed md:text-xl">
-                Ich bewerte und begleite Immobilien in {siteConfig.region} und Umgebung persönlich — von der ersten
-                Einschätzung bis zum Gespräch über einen möglichen Verkauf. Keine anonyme Formel, kein Callcenter: Sie
-                sprechen direkt mit mir, und ich erkläre Ihnen nachvollziehbar, wie sich der Wert Ihrer Immobilie
-                zusammensetzt.
+                Ich helfe Ihnen, die Ergebnisse der Ersteinschätzung für Ihre Immobilie in {siteConfig.region} und Umgebung
+                einzuordnen. Keine anonyme Formel, kein Callcenter: Sie sprechen direkt mit mir, und ich erkläre nachvollziehbar,
+                wie sich die Wertspanne zusammensetzt.
               </p>
               <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
                 <Link

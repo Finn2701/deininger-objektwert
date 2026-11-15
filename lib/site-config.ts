@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Deininger Objektwert",
-  tagline: "Immobilienmakler & kostenlose Online-Bewertung",
+  tagline: "Kostenlose Online-Immobilienbewertung",
   description:
-    "Deininger Objektwert ist zugelassener Immobilienmakler nach § 34c GewO (IHK Ostwürttemberg) mit Sitz in Heidenheim an der Brenz und bietet neben der persönlichen Verkaufsbegleitung eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts – deutschlandweit nutzbar.",
+    "Deininger Objektwert bietet eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts – mit Schwerpunkt Heidenheim an der Brenz, deutschlandweit nutzbar.",
   // Kanonische Domain ist die www-Variante (Entscheidung 2026-09-26): jede kanonische URL, Sitemap-
   // Eintrag und JSON-LD-ID entsteht aus diesem einen Wert. next.config.ts leitet die Domain ohne www
   // dauerhaft hierher um. E-Mail-Adressen bleiben @deininger-objektwert.de.

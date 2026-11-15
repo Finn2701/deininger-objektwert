@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
 import { siteConfig } from "@/lib/site-config";
@@ -60,14 +61,14 @@ export default async function UeberUnsPage() {
                 und bildet eine sachliche Gesprächsgrundlage für alles Weitere.
               </p>
               <p className="mt-5 text-balance text-ink-soft/90 md:text-lg">
-                Seit September 2026 als Immobilienmakler nach § 34c Abs. 1 Satz 1 GewO
-                zugelassen (Erlaubnis erteilt durch die IHK Ostwürttemberg) – Details dazu
+                Finn Deininger besitzt seit September 2026 die Erlaubnis nach § 34c Abs. 1 Satz 1 GewO
+                (erteilt durch die IHK Ostwürttemberg) – Details dazu
                 finden Sie im{" "}
-                <a href="/impressum" className="underline decoration-line underline-offset-4 hover:text-ink">
+                <Link href="/impressum" className="underline decoration-line underline-offset-4 hover:text-ink">
                   Impressum
-                </a>
-                . Neben der kostenlosen Ersteinschätzung begleite ich damit auch den gesamten
-                Verkaufsprozess, von der Vermarktung bis zum Notartermin.
+                </Link>
+                . Der Schwerpunkt von Deininger Objektwert liegt auf der kostenlosen, nachvollziehbaren
+                Ersteinschätzung und der Vorbereitung eigener Entscheidungen rund um die Immobilie.
               </p>
             </Reveal>
 

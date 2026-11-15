@@ -3,17 +3,14 @@ import { cityPages } from "./city-pages";
 import type { FaqItem } from "@/components/sections/faq-section";
 
 /**
- * "RealEstateAgent" (ein LocalBusiness-Untertyp): Seit der §34c-Erlaubnis (erteilt 18.09.2026
- * durch die IHK Ostwürttemberg, siehe /impressum) ist die gewerbliche Maklertätigkeit aktiv, der
- * Typ wurde entsprechend von "ProfessionalService" auf das spezifischere "RealEstateAgent"
- * umgestellt. areaServed nennt die Orte mit eigener Ortsseite, das stärkt die lokale Zuordnung.
+ * Strukturierte Unternehmensdaten für die Bewertungsleistung.
  */
 export function realEstateAgentJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
+    "@type": "ProfessionalService",
     "@id": `${siteConfig.url}/#business`,
-    serviceType: "Immobilienmakler & kostenlose Online-Immobilienbewertung",
+    serviceType: "Kostenlose Online-Immobilienbewertung",
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
@@ -21,7 +18,7 @@ export function realEstateAgentJsonLd() {
     image: `${siteConfig.url}/opengraph-image`,
     email: siteConfig.email,
     priceRange: "Kostenlose Ersteinschätzung",
-    knowsAbout: ["Immobilienbewertung", "Verkehrswert", "Bodenrichtwert", "Erbimmobilien", "Immobilienverkauf", "Immobilienvermittlung"],
+    knowsAbout: ["Immobilienbewertung", "Verkehrswert", "Bodenrichtwert", "Erbimmobilien", "Immobilienverkauf"],
     provider: personJsonLd(),
     address: {
       "@type": "PostalAddress",
@@ -55,15 +52,6 @@ export function realEstateAgentJsonLd() {
             name: "Kostenlose Online-Immobilienbewertung",
             description: "Unverbindliche Ersteinschätzung des Immobilienwerts als Wertspanne in wenigen Minuten, deutschlandweit nutzbar.",
             url: `${siteConfig.url}/immobilienbewertung`,
-          },
-        },
-        {
-          "@type": "Offer",
-          itemOffered: {
-            "@type": "Service",
-            name: "Persönliche Verkaufsbegleitung als Immobilienmakler",
-            description: "Begleitung vom ersten Gespräch über die Vermarktung bis zum Notartermin, auf Wunsch diskret ohne öffentliches Inserat.",
-            url: `${siteConfig.url}/immobilie-verkaufen`,
           },
         },
       ],
@@ -136,7 +124,7 @@ export function personJsonLd() {
     "@type": "Person",
     name: siteConfig.operator.name,
     url: `${siteConfig.url}/ueber-uns`,
-    jobTitle: "Immobilienmakler (§ 34c GewO)",
+    jobTitle: "Ansprechpartner für Immobilienbewertung",
   };
 }
 

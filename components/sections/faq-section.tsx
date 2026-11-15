@@ -10,7 +10,7 @@ export const defaultFaqs: FaqItem[] = [
   {
     question: "Wie verkaufe ich meine Immobilie?",
     answer:
-      "Der erste Schritt ist eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts – sie zeigt Ihnen in wenigen Minuten eine realistische Wertspanne. Darauf folgt bei Bedarf ein persönliches Gespräch, das Zusammenstellen der wichtigsten Unterlagen (Grundbuchauszug, Energieausweis, Baupläne) und – auf Wunsch – eine diskrete Vermarktung ohne öffentliches Inserat. Details zum genauen Ablauf finden Sie auf der Seite „Immobilie verkaufen“.",
+      "Der erste Schritt ist eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts – sie zeigt Ihnen in wenigen Minuten eine realistische Wertspanne. Danach helfen eine vollständige Unterlagenliste und ein klarer Ablauf, den eigenen Verkauf fundiert vorzubereiten. Details finden Sie auf der Seite „Immobilie verkaufen“.",
   },
   {
     question: "Was kostet die Immobilienbewertung?",
@@ -40,12 +40,12 @@ export const defaultFaqs: FaqItem[] = [
   {
     question: "Muss meine Immobilie öffentlich inseriert werden?",
     answer:
-      "Nein. Auf Wunsch kann eine Vermarktung zunächst diskret und ohne öffentliches Inserat erfolgen, mit gezielter statt breiter Ansprache. Mehr dazu auf der Seite „Immobilie verkaufen“.",
+      "Nein. Ob und wie Sie Ihre Immobilie anbieten, entscheiden Sie selbst. Vorher helfen ein realistischer Preisrahmen und vollständige Unterlagen, damit Sie die nächsten Schritte bewusst planen können. Mehr dazu auf der Seite „Immobilie verkaufen“.",
   },
   {
     question: "Ist Deininger Objektwert ein Immobilienmakler?",
     answer:
-      "Ja. Finn Deininger ist seit September 2026 als Immobilienmakler nach § 34c Abs. 1 Satz 1 GewO zugelassen (Erlaubnis erteilt durch die IHK Ostwürttemberg, Details im Impressum). Neben der persönlichen Verkaufsbegleitung bietet Deininger Objektwert weiterhin die kostenlose Online-Ersteinschätzung an.",
+      "Finn Deininger besitzt seit September 2026 die Erlaubnis nach § 34c Abs. 1 Satz 1 GewO (erteilt durch die IHK Ostwürttemberg, Details im Impressum). Der Schwerpunkt von Deininger Objektwert liegt auf der kostenlosen Online-Ersteinschätzung und verständlicher Vorbereitung rund um den Immobilienwert.",
   },
   {
     question: "Was kostet die Maklerleistung beim Verkauf?",
