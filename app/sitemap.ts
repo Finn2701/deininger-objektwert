@@ -23,6 +23,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/immobilie-verkaufen", priority: 0.8, changeFrequency: "monthly" },
     { path: "/haus-verkaufen-heidenheim", priority: 0.9, changeFrequency: "monthly" },
     { path: "/wohnung-verkaufen-heidenheim", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/haus-verkaufen-aalen", priority: 0.9, changeFrequency: "monthly" },
+    { path: "/wohnung-verkaufen-aalen", priority: 0.9, changeFrequency: "monthly" },
     { path: "/unterlagen-einreichen", priority: 0.6, changeFrequency: "monthly" },
     { path: "/ratgeber", priority: 0.7, changeFrequency: "weekly" },
     { path: "/ueber-uns", priority: 0.6, changeFrequency: "monthly" },

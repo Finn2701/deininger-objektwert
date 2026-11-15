@@ -109,6 +109,18 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
   const neighbors = city.neighbors
     .map((slug) => cityPages.find((c) => c.slug === slug))
     .filter((c): c is CityPage => Boolean(c));
+  const localSalePages =
+    city.slug === "aalen"
+      ? [
+          { href: "/haus-verkaufen-aalen", label: "Haus in Aalen verkaufen" },
+          { href: "/wohnung-verkaufen-aalen", label: "Wohnung in Aalen verkaufen" },
+        ]
+      : city.slug === "heidenheim"
+        ? [
+            { href: "/haus-verkaufen-heidenheim", label: "Haus in Heidenheim verkaufen" },
+            { href: "/wohnung-verkaufen-heidenheim", label: "Wohnung in Heidenheim verkaufen" },
+          ]
+        : [];
 
   return (
     <>
@@ -211,6 +223,25 @@ export default async function CityPageRoute({ params }: { params: Promise<{ orts
             </div>
           </Container>
         </section>
+
+        {localSalePages.length > 0 ? (
+          <section className="border-t border-line py-16 md:py-20">
+            <Container>
+              <SectionHeading eyebrow="Verkaufsabsicht" title={`Immobilie in ${city.name} verkaufen`} />
+              <p className="mt-5 max-w-3xl text-ink-soft/90">
+                Die Wertspanne ist der Ausgangspunkt. Für die konkrete Vorbereitung finden Sie getrennte Checklisten und Abläufe für
+                Häuser und Eigentumswohnungen.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {localSalePages.map((salePage) => (
+                  <Link key={salePage.href} href={salePage.href} className="btn btn-secondary">
+                    {salePage.label}
+                  </Link>
+                ))}
+              </div>
+            </Container>
+          </section>
+        ) : null}
 
         <section className="border-t border-line py-16 md:py-20">
           <Container>
