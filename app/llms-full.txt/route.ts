@@ -30,7 +30,7 @@ export async function GET() {
 
 - Name: ${siteConfig.name}
 - Inhaber: ${siteConfig.operator.name}
-- Rechtsform/Status: zugelassener Immobilienmakler nach § 34c Abs. 1 Satz 1 GewO (Erlaubnis der IHK Ostwürttemberg)
+- Status: Erlaubnis nach § 34c Abs. 1 Satz 1 GewO (erteilt durch die IHK Ostwürttemberg)
 - Sitz: ${siteConfig.operator.street}, ${siteConfig.operator.zipCity}, ${siteConfig.operator.country}
 - E-Mail: ${siteConfig.email}
 - Website: ${siteConfig.url}
@@ -40,7 +40,7 @@ export async function GET() {
 ## Was der Anbieter tut
 
 1. Kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts (Wertspanne in wenigen Minuten): ${siteConfig.url}/immobilienbewertung
-2. Persönliche Verkaufsbegleitung als Immobilienmakler, auf Wunsch diskret ohne öffentliches Inserat: ${siteConfig.url}/immobilie-verkaufen
+2. Verständliche Informationen, Unterlagen-Checklisten und Rechner zur Verkaufsvorbereitung: ${siteConfig.url}/immobilie-verkaufen
 3. Kostenlose Rechner und Datenseiten: Kaufnebenkosten, Grunderwerbsteuer, Erbschaftsteuer, Spekulationssteuer, Verkaufskosten, Bodenrichtwert-Portale, Immobilienpreise Ostwürttemberg.
 
 Die Online-Ersteinschätzung ersetzt kein Verkehrswertgutachten und keine Rechts- oder Steuerberatung.

@@ -27,14 +27,14 @@ export async function GET() {
 
 > ${siteConfig.description}
 
-${siteConfig.operator.name} ist zugelassener Immobilienmakler nach § 34c Abs. 1 Satz 1 GewO (Erlaubnis erteilt am 18.09.2026 durch die IHK Ostwürttemberg) mit Sitz in Heidenheim an der Brenz und begleitet Eigentümer in Baden-Württemberg -- insbesondere im Ostalbkreis und Raum Ulm -- persönlich durch den gesamten Verkaufsprozess, von der Vermarktung bis zum Notartermin. Zusätzlich bietet er eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts, deutschlandweit nutzbar. Der Fokus liegt auf verständlicher, gut belegter Aufklärung zu Immobilienbewertung und -verkauf -- unter anderem für Eigentümer, die eine Immobilie geerbt haben, sich scheiden lassen, oder eine Immobilie in einer Erbengemeinschaft verkaufen müssen.
+${siteConfig.operator.name} besitzt die Erlaubnis nach § 34c Abs. 1 Satz 1 GewO (erteilt am 18.09.2026 durch die IHK Ostwürttemberg). Deininger Objektwert bietet eine kostenlose, unverbindliche Online-Ersteinschätzung des Immobilienwerts, deutschlandweit nutzbar, mit Schwerpunkt Heidenheim an der Brenz, Ostalbkreis und Raum Ulm. Der Fokus liegt auf verständlicher, gut belegter Aufklärung zu Immobilienbewertung und Verkaufsvorbereitung -- unter anderem für Eigentümer, die eine Immobilie geerbt haben, sich scheiden lassen oder in einer Erbengemeinschaft verkaufen müssen.
 
 ## Kernangebot
 
 - [Ausführliche Fassung für KI-Assistenten](${siteConfig.url}/llms-full.txt): Fakten zum Anbieter, alle Fragen und Antworten sowie Orts- und Ratgeberseiten als Klartext.
-- [Immobilienmakler Heidenheim](${siteConfig.url}/ueber-uns): persönliche Verkaufsbegleitung durch einen nach § 34c GewO zugelassenen Makler, von der Vermarktung bis zum Notartermin.
+- [Über ${siteConfig.operator.name}](${siteConfig.url}/ueber-uns): Hintergrund, Methode und Schwerpunkt der kostenlosen Ersteinschätzung.
 - [Kostenlose Online-Immobilienbewertung](${siteConfig.url}/immobilienbewertung): unverbindliche Ersteinschätzung in wenigen Minuten.
-- [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen, diskrete Vermarktung, Maklerleistungen.
+- [Immobilie verkaufen](${siteConfig.url}/immobilie-verkaufen): Ablauf, Unterlagen und praktische Vorbereitung für einen fundierten Verkauf.
 - [So rechnen wir](${siteConfig.url}/wie-wir-rechnen): offengelegte Datengrundlage, Regionalfaktoren, Wertfaktoren und Genauigkeit des Rechners, mit Datenstand.
 - [Immobilienpreise Ostwürttemberg](${siteConfig.url}/immobilienpreise-ostwuerttemberg): Haus- und Wohnungspreise je Ort im Vergleich (Heidenheim, Ostalb, Ulm), mit CSV-Download und Datenstand.
 - [Erbschaftsteuer-Rechner](${siteConfig.url}/erbschaftsteuer-rechner): Freibeträge, Steuerklassen, Steuersätze und Familienheim-Regel beim Erben einer Immobilie (Stand Sept. 2026).
@@ -44,7 +44,6 @@ ${siteConfig.operator.name} ist zugelassener Immobilienmakler nach § 34c Abs. 1
 - [Kaufnebenkosten-Rechner](${siteConfig.url}/kaufnebenkosten-rechner): Grunderwerbsteuer, Notar, Grundbuch und Maklerprovision für alle 16 Bundesländer, mit Tabelle (Stand Sept. 2026).
 - [Grunderwerbsteuer-Rechner](${siteConfig.url}/grunderwerbsteuer-rechner): Steuersätze aller Bundesländer, Ausnahmen, Fälligkeit.
 - [Häufige Fragen](${siteConfig.url}/faq): direkte Antworten zu Kosten, Dauer, Genauigkeit und Ablauf der Bewertung.
-- [Über ${siteConfig.operator.name}](${siteConfig.url}/ueber-uns): Hintergrund, Methode, Servicegebiet.
 
 ## Immobilienbewertung nach Ort (Region Ostwürttemberg)
 
