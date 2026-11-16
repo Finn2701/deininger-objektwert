@@ -142,7 +142,7 @@ export function AalenSalePage({ kind }: { kind: SalePageKind }) {
             "@context": "https://schema.org",
             "@type": "Service",
             name: page.serviceName,
-            serviceType: "Immobilienvermittlung und Verkaufsbegleitung",
+            serviceType: "Immobilienbewertung und Verkaufsvorbereitung",
             url: `${siteConfig.url}${page.path}`,
             provider: personJsonLd(),
             areaServed: { "@type": "City", name: "Aalen" },
@@ -176,7 +176,7 @@ export function AalenSalePage({ kind }: { kind: SalePageKind }) {
                 ))}
               </ul>
               <p className="mt-6 text-sm text-ink-soft">
-                Sie sprechen direkt mit {siteConfig.operator.name}, zugelassener Immobilienmakler nach § 34c GewO.
+                Sie sprechen direkt mit {siteConfig.operator.name}. Die Erlaubnis nach § 34c GewO liegt vor.
               </p>
             </aside>
           </Container>
